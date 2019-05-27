@@ -1,0 +1,99 @@
+﻿@model IEnumerable<ngxsis.ViewModel.SertifikasiViewModel>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.certificate_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.publisher)
+            </th>
+
+            <th>
+                MASA BERLAKU SERTIFIKASI
+            </th>
+            <th>
+                #
+            </th>
+            <th></th>
+        </tr>
+
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.certificate_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.publisher)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.valid_start_year)-@Html.DisplayFor(modelItem => item.valid_start_month) s.d. @Html.DisplayFor(modelItem => item.until_year)-@Html.DisplayFor(modelItem => item.until_month)
+                </td>
+                <td>
+                    <!-- Split button -->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary">More</button>
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="btn-edit" data-container="@item.id">Edit</a></li>
+                            <li><a href="javascript:void(0)" class="btn-delete" data-container="@item.id">Delete</a></li>
+
+
+                        </ul>
+                    </div>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+
+
+
+    $(".btn-edit").click(function () {
+        $.ajax({
+            url: '@Url.Action("Edit","Sertifikasi")',
+            type: 'get',
+            data: { id: $(this).attr("data-container") },// attr = atribut
+            //
+
+            success: function (result) {
+                $(".modal-title").html("Edit");
+                $(".modal-body").html(result);
+                $(".modal").modal("show");
+            }
+        });
+
+    });
+</script>
+
+
+<script type="text/javascript">
+    $(".btn-delete").click(function () {
+        $.ajax({
+            url: '@Url.Action("Delete", "Sertifikasi")',
+            type: 'get',
+            data: { id: $(this).attr("data-container") },
+
+            success: function (result) {
+                $(".modal-title").html("Delete");
+                $(".modal-body").html(result);
+                $(".modal").modal("show");
+            }
+        });
+
+    });
+    //data id di javascript buat button kalau di a href pakai data-container
+
+</script>

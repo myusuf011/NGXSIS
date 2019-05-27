@@ -46,6 +46,7 @@
     <Compile Include="ResponseResult.cs" />
     <Compile Include="RoleViewModel.cs" />
     <Compile Include="SelectAccessViewModel.cs" />
+    <Compile Include="SertifikasiViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
