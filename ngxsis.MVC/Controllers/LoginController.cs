@@ -26,10 +26,22 @@ namespace ngxsis.MVC.Controllers
                     o.abpwd == userModel.abpwd).FirstOrDefault();
                 if (userDetails == null)
                 {
-                   
+                    userModel.LoginErrorMessage = "Wring username or password";
+                    return View("Index", userModel);              
+                }
+                else
+                {
+                    Session["userID"] = userDetails.id;
+                    return RedirectToAction("Index", "SelectAccess");
                 }
             }
-            return View();
+        }
+
+        public ActionResult Logout()
+        {
+            int userId = (int)Session["userId"];
+            Session.Abandon();
+            return RedirectToAction("Index", "Login");
         }
     }
 }

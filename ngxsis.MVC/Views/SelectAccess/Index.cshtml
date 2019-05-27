@@ -1,0 +1,25 @@
+﻿@model ngxsis.ViewModel.SelectAccessViewModel
+
+@{
+    Layout = null;
+    if (Session["userId"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div> 
+        <h1>Select Access</h1>
+        <h3>Username: @Session["userId"]</h3>
+        <a href="@Url.Action("Logout","Login")">Logout</a>
+    </div>
+</body>
+</html>
