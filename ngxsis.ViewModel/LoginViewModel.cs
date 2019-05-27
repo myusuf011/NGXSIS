@@ -39,5 +39,7 @@ namespace ngxsis.ViewModel
         [StringLength(50)]
         [DataType(DataType.Password)]
         public string abpwd { get; set; }
+
+        public string LoginErrorMessage { get; set; }
     }
 }
