@@ -25,8 +25,12 @@
         @Html.HiddenFor(model => model.Id)
         @Html.HiddenFor(model => model.Name)
         <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" />
-        </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn-warning btn-cancel"><b>TIDAK</b></button>
+                <button type="submit" class="btn btn-danger btn-hapus"><b>YA</b></button>
+            </div>
+                
+            </div>
     }
 </div>
 
