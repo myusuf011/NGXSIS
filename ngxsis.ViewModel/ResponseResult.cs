@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ngxsis.ViewModel
 {
-    class ResponseResult
+    public class ResponseResult
     {
         public ResponseResult()
         {

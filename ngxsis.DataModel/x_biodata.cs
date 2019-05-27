@@ -91,8 +91,8 @@ namespace ngxsis.DataModel
         [StringLength(50)]
         public string phone_number1 { get; set; }
 
-        [MaxLength(50)]
-        public string[] phone_number2 { get; set; }
+        [StringLength(50)]
+        public string phone_number2 { get; set; }
 
         [Required]
         [StringLength(50)]
