@@ -29,7 +29,25 @@
         <div class="form-group">
             @Html.LabelFor(model => model.valid_start_month, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.valid_start_month, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.valid_start_month,
+                    new List<SelectListItem>
+                    {
+                    new SelectListItem { Value = "1", Text = "Januari" },
+                    new SelectListItem { Value = "2", Text = "Februari" },
+                    new SelectListItem { Value = "3", Text = "Maret" },
+                    new SelectListItem { Value = "4", Text = "April" },
+                    new SelectListItem { Value = "5", Text = "Mei" },
+                    new SelectListItem { Value = "6", Text = "Juni" },
+                    new SelectListItem { Value = "7", Text = "Juli" },
+                    new SelectListItem { Value = "8", Text = "Agustus" },
+                    new SelectListItem { Value = "9", Text = "September" },
+                    new SelectListItem { Value = "10", Text = "Oktober" },
+                    new SelectListItem { Value = "11", Text = "November" },
+                    new SelectListItem { Value = "12", Text = "Desember" },
+
+                    },
+                    "- Pilih Bulan -",
+                    new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.valid_start_month, "", new { @class = "text-danger" })
             </div>
 
@@ -37,7 +55,33 @@
         <div class="form-group">
             @Html.LabelFor(model => model.valid_start_year, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.valid_start_year, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.valid_start_year,
+                new List<SelectListItem>
+                    {
+                    new SelectListItem { Value = "2000", Text = "2000" },
+                    new SelectListItem { Value = "2001", Text = "2001" },
+                    new SelectListItem { Value = "2002", Text = "2002" },
+                    new SelectListItem { Value = "2003", Text = "2003" },
+                    new SelectListItem { Value = "2004", Text = "2004" },
+                    new SelectListItem { Value = "2005", Text = "2005" },
+                    new SelectListItem { Value = "2006", Text = "2006" },
+                    new SelectListItem { Value = "2007", Text = "2007" },
+                    new SelectListItem { Value = "2008", Text = "2008" },
+                    new SelectListItem { Value = "2009", Text = "2009" },
+                    new SelectListItem { Value = "2010", Text = "2010" },
+                    new SelectListItem { Value = "2011", Text = "2011" },
+                    new SelectListItem { Value = "2012", Text = "2012" },
+                    new SelectListItem { Value = "2013", Text = "2013" },
+                    new SelectListItem { Value = "2014", Text = "2014" },
+                    new SelectListItem { Value = "2015", Text = "2015" },
+                    new SelectListItem { Value = "2016", Text = "2016" },
+                    new SelectListItem { Value = "2017", Text = "2017" },
+                    new SelectListItem { Value = "2018", Text = "2018" },
+                    new SelectListItem { Value = "2019", Text = "2019" },
+                    },
+                    "- Pilih Tahun -",
+                    new { @class = "form-control" })
+
                 @Html.ValidationMessageFor(model => model.valid_start_year, "", new { @class = "text-danger" })
             </div>
 
@@ -45,7 +89,25 @@
         <div class="form-group">
             @Html.LabelFor(model => model.until_month, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.until_month, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.until_month,
+                    new List<SelectListItem>
+                    {
+                        new SelectListItem { Value = "1", Text = "Januari" },
+                        new SelectListItem { Value = "2", Text = "Februari" },
+                        new SelectListItem { Value = "3", Text = "Maret" },
+                        new SelectListItem { Value = "4", Text = "April" },
+                        new SelectListItem { Value = "5", Text = "Mei" },
+                        new SelectListItem { Value = "6", Text = "Juni" },
+                        new SelectListItem { Value = "7", Text = "Juli" },
+                        new SelectListItem { Value = "8", Text = "Agustus" },
+                        new SelectListItem { Value = "9", Text = "September" },
+                        new SelectListItem { Value = "10", Text = "Oktober" },
+                        new SelectListItem { Value = "11", Text = "November" },
+                        new SelectListItem { Value = "12", Text = "Desember" },
+
+                    },
+                    "- Pilih Bulan -",
+                    new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.until_month, "", new { @class = "text-danger" })
             </div>
 
@@ -53,7 +115,32 @@
         <div class="form-group">
             @Html.LabelFor(model => model.until_year, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.until_year, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.until_year,
+                    new List<SelectListItem>
+                    {
+                        new SelectListItem { Value = "2000", Text = "2000" },
+                        new SelectListItem { Value = "2001", Text = "2001" },
+                        new SelectListItem { Value = "2002", Text = "2002" },
+                        new SelectListItem { Value = "2003", Text = "2003" },
+                        new SelectListItem { Value = "2004", Text = "2004" },
+                        new SelectListItem { Value = "2005", Text = "2005" },
+                        new SelectListItem { Value = "2006", Text = "2006" },
+                        new SelectListItem { Value = "2007", Text = "2007" },
+                        new SelectListItem { Value = "2008", Text = "2008" },
+                        new SelectListItem { Value = "2009", Text = "2009" },
+                        new SelectListItem { Value = "2010", Text = "2010" },
+                        new SelectListItem { Value = "2011", Text = "2011" },
+                        new SelectListItem { Value = "2012", Text = "2012" },
+                        new SelectListItem { Value = "2013", Text = "2013" },
+                        new SelectListItem { Value = "2014", Text = "2014" },
+                        new SelectListItem { Value = "2015", Text = "2015" },
+                        new SelectListItem { Value = "2016", Text = "2016" },
+                        new SelectListItem { Value = "2017", Text = "2017" },
+                        new SelectListItem { Value = "2018", Text = "2018" },
+                        new SelectListItem { Value = "2019", Text = "2019" },
+                    },
+                    "- Pilih Tahun -",
+                    new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.until_year, "", new { @class = "text-danger" })
             </div>
 
