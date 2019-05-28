@@ -12,33 +12,31 @@ namespace ngxsis.ViewModel
         public long id { get; set; }
 
         [StringLength(200)]
-        [Display(Name = "Nama Sertifikasi *")]
+        [Required(ErrorMessage ="Nama Sertifikasi harus diisi")]
+        [Display(Name = "Nama Sertifikasi*")]
         public string certificate_name { get; set; }
-        [Display(Name = "Penerbit *")]
+        [Required(ErrorMessage = "Penerbit harus diisi")]
+        [Display(Name = "Penerbit*")]
 
         [StringLength(100)]
 
         public string publisher { get; set; }
 
-
-
+        //[Display(Name = " ")]
+        [StringLength(10)]
+        public string valid_start_year { get; set; }
 
         [Display(Name = "Berlaku Mulai")]
         [StringLength(10)]
         public string valid_start_month { get; set; }
-        [Display(Name = "")]
-        [StringLength(10)]
-        public string valid_start_year { get; set; }
-        [Display(Name = "Berlaku Sampai")]
-        [StringLength(10)]
-        public string until_month { get; set; }
-
-        [Display(Name = "")]
+        //[Display(Name = " ")]
         [StringLength(10)]
         public string until_year { get; set; }
 
-
-
+        [Display(Name = "Berlaku Sampai")]
+        [StringLength(10)]
+        public string until_month { get; set; }
+        [Display(Name ="Catatan")]
         [StringLength(1000)]
         public string notes { get; set; }
         public long biodata_id { get; set; }
