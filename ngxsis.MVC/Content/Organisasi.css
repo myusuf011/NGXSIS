@@ -1,0 +1,96 @@
+﻿body {
+
+}
+
+input,
+select,
+textarea {
+    max-width: 100%;
+}
+
+
+.modal-content 
+{
+    width : 800px;
+    border-color: #000080;
+    border-width: 3px;
+    border-style: solid;
+}
+
+.modal-dialog {
+    right: auto;
+    left: 10%;
+    width: 800px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: #000080;
+}
+
+.modal-delete .modal-content {
+    width: 500px;
+    border-color: #9c1010;
+    border-width: 3px;
+    border-style: solid;
+}
+
+.modal-delete .modal-header {
+    color: #FFFFFF;
+    background-color: #9c1010;
+}
+
+.modal-delete .modal-dialog {
+    right: auto;
+    left: auto;
+    width: 800px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.table thead > tr > th,
+.table tbody > tr > th,
+.table tfoot > tr > th,
+.table thead > tr > td,
+.table tbody > tr > td,
+.table tfoot > tr > td {
+  border-bottom: 2px solid #000080;
+  color: #000080;
+}
+
+.table thead {
+    border-bottom: 4px solid #000080;
+    border-top: 4px solid #000080;
+}
+
+.btn-more:hover,
+.btn-more:active,
+.btn-more:after,
+.btn-more.active,
+.btn-more:focus,
+.open .dropdown-toggle .btn-more,
+
+.btn-more {
+    color: #FFFFFF;
+    background-color: #000080;
+}
+
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 4px solid #FFFFFF;
+  border-right: 4px solid transparent;
+  border-bottom: 0 dotted;
+  border-left: 4px solid transparent;
+  content: "";
+}
+
+.form-control:focus,
+.form-control:active,
+.form-control:hover,
+
+.form-control {
+    border-color: #000080;
+    color: #000080;
+}
