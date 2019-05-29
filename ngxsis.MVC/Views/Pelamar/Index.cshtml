@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewBag.Title = "Pelamar";
+}
+
+<h1>@ViewBag.Title</h1>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+    </div>
+    <div id="data">
+        Loading...
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            GetList();
+        });
+
+        function GetList() {
+            $.ajax(
+            {
+                url: '@Url.Action("PelamarList", "Pelamar")',
+                type: 'get',
+                data: { search: $(".table #txt-search").val() },
+                success: function (result) {
+                    $("#data").html(result);
+                }
+            });
+        }
+
+    </script>
+}

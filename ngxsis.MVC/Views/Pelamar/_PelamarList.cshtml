@@ -1,0 +1,125 @@
+﻿@model IEnumerable<ngxsis.ViewModel.PelamarViewModel>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="search" id="txt-search" class="form-control" placeholder="Cari">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default btn-search" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                        </span>
+                    </div>
+                </div>
+
+            </th>
+            <th colspan="2">
+            </th>
+            <th>
+                <div class="btn-group" role="group" aria-label="...">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-sort"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-">
+                            <li class="dropdown-header">Order</li>
+                            <li><a href="javascript:void(0)" class="btn-link sort-asc" data-container="desc">Ascending</a></li>
+                            <li><a href="javascript:void(0)" class="btn-link sort-desc" data-container="asc">Descending</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-align-justify"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown-header">Row Per Page</li>
+                            <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="10">10</a></li>
+                            <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="20">20</a></li>
+                            <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="30">30</a></li>
+                            <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="30">40</a></li>
+                            <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="10">60</a></li>
+                        </ul>
+                    </div>
+                    <button type="button" class="btn btn-default btn-create-new"><span class="glyphicon glyphicon-plus-sign"></span></button>
+                </div>
+            </th>
+        </tr>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.fullname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nick_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.phone_number1)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fullname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nick_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.phone_number1)
+                </td>
+                <td>
+                    <div class="btn-group btn-group-sm">
+                        <button type="button" class="btn btn-default btn-details" data-id="@item.id" title="Details Pelamar">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                        <button type="button" class="btn btn-default btn-token" data-id="@item.id" title="Kirim Token">
+                            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<script type="text/javascript">
+    $(".btn-search").click(function()
+    {
+        console.log($("#txt-search").val());
+        $.ajax(
+             {
+                 url: '@Url.Action("PelamarList", "Pelamar")',
+                 type: 'get',
+                 data: { search: $("#txt-search").val() },
+                 success: function (result) {
+                     $("#data").html(result);
+                 }
+             });
+    });
+    $(".btn-create-new").click(function () {
+        //alert("Ubah diklik "+$(this).attr("data-container"))
+
+        $.ajax(
+            {
+                url: '@Url.Action("Create", "Role")',
+                type: 'get',
+                success: function (result) {
+                    $(".modal-title").html("Tambah Role");
+                    $(".modal-body").html(result);
+                    $(".modal").modal("show");
+                }
+            });
+
+    });
+</script>
