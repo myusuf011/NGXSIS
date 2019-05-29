@@ -1,0 +1,84 @@
+﻿@model IEnumerable<ngxsis.ViewModel.SumberLokerViewModel>
+
+<table class="table">
+    <tr>
+  
+        <th>
+            @Html.DisplayNameFor(model => model.vacancy_source)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.candidate_type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.event_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.career_center_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.referrer_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.referrer_phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.referrer_email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.other_source)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.last_income)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.apply_date)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.vacancy_source)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.candidate_type)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.event_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.career_center_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.referrer_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.referrer_phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.referrer_email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.other_source)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.last_income)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apply_date)
+        </td>
+        <td>
+            <div class="btn-group btn-group-sm">
+                <button type="button" class="btn btn-warning btn-edit" data-id="@item.id" title="Edit">
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="btn btn-danger btn-delete" data-id="@item.id" title="Delete">
+                    <span class="glyphicon glyphicon-trash " aria-hidden="true"></span>
+                </button>
+            </div>
+        </td>
+    </tr>
+}
+
+</table>

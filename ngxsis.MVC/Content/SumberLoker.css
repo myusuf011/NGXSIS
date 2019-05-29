@@ -1,0 +1,45 @@
+﻿.modal-dialog {
+    width: 720px;
+    margin: 30px auto;
+}
+.modal-header {
+    background-color :#000080;
+    font-size : 14px;
+    color: white;
+}
+
+input,
+select,
+textarea {
+    max-width: 100%;
+}
+
+.form-group{
+   display:inline-block;
+   width:100%
+}
+
+.control-label { 
+    display: block; 
+    color : #000080;
+}
+
+hr {
+    color: #000080;
+    background-color: #000080;
+    height: 1px;
+}
+
+.close {
+	position: relative;
+	width: 23px;
+	height: 23px;
+	border: 2px solid #eef5df;
+    color: white;
+	border-radius: 50%;
+    opacity : 1;
+}
+
+.form-horizontal .control-label {
+  text-align: left !important;
+}

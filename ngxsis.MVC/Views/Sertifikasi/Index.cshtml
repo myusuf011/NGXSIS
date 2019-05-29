@@ -1,18 +1,21 @@
 ﻿
 @{
-    ViewBag.Title = "Sertifikasi"; 
+    ViewBag.Title = "Sertifikasi"; //variant
 }
 
+<link rel="stylesheet" href="~/Content/sertifikasi.css" /> 
 <div class="panel panel-default">
     <!----default panel content-->
     <div class="panel-heading">
-       
-        <h2>
-            Sertifikasi
-            <button type="button" class="btn btn-primary btn-create-new" title="Create New" id="btn-create-new">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-            </button>
-        </h2>
+        <h3>
+            <font color="#000080">
+               <b>Sertifikasi</b> 
+                <button type="button" class="btn btn-primary btn-create-new" title="Create New" id="btn-create-new">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+
+                </button>
+            </font>
+        </h3>
         <!--<input id="btn-create-new" type="button" class="btn btn-default" btn-lg" value="klik" />-->
     </div>
     <div class="panel-body">
@@ -52,9 +55,9 @@
                 url:'@Url.Action("Create", "Sertifikasi")',
                 type:'get',
                 success : function (result) {
-                    $(".modal-title").html("Create new");
-                    $(".modal-body").html(result);
-                    $(".modal").modal("show");
+                    $(".modal-utama .modal-title").html("Tambah Sertifikasi");
+                    $(".modal-utama .modal-body").html(result);
+                    $(".modal-utama").modal("show");
                 }
             });
 
@@ -67,8 +70,26 @@
 
     </script>
 
-}
-<div class="modal fade" tabindex="-1" role="dialog">
+} 
+<!-- /.modal-content create dan edit -->
+<div class="modal fade modal-utama" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background: darkblue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="background: darkblue; color: white">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--edit-->
+
+<!-- /.modal-content DELETE -->
+<div class="modal fade modal-delete" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

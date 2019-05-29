@@ -1,16 +1,16 @@
-﻿using System;
+﻿using ngxsis.Repository;
+using ngxsis.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ngxsis.Repository;
-using ngxsis.ViewModel;
 
 namespace ngxsis.MVC.Controllers
 {
-    public class SertifikasiController : Controller
+    public class OrganisasiController : Controller
     {
-        // GET: Sertifikasi
+        // GET: Organisasi
         public ActionResult Index()
         {
             return View();
@@ -18,67 +18,45 @@ namespace ngxsis.MVC.Controllers
 
         public ActionResult List()
         {
-            return PartialView("_List", SertifikasiRepo.All()); // _list nama viewnya,categoryrepo2 objek yg dipanggil untuk  isi list
-
+            return PartialView("_List", OrganisasiRepo.All());
         }
 
+        // CREATE
         public ActionResult Create()
         {
-            return PartialView("_Create", new SertifikasiViewModel());  //add-view create
+            return PartialView("_Create", new OrganisasiViewModel());
         }
 
         [HttpPost]
-        public ActionResult Create(SertifikasiViewModel model)
+        public ActionResult Create(OrganisasiViewModel model)
         {
             if (!ModelState.IsValid)
             {
                 return Json(new
                 {
                     success = false,
-                    message = "InValid"
+                    message = "Invalid"
                 }, JsonRequestBehavior.AllowGet);
             }
-
-                ResponseResult result = SertifikasiRepo.Update(model);
+            ResponseResult result = OrganisasiRepo.Update(model);
             return Json(new
             {
                 success = result.Success,
                 message = result.Message,
                 entity = result.Entity
             }, JsonRequestBehavior.AllowGet);
-
         }
 
-        //edit
-        // controller buat Add view edit
+        // EDIT
         public ActionResult Edit(int id)
         {
-            return PartialView("_Edit", SertifikasiRepo.ById(id)); //ById dibikin di CategoryRepo dulu
+            return PartialView("_Edit", OrganisasiRepo.ById(id));
         }
 
         [HttpPost]
-        public ActionResult Edit(SertifikasiViewModel model)
+        public ActionResult Edit(OrganisasiViewModel model)
         {
-            ResponseResult result = SertifikasiRepo.Update(model);
-            return Json(new
-            {
-                success = result.Success,
-                message = result.Message,
-                entity = result.Entity
-            }, JsonRequestBehavior.AllowGet);
-
-
-        }
-
-        public ActionResult Delete(int id) // post
-        {
-            return PartialView("_Delete", SertifikasiRepo.ById(id)); //habis ini di add view
-        }
-
-        [HttpPost]
-        public ActionResult Delete(SertifikasiViewModel model)
-        {
-            ResponseResult result = SertifikasiRepo.Delete(model);
+            ResponseResult result = OrganisasiRepo.Update(model);
             return Json(new
             {
                 success = result.Success,
@@ -87,5 +65,22 @@ namespace ngxsis.MVC.Controllers
             }, JsonRequestBehavior.AllowGet);
         }
 
+        // DELETE
+        public ActionResult Delete(int id)
+        {
+            return PartialView("_Delete", OrganisasiRepo.ById(id));
+        }
+
+        [HttpPost]
+        public ActionResult Delete(OrganisasiViewModel model)
+        {
+            ResponseResult result = OrganisasiRepo.Delete(model);
+            return Json(new
+            {
+                success = result.Success,
+                message = result.Message,
+                entity = result.Entity
+            }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

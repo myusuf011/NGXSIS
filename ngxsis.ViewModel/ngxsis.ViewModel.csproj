@@ -43,11 +43,13 @@
   <ItemGroup>
     <Compile Include="LoginViewModel.cs" />
     <Compile Include="PelamarViewModel.cs" />
+    <Compile Include="OrganisasiViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResponseResult.cs" />
     <Compile Include="RoleViewModel.cs" />
     <Compile Include="SelectAccessViewModel.cs" />
     <Compile Include="SertifikasiViewModel.cs" />
+    <Compile Include="SumberLokerViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
