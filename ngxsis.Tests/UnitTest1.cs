@@ -11,10 +11,7 @@ namespace ngxsis.Tests
         [TestMethod]
         public void TestMethod1()
         {
-            using (var db = new ngxsisContext())
-            {
-                var Listrole = db.x_role.ToList();
-            }
+           
         }
     }
 }

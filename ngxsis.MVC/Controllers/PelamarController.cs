@@ -23,17 +23,5 @@ namespace ngxsis.MVC.Controllers
         {
             return PartialView("_Create", new PelamarViewModel());
         }
-
-        [HttpPost]
-        public ActionResult Create(RoleViewModel model)
-        {
-            ResponseResult result = RoleRepo.Update(model);
-            return Json(new
-            {
-                success = result.Success,
-                message = result.Message,
-                entity = result.Entity
-            }, JsonRequestBehavior.AllowGet);
-        }
     }
 }
