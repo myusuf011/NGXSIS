@@ -7,7 +7,7 @@
         </dt>
         <dd>
             
-            <font color="red"> <font size="4"> Anda yakin ingin menghapus organisasi @Html.DisplayFor(model => model.certificate_name)? </font></font>
+            <font color="red"> <font size="4"> Anda yakin ingin menghapus Sertifikasi @Html.DisplayFor(model => model.certificate_name)? </font></font>
         </dd>
     </dl>
 
@@ -40,7 +40,7 @@
             success:function(result) {
                 if (result.success) {
                     alert("save successfull Name: " + result.entity.certificate_name);
-                    $(".modal").modal("hide");
+                    $(".modal-delete").modal("hide");
                     GetList();
                 } else {
                     alert("error" +result.message);
