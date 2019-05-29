@@ -1,18 +1,18 @@
 ﻿
 @{
-    ViewBag.Title = "Sertifikasi"; 
+    ViewBag.Title = "Sertifikasi"; //variant
 }
 
 <div class="panel panel-default">
     <!----default panel content-->
     <div class="panel-heading">
-       
-        <h2>
+        <h3>
             Sertifikasi
             <button type="button" class="btn btn-primary btn-create-new" title="Create New" id="btn-create-new">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+
             </button>
-        </h2>
+        </h3>
         <!--<input id="btn-create-new" type="button" class="btn btn-default" btn-lg" value="klik" />-->
     </div>
     <div class="panel-body">
@@ -52,7 +52,7 @@
                 url:'@Url.Action("Create", "Sertifikasi")',
                 type:'get',
                 success : function (result) {
-                    $(".modal-title").html("Create new");
+                    $(".modal-title").html("Tambah Sertifikasi");
                     $(".modal-body").html(result);
                     $(".modal").modal("show");
                 }
@@ -71,9 +71,9 @@
 <div class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" style="background: darkblue">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Modal title</h4>
+                <h4 class="modal-title" style="background: darkblue; color: white">Modal title</h4>
             </div>
             <div class="modal-body">
                 <p>One fine body&hellip;</p>
