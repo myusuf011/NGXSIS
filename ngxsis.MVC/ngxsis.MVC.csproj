@@ -135,6 +135,7 @@
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SelectAccessController.cs" />
     <Compile Include="Controllers\SertifikasiController.cs" />
+    <Compile Include="Controllers\SumberLokerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -145,6 +146,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom.css" />
     <Content Include="Content\StyleLogin.css" />
+    <Content Include="Content\SumberLoker.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -189,6 +191,10 @@
     <Content Include="Views\Sertifikasi\_Delete.cshtml" />
     <Content Include="Views\Sertifikasi\_Edit.cshtml" />
     <Content Include="Views\Sertifikasi\_List.cshtml" />
+    <Content Include="Views\SumberLoker\Index.cshtml" />
+    <Content Include="Views\SumberLoker\_Edit.cshtml" />
+    <Content Include="Views\SumberLoker\_Create.cshtml" />
+    <Content Include="Views\SumberLoker\_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Sumber Loker";
+}
+
+<h3>List of @ViewBag.Title</h3>
+
+<div class="panel panel-primary">
+    <!-- Default panel contents-->
+    <div class="panel-heading">
+        <input id="btn-create-new" type="button" class="btn btn-default btn-lg" value="Create New" />
+    </div>
+    <div class="panel-body">
+    </div>
+
+    <!--Table-->
+    <div id="data-list">
+        Loading...
+    </div>
+</div>
+
+<div class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Add New Data</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <link href="~/Content/SumberLoker.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            GetList();
+        });
+
+        function GetList() {
+            $.ajax({
+                url: '@Url.Action("List", "SumberLoker")',
+                type: 'get',
+                success: function (result) {
+                    $("#data-list").html(result);
+                }
+            });
+        }
+
+        $("#btn-create-new").click(function () {
+            $.ajax({
+                url: '@Url.Action("Create", "SumberLoker")',
+                type: 'get',
+                success: function (result) {
+                    $(".modal-title").html("Detail Pelamar")
+                    $(".modal-body").html(result);
+                    $(".modal").modal("show");
+                }
+            });
+        });
+    </script>
+}
