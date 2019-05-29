@@ -1,0 +1,221 @@
+﻿@model ngxsis.ViewModel.SumberLokerViewModel
+
+
+@using (Html.BeginForm("Create", "SumberLoker", FormMethod.Post, new { id = "form-create", name = "form-create" }))
+{
+    @Html.AntiForgeryToken()
+    <font color="#000080"><h5><b>&ensp;Sumber Loker</b></h5></font>
+    <hr>
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.vacancy_source, htmlAttributes: new { @class = "control-label col-md-1 ", style = "font-size:10px"})
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(model => model.vacancy_source,
+                                new List<SelectListItem>
+                                {
+                                    new SelectListItem { Value = "CareerCenter", Text="Career Center"},
+                                    new SelectListItem { Value = "Reference", Text="Reference"},
+                                    new SelectListItem { Value = "Others", Text="Others"},
+                                },
+                                    "- Pilih -", htmlAttributes: new { @class = "form-control", id = "details" })
+                            @Html.ValidationMessageFor(model => model.vacancy_source, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group ">
+                        @Html.LabelFor(model => model.candidate_type, htmlAttributes: new { @class = "control-label col-md-4", style = "font-size:10px" })
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(model => model.candidate_type,
+                            new List<SelectListItem>
+                            {
+                                new SelectListItem { Value = "FreshGraduate", Text="Fresh Graduate"},
+                                new SelectListItem { Value = "Experience", Text="Experience"},
+                            },
+                                "- Pilih -", htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.candidate_type, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group" >
+                        @Html.LabelFor(model => model.event_name, htmlAttributes: new { @class = "control-label col-md-2 ", style = "font-size:10px" })
+                        <div style="clear: both;"></div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.event_name, new { htmlAttributes = new { @class = "form-control", id = "eventName" , disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.event_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group pull-left" >
+                        @Html.LabelFor(model => model.career_center_name, htmlAttributes: new { @class = "control-label col-md-3 ", style = "font-size:10px" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.career_center_name, new { htmlAttributes = new { @class = "form-control", id = "careerCenter" , disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.career_center_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group pull-left">
+                        @Html.LabelFor(model => model.referrer_name, htmlAttributes: new { @class = "control-label col-md-3", style = "font-size:10px" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.referrer_name, new { htmlAttributes = new { @class = "form-control", id = "referrerName", disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.referrer_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.referrer_phone, htmlAttributes: new { @class = "control-label col-md-3", style = "font-size:10px" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.referrer_phone, new { htmlAttributes = new { @class = "form-control", id = "referrerPhone", disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.referrer_phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group pull-left">
+                        @Html.LabelFor(model => model.referrer_email, htmlAttributes: new { @class = "control-label col-md-3", style = "font-size:10px" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.referrer_email, new { htmlAttributes = new { @class = "form-control", id = "referrerEmail", disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.referrer_email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.other_source, htmlAttributes: new { @class = "control-label col-md-2", style = "font-size:10px" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.other_source, new { htmlAttributes = new { @class = "form-control", id = "otherSource", disabled = "disabled" } })
+                            @Html.ValidationMessageFor(model => model.other_source, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.last_income, htmlAttributes: new { @class = "control-label col-md-7", style = "font-size:10px" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.last_income, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.last_income, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.apply_date, htmlAttributes: new { @class = "control-label col-md-8", style = "font-size:10px" })
+                        <div class="col-md-12">
+                            <div class='input-group date'>
+                                @Html.EditorFor(model => model.apply_date, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.apply_date, "", new { @class = "text-danger" })
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-7 col-md-9">
+                    <input type="button" value="Batal" data-dismiss="modal" class="btn btn-warning col-md-3" />
+                    <input type="submit" value="Simpan" class="btn btn-primary col-md-3" />
+                </div>
+            </div>
+
+        </div>        
+    </div>
+}
+
+@Scripts.Render("~/bundles/jqueryval")
+<link href="~/Content/SumberLoker.css" rel="stylesheet" />
+<script type="text/javascript">
+    $("#form-create").submit(function () {
+        $.ajax({
+            url: this.action,
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.success) {
+                    alert("Save succesful! Name : " + result.entity.Name);
+                    $('.modal').modal('hide');
+                    GetList();
+                } else {
+                    alert("Error" + result.message);
+                }
+            }
+        });
+        return false;
+    });
+
+
+
+    $("#details").change(function () {
+
+        if ($(this).val() == "CareerCenter") {
+            $("#eventName").prop("disabled", false);
+            $("#careerCenter").prop("disabled", false);
+        }
+
+        if ($(this).val() == "Reference") {
+             $("#referrerName").prop("disabled", false);
+             $("#referrerPhone").prop("disabled", false);
+             $("#referrerEmail").prop("disabled", false);
+        }
+
+        if ($(this).val() == "Others") {
+            $("#otherSource").prop("disabled", false);
+        }
+    });
+
+
+</script>
+
+
+
+<!--<a href="javascript:genPDF()">Download PDF</a>-->
+
+<script type="text/javascript" src="~/Scripts/jspdf.min.js"></script>
+<script type="text/javascript" src="~/Scripts/html2canvas.js"></script>
+
+<script type="text/javascript">
+    function genPDF() {
+        html2canvas(document.body, {
+            onrendered: function (canvas) {
+                var img = canvas.toDataURL("image/png");
+                var doc = new jsPDF();
+                doc.addImage(img, 'JPEG', 20, 20);
+                doc.save('test.pdf');
+            }
+        });
+    }
+</script>

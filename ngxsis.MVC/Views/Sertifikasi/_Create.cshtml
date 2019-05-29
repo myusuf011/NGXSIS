@@ -9,33 +9,39 @@
 
     <div class="form-horizontal">
 
-
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.certificate_name, htmlAttributes: new { @class = "control-label col-md-1" })
-            @Html.LabelFor(model => model.publisher, htmlAttributes: new { @class = "control-label col-md-7" })
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-6">
-                @Html.EditorFor(model => model.certificate_name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.certificate_name, "", new { @class = "text-danger" })
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.certificate_name, htmlAttributes: new { @class = "control-label col-md-offset-1" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.certificate_name, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                            @Html.ValidationMessageFor(model => model.certificate_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.publisher, htmlAttributes: new { @class = "control-label col-md-offset-1" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.publisher, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                            @Html.ValidationMessageFor(model => model.publisher, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6">
-                @Html.EditorFor(model => model.publisher, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.publisher, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.valid_start_month, htmlAttributes: new { @class = "control-label col-md-1" })
-            @Html.LabelFor(model => model.until_month, htmlAttributes: new { @class = "control-label col-md-8" })
-        </div>
 
 
-        <div class="form-group">
-            <div class="col-md-3">
-                @Html.DropDownListFor(model => model.valid_start_month,
+
+            <div class="row">
+                <div class="col-lg-6">
+                    @Html.LabelFor(model => model.valid_start_month, htmlAttributes: new { @class = "control-label col-md-offset-1" })
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            @Html.DropDownListFor(model => model.valid_start_month,
                     new List<SelectListItem>
                     {
                         new SelectListItem { Value = "1", Text = "Januari" },
@@ -52,13 +58,14 @@
                         new SelectListItem { Value = "12", Text = "Desember" },
 
                     },
-                    "-Bulan-",
-                    new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.valid_start_month, "", new { @class = "text-danger" })
-            </div>
-            <div class="col-md-3">
-            @*@Html.LabelFor(model => model.valid_start_year, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                @Html.DropDownListFor(model => model.valid_start_year,
+                    "-Pilih Bulan-",
+                    new { @class = "form-control", id= "valid-month" })
+                            @Html.ValidationMessageFor(model => model.valid_start_month, "", new { @class = "text-danger" })
+                        </div>
+
+
+                        <div class="col-md-6">
+                            @Html.DropDownListFor(model => model.valid_start_year,
                     new List<SelectListItem>
                     {
                         new SelectListItem { Value = "2000", Text = "2000" },
@@ -82,15 +89,18 @@
                         new SelectListItem { Value = "2018", Text = "2018" },
                         new SelectListItem { Value = "2019", Text = "2019" },
                     },
-                    "-Tahun -",
-                    new { @class = "form-control" })
+                    "-Pilih Tahun-",
+                    new { @class = "form-control", id="valid-year" })
 
-                @Html.ValidationMessageFor(model => model.valid_start_year, "", new { @class = "text-danger" })
-            </div>
-            @*</div>
-                <div class="form-group">*@
-            <div class="col-md-3">
-                @Html.DropDownListFor(model => model.until_month,
+                            @Html.ValidationMessageFor(model => model.valid_start_year, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    @Html.LabelFor(model => model.until_month, htmlAttributes: new { @class = "control-label col-md-offset-1" })
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            @Html.DropDownListFor(model => model.until_month,
                     new List<SelectListItem>
                     {
                         new SelectListItem { Value = "1", Text = "Januari" },
@@ -107,16 +117,14 @@
                         new SelectListItem { Value = "12", Text = "Desember" },
 
                     },
-                    "-Bulan-",
-                    new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.until_month, "", new { @class = "text-danger" })
-            </div>
+                    "-Pilih Bulan-",
+                    new { @class = "form-control",disabled="disabled", id="until-month" })
+                            @Html.ValidationMessageFor(model => model.until_month, "", new { @class = "text-danger" })
+                        </div>
 
-            @*</div>
-                <div class="form-group">*@
-            <div class="col-md-3">
-                @*@Html.LabelFor(model => model.until_year, htmlAttributes: new { @class = "control-label col-md-2" })*@
-                @Html.DropDownListFor(model => model.until_year,
+
+                        <div class="col-md-6">
+                            @Html.DropDownListFor(model => model.until_year,
                     new List<SelectListItem>
                     {
                         new SelectListItem { Value = "2000", Text = "2000" },
@@ -140,22 +148,29 @@
                         new SelectListItem { Value = "2018", Text = "2018" },
                         new SelectListItem { Value = "2019", Text = "2019" },
                     },
-                    "-Tahun-",
-                    new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.until_year, "", new { @class = "text-danger" })
+                    "-Pilih Tahun-",
+                    new { @class = "form-control", disabled = "disabled", id="until-year" })
+
+                            @Html.ValidationMessageFor(model => model.until_year, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.notes, htmlAttributes: new { @class = "control-label col-md-1" })
-        </div>
-        <div class="form-group">
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.notes, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.notes, "", new { @class = "text-danger" })
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.notes, htmlAttributes: new { @class = "control-label col-md-offset-1" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.notes, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.notes, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+
 
         <div class="form-group">
             <div class="col-md-offset-9">
@@ -164,6 +179,7 @@
             </div>
         </div>
     </div>
+
 }
 
 @Scripts.Render("~/bundles/jqueryval")
@@ -180,7 +196,7 @@
             success: function (result) {
                 if (result.success) {
                     alert("save successfull certificate_name : " + result.entity.certificate_name);
-                    $(".modal").modal("hide");
+                    $(".modal-utama").modal("hide");
                     GetList();
                 } else {
                     alert("error" + result.message);
@@ -191,7 +207,20 @@
         //console.log(result.entity.certificate_name);
         return false;
     });
-</script>
 
+ //disable js
+
+    $(document).ready(function () {
+        $('#valid-month').on('input change', function () {
+            $('#until-month').attr('disabled', false);
+        });
+    })
+
+    $(document).ready(function () {
+        $('#valid-year').on('input change', function () {
+            $('#until-year').attr('disabled', false);
+        });
+    })
+</script>
 
 

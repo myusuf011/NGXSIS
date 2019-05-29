@@ -15,9 +15,44 @@ namespace ngxsis.MVC.Controllers
         {
             return View();
         }
-        public ActionResult RoleList(string search = "")
+        public ActionResult RoleList(string search = "", int desc=0, int page=0, int dataPerPage=10)
         {
-            return PartialView("_RoleList", RoleRepo.BySearch(search));
+            List<RoleViewModel> result = RoleRepo.BySearch(search, desc, page, dataPerPage);
+            List<RoleViewModel> selectedResult = new List<RoleViewModel>();
+            int start = 0;
+            int end = 0;
+            int maxPage = result.Count() / dataPerPage;
+            //Set Maks Page
+            if (result.Count() % dataPerPage == 0)
+            {
+                maxPage -= 1;
+            }
+            //Set starting point
+            if (page * dataPerPage < result.Count())
+            {
+                start = page * dataPerPage;
+            }
+            else
+            {
+                start = result.Count() - (result.Count() % dataPerPage);
+            }
+            //Set end point
+            if (start + dataPerPage <= result.Count())
+            {
+                end = start + dataPerPage;
+            }
+            else
+            {
+                end = result.Count();
+            }
+            //Show data
+            for (int i = start; i < end; i++)
+            {
+                selectedResult.Add(result[i]);
+            }
+
+            ViewBag.MaxPage = maxPage;
+            return PartialView("_RoleList", selectedResult);
         }
         public ActionResult Create()
         {

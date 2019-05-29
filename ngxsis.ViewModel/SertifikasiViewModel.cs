@@ -22,14 +22,14 @@ namespace ngxsis.ViewModel
 
         public string publisher { get; set; }
 
-        //[Display(Name = " ")]
+        [Display(Name ="  ")]
         [StringLength(10)]
         public string valid_start_year { get; set; }
 
         [Display(Name = "Berlaku Mulai")]
         [StringLength(10)]
         public string valid_start_month { get; set; }
-        //[Display(Name = " ")]
+        [Display(Name ="  ")]
         [StringLength(10)]
         public string until_year { get; set; }
 

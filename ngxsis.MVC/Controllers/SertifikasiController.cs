@@ -30,9 +30,16 @@ namespace ngxsis.MVC.Controllers
         [HttpPost]
         public ActionResult Create(SertifikasiViewModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return Json(new
+                {
+                    success = false,
+                    message = "InValid"
+                }, JsonRequestBehavior.AllowGet);
+            }
 
-
-            ResponseResult result = SertifikasiRepo.Update(model);
+                ResponseResult result = SertifikasiRepo.Update(model);
             return Json(new
             {
                 success = result.Success,
