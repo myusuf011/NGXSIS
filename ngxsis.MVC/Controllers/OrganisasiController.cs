@@ -16,16 +16,6 @@ namespace ngxsis.MVC.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Index(OrganisasiViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                return View("success", model);
-            }
-            return View();
-        }
-
         public ActionResult List()
         {
             return PartialView("_List", OrganisasiRepo.All());

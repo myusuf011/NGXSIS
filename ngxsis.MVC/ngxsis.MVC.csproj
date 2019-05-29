@@ -190,11 +190,11 @@
     <Content Include="Views\Sertifikasi\_Delete.cshtml" />
     <Content Include="Views\Sertifikasi\_Edit.cshtml" />
     <Content Include="Views\Sertifikasi\_List.cshtml" />
+    <Content Include="Views\Organisasi\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Views\Organisasi\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
