@@ -191,6 +191,7 @@
     <Content Include="Views\Sertifikasi\_Edit.cshtml" />
     <Content Include="Views\Sertifikasi\_List.cshtml" />
     <Content Include="Views\Organisasi\Index.cshtml" />
+    <Content Include="Views\Organisasi\_List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
