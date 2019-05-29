@@ -4,10 +4,10 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.certificate_name)
+               NAMA SERTIFIKASI
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.publisher)
+               PENERBIT
             </th>
 
             <th>
@@ -69,7 +69,7 @@
             //
 
             success: function (result) {
-                $(".modal-title").html("Edit");
+                $(".modal-title").html("Edit Sertifikasi");
                 $(".modal-body").html(result);
                 $(".modal").modal("show");
             }
@@ -87,7 +87,7 @@
             data: { id: $(this).attr("data-container") },
 
             success: function (result) {
-                $(".modal-title").html("Delete");
+                $(".modal-title").html("Hapus Sertifikasi");
                 $(".modal-body").html(result);
                 $(".modal").modal("show");
             }

@@ -14,7 +14,7 @@ namespace ngxsis.ViewModel
             get; set;
         }
 
-        [Required]
+        [Required(ErrorMessage = "Kode role tidak boleh kosong")]
         [StringLength(50, ErrorMessage = "Kode tidak boleh lebih dari 50 karakter")]
         [Display(Name = "KODE ROLE")]
         public string Code
@@ -22,7 +22,7 @@ namespace ngxsis.ViewModel
             get; set;
         }
 
-        [Required]
+        [Required(ErrorMessage = "Nama role tidak boleh kosong")]
         [StringLength(50, ErrorMessage = "Nama tidak boleh lebih dari 50 karakter")]
         [Display(Name = "NAMA ROLE")]
         public string Name

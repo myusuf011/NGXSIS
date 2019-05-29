@@ -132,6 +132,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\OrganisasiController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SelectAccessController.cs" />
     <Compile Include="Controllers\SertifikasiController.cs" />
@@ -144,7 +145,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\custom.css" />
+    <Content Include="Content\role.css" />
     <Content Include="Content\StyleLogin.css" />
     <Content Include="Content\SumberLoker.css" />
     <Content Include="favicon.ico" />
@@ -195,6 +196,9 @@
     <Content Include="Views\SumberLoker\_Edit.cshtml" />
     <Content Include="Views\SumberLoker\_Create.cshtml" />
     <Content Include="Views\SumberLoker\_List.cshtml" />
+    <Content Include="Views\Organisasi\Index.cshtml" />
+    <Content Include="Views\Organisasi\_List.cshtml" />
+    <Content Include="Views\Organisasi\_Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
