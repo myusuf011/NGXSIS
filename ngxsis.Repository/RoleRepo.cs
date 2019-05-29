@@ -2,6 +2,8 @@
 using ngxsis.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -48,13 +50,16 @@ namespace ngxsis.Repository
             }
             return result != null ? result : new RoleViewModel();
         }
-        public static List<RoleViewModel> BySearch(string search)
+        public static List<RoleViewModel> BySearch(string search, int desc, int page,int dataPerPage)
         {
             List<RoleViewModel> result = new List<RoleViewModel>();
             using (var db = new ngxsisContext())
             {
-                result = db.x_role
+                if (desc == 1)
+                {
+                    result = db.x_role
                     .Where(r => r.is_deleted == false && (r.code.Contains(search) || r.name.Contains(search)))
+                    .OrderByDescending(r => r.name)
                     .Select(r => new RoleViewModel
                     {
                         Id = r.id,
@@ -62,7 +67,22 @@ namespace ngxsis.Repository
                         Name = r.name,
                         IsDeleted = r.is_deleted,
                     }).ToList();
+                }
+                else
+                {
+                    result = db.x_role
+                    .Where(r => r.is_deleted == false && (r.code.Contains(search) || r.name.Contains(search)))
+                    .OrderBy(r => r.name)
+                    .Select(r => new RoleViewModel
+                    {
+                        Id = r.id,
+                        Code = r.code,
+                        Name = r.name,
+                        IsDeleted = r.is_deleted,
+                    }).ToList();
+                }
             }
+
             return result != null ? result : new List<RoleViewModel>();
         }
         public static ResponseResult Update(RoleViewModel entity)
@@ -104,10 +124,44 @@ namespace ngxsis.Repository
                         }
                     }
                 }
-                catch (Exception ex)
+                catch (DbEntityValidationException ex)
                 {
+                    var errorMessages = ex.EntityValidationErrors
+                    .SelectMany(x => x.ValidationErrors)
+                    .Select(x => x.PropertyName);
+                    var fullErrorMessage = string.Join("\n ", errorMessages);
+                    if (fullErrorMessage.ToUpper().Contains("CODE") && fullErrorMessage.ToUpper().Contains("CODE"))
+                    {
+                        fullErrorMessage = "Kode dan nama role tidak boleh kosong";
+                    } else if (fullErrorMessage.ToUpper().Contains("CODE"))
+                    {
+                        fullErrorMessage = "Kode role tidak boleh kosong";
+                    }
+                    else if (fullErrorMessage.ToUpper().Contains("NAME"))
+                    {
+                        fullErrorMessage = "Nama role tidak boleh kosong";
+                    }
                     result.Success = false;
-                    result.Message = ex.Message;
+                    result.Message = fullErrorMessage;
+                }
+                catch (DbUpdateException ex )
+                {
+                    var fullErrorMessage = ex.InnerException.InnerException.Message;
+                    if (fullErrorMessage.ToUpper().Contains("CODE") && fullErrorMessage.ToUpper().Contains("NAME"))
+                    {
+                        fullErrorMessage = "Kode dan nama role sudah dipakai";
+                    }
+                    else if (fullErrorMessage.ToUpper().Contains("CODE"))
+                    {
+                        fullErrorMessage = "Kode role sudah dipakai";
+                    }
+                    else if (fullErrorMessage.ToUpper().Contains("NAME"))
+                    {
+                        fullErrorMessage = "Nama role sudah dipakai";
+                    }
+                    result.Success = false;
+                    result.Message = fullErrorMessage;
+                        
                 }
             }
             return result;
