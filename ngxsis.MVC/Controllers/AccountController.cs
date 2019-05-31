@@ -6,15 +6,10 @@ using System.Web.Mvc;
 
 namespace ngxsis.MVC.Controllers
 {
-    public class SelectAccessController : Controller
+    public class AccountController : Controller
     {
-        // GET: SelectAccess
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        public ActionResult Gagal()
+        // GET: Account
+        public ActionResult SelectAccess()
         {
             return View();
         }

@@ -18,7 +18,8 @@
 <body>
     <div> 
         <h1>Select Access</h1>
-        <h3>Username: @Session["userId"]</h3>
+        <h2>Hai, @Session["userName"]</h2>
+        <h3>ID : @Session["userID"]</h3>
         <a href="@Url.Action("Logout","Login")">Logout</a>
     </div>
 </body>

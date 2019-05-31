@@ -2,77 +2,87 @@
 
 @{
     Layout = null;
+    if (Session["userId"] != null)
+    {
+        Response.Redirect("~/SelectAccess/Index");
+    }
 }
 
-<!DOCTYPE html>
-
 <html>
+
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Login Page</title>
-    <style>
-        #login-div {
-            position: absolute;
-            left: 40%;
-            top: 40%;
-            border: 1px solid #ccc;
-            padding: 10px 10px;
-        }
-        .field-validation-error{
-            color:red;
-        }
-    </style>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/StyleLogin.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
 </head>
+
 <body>
-    <div id="login-div">
-        @using (Html.BeginForm("Autherize","Login",FormMethod.Post))
-        {
-            <table>
-                <tr>
-                    <td style="text-decoration:underline">XSIS 2.0</td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email" } })
-                    </td>
-                </tr>
-                <tr>
-                    <td>@Html.ValidationMessageFor(model => model.email)</td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.EditorFor(model => model.abpwd, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password" } })
-                    </td>
-                </tr>
-                <tr>
-                    <td>@Html.ValidationMessageFor(model => model.abpwd)</td>
-                </tr>
-                <tr>
-                    <td>
-                        <input type="submit" name="name" value="Login" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <label class="field-validation-error">@Html.LabelFor(model => model.LoginErrorMessage) </label>
-                    </td>
-                </tr>
-                <tr></tr>
-                <tr>
-                    <td>
-                        <p>
-                            Lupa Password
-                        </p>
-                    </td>
-                </tr>
-            </table>
-        }
+    <div class="container" style="margin-top: 10%">
+        <div class="row">
+            <div class="col-sm-4">
+            </div>
+            <div class="col-sm-4">                
+                @using (Html.BeginForm("Index", "Login", FormMethod.Post, new
+                {
+                    id = "form-login",
+                    name = "form-login"
+                }))
+                {                    
+                    <div class="form-group">
+                        <div>
+                            <p class="text-center title-login">XSIS 2.0</p>
+                        </div>                        
+                        <div class="margin-login">
+                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control margin-login", @placeholder = "Email", @required = "required" } })
+                            @Html.ValidationMessageFor(model => model.email)
+                        </div>
+                        <div class="margin-login">
+                            @Html.EditorFor(model => model.abpwd, new { htmlAttributes = new { @class = "form-control margin-login", @placeholder = "Password", @required = "required" } })
+                            @Html.ValidationMessageFor(model => model.abpwd)
+                        </div> 
+                        <div class="margin-login">
+                            <input id="btn-login" class="btn margin-login" type="submit" name="name" value="Masuk" />
+                        </div>
+                        <div class="margin-login">
+                            <p class="tengah"><a href="#">Lupa Password</a></p>
+                        </div>                                           
+                    </div>
+                }
+                <div>
+                    <p class="tengah">2020 - Xsis Mitra Utama</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+            </div>
+        </div>
     </div>
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+    <script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    <script type="text/javascript">
+        $("#form-login").submit(function () {
+            $.ajax({
+                url: this.action,
+                type: this.method,
+                data: $(this).serialize(),
+                success: function (result) {
+                    if (result.success == true) {
+                        window.location.href = '@Url.Action("SelectAccess", "Account")';
+                    }
+                    else if (result.success == false) {
+                        alert(result.message);
+                    }
+                }
+            });
+            return false;
+        });
+    </script>
+
 </body>
+
 </html>
-
-
 
