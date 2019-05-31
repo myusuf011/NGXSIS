@@ -38,8 +38,8 @@ namespace ngxsis.ViewModel
         [Required(ErrorMessage = "Kolom harus diisi")]
         [StringLength(50)]
         [DataType(DataType.Password)]
-        public string abpwd { get; set; }
+        public string abpwd { get; set; }        
 
-        public string LoginErrorMessage { get; set; }
+        public string Nickname { get; set; }
     }
 }

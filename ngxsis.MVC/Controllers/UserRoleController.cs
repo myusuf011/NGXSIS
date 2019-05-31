@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ngxsis.Repository;
+using ngxsis.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -6,17 +8,16 @@ using System.Web.Mvc;
 
 namespace ngxsis.MVC.Controllers
 {
-    public class SelectAccessController : Controller
+    public class UserRoleController : Controller
     {
-        // GET: SelectAccess
+        // GET: Pengguna
         public ActionResult Index()
         {
             return View();
         }
-
-        public ActionResult Gagal()
+        public ActionResult Form()
         {
-            return View();
+            return PartialView("_Form",new UserRoleViewModel());
         }
     }
 }

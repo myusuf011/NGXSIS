@@ -15,7 +15,7 @@
        @class = "text-danger"
    })
         <div class="container">
-            <div class="row  pull-left" style="font-size:10px;text-align:left;color: #000080;">
+            <div class="row  pull-left" style="font-size:10px;text-align:left;color: #000080;margin-left:-30px;">
                 @Html.LabelFor(model => model.Code, htmlAttributes: new
            {
                @class = "control-label col-md-12"
@@ -38,7 +38,7 @@
             </div>
             <br/>
 
-            <div class="row  pull-left" style="font-size:10px;text-align:left;color: #000080;">
+            <div class="row  pull-left" style="font-size:10px;text-align:left;color: #000080;margin-left:-30px;">
                 @Html.LabelFor(model => model.Name, htmlAttributes: new
            {
                @class = "control-label col-md-12"
@@ -90,7 +90,7 @@
                         $(".modal-main").modal("hide");
                         GetList();
                     } else {
-                        alert("Role tidak berhasil dibuat\n" + result.message);
+                        //alert("Role tidak berhasil dibuat\n" + result.message);
                     }
                 }
             });

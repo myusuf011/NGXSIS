@@ -1,0 +1,69 @@
+﻿@model ngxsis.ViewModel.OrganisasiViewModel
+
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            <span class="glyphicon glyphicon-trash" aria-hidden="true" style="font-size:100px; color:Black; text-align:center"></span>
+        </dt>
+        <dd>
+            <font style="align-content: center"><font color="red"><font size="4">Anda yakin ingin menghapus organisasi @Html.DisplayFor(model => model.name)?</font></font></font>
+        </dd>
+    </dl>
+    @*<table class="table">
+            <tr>
+                <th>
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true" style="font-size:100px; color:Black"></span>
+                </th>
+                <th>
+                    Anda yakin ingin menghapus organisasi @Html.DisplayFor(model => model.name)?
+                </th>
+            </tr>
+        </table>*@
+
+    @*<div>
+
+            <span class="glyphicon glyphicon-trash" aria-hidden="true" style="font-size:100px; color:Black"></span>
+            <div class="col-md-offset-8 col-md-10">
+
+                Anda yakin ingin menghapus organisasi @Html.DisplayFor(model => model.name)?
+
+            </div>
+        </div>*@
+
+
+    @using (Html.BeginForm("Delete", "Organisasi", FormMethod.Post, new { id = "form-delete", name = "form-delete" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.name)
+
+        <div class="form-actions no-color">
+            <div class="col-md-offset-9">
+                <input type="button" value="Tidak" data-dismiss="modal" class="btn btn-warning" />
+                <input type="submit" value="Ya" class="btn btn-danger" />
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    $("#form-delete").submit(function () {
+        $.ajax({
+            url: this.action,
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.success) {
+                    alert("Data berhasil dihapus");
+                    $(".modal-delete").modal("hide");
+                    GetList();
+                } else
+                {
+                    alert("Error! " + result.message);
+                }
+            }
+        });
+        return false;
+    });
+</script>
