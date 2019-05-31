@@ -2,9 +2,9 @@
 
 @{
     Layout = null;
-    if (Session["userId"] == null)
+    if (Session["userID"] == null)
     {
-        Response.Redirect("~/Login/Index");
+        Response.Redirect("~/Login/Index"); //bila belum login sistem akan re-direct ke halaman login
     }
 }
 

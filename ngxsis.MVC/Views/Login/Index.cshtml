@@ -2,9 +2,9 @@
 
 @{
     Layout = null;
-    if (Session["userId"] != null)
+    if (Session["userID"] != null)
     {
-        Response.Redirect("~/SelectAccess/Index");
+        Response.Redirect("~/Account/SelectAccess"); // <-- Sesuaikan acceess bila sudah login
     }
 }
 
