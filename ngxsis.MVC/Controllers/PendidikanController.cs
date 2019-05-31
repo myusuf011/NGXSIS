@@ -8,9 +8,9 @@ using ngxsis.ViewModel;
 
 namespace ngxsis.MVC.Controllers
 {
-    public class SertifikasiController : Controller
+    public class PendidikanController : Controller
     {
-        // GET: Sertifikasi
+        // GET: Pendidikan
         public ActionResult Index()
         {
             return View();
@@ -18,19 +18,26 @@ namespace ngxsis.MVC.Controllers
 
         public ActionResult List()
         {
-            return PartialView("_List", SertifikasiRepo.All()); // _list nama viewnya,categoryrepo2 objek yg dipanggil untuk  isi list
+            return PartialView("_List", PendidikanRepo.All()); // _list nama viewnya,categoryrepo2 objek yg dipanggil untuk  isi list
 
         }
 
         public ActionResult Create()
         {
-            return PartialView("_Create", new SertifikasiViewModel());  //add-view create
+            ViewBag.PendidikanList = new SelectList(PendidikanRepo.jenjangAll(), "education_level_id", "educationName"); // value = id yg ditampilkan = name --->category list
+            return PartialView("_Create", new PendidikanViewModel());  //add-view create
         }
 
-        [HttpPost]
-        public ActionResult Create(SertifikasiViewModel model)
+        public ActionResult ListByEdu()
         {
-            if (!ModelState.IsValid || int.Parse(model.until_year) < int.Parse(model.valid_start_year) || (int.Parse(model.until_year) == int.Parse(model.valid_start_year) && int.Parse(model.until_month) < int.Parse(model.valid_start_month)) )
+            return PartialView("_ListByEdu", PendidikanRepo.All());
+        }
+
+
+        [HttpPost]
+        public ActionResult Create(PendidikanViewModel model)
+        {
+            if (!ModelState.IsValid || (int.Parse(model.graduation_year) < int.Parse(model.entry_year) && model.graduation_year!=null && model.entry_year!=null) )
             {
                 return Json(new
                 {
@@ -39,7 +46,7 @@ namespace ngxsis.MVC.Controllers
                 }, JsonRequestBehavior.AllowGet);
             }
 
-                ResponseResult result = SertifikasiRepo.Update(model);
+            ResponseResult result = PendidikanRepo.Update(model);
             return Json(new
             {
                 success = result.Success,
@@ -53,14 +60,15 @@ namespace ngxsis.MVC.Controllers
         // controller buat Add view edit
         public ActionResult Edit(int id)
         {
-            return PartialView("_Edit", SertifikasiRepo.ById(id)); //ById dibikin di CategoryRepo dulu
+            ViewBag.PendidikanList = new SelectList(PendidikanRepo.jenjangAll(), "education_level_id", "educationName"); // value = id yg ditampilkan = name --->category list
+            return PartialView("_Edit", PendidikanRepo.ById(id)); //ById dibikin di CategoryRepo dulu
         }
-            
+
 
         [HttpPost]
-        public ActionResult Edit(SertifikasiViewModel model)
+        public ActionResult Edit(PendidikanViewModel model)
         {
-            if (!ModelState.IsValid || int.Parse(model.until_year) < int.Parse(model.valid_start_year) || (int.Parse(model.until_year) == int.Parse(model.valid_start_year) && int.Parse(model.until_month) < int.Parse(model.valid_start_month)))
+            if (!ModelState.IsValid || int.Parse(model.graduation_year) < int.Parse(model.entry_year))
             {
                 return Json(new
                 {
@@ -69,7 +77,8 @@ namespace ngxsis.MVC.Controllers
                 }, JsonRequestBehavior.AllowGet);
             }
 
-            ResponseResult result = SertifikasiRepo.Update(model);
+
+            ResponseResult result = PendidikanRepo.Update(model);
             return Json(new
             {
                 success = result.Success,
@@ -81,13 +90,13 @@ namespace ngxsis.MVC.Controllers
 
         public ActionResult Delete(int id) // post
         {
-            return PartialView("_Delete", SertifikasiRepo.ById(id)); //habis ini di add view
+            return PartialView("_Delete", PendidikanRepo.ById(id)); //habis ini di add view
         }
 
         [HttpPost]
-        public ActionResult Delete(SertifikasiViewModel model)
+        public ActionResult Delete(PendidikanViewModel model)
         {
-            ResponseResult result = SertifikasiRepo.Delete(model);
+            ResponseResult result = PendidikanRepo.Delete(model);
             return Json(new
             {
                 success = result.Success,

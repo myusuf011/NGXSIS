@@ -1,17 +1,17 @@
 ﻿@model IEnumerable<ngxsis.ViewModel.RoleViewModel>
 
-<div class="row">
+<div class="row" style="margin-bottom:5px;">
     <div class="col-lg-6">
         <div class="input-group" style="width:60%;">
-            <input type="text" id="txt-search" class="form-control" placeholder="Cari">
+            <input type="text" id="txt-search" class="form-control" style=""placeholder="Cari">
             <span class="input-group-btn">
-                <button class="btn btn-clear" style="color:#000080;margin-left:-35px;padding:0px 10px 2px 0px;background-color:transparent;font-size:20px;" type="button"><b>&times;</b></button>
-                <button class="btn btn-pp btn-search" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                <button class="btn btn-clear" style="height:45px;color:#000080;margin-left:-35px;padding:0px 10px 2px 0px;background-color:transparent;font-size:20px;" type="button"><b>&times;</b></button>
+                <button class="btn btn-pp btn-search" style="height:45px;" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
             </span>
         </div>
     </div>
     <div class="col-lg-2"></div>
-        <div class="col-lg-2">
+        <div class="col-lg-2" style="margin-left:15px;">
             <div class="btn-group btn-trans" style="margin-left:12px;" role="group" aria-label="...">
                 <div class="btn-group">
                     <button type="button" class="btn dropdown-toggle btn-trans  btn-lg " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -106,28 +106,14 @@
 </table>
 
 <script type="text/javascript">
-    maxPage = @Html.Raw(Json.Encode(ViewBag.MaxPage));
-    function GetSearch() {
-        $.ajax(
-            {
-                url: '@Url.Action("RoleList", "Role")',
-                type: 'get',
-                data: { search: search, desc: desc, page: page, dataPerPage: dataPerPage },
-                success: function (result) {
-                    $("#data").html(result);
-                    $("#txt-search").val(search);
-                }
-            });
-    }
-
+    /*ROW PER PAGE*/
     $(".btn-list").click(function ()
     {
         page=0;
         dataPerPage = $(this).attr("data-container");
-        maxPage = @Html.Raw(Json.Encode(ViewBag.MaxPage));
         GetList();
     });
-
+    /*GO TO PREVIOUS PAGE*/
     function min () {
         if (page > 0) {
             page = page - 1;
@@ -135,7 +121,7 @@
         console.log(page);
         GetList();
     };
-
+    /*GO TO NEXT PAGE*/
     function plus () {
         if (page < maxPage) {
             page = page + 1;
@@ -143,33 +129,38 @@
         console.log(page);
         GetList();
     };
+
+    /*SHOW DATA BY SEARCH*/
     $(".btn-search").click(function () {
         desc = 0;
         page = 0;
         search = $("#txt-search").val();
         GetList();
     });
+
+    /*SORT ASCENDING*/
     $(".sort-asc").click(function () {
         desc = 0;
         page = 0;
         GetList();
     });
+
+    /*SORT DESCENDING*/
     $(".sort-desc").click(function () {
         desc = 1;
         page = 0;
         GetList();
     });
 
+    /*CLEAR SEARCH*/
     $(".btn-clear").click(function () {
         page = 0;
-        dataPerPage=10;
         search="";
         GetList();
     });
 
+    /*ADD NEW DATA*/
     $(".btn-create-new").click(function () {
-        //alert("Ubah diklik "+$(this).attr("data-container"))
-
         $.ajax(
             {
                 url: '@Url.Action("Create", "Role")',
@@ -182,10 +173,8 @@
             });
 
     });
-
+    /*EDIT DATA*/
     $(".btn-link-ubah").click(function () {
-        //alert("Ubah diklik "+$(this).attr("data-container"))
-
         $.ajax(
             {
                 url: '@Url.Action("Edit", "Role")',
@@ -200,9 +189,8 @@
 
 
     });
+    /*DELETE DATA*/
     $(".btn-link-hapus").click(function () {
-        //alert("Hapus diklik "+$(this).attr("data-container"))
-
         $.ajax(
             {
                 url: '@Url.Action("Delete", "Role")',

@@ -130,14 +130,18 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PelamarController.cs" />
     <Compile Include="Controllers\OrganisasiController.cs" />
     <Compile Include="Controllers\ProfilController.cs" />
+    <Compile Include="Controllers\PendidikanController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SelectAccessController.cs" />
     <Compile Include="Controllers\SertifikasiController.cs" />
     <Compile Include="Controllers\SumberLokerController.cs" />
+    <Compile Include="Controllers\UserRoleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -147,6 +151,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Profil.css" />
+    <Content Include="Content\custom.css" />
+    <Content Include="Content\Organisasi.css" />
     <Content Include="Content\role.css" />
     <Content Include="Content\sertifikasi.css" />
     <Content Include="Content\StyleLogin.css" />
@@ -195,6 +201,10 @@
     <Content Include="Views\Sertifikasi\_Delete.cshtml" />
     <Content Include="Views\Sertifikasi\_Edit.cshtml" />
     <Content Include="Views\Sertifikasi\_List.cshtml" />
+    <Content Include="Views\SelectAccess\Gagal.cshtml" />
+    <Content Include="Views\Account\SelectAccess.cshtml" />
+    <Content Include="Views\Pelamar\Index.cshtml" />
+    <Content Include="Views\Pelamar\_PelamarList.cshtml" />
     <Content Include="Views\SumberLoker\Index.cshtml" />
     <Content Include="Views\SumberLoker\_Edit.cshtml" />
     <Content Include="Views\SumberLoker\_Create.cshtml" />
@@ -203,9 +213,17 @@
     <Content Include="Views\Organisasi\_List.cshtml" />
     <Content Include="Views\Organisasi\_Create.cshtml" />
     <Content Include="Views\Profil\Index.cshtml" />
+    <Content Include="Views\Pendidikan\Index.cshtml" />
     <Content Include="Views\Profil\Test.cshtml" />
     <Content Include="Views\View.cshtml" />
     <Content Include="Views\Profil\_List.cshtml" />
+    <Content Include="Views\Organisasi\_Edit.cshtml" />
+    <Content Include="Views\Pendidikan\_List.cshtml" />
+    <Content Include="Views\Organisasi\_Delete.cshtml" />
+    <Content Include="Views\Pendidikan\_Create.cshtml" />
+    <Content Include="Views\Pendidikan\_Edit.cshtml" />
+    <Content Include="Views\Pendidikan\_Delete.cshtml" />
+    <Content Include="Views\Pendidikan\_ListByEdu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,4 @@
-﻿@model ngxsis.ViewModel.SertifikasiViewModel
+﻿@model ngxsis.ViewModel.PendidikanViewModel
 
 <div>
     <dl class="dl-horizontal">
@@ -7,15 +7,15 @@
         </dt>
         <dd>
 
-            <font color="red"> <font size="4"> Anda yakin ingin menghapus Sertifikasi? @Html.DisplayFor(model => model.certificate_name)? </font></font>
+            <font color="red"> <font size="4"> Anda yakin ingin menghapus Pendidikan @Html.DisplayFor(model => model.school_name)? </font></font>
         </dd>
     </dl>
 
-    @using (Html.BeginForm("Delete", "Sertifikasi", FormMethod.Post, new { id = "form-delete", name = "form-delete" }))
+    @using (Html.BeginForm("Delete", "Pendidikan", FormMethod.Post, new { id = "form-delete", name = "form-delete" }))
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.id)
-        @Html.HiddenFor(model => model.certificate_name)
+        @Html.HiddenFor(model => model.school_name)
         <div class="row">
             <div class="form-actions no-color">
                 <div class="col-md-offset-9">
@@ -42,7 +42,7 @@
             data: $(this).serialize(),
             success: function (result) {
                 if (result.success) {
-                    alert("hapus Sukses Full Name: " + result.entity.certificate_name);
+                    alert("hapus Sukses Full Name: " + result.entity.school_name);
                     $(".modal-delete").modal("hide");
                     GetList();
                 } else {

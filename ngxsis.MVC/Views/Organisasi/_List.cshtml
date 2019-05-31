@@ -1,21 +1,22 @@
 ﻿@model IEnumerable<ngxsis.ViewModel.OrganisasiViewModel>
 
-<table class="table">
-    <tr>
-        <th>
-            NAMA
-        </th>
-        <th>
-            JABATAN
-        </th>
-        <th>
-            PERIODE
-        </th>
-        <th>
-            #
-        </th>
-        <th></th>
-    </tr>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                NAMA
+            </th>
+            <th>
+                JABATAN
+            </th>
+            <th>
+                PERIODE
+            </th>
+            <th>
+                #
+            </th>
+        </tr>
+    </thead>
 
     @foreach (var item in Model)
     {
@@ -31,11 +32,11 @@
             </td>
             <td>
                 <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                    <button class="btn btn-more dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                         More
                         <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
                         <li><a href="#" data-container="@item.id" class="btn-edit">Ubah</a></li>
                         <li><a href="#" data-container="@item.id" class="btn-delete">Hapus</a></li>
                     </ul>
@@ -52,9 +53,9 @@
             type: 'get',
             data: { id: $(this).attr("data-container") },
             success: function (result) {
-                $(".modal-title").html("Ubah Organisasi");
-                $(".modal-body").html(result);
-                $(".modal").modal("show");
+                $(".modal-utama .modal-title").html("Ubah Organisasi");
+                $(".modal-utama .modal-body").html(result);
+                $(".modal-utama").modal("show");
             }
         });
     });
@@ -65,9 +66,9 @@
             type: 'get',
             data: { id: $(this).attr("data-container") },
             success: function (result) {
-                $(".modal-title").html("Hapus Organisasi?");
-                $(".modal-body").html(result);
-                $(".modal").modal("show");
+                $(".modal-delete .modal-title").html("Hapus Organisasi?");
+                $(".modal-delete .modal-body").html(result);
+                $(".modal-delete").modal("show");
             }
         });
     });

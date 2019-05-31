@@ -1,0 +1,11 @@
+﻿@model IEnumerable<ngxsis.ViewModel.PendidikanViewModel>
+
+<option value="">Select Jenjang Pendidikan</option>
+@foreach (var item in Model)
+{
+    <option value="@item.education_level_id">@item.educationName</option>
+}
+
+<!--karena variant yg mau disesuaikan dengan categori makanya bikin listBy cat di variantcontroller
+-->
+<!--item.Id valuenya, item.Name yang ditampilkan-->
