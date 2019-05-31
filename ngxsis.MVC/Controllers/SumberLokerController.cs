@@ -29,6 +29,7 @@ namespace ngxsis.MVC.Controllers
         [HttpPost]
         public ActionResult Create(SumberLokerViewModel model)
         {
+
             ResponseResult result = SumberLokerRepo.Update(model);
             return Json(new
             {

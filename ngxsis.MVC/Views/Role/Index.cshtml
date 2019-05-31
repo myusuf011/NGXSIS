@@ -58,6 +58,7 @@
         });
 
         function GetList() {
+            var itemCount = 0;
             $.ajax(
             {
                 url: '@Url.Action("RoleList", "Role")',
@@ -66,6 +67,15 @@
                 success: function (result) {
                     $("#data").html(result);
                     $("#txt-search").val(search);
+
+                    $("#data").find("tbody").find("tr").each(function (item) {
+                        itemCount = itemCount + 1;
+                    });
+                    if (itemCount < dataPerPage) {
+                        maxPage = page;
+                    } else {
+                        maxPage = page + 1;
+                    }
                 }
             });
         }

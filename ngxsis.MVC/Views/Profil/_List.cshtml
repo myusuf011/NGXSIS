@@ -1,0 +1,108 @@
+﻿@model IEnumerable<ngxsis.ViewModel.ProfilViewModel>
+
+
+@foreach (var item in Model)
+{
+    <div id="data">
+        <div class="mainDetails">
+            <div id="headshot" >
+                <img src="@Url.Content("~/Content/Images/headshot.jpg")" alt="Gambar" />
+            </div>
+            
+            <div id="name">
+                @Html.DisplayFor(modelItem => item.FullName)<br />
+                @Html.DisplayFor(modelItem => item.LastPosition)<br />
+                @{ var age = DateTime.UtcNow.Year - item.DOB.Year; @Html.DisplayTextFor(modelItem => age); <text> Tahun </text>}<br />
+                @*@{ var gender = item.Gender == false ; @Html.DisplayTextFor(modelItem => gender);<br />*@
+                @Html.DisplayFor(modelItem => item.Major) ,  @Html.DisplayFor(modelItem => item.SchoolName)
+            </div>
+
+            <div id="download">
+                <button type="button" class="btn btn-pp btn-70px" onclick="window.location.href = 'javascript:genPDF()'">Unduh</button>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+        <div>
+            <section>
+                <article>
+                    <div class="sectionTitle">
+                        <h4>Pendidikan</h4>
+                        @Html.DisplayFor(modelItem => item.EntryYear) - @Html.DisplayFor(modelItem => item.GraduationYear)
+                    </div>
+
+                    <div class="sectionContent">
+                        @Html.DisplayFor(modelItem => item.SchoolName) , @Html.DisplayFor(modelItem => item.Country)<br />
+                        @Html.DisplayFor(modelItem => item.Major) <br />
+                        @Html.DisplayFor(modelItem => item.GPA)
+                    </div>
+                </article>
+                <div class="clear"></div>
+            </section>
+
+
+            <section>
+                <article>
+                    <div class="sectionTitle">
+                        <h4>Pengalaman</h4>
+                       @Html.DisplayFor(modelItem => item.JoinYear) - @Html.DisplayFor(modelItem => item.ResignYear)
+                    </div>
+
+                    <div class="sectionContent">
+                        @Html.DisplayFor(modelItem => item.LastPosition)<br />
+                        @Html.DisplayFor(modelItem => item.CompanyName)<br />
+                        @Html.DisplayFor(modelItem => item.Income)
+                    </div>
+                </article>
+                <div class="clear"></div>
+            </section>
+
+
+            <section>
+                <article>
+                    <div class="sectionTitle">
+                        <h4>Keterampilan</h4>
+                        @Html.DisplayFor(modelItem => item.JoinYear) - @Html.DisplayFor(modelItem => item.ResignYear)
+                    </div>
+
+                    <div class="sectionContent">
+                        @Html.DisplayFor(modelItem => item.SkillName)
+                    </div>
+                </article>
+                <div class="clear"></div>
+            </section>
+
+            <section>
+                <article>
+                    <div class="sectionTitle">
+                        <h4>Training</h4>
+                        @Html.DisplayFor(modelItem => item.TrainingYear)
+                    </div>
+
+                    <div class="sectionContent">
+                        @Html.DisplayFor(modelItem => item.TrainingName)
+                    </div>
+                </article>
+                <div class="clear"></div>
+            </section>
+
+            <section>
+                <article>
+                    <div class="sectionTitle">
+                        <h4>Sertifikasi</h4>
+                        @Html.DisplayFor(modelItem => item.ValidStartYear) - @Html.DisplayFor(modelItem => item.UntilYear)
+                    </div>
+                    <div class="sectionContent">
+                        @Html.DisplayFor(modelItem => item.CertificateName)
+                    </div>
+                </article>
+                <div class="clear"></div>
+            </section>
+
+        </div>
+    </div>
+
+}
+
+
+<link href="~/Content/Profil.css" rel="stylesheet" />

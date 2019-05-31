@@ -1,0 +1,111 @@
+﻿@model IEnumerable<ngxsis.ViewModel.PendidikanViewModel>
+
+<table class="table">
+    <thead>
+        <tr>
+           
+            <th>
+               SEKOLAH/INSTANSI
+            </th>
+            <th>
+             JENJANG
+            </th>
+            <th>
+               PERIODE
+            </th>
+            <th>
+               JURUSAN
+            </th>
+            <th>
+               IPK
+            </th>
+            <th>
+                #
+            </th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.school_name)
+                </td>
+            
+      
+                <td>
+                    @Html.DisplayFor(modelItem => item.educationName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.entry_year) s.d @Html.DisplayFor(modelItem => item.graduation_year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.major)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.gpa)
+                </td>
+                
+                <td>
+                    <!-- Split button -->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-blue">More</button>
+                        <button type="button" class="btn  dropdown-toggle btn-blue" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="btn-edit" data-container="@item.id">Edit</a></li>
+                            <li><a href="#" class="btn-delete" data-container="@item.id">Delete</a></li>
+
+
+                        </ul>
+                    </div>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+
+
+
+    $(".btn-edit").click(function () {
+        $.ajax({
+            url: '@Url.Action("Edit","Pendidikan")',
+            type: 'get',
+            data: { id: $(this).attr("data-container") },// attr = atribut
+            //
+
+            success: function (result) {
+                $(".modal-utama .modal-title").html("Edit Pendidikan");
+                $(".modal-utama .modal-body").html(result);
+                $(".modal-utama").modal("show");
+            }
+        });
+
+    });
+</script>
+
+
+<script type="text/javascript">
+    $(".btn-delete").click(function () {
+        $.ajax({
+            url: '@Url.Action("Delete", "Pendidikan")',
+            type: 'get',
+            data: { id: $(this).attr("data-container") },
+
+            success: function (result) {
+                $(".modal-delete .modal-title").html("Hapus Pendidikan?");
+                $(".modal-delete .modal-body").html(result);
+                $(".modal-delete").modal("show");
+            }
+        });
+
+    });
+    //data id di javascript buat button kalau di a href pakai data-container
+
+</script>

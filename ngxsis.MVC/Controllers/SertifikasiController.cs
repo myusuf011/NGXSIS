@@ -30,7 +30,7 @@ namespace ngxsis.MVC.Controllers
         [HttpPost]
         public ActionResult Create(SertifikasiViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || int.Parse(model.until_year) < int.Parse(model.valid_start_year) || (int.Parse(model.until_year) == int.Parse(model.valid_start_year) && int.Parse(model.until_month) < int.Parse(model.valid_start_month)) )
             {
                 return Json(new
                 {
@@ -55,10 +55,20 @@ namespace ngxsis.MVC.Controllers
         {
             return PartialView("_Edit", SertifikasiRepo.ById(id)); //ById dibikin di CategoryRepo dulu
         }
+            
 
         [HttpPost]
         public ActionResult Edit(SertifikasiViewModel model)
         {
+            if (!ModelState.IsValid || int.Parse(model.until_year) < int.Parse(model.valid_start_year) || (int.Parse(model.until_year) == int.Parse(model.valid_start_year) && int.Parse(model.until_month) < int.Parse(model.valid_start_month)))
+            {
+                return Json(new
+                {
+                    success = false,
+                    message = "InValid"
+                }, JsonRequestBehavior.AllowGet);
+            }
+
             ResponseResult result = SertifikasiRepo.Update(model);
             return Json(new
             {
@@ -66,7 +76,6 @@ namespace ngxsis.MVC.Controllers
                 message = result.Message,
                 entity = result.Entity
             }, JsonRequestBehavior.AllowGet);
-
 
         }
 

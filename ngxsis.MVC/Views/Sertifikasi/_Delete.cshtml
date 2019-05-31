@@ -6,8 +6,8 @@
             <span class="glyphicon glyphicon-trash" aria-hidden="true" style="font-size:100px; color:Black; text-align:center"></span>
         </dt>
         <dd>
-            
-            <font color="red"> <font size="4"> Anda yakin ingin menghapus Sertifikasi @Html.DisplayFor(model => model.certificate_name)? </font></font>
+
+            <font color="red"> <font size="4"> Anda yakin ingin menghapus Sertifikasi? @Html.DisplayFor(model => model.certificate_name)? </font></font>
         </dd>
     </dl>
 
@@ -16,11 +16,14 @@
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.id)
         @Html.HiddenFor(model => model.certificate_name)
-
-        <div class="form-actions no-color">
-            <div class="col-md-offset-9">
-                <input type="button" value="Tidak" data-dismiss="modal" class="btn btn-warning" />
-                <input type="submit" value="Ya" class="btn btn-danger" />
+        <div class="row">
+            <div class="form-actions no-color">
+                <div class="col-md-offset-9">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <input type="button" value="Tidak" data-dismiss="modal" class="btn btn-warning" />
+                        <input type="submit" value="Ya" class="btn btn-danger" />
+                    </div>
+                </div>
             </div>
         </div>
     }
@@ -31,22 +34,22 @@
 }
 
 <script type="text/javascript">
-  //di delete
-    $("#form-delete").submit(function  (){
+    //di delete
+    $("#form-delete").submit(function () {
         $.ajax({
-            url:this.action,
-            type:this.method,
+            url: this.action,
+            type: this.method,
             data: $(this).serialize(),
-            success:function(result) {
+            success: function (result) {
                 if (result.success) {
-                    alert("save successfull Name: " + result.entity.certificate_name);
+                    alert("hapus Sukses Full Name: " + result.entity.certificate_name);
                     $(".modal-delete").modal("hide");
                     GetList();
                 } else {
-                    alert("error" +result.message);
+                    alert("error" + result.message);
                 }
             }
-               });
-    return false;
+        });
+        return false;
     });
 </script>

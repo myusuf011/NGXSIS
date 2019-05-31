@@ -16,6 +16,7 @@ namespace ngxsis.Repository
             using (var db = new ngxsisContext())
             {
                 result = (from c in db.x_sertifikasi
+                          orderby c.modified_on descending   //tanggal descending dari lama ke baru
                           select new SertifikasiViewModel
                           { //linkq
                               id = c.id,
@@ -87,6 +88,7 @@ namespace ngxsis.Repository
                         sertifikasi.until_month = entity.until_month;
                         sertifikasi.created_by = 335887;
                         sertifikasi.created_on = DateTime.Now;
+                        sertifikasi.modified_on = DateTime.Now;
                         sertifikasi.is_delete = false;
                         sertifikasi.biodata_id = 1;
                         sertifikasi.notes = entity.notes;
@@ -115,7 +117,7 @@ namespace ngxsis.Repository
 
                             sertifikasi.valid_start_year = entity.valid_start_year;
                             sertifikasi.valid_start_month = entity.valid_start_month;
-
+                            sertifikasi.modified_on = DateTime.Now;
                             sertifikasi.until_year = entity.until_year;
                             sertifikasi.until_month = entity.until_month;
                             sertifikasi.notes = entity.notes;
