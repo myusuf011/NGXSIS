@@ -1,0 +1,89 @@
+﻿.modal-dialog {
+    width: 1080px;
+    margin: 30px auto;
+}
+.modal-header {
+    background-color :#000080;
+    font-size : 14px;
+    color: white;
+}
+
+
+details,figcaption,figure,hgroup,menu,section {
+display:block;
+}
+
+
+.clear {clear: both;}
+
+
+#data {
+	width: 100%;
+	max-width: 800px;
+	background: #f3f3f3;
+	margin: 30px auto;
+}
+
+.mainDetails {
+	padding: 25px 35px;
+	border-bottom: 2px solid #000080;
+	background: #ededed;
+}
+
+#headshot {
+	width: 12.5%;
+	float: left;
+	margin-right: 30px;
+}
+
+#headshot img {
+	width: 100%;
+	height: auto;
+	-webkit-border-radius: 50px;
+	border-radius: 50px;
+}
+
+#name {
+	font-size: 18px;
+	font-weight: 700;
+	font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
+	margin-bottom: -6px;
+    float: left;
+    color : #000080;
+}
+
+#download {
+	float: right;
+}
+
+section {
+	border-top: 1px solid #dedede;
+	padding: 20px 0 0;
+    background-color: rgba(0, 0 ,128, 0.2);
+}
+
+.sectionTitle {
+	float: left;
+	width: 25%;
+}
+
+.sectionContent {
+	float: right;
+	width: 75%;
+}
+
+.close {
+	position: relative;
+	width: 23px;
+	height: 23px;
+	border: 2px solid #eef5df;
+    color: white;
+	border-radius: 50%;
+    opacity : 1;
+}
+
+.btn-pp {
+    color: #ffffff;
+    background-color: #000080;
+    border-color: #000063;
+}

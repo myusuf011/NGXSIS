@@ -82,3 +82,32 @@
 }
 
 </table>
+
+
+<script type="text/javascript">
+    $(".btn-edit").click(function () {
+        $.ajax({
+            url: '@Url.Action("Edit", "SumberLoker")',
+            type: 'get',
+            data: { id: $(this).attr("data-id") },
+            success: function (result) {
+                $(".modal-title").html("Edit");
+                $(".modal-body").html(result);
+                $(".modal").modal("show");
+            }
+        });
+    });
+
+    $(".btn-delete").click(function () {
+        $.ajax({
+            url: '@Url.Action("Delete", "SumberLoker")',
+            type: 'get',
+            data: { id: $(this).attr("data-id") },
+            success: function (result) {
+                $(".modal-title").html("Delete");
+                $(".modal-body").html(result);
+                $(".modal").modal("show");
+            }
+        });
+    });
+</script>
