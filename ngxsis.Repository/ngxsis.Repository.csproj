@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KeahlianRepo.cs" />
     <Compile Include="LoginRepo.cs" />
     <Compile Include="OrganisasiRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
