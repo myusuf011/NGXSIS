@@ -1,0 +1,16 @@
+﻿@model IEnumerable<ngxsis.ViewModel.UserRoleViewModel>
+
+@foreach (var item in Model)
+{
+    <li><a href="javascript:void(0)" class="btn-link btn-list" data-html="@item.FullName" data-container="@item.AddrBookId">@item.FullName</a></li>
+}
+
+<script type="text/javascript">
+    $(".btn-list").click(function () {
+        search = $(this).attr("data-html");
+        FullName = search;
+        AddrBookId = $(this).attr("data-container");
+        GetForm();
+        console.log(search);
+    });
+</script>
