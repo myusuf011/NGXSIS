@@ -15,9 +15,10 @@ namespace ngxsis.MVC.Controllers
         {
             return View();
         }
-        public ActionResult RoleList(string search = "")
+        public ActionResult RoleList(string search = "", int desc=0, int page=0, int dataPerPage=10)
         {
-            return PartialView("_RoleList", RoleRepo.BySearch(search));
+            List<RoleViewModel> result = RoleRepo.BySearch(search, desc, page, dataPerPage);
+            return PartialView("_RoleList", result);
         }
         public ActionResult Create()
         {
@@ -61,10 +62,19 @@ namespace ngxsis.MVC.Controllers
             ResponseResult result = RoleRepo.Delete(model);
             return Json(new
             {
-                success = result.Success,
+                success = RoleRepo.RelationCheck(model.Id),
                 message = result.Message,
                 entity = result.Entity
             }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult IsNameUnique(string Name, int Id=0)
+        {
+            return Json(RoleRepo.ByName(Name, Id),JsonRequestBehavior.AllowGet);
+        }
+        public JsonResult IsCodeUnique(string Code, int Id=0)
+        {
+            return Json(RoleRepo.ByCode(Code, Id),JsonRequestBehavior.AllowGet);
         }
     }
 }

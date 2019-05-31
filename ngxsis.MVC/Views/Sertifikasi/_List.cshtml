@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<ngxsis.ViewModel.SertifikasiViewModel>
-
-<table class="table">
+<br/>
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.certificate_name)
+               NAMA SERTIFIKASI
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.publisher)
+               PENERBIT
             </th>
 
             <th>
@@ -16,7 +16,7 @@
             <th>
                 #
             </th>
-            <th></th>
+        
         </tr>
 
     </thead>
@@ -39,8 +39,8 @@
                 <td>
                     <!-- Split button -->
                     <div class="btn-group">
-                        <button type="button" class="btn btn-primary">More</button>
-                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" class="btn btn-blue">More</button>
+                        <button type="button" class="btn  dropdown-toggle btn-blue" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="caret"></span>
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
@@ -69,9 +69,9 @@
             //
 
             success: function (result) {
-                $(".modal-title").html("Edit");
-                $(".modal-body").html(result);
-                $(".modal").modal("show");
+                $(".modal-utama .modal-title").html("Edit Sertifikasi");
+                $(".modal-utama .modal-body").html(result);
+                $(".modal-utama").modal("show");
             }
         });
 
@@ -87,9 +87,9 @@
             data: { id: $(this).attr("data-container") },
 
             success: function (result) {
-                $(".modal-title").html("Delete");
-                $(".modal-body").html(result);
-                $(".modal").modal("show");
+                $(".modal-delete .modal-title").html("Hapus Sertifikasi");
+                $(".modal-delete .modal-body").html(result);
+                $(".modal-delete").modal("show");
             }
         });
 

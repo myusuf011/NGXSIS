@@ -1,52 +1,58 @@
 ﻿@model IEnumerable<ngxsis.ViewModel.RoleViewModel>
 
+<div class="row" style="margin-bottom:5px;">
+    <div class="col-lg-6">
+        <div class="input-group" style="width:60%;">
+            <input type="text" id="txt-search" class="form-control" style=""placeholder="Cari">
+            <span class="input-group-btn">
+                <button class="btn btn-clear" style="height:45px;color:#000080;margin-left:-35px;padding:0px 10px 2px 0px;background-color:transparent;font-size:20px;" type="button"><b>&times;</b></button>
+                <button class="btn btn-pp btn-search" style="height:45px;" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+            </span>
+        </div>
+    </div>
+    <div class="col-lg-2"></div>
+        <div class="col-lg-2" style="margin-left:15px;">
+            <div class="btn-group btn-trans" style="margin-left:12px;" role="group" aria-label="...">
+                <div class="btn-group">
+                    <button type="button" class="btn dropdown-toggle btn-trans  btn-lg " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-sort"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right btn-link-a">
+                        <li class="dropdown-header dh">Order</li>
+                        <li><a href="javascript:void(0)" class="btn-link sort-asc">Ascending</a></li>
+                        <li><a href="javascript:void(0)" class="btn-link sort-desc">Descending</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn dropdown-toggle btn-trans  btn-lg " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-align-justify"></span>
+                    </button>
+                    <ul class="dropdown-menu btn-link-a">
+                        <li class="dropdown-header dh">Row Per Page</li>
+                        <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="10">10</a></li>
+                        <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="20">20</a></li>
+                        <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="30">30</a></li>
+                        <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="40">40</a></li>
+                        <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="50">50</a></li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-trans btn-lg btn-create-new"><span class="glyphicon glyphicon-plus-sign"></span></button>
+            </div>
+        </div>
+    </div>
+<hr style="border-bottom-width: 4px;
+    border-bottom-style: solid;
+    border-bottom-color: #000080;
+    margin-bottom:3px;
+    margin-top:0px" />
+<hr style="border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: #000080;
+    margin-top:10px;" />
 
-<table class="table">
+<table class="table table-striped">
     <thead>
-        <tr>
-            <th>
-                <div class="col-lg-6">
-                    <div class="input-group">
-                        <input type="search" id="txt-search" class="form-control" placeholder="Cari">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default btn-search" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                        </span>
-                    </div>
-                </div>
-
-            </th>
-            <th colspan="2">
-            </th>
-            <th>
-                <div class="btn-group" role="group" aria-label="...">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                         <span class="glyphicon glyphicon-sort"></span>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-">
-                            <li class="dropdown-header">Order</li>
-                            <li><a href="javascript:void(0)" class="btn-link sort-asc" data-container="desc">Ascending</a></li>
-                            <li><a href="javascript:void(0)" class="btn-link sort-desc" data-container="asc">Descending</a></li>
-                        </ul>
-                    </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="glyphicon glyphicon-align-justify"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-header">Row Per Page</li>
-                            <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="10">10</a></li>
-                            <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="20">20</a></li>
-                            <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="30">30</a></li>
-                            <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="30">40</a></li>
-                            <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="10">60</a></li>
-                        </ul>
-                    </div>
-                    <button type="button" class="btn btn-default btn-create-new"><span class="glyphicon glyphicon-plus-sign"></span></button>
-                </div>
-                </th>
-        </tr>
-
+        
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Code)
@@ -55,57 +61,106 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
 
-            <th></th>
-            <th></th>
+            <th><b>#</b></th>
         </tr>
     </thead>
     <tbody>
         @foreach(var item in Model)
         {
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Code)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
+                <td class="text-left">
+                    <div>
+                        @Html.DisplayFor(modelItem => item.Code)
 
-                <td></td>
+                    </div>
+                </td>
+                <td class="text-left">
+                    <div>
+                        @Html.DisplayFor(modelItem => item.Name)
+
+                    </div>
+                </td>
                 <td>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-pp">MORE</button>
-                        <button type="button" class="btn btn-pp dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="btn-group pull-left">
+                        <button type="button" class="btn btn-primary btn-pp"><b>More</b></button>
+                        <button type="button" class="btn dropdown-toggle btn-pp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="caret"></span>
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="javascript:void(0)" class="btn-link btn-link-ubah" data-container="@item.Id">Ubah</a></li>
-                            <li><a href="javascript:void(0)" class="btn-link btn-link-hapus" data-container="@item.Id">Hapus</a></li>
+                        <ul class="dropdown-menu btn-link-a">
+                            <li><a href="javascript:void(0)" class="btn-link-ubah" data-container="@item.Id">Ubah</a></li>
+                            <li><a href="javascript:void(0)" class="btn-link-hapus" data-container="@item.Id">Hapus</a></li>
                         </ul>
                     </div>
                 </td>
             </tr>
         }
     </tbody>
+    <tfoot>
+        <tr>
+            <td></td>
+            <td><button type="button" class="btn btn-primary btn-sm btn-pill pull-right" onclick="min()"><b>&#8592; Previous</b></button></td>
+            <td><button type="button" class="btn btn-primary btn-sm btn-pill pull-left" onclick="plus()"><b>Next &#8594;</b></button></td>
+        </tr>
+    </tfoot>
 </table>
 
 <script type="text/javascript">
-    $(".btn-search").click(function()
+    /*ROW PER PAGE*/
+    $(".btn-list").click(function ()
     {
-        console.log($("#txt-search").val());
-        $.ajax(
-             {
-                 url: '@Url.Action("RoleList", "Role")',
-                 type: 'get',
-                 data: { search: $("#txt-search").val() },
-                 success: function (result) {
-                     $("#data").html(result);
-                 }
-             });
+        page=0;
+        dataPerPage = $(this).attr("data-container");
+        GetList();
     });
-    $(".btn-create-new").click(function () {
-        //alert("Ubah diklik "+$(this).attr("data-container"))
+    /*GO TO PREVIOUS PAGE*/
+    function min () {
+        if (page > 0) {
+            page = page - 1;
+        }
+        console.log(page);
+        GetList();
+    };
+    /*GO TO NEXT PAGE*/
+    function plus () {
+        if (page < maxPage) {
+            page = page + 1;
+        }
+        console.log(page);
+        GetList();
+    };
 
+    /*SHOW DATA BY SEARCH*/
+    $(".btn-search").click(function () {
+        desc = 0;
+        page = 0;
+        search = $("#txt-search").val();
+        GetList();
+    });
+
+    /*SORT ASCENDING*/
+    $(".sort-asc").click(function () {
+        desc = 0;
+        page = 0;
+        GetList();
+    });
+
+    /*SORT DESCENDING*/
+    $(".sort-desc").click(function () {
+        desc = 1;
+        page = 0;
+        GetList();
+    });
+
+    /*CLEAR SEARCH*/
+    $(".btn-clear").click(function () {
+        page = 0;
+        search="";
+        GetList();
+    });
+
+    /*ADD NEW DATA*/
+    $(".btn-create-new").click(function () {
         $.ajax(
             {
                 url: '@Url.Action("Create", "Role")',
@@ -113,15 +168,13 @@
                 success: function (result) {
                     $(".modal-title").html("Tambah Role");
                     $(".modal-body").html(result);
-                    $(".modal").modal("show");
+                    $(".modal-main").modal("show");
                 }
             });
 
     });
-
+    /*EDIT DATA*/
     $(".btn-link-ubah").click(function () {
-        //alert("Ubah diklik "+$(this).attr("data-container"))
-
         $.ajax(
             {
                 url: '@Url.Action("Edit", "Role")',
@@ -130,24 +183,23 @@
                 success: function (result) {
                     $(".modal-title").html("Ubah Role");
                     $(".modal-body").html(result);
-                    $(".modal").modal("show");
+                    $(".modal-main").modal("show");
                 }
             });
 
 
     });
+    /*DELETE DATA*/
     $(".btn-link-hapus").click(function () {
-        //alert("Hapus diklik "+$(this).attr("data-container"))
-
         $.ajax(
             {
                 url: '@Url.Action("Delete", "Role")',
                 type: 'get',
                 data: { id: $(this).attr("data-container") },
                 success: function (result) {
-                    $(".modal-title").html("Hapus Role?");
-                    $(".modal-body").html(result);
-                    $(".modal").modal("show");
+                    $(".modal-delete .modal-title").html("Hapus Role ?");
+                    $(".modal-delete .modal-body").html(result);
+                    $(".modal-delete").modal("show");
                 }
             });
 

@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Pelamar";
+}
+
+<h1>@ViewBag.Title</h1>
+
+<div class="panel panel-default">
+    <div class="panel-body">
+    </div>
+    <div id="data">
+        Loading...
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            GetList();
+        });
+
+        function GetList() {
+            $.ajax(
+            {
+                url: '@Url.Action("PelamarList", "Pelamar")',
+                type: 'get',
+                data: { search: $(".table #txt-search").val() },
+                success: function (result) {
+                    $("#data").html(result);
+                }
+            });
+        }
+
+    </script>
+}
