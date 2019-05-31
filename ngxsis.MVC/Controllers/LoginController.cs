@@ -1,5 +1,6 @@
 ﻿using ngxsis.ViewModel;
 using ngxsis.DataModel;
+using ngxsis.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,30 +18,68 @@ namespace ngxsis.MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Autherize(LoginViewModel userModel)
+        public ActionResult Index(LoginViewModel userModel)
         {
-            using (var db = new ngxsisContext())
+            ResponseResultLogin hasil = LoginRepo.cekAkun(userModel);            
+
+            if (Session[hasil.NamaAkun + "Gagal"] == null)
+            {                
+                Session[hasil.NamaAkun + "Gagal"] = 0;
+            }
+
+            string hariIni = DateTime.Now.ToString("dd/MM/yyyy");
+            string hariUbah = hasil.TanggalUbah?.ToString("dd/MM/yyyy");
+            bool blokir = hasil.Blokir;
+
+            if (hariUbah != hariIni)
             {
-                var userDetails = db.x_addrbook
-                    .Where(o => o.email == userModel.email || o.abuid == userModel.email &&
-                    o.abpwd == userModel.abpwd).FirstOrDefault();
-                if (userDetails == null)
+                ResponseResultLogin akunAktif = LoginRepo.aktifinAkun(hasil.AkunID);
+                hariUbah = akunAktif.TanggalUbah?.ToString("dd/MM/yyyy");
+                blokir = akunAktif.Blokir;
+                Session[hasil.NamaAkun + "Gagal"] = 0;
+            }
+
+            if ((int)Session[hasil.NamaAkun + "Gagal"] < 3 || hariUbah == hariIni && blokir == false)
+            {
+                if (hasil.Success == false)
                 {
-                    userModel.LoginErrorMessage = "Wring username or password";
-                    return View("Index", userModel);              
+                    if (hasil.GagalLogin == true)
+                    {
+                        int jumlahGagal = (int)Session[hasil.NamaAkun + "Gagal"] + 1;                        
+                        Session[hasil.NamaAkun + "Gagal"] = jumlahGagal;
+                        hasil.Message = "Invalid Email / Password \nKesempatan mencoba " + (3 - jumlahGagal) + "x lagi";
+                    }
                 }
                 else
                 {
-                    Session["userID"] = userDetails.id;
-                    return RedirectToAction("Index", "SelectAccess");
+                    Session["userID"] = hasil.AkunID;
+                    Session["userName"] = hasil.NamaAkun;
                 }
             }
+
+            if ((int) Session[hasil.NamaAkun + "Gagal"] >= 3 || hariUbah == hariIni && blokir == true)
+            {
+                ResponseResultLogin akunBlokir = LoginRepo.blokirAkun(hasil.AkunID);                
+                hariUbah = akunBlokir.TanggalUbah?.ToString("dd/MM/yyyy");
+                blokir = akunBlokir.Blokir;
+                Session.Remove("userID");
+                Session.Remove("userName");
+                hasil.Message = "Akun " + hasil.NamaAkun + " terkunci \nSilahkan coba esok hari";
+                hasil.Success = false;
+            }
+
+            return Json(new
+            {
+                success = hasil.Success,
+                message = hasil.Message
+            }, JsonRequestBehavior.AllowGet);
+
         }
 
         public ActionResult Logout()
         {
-            int userId = (int)Session["userId"];
-            Session.Abandon();
+            Session.Remove("userID");
+            Session.Remove("userName");
             return RedirectToAction("Index", "Login");
         }
     }

@@ -13,5 +13,10 @@ namespace ngxsis.MVC.Controllers
         {
             return View();
         }
+
+        public ActionResult Gagal()
+        {
+            return View();
+        }
     }
 }

@@ -24,7 +24,7 @@ namespace ngxsis.ViewModel
 
         [Display(Name ="  ")]
         [StringLength(10)]
-        public string valid_start_year { get; set; }
+        public string valid_start_year { get; set; }     
 
         [Display(Name = "Berlaku Mulai")]
         [StringLength(10)]

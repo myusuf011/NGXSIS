@@ -130,10 +130,14 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KeahlianController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PelamarController.cs" />
     <Compile Include="Controllers\OrganisasiController.cs" />
+    <Compile Include="Controllers\ProfilController.cs" />
+    <Compile Include="Controllers\PendidikanController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SelectAccessController.cs" />
     <Compile Include="Controllers\SertifikasiController.cs" />
@@ -147,6 +151,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Profil.css" />
     <Content Include="Content\custom.css" />
     <Content Include="Content\Organisasi.css" />
     <Content Include="Content\role.css" />
@@ -197,6 +202,8 @@
     <Content Include="Views\Sertifikasi\_Delete.cshtml" />
     <Content Include="Views\Sertifikasi\_Edit.cshtml" />
     <Content Include="Views\Sertifikasi\_List.cshtml" />
+    <Content Include="Views\SelectAccess\Gagal.cshtml" />
+    <Content Include="Views\Account\SelectAccess.cshtml" />
     <Content Include="Views\Pelamar\Index.cshtml" />
     <Content Include="Views\Pelamar\_PelamarList.cshtml" />
     <Content Include="Views\SumberLoker\Index.cshtml" />
@@ -206,15 +213,32 @@
     <Content Include="Views\Organisasi\Index.cshtml" />
     <Content Include="Views\Organisasi\_List.cshtml" />
     <Content Include="Views\Organisasi\_Create.cshtml" />
+    <Content Include="Views\Profil\Index.cshtml" />
+    <Content Include="Views\Pendidikan\Index.cshtml" />
+    <Content Include="Views\Profil\Test.cshtml" />
+    <Content Include="Views\View.cshtml" />
+    <Content Include="Views\Profil\_List.cshtml" />
     <Content Include="Views\Organisasi\_Edit.cshtml" />
+    <Content Include="Views\Pendidikan\_List.cshtml" />
     <Content Include="Views\Organisasi\_Delete.cshtml" />
     <Content Include="Views\UserRole\Index.cshtml" />
     <Content Include="Views\UserRole\_Form.cshtml" />
     <Content Include="Views\UserRole\_BioBySearch.cshtml" />
     <Content Include="Views\UserRole\_RoleList.cshtml" />
+    <Content Include="Views\Keahlian\Index.cshtml" />
+    <Content Include="Views\Keahlian\_List.cshtml" />
+    <Content Include="Views\Keahlian\_Create.cshtml" />
+    <Content Include="Views\Keahlian\_ListBySkillLevel.cshtml" />
+    <Content Include="Views\Keahlian\_Edit.cshtml" />
+    <Content Include="Views\Keahlian\_Delete.cshtml" />
+    <Content Include="Views\Pendidikan\_Create.cshtml" />
+    <Content Include="Views\Pendidikan\_Edit.cshtml" />
+    <Content Include="Views\Pendidikan\_Delete.cshtml" />
+    <Content Include="Views\Pendidikan\_ListByEdu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -238,6 +262,9 @@
       <Project>{77f5b9e8-e297-436d-b322-c563adff44c8}</Project>
       <Name>ngxsis.ViewModel</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

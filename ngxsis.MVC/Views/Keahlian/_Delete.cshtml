@@ -1,0 +1,47 @@
+﻿@model ngxsis.ViewModel.KeahlianViewModel
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            <span class="glyphicon glyphicon-trash" aria-hidden="true" style="font-size:100px; color:Black; text-align:center"></span>
+        </dt>
+        <dd>
+            <font style="align-content: center"><font color="red"><font size="4">Anda yakin ingin menghapus keahlian @Html.DisplayFor(model => model.skill_name)?</font></font></font>
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm("Delete", "Keahlian", FormMethod.Post, new { id = "form-delete", name = "form-delete" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.skill_name)
+
+        <div class="row">
+            <div class="btn-group col-md-offset-9">
+                <input type="button" value="Tidak" data-dismiss="modal" class="btn btn-batal" />
+                <input type="submit" value="Ya" class="btn btn-ya" />
+            </div>
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    $("#form-delete").submit(function () {
+        $.ajax({
+            url: this.action,
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.success) {
+                    alert("Data berhasil dihapus");
+                    $(".modal-delete").modal("hide");
+                    GetList();
+                } else
+                {
+                    alert("Error! " + result.message);
+                }
+            }
+        });
+        return false;
+    });
+</script>

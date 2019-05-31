@@ -16,7 +16,8 @@ namespace ngxsis.Repository
             List<OrganisasiViewModel> result = new List<OrganisasiViewModel>();
             using (var db = new ngxsisContext())
             {
-                result = (from c in db.x_organisasi
+                result = (from c in db.x_organisasi                         
+                          orderby c.modified_on descending
                           select new OrganisasiViewModel
                           {
                               id = c.id,
@@ -33,8 +34,9 @@ namespace ngxsis.Repository
                               entry_year = c.entry_year,
                               exit_year = c.exit_year,
                               responsibility = c.responsibility,
-                              notes = c.notes
+                              notes = c.notes,                              
                           }).ToList();
+
             }
             return result;
         }
@@ -87,7 +89,7 @@ namespace ngxsis.Repository
                         org.created_by = 123;
                         org.created_on = DateTime.Now;
                         //org.modified_by = entity.modified_by;
-                        //org.modified_on = entity.modified_on;
+                        org.modified_on = DateTime.Now;
                         //org.deleted_by = entity.deleted_by;
                         //org.deleted_on = entity.deleted_on;
                         org.is_delete = false;
@@ -119,7 +121,7 @@ namespace ngxsis.Repository
                             //org.created_by = 123;
                             //org.created_on = DateTime.Now;
                             //org.modified_by = entity.modified_by;
-                            //org.modified_on = entity.modified_on;
+                            org.modified_on = DateTime.Now;
                             //org.deleted_by = entity.deleted_by;
                             //org.deleted_on = entity.deleted_on;
                             //org.is_delete = false;

@@ -43,3 +43,13 @@ hr {
 .form-horizontal .control-label {
   text-align: left !important;
 }
+
+.btn-pp {
+    color: #ffffff;
+    background-color: #000080;
+    border-color: #000063;
+}
+
+.form-control {
+    border: 2px solid #000080;
+}

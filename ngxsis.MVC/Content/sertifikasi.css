@@ -17,6 +17,7 @@ textarea {
     border-style: solid;
 }
 
+/*untuk modal keseluruhan*/
 .modal-dialog {
     right: auto;
     left: 10%;
@@ -84,6 +85,10 @@ background-color : #9c1010;
     background-color:#000080;
 
 }
+
+
+
+
 .caret {
   display: inline-block;
   width: 0;
@@ -105,5 +110,49 @@ background-color : #9c1010;
         color: #000080;
 
 }
+
+
+.btn-create-new:hover,
+.btn-create-new:active,
+.btn-create-new:after,
+.btn-create-new:active,
+.btn-create-new:focus,
+.open .dropdown-toggle .btn-create-new,
+.btn-create-new{
+    color:#FFFFFF;
+    background-color:#000080;
+
+}
+
+
+.btn-batal:hover,
+.btn-batal:active,
+.btn-batal:after,
+.btn-batal:active,
+.btn-batal:focus,
+.open .dropdown-toggle .btn-batal,
+.btn-batal{
+    color:#FFFFFF;
+    background-color:#ff6a00;
+
+}
+
+
+
+
+.btn-simpan:hover,
+.btn-simpan:active,
+.btn-simpan:after,
+.btn-simpan:active,
+.btn-simpan:focus,
+.open .dropdown-toggle .btn-simpan,
+.btn-simpan{
+    color:#FFFFFF;
+    background-color:#000080;
+
+}
+
+
+
 
 
