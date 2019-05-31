@@ -65,32 +65,9 @@
 
 
                         <div class="col-md-6">
-                            @Html.DropDownListFor(model => model.valid_start_year,
-                    new List<SelectListItem>
-                    {
-                        new SelectListItem { Value = "2000", Text = "2000" },
-                        new SelectListItem { Value = "2001", Text = "2001" },
-                        new SelectListItem { Value = "2002", Text = "2002" },
-                        new SelectListItem { Value = "2003", Text = "2003" },
-                        new SelectListItem { Value = "2004", Text = "2004" },
-                        new SelectListItem { Value = "2005", Text = "2005" },
-                        new SelectListItem { Value = "2006", Text = "2006" },
-                        new SelectListItem { Value = "2007", Text = "2007" },
-                        new SelectListItem { Value = "2008", Text = "2008" },
-                        new SelectListItem { Value = "2009", Text = "2009" },
-                        new SelectListItem { Value = "2010", Text = "2010" },
-                        new SelectListItem { Value = "2011", Text = "2011" },
-                        new SelectListItem { Value = "2012", Text = "2012" },
-                        new SelectListItem { Value = "2013", Text = "2013" },
-                        new SelectListItem { Value = "2014", Text = "2014" },
-                        new SelectListItem { Value = "2015", Text = "2015" },
-                        new SelectListItem { Value = "2016", Text = "2016" },
-                        new SelectListItem { Value = "2017", Text = "2017" },
-                        new SelectListItem { Value = "2018", Text = "2018" },
-                        new SelectListItem { Value = "2019", Text = "2019" },
-                    },
+                            @Html.DropDownListFor(model => model.valid_start_year, new SelectList(Enumerable.Range(DateTime.Today.Year - 20, 21)),
                     "-Pilih Tahun-",
-                    new { @class = "form-control", id="valid-year" })
+                    new { @class = "form-control", id = "valid-year" })
 
                             @Html.ValidationMessageFor(model => model.valid_start_year, "", new { @class = "text-danger" })
                         </div>
@@ -124,32 +101,9 @@
 
 
                         <div class="col-md-6">
-                            @Html.DropDownListFor(model => model.until_year,
-                    new List<SelectListItem>
-                    {
-                        new SelectListItem { Value = "2000", Text = "2000" },
-                        new SelectListItem { Value = "2001", Text = "2001" },
-                        new SelectListItem { Value = "2002", Text = "2002" },
-                        new SelectListItem { Value = "2003", Text = "2003" },
-                        new SelectListItem { Value = "2004", Text = "2004" },
-                        new SelectListItem { Value = "2005", Text = "2005" },
-                        new SelectListItem { Value = "2006", Text = "2006" },
-                        new SelectListItem { Value = "2007", Text = "2007" },
-                        new SelectListItem { Value = "2008", Text = "2008" },
-                        new SelectListItem { Value = "2009", Text = "2009" },
-                        new SelectListItem { Value = "2010", Text = "2010" },
-                        new SelectListItem { Value = "2011", Text = "2011" },
-                        new SelectListItem { Value = "2012", Text = "2012" },
-                        new SelectListItem { Value = "2013", Text = "2013" },
-                        new SelectListItem { Value = "2014", Text = "2014" },
-                        new SelectListItem { Value = "2015", Text = "2015" },
-                        new SelectListItem { Value = "2016", Text = "2016" },
-                        new SelectListItem { Value = "2017", Text = "2017" },
-                        new SelectListItem { Value = "2018", Text = "2018" },
-                        new SelectListItem { Value = "2019", Text = "2019" },
-                    },
+                        @Html.DropDownListFor(model => model.until_year, new SelectList(Enumerable.Range(DateTime.Today.Year - 20, 21)),
                     "-Pilih Tahun-",
-                    new { @class = "form-control", disabled = "disabled", id="until-year" })
+                    new { @class = "form-control", disabled = "disabled", id = "until-year" })
 
                             @Html.ValidationMessageFor(model => model.until_year, "", new { @class = "text-danger" })
                         </div>
@@ -171,14 +125,18 @@
             </div>
         </div>
 
+        <div class="row">
+ 
+                <div class="col-md-offset-9">
+                    <div class="btn-group" role="group" aria-label="...">
 
-        <div class="form-group">
-            <div class="col-md-offset-9">
-                <input type="submit" value="Simpan" class="btn btn-primary" />
-                <input type="button" value="Batal" data-dismiss="modal" class="btn btn-warning" />
+                        <input type="button" value="Batal" data-dismiss="modal" class="btn btn-batal" />
+                        <input type="submit" value="Simpan" class="btn btn-simpan" />
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+   
 
 }
 
@@ -195,14 +153,14 @@
             data: $(this).serialize(),
             success: function (result) {
                 if (result.success) {
-                    alert("save successfull certificate_name : " + result.entity.certificate_name);
+                    alert("Simpan Sukses Full certificate_name : " + result.entity.certificate_name);
                     $(".modal-utama").modal("hide");
                     GetList();
-                } else {
-                    alert("error" + result.message);
+                    //} else {
+                    //    alert("error" + result.message);
+                    //}
                 }
             }
-
         });
         //console.log(result.entity.certificate_name);
         return false;

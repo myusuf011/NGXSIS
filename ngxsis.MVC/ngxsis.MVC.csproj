@@ -133,6 +133,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OrganisasiController.cs" />
+    <Compile Include="Controllers\PendidikanController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SelectAccessController.cs" />
     <Compile Include="Controllers\SertifikasiController.cs" />
@@ -194,6 +195,12 @@
     <Content Include="Views\Organisasi\Index.cshtml" />
     <Content Include="Views\Organisasi\_List.cshtml" />
     <Content Include="Views\Organisasi\_Create.cshtml" />
+    <Content Include="Views\Pendidikan\Index.cshtml" />
+    <Content Include="Views\Pendidikan\_List.cshtml" />
+    <Content Include="Views\Pendidikan\_Create.cshtml" />
+    <Content Include="Views\Pendidikan\_Edit.cshtml" />
+    <Content Include="Views\Pendidikan\_Delete.cshtml" />
+    <Content Include="Views\Pendidikan\_ListByEdu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
