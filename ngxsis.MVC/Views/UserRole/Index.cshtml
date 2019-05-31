@@ -1,8 +1,5 @@
 ﻿
-@{
-    ViewBag.Title="Role";
-}
-<link rel="stylesheet" href="~/Content/role.css"/>
+<link rel="stylesheet" href="~/Content/role.css" />
 <div class="panel panel-default panel-role">
     <div class="panel-body">
     </div>
@@ -41,44 +38,24 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
-@section scripts
-{
+@section Scripts
+    {
     <script type="text/javascript">
-        var page;
-        var search;
-        var desc;
-        var maxPage;
-        var dataPerPage;
         $(document).ready(function () {
-            page = 0;
-            search = "";
-            desc = 0;
-            dataPerPage = 10;
-            GetList();
+            GetForm();
         });
 
-        function GetList() {
-            var itemCount = 0;
+        function GetForm()
+        {
             $.ajax(
-            {
-                url: '@Url.Action("RoleList", "Role")',
-                type: 'get',
-                data: { search: search, desc: desc , page: page, dataPerPage: dataPerPage },
-                success: function (result) {
-                    $("#data").html(result);
-                    $("#txt-search").val(search);
-
-                    $("#data").find("tbody").find("tr").each(function (item) {
-                        itemCount = itemCount + 1;
-                    });
-                    if (itemCount < dataPerPage) {
-                        maxPage = page;
-                    } else {
-                        maxPage = page + 1;
+                {
+                    url: '@Url.Action("Form","UserRole")',
+                    type: 'get',
+                    success: function (result)
+                    {
+                        $("#data").html(result);
                     }
-                }
-            });
+                });
         }
-        
     </script>
-}
+    }

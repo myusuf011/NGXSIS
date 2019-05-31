@@ -58,6 +58,7 @@
     <Compile Include="RoleRepo.cs" />
     <Compile Include="SertifikasiRepo.cs" />
     <Compile Include="SumberLokerRepo.cs" />
+    <Compile Include="UserRoleRepo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ngxsis.DataModel\ngxsis.DataModel.csproj">

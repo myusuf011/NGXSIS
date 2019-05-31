@@ -1,0 +1,109 @@
+﻿@model ngxsis.ViewModel.UserRoleViewModel
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="input-group" style="width:60%;">
+                <span class="input-group-btn">
+                    <button class="btn btn-pp btn-search" style="height:45px;border-top-left-radius:7px;border-bottom-left-radius:7px;" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                </span>
+                <input type="text" id="txt-search" onkeyup="OpenDropDown();"  class="form-control text-box single-line" onchange="OpenDropDown();" style="margin-left:0px;border-top-right-radius:7px;border-bottom-right-radius:7px;" placeholder="Cari" height:45px;>
+                <ul class="dropdown-menu btn-link-a" style="width:100%">
+                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="10">10</a></li>
+                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="20">20</a></li>
+                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="30">30</a></li>
+                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="40">40</a></li>
+                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="50">50</a></li>
+                </ul>
+                <span class="input-group-btn">
+                    <button class="btn btn-clear" style="height:45px;color:#000080;margin-left:-25px;padding:0px 10px 2px 0px;background-color:transparent;font-size:20px;" type="button"><b>&times;</b></button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+        <div class="container" style="padding:0px;">
+            <hr style="margin-left:-15px;margin-right:0px;margin-bottom:-3px; border-bottom:4px solid #000080;width:100%;"/>
+            <div class="row" style="color: #000080;">
+                <div class="col-lg-8">
+                    <div class="row" style="margin-left:-30px;margin-top:10px;">
+                        @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "control-label col-md-12 pull-left"})
+                    </div>
+                    <div class="row ">
+                        @*name*@
+                        @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly"
+                   } })
+                        @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger"})
+                    </div>
+
+                    <div class="row"  style="margin-left:-30px;margin-top:10px;">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-12 pull-left"})
+                    </div>
+                    <div class="row ">
+                        @*email*@
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                    </div>
+ 
+
+                    <div class="row " style="margin-top:10px;">
+                        <div class="col-lg-6" style="padding-right:5px;padding-left:0px;">
+                            @*password*@ 
+                    <div class="row">
+                        @Html.LabelFor(model => model.Abpwd, htmlAttributes: new { @class = "control-label col-md-12 pull-left"})
+                    </div>
+                        @Html.EditorFor(model => model.Abpwd, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Abpwd, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-lg-6" style="padding-right:0px;padding-left:5px;">
+                            @* confirm password *@
+                    <div class="row">
+                        @Html.LabelFor(model => model.ConfirmAbpwd, htmlAttributes: new { @class = "control-label col-md-12 pull-left"})
+                    </div>
+                        @Html.EditorFor(model => model.ConfirmAbpwd, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ConfirmAbpwd, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    @* panel list role disini *@
+                    <div class="panel panel-blue">
+                        <div class="panel-heading">
+                            <b>Role *</b>
+                        </div>
+                        <div class="panel-body">
+                        </div>
+                        <div id="data" style="margin:20px; vertical-align:central;">
+                            Loading...
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr style="margin-left:-15px;margin-right:0px;margin-top:30px;margin-bottom:15px; border-bottom:4px solid #000080;width:100%;" />
+            <div class="row">
+                <div class="col-lg-6 pull-left">
+                    <button type="button" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                </div>
+                <div class="col-lg-6 pull-right">
+                    <div class="btn-group pull-right" style="margin-right:15px;" >
+                        <button type="button" class="btn btn-warning btn-lg btn-120px" data-dismiss="modal"><b>Batal</b></button>
+                        <button type="submit" class="btn btn-pp btn-lg btn-120px "><b>Simpan</b></button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+}
+
+<script type="text/javascript">
+    function OpenDropDown() {
+        $(".dropdown-menu").slideDown();
+    }
+    $(document).click(function () {
+        $(".dropdown-menu").hide();
+    });
+</script>

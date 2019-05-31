@@ -138,6 +138,7 @@
     <Compile Include="Controllers\SelectAccessController.cs" />
     <Compile Include="Controllers\SertifikasiController.cs" />
     <Compile Include="Controllers\SumberLokerController.cs" />
+    <Compile Include="Controllers\UserRoleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -150,7 +151,6 @@
     <Content Include="Content\Organisasi.css" />
     <Content Include="Content\role.css" />
     <Content Include="Content\sertifikasi.css" />
-
     <Content Include="Content\StyleLogin.css" />
     <Content Include="Content\SumberLoker.css" />
     <Content Include="favicon.ico" />
