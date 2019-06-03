@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -149,10 +150,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\CreateBio.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Profil.css" />
-    <Content Include="Content\custom.css" />
     <Content Include="Content\Organisasi.css" />
     <Content Include="Content\role.css" />
     <Content Include="Content\sertifikasi.css" />
@@ -235,6 +236,7 @@
     <Content Include="Views\Pendidikan\_Edit.cshtml" />
     <Content Include="Views\Pendidikan\_Delete.cshtml" />
     <Content Include="Views\Pendidikan\_ListByEdu.cshtml" />
+    <Content Include="Views\Pelamar\_Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BiodataViewModel.cs" />
+    <Compile Include="DropDownModel.cs" />
     <Compile Include="KeahlianViewModel.cs" />
     <Compile Include="LoginViewModel.cs" />
     <Compile Include="PelamarViewModel.cs" />
@@ -58,6 +60,7 @@
     <Compile Include="SertifikasiViewModel.cs" />
     <Compile Include="SumberLokerViewModel.cs" />
     <Compile Include="UserRoleViewModel.cs" />
+    <Compile Include="ValidationModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

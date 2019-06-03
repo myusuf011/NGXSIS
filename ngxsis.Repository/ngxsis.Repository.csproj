@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GetAll.cs" />
     <Compile Include="KeahlianRepo.cs" />
     <Compile Include="LoginRepo.cs" />
     <Compile Include="PelamarRepo.cs" />
