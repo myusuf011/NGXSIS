@@ -73,6 +73,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BiodataViewModel.cs" />
+    <Compile Include="DropDownModel.cs" />
+    <Compile Include="KeahlianViewModel.cs" />
     <Compile Include="LoginViewModel.cs" />
     <Compile Include="PelamarViewModel.cs" />
     <Compile Include="OrganisasiViewModel.cs" />
@@ -86,6 +89,7 @@
     <Compile Include="SertifikasiViewModel.cs" />
     <Compile Include="SumberLokerViewModel.cs" />
     <Compile Include="UserRoleViewModel.cs" />
+    <Compile Include="ValidationModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Browsers\qt.browser" />

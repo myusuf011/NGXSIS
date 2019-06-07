@@ -45,7 +45,32 @@ namespace ngxsis.ViewModel
         [StringLength(10)]
         [Display(Name = "Tahun Keluar *")]
         [Required(ErrorMessage = "Tahun keluar harus diisi")]
+        //[CustomValidation(typeof(OrganisasiViewModel), nameof(OrganisasiViewModel.ValidateExitYear))] //, ErrorMessage = "Tahun masuk harus lebih kecil dari tahun keluar"
         public string exit_year { get; set; }
+
+        //public ValidationResult ValidateExitYear(string value, ValidationContext context)
+        //{
+        //    ValidationResult result = ValidationResult.Success;
+        //    OrganisasiViewModel model = context.ObjectInstance as OrganisasiViewModel;
+        //    if (int.Parse(value) < int.Parse(model.entry_year))
+        //    {
+        //        result = new ValidationResult(
+        //            "Tahun masuk harus lebih kecil dari tahun keluar");
+        //    }
+        //    return result;
+        //}
+
+        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        //{
+        //    if (int.Parse(exit_year) < int.Parse(entry_year))
+        //    {
+        //        yield return new ValidationResult(
+        //            "Tahun masuk harus lebih kecil dari tahun keluar",
+        //            new[] { "entry_year", exit_year }
+        //            );
+        //    }
+        //}
+
 
         [StringLength(100)]
         [Display(Name = "Tanggung Jawab")]

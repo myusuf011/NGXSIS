@@ -21,6 +21,7 @@ namespace ngxsis.Repository
             {
                 result=db.x_role
                     .Where(r => r.is_deleted==false)
+                    .OrderBy(r=>r.name)
                     .Select(r => new RoleViewModel
                     {
                         Id=r.id,

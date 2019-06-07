@@ -16,8 +16,8 @@ namespace ngxsis.Repository
             using (var db = new ngxsisContext())
             {
                 var userDetails = db.x_biodata
-                    .Where(o => o.x_addrbook.email == entity.email || o.x_addrbook.abuid == entity.email &&
-                    o.x_addrbook.abpwd == entity.abpwd).FirstOrDefault();                
+                    .Where(o => o.x_addrbook.email == entity.email && o.x_addrbook.abpwd == entity.abpwd || 
+                    o.x_addrbook.abuid == entity.email && o.x_addrbook.abpwd == entity.abpwd).FirstOrDefault();                
 
                 if (userDetails != null)
                 {

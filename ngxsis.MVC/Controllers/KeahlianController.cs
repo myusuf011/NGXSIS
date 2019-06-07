@@ -8,9 +8,9 @@ using System.Web.Mvc;
 
 namespace ngxsis.MVC.Controllers
 {
-    public class OrganisasiController : Controller
+    public class KeahlianController : Controller
     {
-        // GET: Organisasi
+        // GET: Keahlian
         public ActionResult Index()
         {
             return View();
@@ -18,19 +18,25 @@ namespace ngxsis.MVC.Controllers
 
         public ActionResult List()
         {
-            return PartialView("_List", OrganisasiRepo.All());
+            return PartialView("_List", KeahlianRepo.All());
+        }
+
+        public ActionResult ListBySkillLevel(int id)
+        {
+            return PartialView("_ListBySkillLevel", KeahlianRepo.All());
         }
 
         // CREATE
         public ActionResult Create()
         {
-            return PartialView("_Create", new OrganisasiViewModel());
+            ViewBag.KeahlianList = new SelectList(KeahlianRepo.LevelAll(), "skill_level_id", "skill_level_name"); //menggantikan category menjadi dropdown
+            return PartialView("_Create", new KeahlianViewModel());
         }
 
         [HttpPost]
-        public ActionResult Create(OrganisasiViewModel model)
+        public ActionResult Create(KeahlianViewModel model)
         {
-            if (!ModelState.IsValid || int.Parse(model.exit_year) < int.Parse(model.entry_year))
+            if (!ModelState.IsValid)
             {
                 return Json(new
                 {
@@ -38,8 +44,7 @@ namespace ngxsis.MVC.Controllers
                     message = "Invalid"
                 }, JsonRequestBehavior.AllowGet);
             }
-            
-            ResponseResult result = OrganisasiRepo.Update(model);
+            ResponseResult result = KeahlianRepo.Update(model);
             return Json(new
             {
                 success = result.Success,
@@ -51,13 +56,14 @@ namespace ngxsis.MVC.Controllers
         // EDIT
         public ActionResult Edit(int id)
         {
-            return PartialView("_Edit", OrganisasiRepo.ById(id));
+            ViewBag.KeahlianList = new SelectList(KeahlianRepo.LevelAll(), "skill_level_id", "skill_level_name");
+            return PartialView("_Edit", KeahlianRepo.ById(id));
         }
 
         [HttpPost]
-        public ActionResult Edit(OrganisasiViewModel model)
+        public ActionResult Edit(KeahlianViewModel model)
         {
-            if (!ModelState.IsValid || int.Parse(model.exit_year) < int.Parse(model.entry_year))
+            if (!ModelState.IsValid)
             {
                 return Json(new
                 {
@@ -65,7 +71,7 @@ namespace ngxsis.MVC.Controllers
                     message = "Invalid"
                 }, JsonRequestBehavior.AllowGet);
             }
-            ResponseResult result = OrganisasiRepo.Update(model);
+            ResponseResult result = KeahlianRepo.Update(model);
             return Json(new
             {
                 success = result.Success,
@@ -77,13 +83,13 @@ namespace ngxsis.MVC.Controllers
         // DELETE
         public ActionResult Delete(int id)
         {
-            return PartialView("_Delete", OrganisasiRepo.ById(id));
+            return PartialView("_Delete", KeahlianRepo.ById(id));
         }
 
         [HttpPost]
-        public ActionResult Delete(OrganisasiViewModel model)
+        public ActionResult Delete(KeahlianViewModel model)
         {
-            ResponseResult result = OrganisasiRepo.Delete(model);
+            ResponseResult result = KeahlianRepo.Delete(model);
             return Json(new
             {
                 success = result.Success,

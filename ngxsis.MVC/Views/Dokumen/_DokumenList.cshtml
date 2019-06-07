@@ -1,0 +1,85 @@
+﻿@model IEnumerable<ngxsis.ViewModel.DokumenViewModel>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                NAMA FILE
+            </th>
+            <th>
+               KETERANGAN
+            </th>
+            <th>
+                #
+            </th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.file_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.notes)
+                </td>
+                <td>
+                    <!-- Split button -->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-blue">More</button>
+                        <button type="button" class="btn  dropdown-toggle btn-blue" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="btn-edit" data-container="@item.id">Edit</a></li>
+                            <li><a href="javascript:void(0)" class="btn-delete" data-container="@item.id">Delete</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script type="text/javascript">
+
+
+
+    $(".btn-edit").click(function () {
+        $.ajax({
+            url: '@Url.Action("Edit","Dokumen")',
+            type: 'get',
+            data: { id: $(this).attr("data-container") },// attr = atribut
+            //
+
+            success: function (result) {
+                $(".modal-utama .modal-title").html("Ubah Dokumen");
+                $(".modal-utama .modal-body").html(result);
+                $(".modal-utama").modal("show");
+            }
+        });
+
+    });
+</script>
+
+<script type="text/javascript">
+    $(".btn-delete").click(function () {
+        $.ajax({
+            url: '@Url.Action("Delete", "Dokumen")',
+            type: 'get',
+            data: { id: $(this).attr("data-container") },
+
+            success: function (result) {
+                $(".modal-delete .modal-title").html("Hapus Dokumen");
+                $(".modal-delete .modal-body").html(result);
+                $(".modal-delete").modal("show");
+            }
+        });
+
+    });
+    //data id di javascript buat button kalau di a href pakai data-container
+
+</script>
