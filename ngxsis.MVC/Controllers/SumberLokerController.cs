@@ -29,7 +29,7 @@ namespace ngxsis.MVC.Controllers
         [HttpPost]
         public ActionResult Create(SumberLokerViewModel model)
         {
-
+           
             ResponseResult result = SumberLokerRepo.Update(model);
             return Json(new
             {
@@ -48,6 +48,23 @@ namespace ngxsis.MVC.Controllers
         public ActionResult Edit(SumberLokerViewModel model)
         {
             ResponseResult result = SumberLokerRepo.Update(model);
+            return Json(new
+            {
+                success = result.Success,
+                message = result.Message,
+                entity = result.Entity
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            return PartialView("_Delete", SumberLokerRepo.ById(id));
+        }
+
+        [HttpPost]
+        public ActionResult Delete(SumberLokerViewModel model)
+        {
+            ResponseResult result = SumberLokerRepo.Delete(model);
             return Json(new
             {
                 success = result.Success,

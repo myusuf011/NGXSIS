@@ -4,45 +4,49 @@
 @foreach (var item in Model)
 {
     <div id="data">
-        <div class="mainDetails">
+        <div class="head">
             <div id="headshot" >
                 <img src="@Url.Content("~/Content/Images/headshot.jpg")" alt="Gambar" />
             </div>
             
             <div id="name">
-                @Html.DisplayFor(modelItem => item.FullName)<br />
-                @Html.DisplayFor(modelItem => item.LastPosition)<br />
-                @{ var age = DateTime.UtcNow.Year - item.DOB.Year; @Html.DisplayTextFor(modelItem => age); <text> Tahun </text>}<br />
-                @*@{ var gender = item.Gender == false ; @Html.DisplayTextFor(modelItem => gender);<br />*@
-                @Html.DisplayFor(modelItem => item.Major) ,  @Html.DisplayFor(modelItem => item.SchoolName)
+                <span style="font-size : 20px"><b>@Html.DisplayFor(modelItem => item.FullName)</b><br /></span>
+                <span style="font-size : 14px ; color : #808080">@Html.DisplayFor(modelItem => item.LastPosition)<br /></span>
+                <span style="font-size : 14px ; color : #808080">@{ var age = DateTime.UtcNow.Year - item.DOB.Year; @Html.DisplayTextFor(modelItem => age); <text> tahun </text>}<br /></span>
+                <span style="font-size : 14px ; color : #808080">@(item.Gender ? "Laki - Laki" : "Perempuan")<br /></span>
+                <span style="font-size : 14px ; color : #808080">@Html.DisplayFor(modelItem => item.Major),  @Html.DisplayFor(modelItem => item.SchoolName)<br /></span>
             </div>
 
             <div id="download">
-                <button type="button" class="btn btn-pp btn-70px" onclick="window.location.href = 'javascript:genPDF()'">Unduh</button>
+
+                <button type="button" class="btn btn-pp btn-70px" onclick="location.href='@Url.Action("PrintViewToPdf")'">
+                    Unduh
+                </button>
+
             </div>
             <div class="clear"></div>
         </div>
-
+ 
         <div>
             <section>
-                <article>
+                
                     <div class="sectionTitle">
                         <h4>Pendidikan</h4>
                         @Html.DisplayFor(modelItem => item.EntryYear) - @Html.DisplayFor(modelItem => item.GraduationYear)
                     </div>
 
                     <div class="sectionContent">
-                        @Html.DisplayFor(modelItem => item.SchoolName) , @Html.DisplayFor(modelItem => item.Country)<br />
+                        @Html.DisplayFor(modelItem => item.SchoolName), @Html.DisplayFor(modelItem => item.Country)<br />
                         @Html.DisplayFor(modelItem => item.Major) <br />
                         @Html.DisplayFor(modelItem => item.GPA)
                     </div>
-                </article>
+                
                 <div class="clear"></div>
             </section>
 
 
             <section>
-                <article>
+                
                     <div class="sectionTitle">
                         <h4>Pengalaman</h4>
                        @Html.DisplayFor(modelItem => item.JoinYear) - @Html.DisplayFor(modelItem => item.ResignYear)
@@ -53,27 +57,27 @@
                         @Html.DisplayFor(modelItem => item.CompanyName)<br />
                         @Html.DisplayFor(modelItem => item.Income)
                     </div>
-                </article>
+                
                 <div class="clear"></div>
             </section>
 
 
             <section>
-                <article>
+                
                     <div class="sectionTitle">
                         <h4>Keterampilan</h4>
-                        @Html.DisplayFor(modelItem => item.JoinYear) - @Html.DisplayFor(modelItem => item.ResignYear)
+                        @Html.DisplayFor(modelItem => item.SkillLevel)
                     </div>
 
                     <div class="sectionContent">
                         @Html.DisplayFor(modelItem => item.SkillName)
                     </div>
-                </article>
+                
                 <div class="clear"></div>
             </section>
 
             <section>
-                <article>
+                
                     <div class="sectionTitle">
                         <h4>Training</h4>
                         @Html.DisplayFor(modelItem => item.TrainingYear)
@@ -82,12 +86,12 @@
                     <div class="sectionContent">
                         @Html.DisplayFor(modelItem => item.TrainingName)
                     </div>
-                </article>
+                
                 <div class="clear"></div>
             </section>
 
             <section>
-                <article>
+                
                     <div class="sectionTitle">
                         <h4>Sertifikasi</h4>
                         @Html.DisplayFor(modelItem => item.ValidStartYear) - @Html.DisplayFor(modelItem => item.UntilYear)
@@ -95,7 +99,7 @@
                     <div class="sectionContent">
                         @Html.DisplayFor(modelItem => item.CertificateName)
                     </div>
-                </article>
+                
                 <div class="clear"></div>
             </section>
 

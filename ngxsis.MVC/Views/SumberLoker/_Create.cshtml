@@ -22,7 +22,7 @@
                                     new SelectListItem { Value = "Reference", Text="Reference"},
                                     new SelectListItem { Value = "Others", Text="Others"},
                                 },
-                                    "- Pilih -", htmlAttributes: new { @class = "form-control", id = "details" })
+                                    "- Pilih -", htmlAttributes: new { @class = "form-control", id = "details" , @required = true })
                             @Html.ValidationMessageFor(model => model.vacancy_source, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -37,7 +37,7 @@
                                 new SelectListItem { Value = "FG", Text="Fresh Graduate"},
                                 new SelectListItem { Value = "EX", Text="Experience"},
                             },
-                                "- Pilih -", htmlAttributes: new { @class = "form-control" })
+                                "- Pilih -", htmlAttributes: new { @class = "form-control" , id = "candidate",  @required = true })
                                 @Html.ValidationMessageFor(model => model.candidate_type, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -50,7 +50,7 @@
                         @Html.LabelFor(model => model.event_name, htmlAttributes: new { @class = "control-label col-md-2 ", style = "font-size:10px" })
                         <div style="clear: both;"></div>
                         <div class="col-md-12">
-                            @Html.EditorFor(model => model.event_name, new { htmlAttributes = new { @class = "form-control", id = "eventName" , disabled = "disabled" } })
+                            @Html.EditorFor(model => model.event_name, new { htmlAttributes = new { @class = "form-control", id = "eventName" , disabled = "disabled" , @required = true } })
                             @Html.ValidationMessageFor(model => model.event_name, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                     <div class="form-group pull-left" >
                         @Html.LabelFor(model => model.career_center_name, htmlAttributes: new { @class = "control-label col-md-3 ", style = "font-size:10px" })
                         <div class="col-md-12">
-                            @Html.EditorFor(model => model.career_center_name, new { htmlAttributes = new { @class = "form-control", id = "careerCenter" , disabled = "disabled" } })
+                            @Html.EditorFor(model => model.career_center_name, new { htmlAttributes = new { @class = "form-control", id = "careerCenter" , disabled = "disabled" , @required = true } })
                             @Html.ValidationMessageFor(model => model.career_center_name, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -74,7 +74,7 @@
                     <div class="form-group pull-left">
                         @Html.LabelFor(model => model.referrer_name, htmlAttributes: new { @class = "control-label col-md-3", style = "font-size:10px" })
                         <div class="col-md-12">
-                            @Html.EditorFor(model => model.referrer_name, new { htmlAttributes = new { @class = "form-control", id = "referrerName", disabled = "disabled" } })
+                            @Html.EditorFor(model => model.referrer_name, new { htmlAttributes = new { @class = "form-control", id = "referrerName", disabled = "disabled" , @required = true } })
                             @Html.ValidationMessageFor(model => model.referrer_name, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -86,7 +86,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.referrer_phone, htmlAttributes: new { @class = "control-label col-md-3", style = "font-size:10px" })
                         <div class="col-md-12">
-                            @Html.EditorFor(model => model.referrer_phone, new { htmlAttributes = new { @class = "form-control", id = "referrerPhone", disabled = "disabled" } })
+                            @Html.EditorFor(model => model.referrer_phone, new { htmlAttributes = new { @class = "form-control", id = "referrerPhone", disabled = "disabled" , @required = true } })
                             @Html.ValidationMessageFor(model => model.referrer_phone, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                     <div class="form-group pull-left">
                         @Html.LabelFor(model => model.referrer_email, htmlAttributes: new { @class = "control-label col-md-3", style = "font-size:10px" })
                         <div class="col-md-12">
-                            @Html.EditorFor(model => model.referrer_email, new { htmlAttributes = new { @class = "form-control", id = "referrerEmail", disabled = "disabled" } })
+                            @Html.EditorFor(model => model.referrer_email, new { htmlAttributes = new { @class = "form-control", id = "referrerEmail", disabled = "disabled" , @required = true } })
                             @Html.ValidationMessageFor(model => model.referrer_email, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -110,7 +110,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.other_source, htmlAttributes: new { @class = "control-label col-md-2", style = "font-size:10px" })
                         <div class="col-md-12">
-                            @Html.EditorFor(model => model.other_source, new { htmlAttributes = new { @class = "form-control", id = "otherSource", disabled = "disabled" } })
+                            @Html.EditorFor(model => model.other_source, new { htmlAttributes = new { @class = "form-control", id = "otherSource", disabled = "disabled" , @required = true } })
                             @Html.ValidationMessageFor(model => model.other_source, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -124,7 +124,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.last_income, htmlAttributes: new { @class = "control-label col-md-7", style = "font-size:10px" })
                         <div class="col-md-12">
-                            @Html.EditorFor(model => model.last_income, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.last_income, new { htmlAttributes = new { @class = "form-control" , @required = true } })
                             @Html.ValidationMessageFor(model => model.last_income, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -133,8 +133,9 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.apply_date, htmlAttributes: new { @class = "control-label col-md-8", style = "font-size:10px" })
                         <div class="col-md-12">
+                            <br />
                             <div class='input-group date'>
-                                @Html.EditorFor(model => model.apply_date, new { htmlAttributes = new { @class = "form-control" , id = "datetimepicker" } })
+                                @Html.EditorFor(model => model.apply_date, new { htmlAttributes = new { @class = "form-control" , id = "datepicker" , @style = "width : 228px !important" , @required = true } })
                                 @Html.ValidationMessageFor(model => model.apply_date, "", new { @class = "text-danger" })
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-calendar"></span>
@@ -146,7 +147,7 @@
             </div>
 
             <div class="row">
-                <div class="form-actions col-lg-4 pull-right">
+                <div class="form-actions pull-right col-md-4">
                     <div class="btn-group">
                         <button type="button" class="btn btn-warning btn-70px" data-dismiss="modal"><b>Batal</b></button>
                         <button type="submit" class="btn btn-pp btn-70px "><b>Simpan</b></button>
@@ -166,24 +167,51 @@
 <script type="text/javascript">
 
     $("#form-create").submit(function () {
+        if ($.trim($("#details").val()) === "" || $.trim($("#candidate").val()) === "" ) {
+            alert('field tidak boleh kosong');
+            return false;
+        }
+
+        $("#details").change(function () {
+
+            if ($(this).val() == "CareerCenter") {
+                if ($.trim($("#eventName").val()) === "" || $.trim($("#careerCenter").val()) === "") {
+                    alert('field tidak boleh kosong');
+                    return false;
+                }
+            }
+
+            if ($(this).val() == "Reference") {
+                if ($.trim($("#referrerName").val()) === "" || $.trim($("#referrerPhone").val()) === "" || $.trim($("#referrerEmail").val()) === "") {
+                    alert('field tidak boleh kosong');
+                    return false;
+                }
+            }
+
+            if ($(this).val() == "Others") {
+                if ($.trim($("#otherSource").val()) === "") {
+                    alert('field tidak boleh kosong');
+                    return false;
+                }
+            }
+        });
+
         $.ajax({
             url: this.action,
             type: this.method,
             data: $(this).serialize(),
             success: function (result) {
                 if (result.success) {
-                    alert("Save succesful! Name : " + result.entity.Name);
+                    alert("Save new data succesfully");
                     $('.modal').modal('hide');
                     GetList();
                 } else {
-                    console.log("Error" + result.message);
-                    //alert("Error" + result.message);
+                    alert("Error" + result.message);
                 }
             }
         });
         return false;
     });
-
 
 
     $("#details").change(function () {
@@ -211,7 +239,5 @@
         }
     });
 </script>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 
 

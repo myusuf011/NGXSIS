@@ -1,0 +1,131 @@
+﻿@model ngxsis.ViewModel.SumberLokerViewModel
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>SumberLokerViewModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.vacancy_source)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vacancy_source)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.candidate_type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.candidate_type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.event_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.event_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.career_center_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.career_center_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.referrer_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.referrer_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.referrer_phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.referrer_phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.referrer_email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.referrer_email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.other_source)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.other_source)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.last_income)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.last_income)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apply_date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apply_date)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("Delete", "SumberLoker", FormMethod.Post, new { id = "form-delete", name = "form-delete" }))
+    { 
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.id)
+        
+        <div class="row">
+            <div class="form-actions no-color">
+                <div class="col-md-offset-9">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <input type="button" value="Tidak" data-dismiss="modal" class="btn btn-warning" />
+                        <input type="submit" value="Ya" class="btn btn-danger" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@Scripts.Render("~/bundles/jqueryval")
+@section Scripts {
+}
+
+<script type="text/javascript">
+    //di delete
+    $("#form-delete").submit(function () {
+        $.ajax({
+            url: this.action,
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.success) {
+                    alert("Delete Success.");
+                    $(".modal").modal("hide");
+                    GetList();
+                } else {
+                    alert("error" + result.message);
+                }
+            }
+        });
+        return false;
+    });
+</script>
