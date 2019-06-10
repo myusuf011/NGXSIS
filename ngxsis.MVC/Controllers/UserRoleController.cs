@@ -19,5 +19,13 @@ namespace ngxsis.MVC.Controllers
         {
             return PartialView("_Form",new UserRoleViewModel());
         }
+        public ActionResult BioBySearch(string search = "0")
+        {
+            return PartialView("_BioBySearch", UserRoleRepo.BySearch(search));
+        }
+        public ActionResult RoleList()
+        {
+            return PartialView("_RoleList", RoleRepo.All());
+        }
     }
 }

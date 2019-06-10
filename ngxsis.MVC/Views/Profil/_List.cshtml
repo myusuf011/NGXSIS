@@ -1,0 +1,112 @@
+﻿@model IEnumerable<ngxsis.ViewModel.ProfilViewModel>
+
+
+@foreach (var item in Model)
+{
+    <div id="data">
+        <div class="head">
+            <div id="headshot" >
+                <img src="@Url.Content("~/Content/Images/headshot.jpg")" alt="Gambar" />
+            </div>
+            
+            <div id="name">
+                <span style="font-size : 20px"><b>@Html.DisplayFor(modelItem => item.FullName)</b><br /></span>
+                <span style="font-size : 14px ; color : #808080">@Html.DisplayFor(modelItem => item.LastPosition)<br /></span>
+                <span style="font-size : 14px ; color : #808080">@{ var age = DateTime.UtcNow.Year - item.DOB.Year; @Html.DisplayTextFor(modelItem => age); <text> tahun </text>}<br /></span>
+                <span style="font-size : 14px ; color : #808080">@(item.Gender ? "Laki - Laki" : "Perempuan")<br /></span>
+                <span style="font-size : 14px ; color : #808080">@Html.DisplayFor(modelItem => item.Major),  @Html.DisplayFor(modelItem => item.SchoolName)<br /></span>
+            </div>
+
+            <div id="download">
+
+                <button type="button" class="btn btn-pp btn-70px" onclick="location.href='@Url.Action("PrintViewToPdf")'">
+                    Unduh
+                </button>
+
+            </div>
+            <div class="clear"></div>
+        </div>
+ 
+        <div>
+            <section>
+                
+                    <div class="sectionTitle">
+                        <h4>Pendidikan</h4>
+                        @Html.DisplayFor(modelItem => item.EntryYear) - @Html.DisplayFor(modelItem => item.GraduationYear)
+                    </div>
+
+                    <div class="sectionContent">
+                        @Html.DisplayFor(modelItem => item.SchoolName), @Html.DisplayFor(modelItem => item.Country)<br />
+                        @Html.DisplayFor(modelItem => item.Major) <br />
+                        @Html.DisplayFor(modelItem => item.GPA)
+                    </div>
+                
+                <div class="clear"></div>
+            </section>
+
+
+            <section>
+                
+                    <div class="sectionTitle">
+                        <h4>Pengalaman</h4>
+                       @Html.DisplayFor(modelItem => item.JoinYear) - @Html.DisplayFor(modelItem => item.ResignYear)
+                    </div>
+
+                    <div class="sectionContent">
+                        @Html.DisplayFor(modelItem => item.LastPosition)<br />
+                        @Html.DisplayFor(modelItem => item.CompanyName)<br />
+                        @Html.DisplayFor(modelItem => item.Income)
+                    </div>
+                
+                <div class="clear"></div>
+            </section>
+
+
+            <section>
+                
+                    <div class="sectionTitle">
+                        <h4>Keterampilan</h4>
+                        @Html.DisplayFor(modelItem => item.SkillLevel)
+                    </div>
+
+                    <div class="sectionContent">
+                        @Html.DisplayFor(modelItem => item.SkillName)
+                    </div>
+                
+                <div class="clear"></div>
+            </section>
+
+            <section>
+                
+                    <div class="sectionTitle">
+                        <h4>Training</h4>
+                        @Html.DisplayFor(modelItem => item.TrainingYear)
+                    </div>
+
+                    <div class="sectionContent">
+                        @Html.DisplayFor(modelItem => item.TrainingName)
+                    </div>
+                
+                <div class="clear"></div>
+            </section>
+
+            <section>
+                
+                    <div class="sectionTitle">
+                        <h4>Sertifikasi</h4>
+                        @Html.DisplayFor(modelItem => item.ValidStartYear) - @Html.DisplayFor(modelItem => item.UntilYear)
+                    </div>
+                    <div class="sectionContent">
+                        @Html.DisplayFor(modelItem => item.CertificateName)
+                    </div>
+                
+                <div class="clear"></div>
+            </section>
+
+        </div>
+    </div>
+
+}
+
+
+<link href="~/Content/Profil.css" rel="stylesheet" />

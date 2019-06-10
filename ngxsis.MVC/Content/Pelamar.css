@@ -1,0 +1,223 @@
+﻿body {
+}
+
+.btn-pp:hover,
+.btn-pp:focus,
+.btn-pp:active,
+.btn-pp.active,
+.btn-pp {
+    color: #ffffff;
+    background-color: #000080;
+    border-color: #000063;
+}
+
+    .btn-pp:hover,
+    .btn-pp:focus,
+    .btn-pp:active,
+    .btn-pp.active,
+    .open .dropdown-toggle .btn-pp,
+    .close .dropdown-toggle .btn-pp {
+        color: #ffffff;
+        background-color: #000080;
+        border-color: #000080;
+        margin: auto;
+    }
+
+.caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px solid #ffffff;
+    border-right: 4px solid transparent;
+    border-bottom: 0 dotted;
+    border-left: 4px solid transparent;
+    content: "";
+}
+
+.btn-trans {
+    color: #000080;
+    background-color: #ffffff;
+    border-color: #ffffff;
+}
+
+    .btn-trans:hover,
+    .btn-trans:focus,
+    .btn-trans:active,
+    .btn-trans.active,
+    .open .dropdown-toggle .btn-trans,
+    .btn-group .btn-trans {
+        color: #000080;
+        background-color: #ffffff;
+        border-color: #ffffff;
+    }
+
+    .btn-trans .btn-lg:hover,
+    .btn-trans .btn-lg:focus,
+    .btn-trans .btn-lg:active,
+    .btn-trans.active,
+    .btn-trans .btn-lg {
+        padding: 5px 5px;
+        font-size: 24px;
+    }
+
+.btn-pill:hover,
+.btn-pill:focus,
+.btn-pill:active,
+.btn-pill.active,
+.btn-pill {
+    border-radius: 25px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    background: #ffffff;
+    border-color: #000080;
+    color: #000080;
+}
+
+.form-control:focus,
+.form-control {
+    border-color: #000080;
+    color: #000080;
+}
+
+#txt-search {
+    width: 100%;
+}
+/*
+.table > thead > tr > th {
+    padding-bottom: 15px;
+    padding-top: 0px;
+    border-bottom-width: 4px;
+    border-bottom-style: solid;
+    border-bottom-color: #000080;
+    border-top-width: 2px;
+    border-top-style: solid;
+    border-top-color: #000080;
+    color: #000080;
+}
+
+.table > tbody > tr > td {
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: #000080;
+    vertical-align: middle;
+    color: #000080;
+}*/
+
+.btn-link-a > li > a {
+    color: #000080;
+    text-align: left;
+}
+
+    .btn-link-a > li > a:hover,
+    .btn-link-a > li > a:focus {
+        color: #000080;
+        text-decoration: none;
+        background-color: #ced8ed;
+    }
+
+.dh {
+    color: #428bca;
+    text-align: left;
+}
+
+.modal-delete .modal-content {
+    border-width: 2px;
+    border-style: solid;
+    border-color: #d9534f;
+}
+
+.modal-delete .modal-header {
+    font-size: 24px;
+    background-color: #d9534f;
+    color: #ffffff;
+}
+
+
+.modal-main .modal-content {
+    border-width: 2px;
+    border-style: solid;
+    border-color: #000080;
+}
+
+.modal-main .modal-header {
+    font-size: 24px;
+    background-color: #000080;
+    color: #ffffff;
+}
+
+.btn-xlg {
+    font-size: 110px;
+    color: #d9534f;
+    text-align: center;
+}
+
+.btn-70px {
+    width: 70px;
+}
+
+.btn-90px {
+    width: 90px;
+}
+
+.btn-120px {
+    width: 120px;
+}
+
+.panel-role {
+    border-color: #ffffff;
+    width: 100%;
+}
+
+    .panel-role > .panel-heading {
+        color: #333333;
+        background-color: #ffffff;
+        border-color: #ffffff;
+    }
+
+        .panel-role > .panel-heading + .panel-collapse .panel-body {
+            border-top-color: #ffffff;
+        }
+
+    .panel-role > .panel-footer + .panel-collapse .panel-body {
+        border-bottom-color: #ffffff;
+    }
+
+input,
+select,
+textarea {
+    max-width: 100%;
+}
+
+.dropdown-menu-right {
+    right: 0;
+    left: auto;
+}
+
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+    background-color: #f9f9f9;
+}
+
+
+.modal {
+    text-align: center;
+    padding: 0 !important;
+}
+
+    .modal:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+        margin-right: -4px;
+    }
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}

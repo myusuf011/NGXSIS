@@ -1,0 +1,92 @@
+﻿@model ngxsis.ViewModel.DokumenViewModel
+
+
+@using (Html.BeginForm("Create", "Dokumen", FormMethod.Post, new { id = "form-create", name = "form-create" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.file_name, htmlAttributes: new { @class = "control-label col-md-offset-1" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.file_name, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                            @Html.ValidationMessageFor(model => model.file_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.notes, htmlAttributes: new { @class = "control-label col-md-offset-1" })
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.notes, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.notes, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="fileUpload btn btn-info">
+                        <span>Unggah File</span>
+                        <input class="upload" type="file" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <input type="button" value="Batal" data-dismiss="modal" class="btn btn-warning" />
+                    <input type="submit" value="Simpan" class="btn btn-primary" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="fileUpload btn btn-info">
+                        <span>Unggah Foto</span>
+                        <input class="uploadFoto" type="image" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="button" value="Batal" data-dismiss="modal" class="btn btn-warning" />
+                    <input type="submit" value="Simpan" class="btn btn-primary" />
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+}
+
+@Scripts.Render("~/bundles/jqueryval")
+@section Scripts {
+}
+<script type="text/javascript">
+
+    $("#form-create").submit(function () {
+
+        $.ajax({
+            url: this.action,
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.success) {
+                    alert("save successfull : " + result.entity.file_name);
+                    $(".modal-utama").modal("hide");
+                    GetList();
+                } else {
+                    alert("error" + result.message);
+                }
+            }
+
+        });
+        //console.log(result.entity.certificate_name);
+        return false;
+    });
+</script>

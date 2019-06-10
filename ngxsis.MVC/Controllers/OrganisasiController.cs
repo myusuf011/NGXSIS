@@ -30,7 +30,7 @@ namespace ngxsis.MVC.Controllers
         [HttpPost]
         public ActionResult Create(OrganisasiViewModel model)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || int.Parse(model.exit_year) < int.Parse(model.entry_year))
             {
                 return Json(new
                 {
@@ -38,6 +38,7 @@ namespace ngxsis.MVC.Controllers
                     message = "Invalid"
                 }, JsonRequestBehavior.AllowGet);
             }
+            
             ResponseResult result = OrganisasiRepo.Update(model);
             return Json(new
             {
@@ -56,6 +57,14 @@ namespace ngxsis.MVC.Controllers
         [HttpPost]
         public ActionResult Edit(OrganisasiViewModel model)
         {
+            if (!ModelState.IsValid || int.Parse(model.exit_year) < int.Parse(model.entry_year))
+            {
+                return Json(new
+                {
+                    success = false,
+                    message = "Invalid"
+                }, JsonRequestBehavior.AllowGet);
+            }
             ResponseResult result = OrganisasiRepo.Update(model);
             return Json(new
             {

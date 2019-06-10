@@ -41,12 +41,21 @@
 @section Scripts
     {
     <script type="text/javascript">
+        var search;
+        var FullName;
+        var AddrBookId;
+        var RoleList;
         $(document).ready(function () {
+            search = "";
+            FullName = "";
+            AddrBookId = 0;
+            $("#data .username").hide();
             GetForm();
         });
 
         function GetForm()
         {
+            //$("#txt-search").val(search)
             $.ajax(
                 {
                     url: '@Url.Action("Form","UserRole")',
@@ -54,6 +63,16 @@
                     success: function (result)
                     {
                         $("#data").html(result);
+                        $("#txt-search").val(search)
+                        $("#FullName").val(FullName);
+                        if (AddrBookId == 0) {
+                            $(".username").addClass('hidden');
+                            $(".pass").removeClass('hidden');
+                        } else
+                        {
+                            $(".username").removeClass('hidden');
+                            $(".pass").addClass('hidden');
+                        }
                     }
                 });
         }

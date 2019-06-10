@@ -1,6 +1,6 @@
 ﻿@model ngxsis.ViewModel.UserRoleViewModel
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create","UserRole",FormMethod.Post, new { id="form-create", name="form-create" }))
 {
     @Html.AntiForgeryToken()
     
@@ -11,13 +11,9 @@
                 <span class="input-group-btn">
                     <button class="btn btn-pp btn-search" style="height:45px;border-top-left-radius:7px;border-bottom-left-radius:7px;" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                 </span>
-                <input type="text" id="txt-search" onkeyup="OpenDropDown();"  class="form-control text-box single-line" onchange="OpenDropDown();" style="margin-left:0px;border-top-right-radius:7px;border-bottom-right-radius:7px;" placeholder="Cari" height:45px;>
-                <ul class="dropdown-menu btn-link-a" style="width:100%">
-                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="10">10</a></li>
-                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="20">20</a></li>
-                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="30">30</a></li>
-                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="40">40</a></li>
-                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="50">50</a></li>
+                <input type="text" id="txt-search" autocomplete="off" onkeyup="OpenDropDown();"  class="form-control text-box single-line" onchange="OpenDropDown();" style="margin-left:0px;border-top-right-radius:7px;border-bottom-right-radius:7px; height:45px;" placeholder="Cari" >
+                <ul class="dropdown-menu btn-link-a" id="bio-List" style="width:100%">
+                    @*<li><a href="javascript:void(0)" class="btn-link btn-list" data-container="">""</a></li>*@
                 </ul>
                 <span class="input-group-btn">
                     <button class="btn btn-clear" style="height:45px;color:#000080;margin-left:-25px;padding:0px 10px 2px 0px;background-color:transparent;font-size:20px;" type="button"><b>&times;</b></button>
@@ -40,15 +36,22 @@
                         @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger"})
                     </div>
 
-                    <div class="row"  style="margin-left:-30px;margin-top:10px;">
+                    <div class="row username"  style="margin-left:-30px;margin-top:10px;">
                         @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-12 pull-left"})
                     </div>
-                    <div class="row ">
+                    <div class="row username">
                         @*email*@
                         @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                     </div>
- 
+                    <div class="row pass" style="margin-left:-30px;margin-top:10px;">
+                        @Html.LabelFor(model => model.UserLoginPwd, htmlAttributes: new { @class = "control-label col-md-12 pull-left" })
+                    </div>
+                    <div class="row  pass">
+                        @*email*@
+                        @Html.EditorFor(model => model.UserLoginPwd, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UserLoginPwd, "", new { @class = "text-danger" })
+                    </div>
 
                     <div class="row " style="margin-top:10px;">
                         <div class="col-lg-6" style="padding-right:5px;padding-left:0px;">
@@ -77,7 +80,7 @@
                         </div>
                         <div class="panel-body">
                         </div>
-                        <div id="data" style="margin:20px; vertical-align:central;">
+                        <div id="data-role" style="overflow-y: scroll; overflow-x:hidden; margin:20px; color:#000080; max-height:85px;">
                             Loading...
                         </div>
                     </div>
@@ -90,8 +93,8 @@
                 </div>
                 <div class="col-lg-6 pull-right">
                     <div class="btn-group pull-right" style="margin-right:15px;" >
-                        <button type="button" class="btn btn-warning btn-lg btn-120px" data-dismiss="modal"><b>Batal</b></button>
-                        <button type="submit" class="btn btn-pp btn-lg btn-120px "><b>Simpan</b></button>
+                        <button type="button" class="btn btn-warning btn-lg btn-120px btn-batal"><b>Batal</b></button>
+                        <button type="submit" class="btn btn-pp btn-lg btn-120px"><b>Simpan</b></button>
 
                     </div>
                 </div>
@@ -100,10 +103,66 @@
 }
 
 <script type="text/javascript">
+
+    $("#form-create").submit(function () {
+        $.ajax(
+            {
+                url: this.action,
+                type: this.method,
+                data: $(this).serialize(),
+                success: function (result) {
+                    if (result.success) {
+                        alert("User Role berhasil dibuat");
+                        GetForm();
+                    } else {
+                        //alert("Role tidak berhasil dibuat\n" + result.message);
+                    }
+                }
+            });
+        return false;
+    });
+
+    $(".btn-batal").click(function ()
+    {
+        $(".username").toggleClass('hidden');
+        $(".pass").toggleClass('hidden');
+        
+    });
+
+    $(document).ready(function () {
+        $(".username").addClass('hidden');
+        GetRole();
+    });
+
+    function GetRole() {
+        //$("#txt-search").val(search)
+        $.ajax(
+            {
+                url: '@Url.Action("RoleList","UserRole")',
+                type: 'get',
+                success: function (result) {
+                    $("#data-role").html(result);
+                }
+            });
+    }
+
+
     function OpenDropDown() {
-        $(".dropdown-menu").slideDown();
+        $.ajax(
+            {
+                url: '@Url.Action("BioBySearch","UserRole")',
+                type: 'get',
+                data: { search: $("#txt-search").val() },
+                success: function (result)
+                {
+                    $("#bio-List").html(result);
+                    $("#bio-List").slideDown();
+                }
+            });
     }
     $(document).click(function () {
         $(".dropdown-menu").hide();
     });
+
+    
 </script>
