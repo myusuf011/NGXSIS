@@ -132,6 +132,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KeluargaController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PelamarController.cs" />
     <Compile Include="Controllers\OrganisasiController.cs" />
@@ -149,7 +150,6 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\custom.css" />
     <Content Include="Content\Organisasi.css" />
     <Content Include="Content\role.css" />
     <Content Include="Content\sertifikasi.css" />
@@ -218,6 +218,12 @@
     <Content Include="Views\Pendidikan\_Edit.cshtml" />
     <Content Include="Views\Pendidikan\_Delete.cshtml" />
     <Content Include="Views\Pendidikan\_ListByEdu.cshtml" />
+    <Content Include="Views\Keluarga\Index.cshtml" />
+    <Content Include="Views\Keluarga\_List.cshtml" />
+    <Content Include="Views\Keluarga\_Edit.cshtml" />
+    <Content Include="Views\Keluarga\_Create.cshtml" />
+    <Content Include="Views\Keluarga\_Delete.cshtml" />
+    <Content Include="Views\Keluarga\_ListByFam.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

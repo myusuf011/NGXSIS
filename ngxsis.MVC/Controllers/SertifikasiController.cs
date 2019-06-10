@@ -30,37 +30,20 @@ namespace ngxsis.MVC.Controllers
         [HttpPost]
         public ActionResult Create(SertifikasiViewModel model)
         {
-            if (!ModelState.IsValid || int.Parse(model.until_year) < int.Parse(model.valid_start_year) || (int.Parse(model.until_year) == int.Parse(model.valid_start_year) && int.Parse(model.until_month) < int.Parse(model.valid_start_month)) )
+
+            if (!string.IsNullOrEmpty(model.valid_start_month) || !string.IsNullOrEmpty(model.valid_start_year))
             {
-                return Json(new
+                if (int.Parse(model.until_year) < int.Parse(model.valid_start_year) || (int.Parse(model.until_year) == int.Parse(model.valid_start_year) && int.Parse(model.until_month) < int.Parse(model.valid_start_month)))
                 {
-                    success = false,
-                    message = "InValid"
-                }, JsonRequestBehavior.AllowGet);
+                    return Json(new
+                    {
+                        success = false,
+                        message = "InValid"
+                    }, JsonRequestBehavior.AllowGet);
+                }
             }
-
-                ResponseResult result = SertifikasiRepo.Update(model);
-            return Json(new
-            {
-                success = result.Success,
-                message = result.Message,
-                entity = result.Entity
-            }, JsonRequestBehavior.AllowGet);
-
-        }
-
-        //edit
-        // controller buat Add view edit
-        public ActionResult Edit(int id)
-        {
-            return PartialView("_Edit", SertifikasiRepo.ById(id)); //ById dibikin di CategoryRepo dulu
-        }
-            
-
-        [HttpPost]
-        public ActionResult Edit(SertifikasiViewModel model)
-        {
-            if (!ModelState.IsValid || int.Parse(model.until_year) < int.Parse(model.valid_start_year) || (int.Parse(model.until_year) == int.Parse(model.valid_start_year) && int.Parse(model.until_month) < int.Parse(model.valid_start_month)))
+                
+            if (!ModelState.IsValid)
             {
                 return Json(new
                 {
@@ -78,6 +61,49 @@ namespace ngxsis.MVC.Controllers
             }, JsonRequestBehavior.AllowGet);
 
         }
+
+        //edit
+        // controller buat Add view edit
+        public ActionResult Edit(int id)
+        {
+            return PartialView("_Edit", SertifikasiRepo.ById(id)); //ById dibikin di CategoryRepo dulu
+        }
+                       
+
+        [HttpPost]
+        public ActionResult Edit(SertifikasiViewModel model)
+        {
+
+            if (!string.IsNullOrEmpty(model.valid_start_month) || !string.IsNullOrEmpty(model.valid_start_year))
+            {
+                if (int.Parse(model.until_year) < int.Parse(model.valid_start_year) || (int.Parse(model.until_year) == int.Parse(model.valid_start_year) && int.Parse(model.until_month) < int.Parse(model.valid_start_month)))
+                {
+                    return Json(new
+                    {
+                        success = false,
+                        message = "InValid"
+                    }, JsonRequestBehavior.AllowGet);
+                }
+            }
+
+            if (!ModelState.IsValid)  
+            {
+                return Json(new
+                {
+                    success = false,
+                    message = "InValid"
+                }, JsonRequestBehavior.AllowGet);
+            }
+               
+            ResponseResult result = SertifikasiRepo.Update(model);
+            return Json(new
+            {
+                success = result.Success,
+                message = result.Message,
+                entity = result.Entity
+            }, JsonRequestBehavior.AllowGet);
+
+        }    
 
         public ActionResult Delete(int id) // post
         {

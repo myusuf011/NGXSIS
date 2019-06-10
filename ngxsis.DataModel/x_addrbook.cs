@@ -39,7 +39,6 @@ namespace ngxsis.DataModel
 
         [Required]
         [StringLength(50)]
-        [Index(IsUnique =true)]
         public string abuid { get; set; }
 
         [Required]

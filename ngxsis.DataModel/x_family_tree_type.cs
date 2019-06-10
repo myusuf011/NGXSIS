@@ -13,7 +13,6 @@ namespace ngxsis.DataModel
         {
             x_family_relation = new HashSet<x_family_relation>();
             x_keluarga = new HashSet<x_keluarga>();
-            x_keluarga1 = new HashSet<x_keluarga>();
         }
 
         public long id { get; set; }
@@ -44,8 +43,5 @@ namespace ngxsis.DataModel
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<x_keluarga> x_keluarga { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<x_keluarga> x_keluarga1 { get; set; }
     }
 }

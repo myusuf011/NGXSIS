@@ -19,12 +19,10 @@ namespace ngxsis.DataModel
 
         [Required]
         [StringLength(50)]
-        [Index(IsUnique = true)]
         public string code { get; set; }
 
         [Required]
         [StringLength(50)]
-        [Index(IsUnique = true)]
         public string name { get; set; }
 
         public long created_by { get; set; }

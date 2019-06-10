@@ -1,0 +1,55 @@
+﻿@model ngxsis.ViewModel.KeluargaViewModel
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            <span class="glyphicon glyphicon-trash" aria-hidden="true" style="font-size:100px; color:Black; text-align:center"></span>
+        </dt>
+        <dd>
+
+            <font color="red"> <font size="4"> Anda yakin ingin menghapus Pendidikan @Html.DisplayFor(model => model.name)? </font></font>
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm("Delete", "Keluarga", FormMethod.Post, new { id = "form-delete", name = "form-delete" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.name)
+        <div class="row">
+            <div class="form-actions no-color">
+                <div class="col-md-offset-9">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <input type="button" value="Tidak" data-dismiss="modal" class="btn btn-warning" />
+                        <input type="submit" value="Ya" class="btn btn-danger" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@Scripts.Render("~/bundles/jqueryval")
+@section Scripts {
+}
+
+<script type="text/javascript">
+    //di delete
+    $("#form-delete").submit(function () {
+        $.ajax({
+            url: this.action,
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.success) {
+                    alert("hapus Sukses Full Name: " + result.entity.name);
+                    $(".modal-delete").modal("hide");
+                    GetList();
+                } else {
+                    alert("error" + result.message);
+                }
+            }
+        });
+        return false;
+    });
+</script>

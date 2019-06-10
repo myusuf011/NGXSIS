@@ -50,7 +50,8 @@
 
                         @Html.LabelFor(model => model.education_level_id, htmlAttributes: new { @class = "control-label col-md-offset-1" })
                         <div class="col-md-12">
-                            @Html.DropDownListFor(model => model.education_level_id, (IEnumerable<SelectListItem>)ViewBag.PendidikanList, "Select Jenjang", new { @class = "form-control", required = "required" })
+                            @Html.DropDownListFor(model => model.education_level_id
+                       , (IEnumerable<SelectListItem>)ViewBag.PendidikanList, "-Pilih-", new { @class = "form-control", required = "required" })
                             @Html.ValidationMessageFor(model => model.education_level_id, "", new { @class = "text-danger" })
                         </div>
                     </div>

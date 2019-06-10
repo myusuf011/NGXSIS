@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="C__MigrationHistory.cs" />
     <Compile Include="ngxsisContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="x_addrbook.cs" />

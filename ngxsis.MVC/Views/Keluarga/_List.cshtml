@@ -1,0 +1,124 @@
+﻿@model IEnumerable<ngxsis.ViewModel.KeluargaViewModel>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                HUBUNGAN
+            </th>
+            <th>
+                NAMA
+            </th>
+            <th>
+                JK
+            </th>
+            <th>
+                TGL. LAHIR
+            </th>
+            <th>
+                PENDIDIKAN
+            </th>
+            <th>
+                PEKERJAAN
+            </th>
+            <th>
+                #
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+             
+                <td>
+                    @Html.DisplayFor(modelItem => item.family_relation_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.name)
+                </td>
+                
+                    @*@Html.DisplayFor(modelItem => item.gender)*@
+                    @{
+                        if (item.gender)
+                        {
+                            <td>L</td>
+                        }
+                        else
+                        {
+                            <td>P</td>
+                        }
+                    }
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.dob)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.education_level_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.job)
+                </td>
+                <td>
+                    <!-- Split button -->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-blue">More</button>
+                        <button type="button" class="btn  dropdown-toggle btn-blue" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="btn-edit" data-container="@item.id">Edit</a></li>
+                            <li><a href="#" class="btn-delete" data-container="@item.id">Delete</a></li>
+
+
+                        </ul>
+                    </div>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script type="text/javascript">
+
+
+
+    $(".btn-edit").click(function () {
+        $.ajax({
+            url: '@Url.Action("Edit","Keluarga")',
+            type: 'get',
+            data: { id: $(this).attr("data-container") },// attr = atribut
+            //
+
+            success: function (result) {
+                $(".modal-utama .modal-title").html("Edit Keluarga");
+                $(".modal-utama .modal-body").html(result);
+                $(".modal-utama").modal("show");
+            }
+        });
+
+    });
+</script>
+
+
+<script type="text/javascript">
+    $(".btn-delete").click(function () {
+        $.ajax({
+            url: '@Url.Action("Delete", "Keluarga")',
+            type: 'get',
+            data: { id: $(this).attr("data-container") },
+
+            success: function (result) {
+                $(".modal-delete .modal-title").html("Hapus Keluarga");
+                $(".modal-delete .modal-body").html(result);
+                $(".modal-delete").modal("show");
+            }
+        });
+
+    });
+    //data id di javascript buat button kalau di a href pakai data-container
+
+</script>
