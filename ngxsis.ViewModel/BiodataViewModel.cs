@@ -42,7 +42,8 @@ namespace ngxsis.ViewModel
         [Required(ErrorMessage = "Silahkan Isi Kolom Jenis Kelamin Terlebih Dahulu!")]
         [Display(Name = "Jenis kelamin *")]
         public bool gender { get; set; }
-       
+
+
         [Required(ErrorMessage = "Silahkan Isi Kolom Agama Terlebih Dahulu!")]
         [Display(Name = "Agama *")]
         public long religion_id { get; set; }
@@ -74,21 +75,21 @@ namespace ngxsis.ViewModel
 
         [Required(ErrorMessage = "Silahkan Isi Kolom Nomor Identitas Terlebih Dahulu!")]
         [StringLength(50)]
-        [Remote("VerifyIdentity", "Pelamar", AdditionalFields = "identity_type_id", HttpMethod = "POST")]
+        [Remote("VerifyIdentity", "Pelamar", AdditionalFields = "identity_type_id, dob", HttpMethod = "POST")]
         [Display(Name = "Nomor Identitas")]
         public string identity_no { get; set; }
 
         [Required(ErrorMessage = "Silahkan Isi Kolom Email Terlebih Dahulu!")]
         [StringLength(100)]
         [EmailAddress(ErrorMessage = "Silahkan Isi Format Email dengan Benar!")]
-        [Remote("VerifyEmail", "Pelamar", HttpMethod = "POST", ErrorMessage = "Email Telah Terdaftar!. Silahkan Isi dengan Email yang Berbeda")]
+        [Remote("VerifyEmail", "Pelamar", AdditionalFields = "dob", HttpMethod = "POST", ErrorMessage = "Email Telah Terdaftar!. Silahkan Isi dengan Email yang Berbeda")]
         [Display(Name = "Email *")]
 
         public string email { get; set; }
 
         [Required(ErrorMessage = "Silahkan Isi Kolom No. Hp Terlebih Dahulu!")]
         [StringLength(50)]
-        [Remote("VerifyPhone", "Pelamar", HttpMethod = "POST", ErrorMessage = "No. HP Telah Terdaftar!. Silahkan Isi dengan No. HP yang Berbeda")]
+        [Remote("VerifyPhone", "Pelamar", AdditionalFields = "dob", HttpMethod = "POST", ErrorMessage = "No. HP Telah Terdaftar!. Silahkan Isi dengan No. HP yang Berbeda")]
         [Display(Name = "No. HP *")]
         public string phone_number1 { get; set; }
 
@@ -115,7 +116,6 @@ namespace ngxsis.ViewModel
         [Display(Name = "Status Pernikahan *")]
         public long marital_status_id { get; set; }
 
-        public long? addrbook_id { get; set; }
 
         [StringLength(50)]
         [Display(Name = "Tahun Pernikahan")]
@@ -196,6 +196,13 @@ namespace ngxsis.ViewModel
         [Display(Name = "Kota *")]
         public string region2 { get; set; }
 
+
+        public string namaidentitas { get; set; }
+        public string namagender { get; set; }
+        public string namaagama { get; set; }
+        public string namastatus { get; set; }
+
+        public string tanggal { get; set; }
 
 
     }

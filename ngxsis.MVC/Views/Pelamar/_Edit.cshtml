@@ -1,10 +1,10 @@
 ﻿@model ngxsis.ViewModel.BiodataViewModel
 <link rel="stylesheet" href="~/Content/CreateBio.css">
 
-@using (Html.BeginForm("Create", "Pelamar", FormMethod.Post, new { id = "form-create", name = "form-create" }))
+@using (Html.BeginForm("Edit", "Pelamar", FormMethod.Post, new { id = "form-edit", name = "form-edit" }))
 {
     @Html.AntiForgeryToken()
-
+    @Html.HiddenFor(model => model.id)
     <div class="form-horizontal">
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -74,7 +74,7 @@
                                 new SelectListItem { Value = "true", Text = "Pria" },
                                 new SelectListItem { Value = "false", Text = "Wanita" },
                                 },
-                                " - Pilih - ", htmlAttributes: new { @class = "form-control" })
+                                " - Pilih - ", htmlAttributes: new { @class = "form-control", id = "gender" })
 
                             @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger" })
                         </div>
@@ -253,7 +253,7 @@
 
 
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-lg-3">
                     <div class="form-group">
                         <div style="font-size:small;" class="col-md-6">
                             @Html.LabelFor(model => model.child_sequence, htmlAttributes: new { @class = "control-label" })
@@ -518,14 +518,14 @@
 @Scripts.Render("~/bundles/jqueryval")
 
 <script type="text/javascript">
-    $("#form-create").submit(function () {
+    $("#form-edit").submit(function () {
         $.ajax({
             url: this.action,
             type: this.method,
             data: $(this).serialize(),
             success: function (result) {
                 if (result.success) {
-                    alert("Data Pelamar " + result.entity.fullname + " Berhasil Disimpan");
+                    alert("Data Pelamar "+ result.entity.fullname+" Berhasil Diubah");
                     $(".modal").modal("hide");
 
                 }

@@ -92,3 +92,7 @@ textarea {
     font-weight: 100;
     font-size: small;
 }
+
+.close:focus {
+    outline: none;
+}
