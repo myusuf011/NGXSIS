@@ -8,9 +8,9 @@ using System.Web.Mvc;
 
 namespace ngxsis.MVC.Controllers
 {
-    public class OrganisasiController : Controller
+    public class PelatihanController : Controller
     {
-        // GET: Organisasi
+        // GET: Pelatihan
         public ActionResult Index()
         {
             return View();
@@ -18,19 +18,20 @@ namespace ngxsis.MVC.Controllers
 
         public ActionResult List()
         {
-            return PartialView("_List", OrganisasiRepo.All());
+            return PartialView("_List", PelatihanRepo.All());
         }
 
         // CREATE
         public ActionResult Create()
         {
-            return PartialView("_Create", new OrganisasiViewModel());
+            ViewBag.PelatihanList = new SelectList(PelatihanRepo.PeriodAll(), "time_period_id", "time_period_name");
+            return PartialView("_Create", new PelatihanViewModel());
         }
 
         [HttpPost]
-        public ActionResult Create(OrganisasiViewModel model)
+        public ActionResult Create(PelatihanViewModel model)
         {
-            if (!ModelState.IsValid || int.Parse(model.exit_year) < int.Parse(model.entry_year))
+            if (!ModelState.IsValid)
             {
                 return Json(new
                 {
@@ -38,8 +39,7 @@ namespace ngxsis.MVC.Controllers
                     message = "Invalid"
                 }, JsonRequestBehavior.AllowGet);
             }
-
-            ResponseResult result = OrganisasiRepo.Update(model);
+            ResponseResult result = PelatihanRepo.Update(model);
             return Json(new
             {
                 success = result.Success,
@@ -51,13 +51,14 @@ namespace ngxsis.MVC.Controllers
         // EDIT
         public ActionResult Edit(int id)
         {
-            return PartialView("_Edit", OrganisasiRepo.ById(id));
+            ViewBag.PelatihanList = new SelectList(PelatihanRepo.PeriodAll(), "time_period_id", "time_period_name");
+            return PartialView("_Edit", PelatihanRepo.ById(id));
         }
 
         [HttpPost]
-        public ActionResult Edit(OrganisasiViewModel model)
+        public ActionResult Edit(PelatihanViewModel model)
         {
-            if (!ModelState.IsValid || int.Parse(model.exit_year) < int.Parse(model.entry_year))
+            if (!ModelState.IsValid)
             {
                 return Json(new
                 {
@@ -65,8 +66,7 @@ namespace ngxsis.MVC.Controllers
                     message = "Invalid"
                 }, JsonRequestBehavior.AllowGet);
             }
-
-            ResponseResult result = OrganisasiRepo.Update(model);
+            ResponseResult result = PelatihanRepo.Update(model);
             return Json(new
             {
                 success = result.Success,
@@ -78,13 +78,13 @@ namespace ngxsis.MVC.Controllers
         // DELETE
         public ActionResult Delete(int id)
         {
-            return PartialView("_Delete", OrganisasiRepo.ById(id));
+            return PartialView("_Delete", PelatihanRepo.ById(id));
         }
 
         [HttpPost]
-        public ActionResult Delete(OrganisasiViewModel model)
+        public ActionResult Delete(PelatihanViewModel model)
         {
-            ResponseResult result = OrganisasiRepo.Delete(model);
+            ResponseResult result = PelatihanRepo.Delete(model);
             return Json(new
             {
                 success = result.Success,
@@ -92,25 +92,5 @@ namespace ngxsis.MVC.Controllers
                 entity = result.Entity
             }, JsonRequestBehavior.AllowGet);
         }
-
-        //public JsonResult IsExitYearValid(string exit_year, string entry_year)
-        //{
-        //    return Json(OrganisasiRepo.ValidationExitYear(exit_year, entry_year), JsonRequestBehavior.AllowGet);
-        //}
-
-        //public JsonResult IsEntryYearValid(string entry_year, string exit_year)
-        //{
-        //    return Json(OrganisasiRepo.ValidationExitYear(entry_year, exit_year), JsonRequestBehavior.AllowGet);
-        //}
-
-        //[HttpPost]
-        //public ActionResult IsExitYearValid(string exit_year, string entry_year)
-        //{
-        //    if (!OrganisasiRepo.ValidationExitYear(exit_year, entry_year).Success)
-        //    {
-        //        return Json(OrganisasiRepo.ValidationExitYear(exit_year, entry_year).Message);
-        //    }
-        //    return Json(true);
-        //}
     }
 }

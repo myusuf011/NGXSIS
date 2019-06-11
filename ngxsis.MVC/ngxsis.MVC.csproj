@@ -136,6 +136,8 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PelamarController.cs" />
     <Compile Include="Controllers\OrganisasiController.cs" />
+    <Compile Include="Controllers\PelatihanController.cs" />
+    <Compile Include="Controllers\PengalamanController.cs" />
     <Compile Include="Controllers\ProfilController.cs" />
     <Compile Include="Controllers\PendidikanController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
@@ -231,6 +233,16 @@
     <Content Include="Views\Pendidikan\_Edit.cshtml" />
     <Content Include="Views\Pendidikan\_Delete.cshtml" />
     <Content Include="Views\Pendidikan\_ListByEdu.cshtml" />
+    <Content Include="Views\Pelatihan\Index.cshtml" />
+    <Content Include="Views\Pelatihan\_List.cshtml" />
+    <Content Include="Views\Pelatihan\_Create.cshtml" />
+    <Content Include="Views\Pelatihan\_Edit.cshtml" />
+    <Content Include="Views\Pelatihan\_Delete.cshtml" />
+    <Content Include="Views\Pengalaman\Index.cshtml" />
+    <Content Include="Views\Pengalaman\_List.cshtml" />
+    <Content Include="Views\Pengalaman\_Create.cshtml" />
+    <Content Include="Views\Pengalaman\_Edit.cshtml" />
+    <Content Include="Views\Pengalaman\_Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

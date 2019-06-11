@@ -11,7 +11,9 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-offset-1" })
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label" })
+                        </div>
                         <div class="col-md-12">
                             @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
@@ -21,7 +23,9 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.position, htmlAttributes: new { @class = "control-label col-md-offset-1" })
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.position, htmlAttributes: new { @class = "control-label" })
+                        </div>
                         <div class="col-md-12">
                             @Html.EditorFor(model => model.position, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.position, "", new { @class = "text-danger" })
@@ -33,7 +37,9 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.entry_year, htmlAttributes: new { @class = "control-label col-md-offset-1" })
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.entry_year, htmlAttributes: new { @class = "control-label" })
+                        </div>
                         <div class="col-md-12">
                             @Html.DropDownListFor(model => model.entry_year, new SelectList(Enumerable.Range(DateTime.Today.Year - 20, 21)),
                             "- Pilih Tahun -",
@@ -45,7 +51,9 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.exit_year, htmlAttributes: new { @class = "control-label col-md-offset-1" })
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.exit_year, htmlAttributes: new { @class = "control-label" })
+                        </div>
                         <div class="col-md-12">
                             @Html.DropDownListFor(model => model.exit_year, new SelectList(Enumerable.Range(DateTime.Today.Year - 20, 21)),
                             "- Pilih Tahun -",
@@ -59,7 +67,9 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.responsibility, htmlAttributes: new { @class = "control-label col-md-offset-1" })
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.responsibility, htmlAttributes: new { @class = "control-label" })
+                        </div>
                         <div class="col-md-12">
                             @Html.EditorFor(model => model.responsibility, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.responsibility, "", new { @class = "text-danger" })
@@ -71,9 +81,11 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.notes, htmlAttributes: new { @class = "control-label col-md-offset-1" })
                         <div class="col-md-12">
-                            @Html.EditorFor(model => model.notes, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.LabelFor(model => model.notes, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.notes, new { htmlAttributes = new { @class = "form-control form-notes" } })
                             @Html.ValidationMessageFor(model => model.notes, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -96,21 +108,24 @@
 
 <script type="text/javascript">
     $("#form-edit").submit(function () {
-        $.ajax({
-            url: this.action,
-            type: this.method,
-            data: $(this).serialize(),
-            success: function (result) {
-                if (result.success) {
-                    alert("Data berhasil disimpan");
-                    $(".modal-utama").modal("hide");
-                    GetList();
+        //$("#form-edit").validate();
+        //if ($("#form-edit").valid()) {
+            $.ajax({
+                url: this.action,
+                type: this.method,
+                data: $(this).serialize(),
+                success: function (result) {
+                    if (result.success) {
+                        alert("Data berhasil disimpan");
+                        $(".modal-utama").modal("hide");
+                        GetList();
+                    }
+                    else {
+                        alert("Error! " + result.message);
+                    }
                 }
-                //else {
-                //    alert("Error! " + result.message);
-                //}
-            }
-        });
+            });
+        //}
         return false;
     });
 </script>

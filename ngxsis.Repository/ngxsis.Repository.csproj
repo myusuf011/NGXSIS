@@ -55,6 +55,8 @@
     <Compile Include="LoginRepo.cs" />
     <Compile Include="PelamarRepo.cs" />
     <Compile Include="OrganisasiRepo.cs" />
+    <Compile Include="PelatihanRepo.cs" />
+    <Compile Include="PengalamanRepo.cs" />
     <Compile Include="ProfilRepo.cs" />
     <Compile Include="PendidikanRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

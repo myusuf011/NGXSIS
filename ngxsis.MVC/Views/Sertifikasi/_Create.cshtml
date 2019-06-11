@@ -59,7 +59,7 @@
 
                     },
                     "-Pilih Bulan-",
-                    new { @class = "form-control", id= "valid-month" })
+                    new { @class = "form-control", id = "valid-month" })
                             @Html.ValidationMessageFor(model => model.valid_start_month, "", new { @class = "text-danger" })
                         </div>
 
@@ -95,13 +95,13 @@
 
                     },
                     "-Pilih Bulan-",
-                    new { @class = "form-control",disabled="disabled", id="until-month" })
+                    new { @class = "form-control", disabled = "disabled", id = "until-month" })
                             @Html.ValidationMessageFor(model => model.until_month, "", new { @class = "text-danger" })
                         </div>
 
 
                         <div class="col-md-6">
-                        @Html.DropDownListFor(model => model.until_year, new SelectList(Enumerable.Range(DateTime.Today.Year - 20, 21)),
+                            @Html.DropDownListFor(model => model.until_year, new SelectList(Enumerable.Range(DateTime.Today.Year - 20, 21)),
                     "-Pilih Tahun-",
                     new { @class = "form-control", disabled = "disabled", id = "until-year" })
 
@@ -109,7 +109,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <div class="row">
@@ -123,10 +122,10 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
- 
+
+            <div class="row">
+
                 <div class="col-md-offset-9">
                     <div class="btn-group" role="group" aria-label="...">
 
@@ -136,7 +135,7 @@
                 </div>
             </div>
         </div>
-   
+    </div>
 
 }
 
