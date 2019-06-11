@@ -58,10 +58,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Rotativa.1.7.4-rc\lib\net45\Rotativa.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -135,8 +131,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DokumenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\KeluargaController.cs" />
     <Compile Include="Controllers\KeahlianController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OrganisasiController.cs" />
@@ -145,6 +141,7 @@
     <Compile Include="Controllers\SelectAccessController.cs" />
     <Compile Include="Controllers\SertifikasiController.cs" />
     <Compile Include="Controllers\SumberLokerController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -217,13 +214,16 @@
     <Content Include="Scripts\jquery-1.12.4.min.js" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-2.1.3.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jspdf.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\pdfFromHTML.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -281,13 +281,8 @@
     <Content Include="Views\Pendidikan\_Edit.cshtml" />
     <Content Include="Views\Pendidikan\_Delete.cshtml" />
     <Content Include="Views\Pendidikan\_ListByEdu.cshtml" />
-    <Content Include="Views\Keluarga\Index.cshtml" />
     <Content Include="Views\Pelamar\_Create.cshtml" />
-    <Content Include="Views\Keluarga\_List.cshtml" />
-    <Content Include="Views\Keluarga\_Edit.cshtml" />
-    <Content Include="Views\Keluarga\_Create.cshtml" />
-    <Content Include="Views\Keluarga\_Delete.cshtml" />
-    <Content Include="Views\Keluarga\_ListByFam.cshtml" />
+    <Content Include="Views\Upload\UploadFile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

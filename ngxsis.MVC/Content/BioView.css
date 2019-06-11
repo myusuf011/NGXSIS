@@ -1,0 +1,161 @@
+
+
+input,
+select,
+textarea {
+    max-width: 100%;
+}
+
+.modal-content {
+    width: 1000px;
+}
+
+.modal-dialog {
+    right: auto;
+    left: auto;
+    width: 1000px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.modal {
+    overflow-x: hidden;
+    text-align: left;
+    overflow-y: auto;
+}
+
+
+.close,
+.close:hover {
+    float: right;
+    font-size: 50px;
+    font-weight: 100;
+    color: #ffffff;
+    opacity: 1;
+}
+
+.modal .modal-header {
+    background-color: #000080;
+    color: #ffffff;
+}
+
+.btn-pp:hover,
+.btn-pp:focus,
+.btn-pp:active,
+.btn-pp.active,
+.btn-pp {
+    color: #ffffff;
+    background-color: #000080;
+    border-color: #000063;
+}
+
+    .btn-pp:hover,
+    .btn-pp:focus,
+    .btn-pp:active,
+    .btn-pp.active,
+    .open .dropdown-toggle .btn-pp,
+    .close .dropdown-toggle .btn-pp {
+        color: #ffffff;
+        background-color: #000080;
+        border-color: #000080;
+        margin: auto;
+    }
+
+.btn-70px {
+    width: 70px;
+}
+
+.btn-150px {
+    width: 142px;
+    height: 48px;
+}
+
+
+.form-control,
+.form-control:focus {
+    height: 48px;
+    color: #000080;
+    border: 2px solid #000080;
+    font-size: medium;
+}
+
+
+
+.btn-warning,
+.btn-warning:hover {
+    color: #ffffff;
+    background-color: #f75c0e;
+    border-color: #f75c0e;
+}
+
+.control-label {
+    font-weight: 100;
+    font-size: small;
+}
+
+
+
+.btn-link {
+    margin: 0;
+    font-family: Arial;
+    font-weight: 500;
+    color: #000080;
+}
+
+    .btn-link,
+    .btn-link:active,
+    .btn-link[disabled],
+    fieldset[disabled] .btn-link {
+        background-color: transparent;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        width: 230px;
+        text-align: left;
+    }
+
+        .btn-link,
+        .btn-link:hover,
+        .btn-link:focus,
+        .btn-link:active {
+            border-color: transparent;
+        }
+
+            .btn-link:hover {
+                text-decoration: none;
+            }
+
+
+            .btn-link:focus {
+                color: #ccccff;
+                text-decoration: none;
+                background-color: #ccccff;
+                outline-color: #ccccff;
+            }
+
+            .btn-link[disabled]:hover,
+            fieldset[disabled] .btn-link:hover,
+            .btn-link[disabled]:focus,
+            fieldset[disabled] .btn-link:focus {
+                color: #ccccff;
+                text-decoration: none;
+                background-color: #ccccff;
+            }
+
+.table-striped > tbody > tr:nth-child(odd) > td,
+.table-striped > tbody > tr:nth-child(odd) > th {
+    background-color: #ffffff;
+    border-bottom: 2px solid #000080;
+}
+
+
+
+.table-striped > tbody > tr:nth-child(even) > td,
+.table-striped > tbody > tr:nth-child(even) > th {
+    background-color: #f9f9f9;
+    border-bottom: 2px solid #000080;
+}
+
+.close:focus,
+.glyphicon-edit:focus {
+    outline: none;
+}

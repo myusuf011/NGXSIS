@@ -7,7 +7,7 @@
             <th>
                 <div class="col-lg-6">
                     <div class="input-group">
-                        <input type="search" id="txt-search" class="form-control" placeholder="Cari">
+                        <input type="search" id="txt-search" class="form-control" placeholder="Cari" style=" height: 34px; border: 1px solid #cccccc;">
                         <span class="input-group-btn">
                             <button class="btn btn-default btn-search" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                         </span>
@@ -123,8 +123,6 @@
              });
     });
     $(".btn-create-new").click(function () {
-        //alert("Ubah diklik "+$(this).attr("data-container"))
-
         $.ajax(
             {
                 url: '@Url.Action("Create", "Pelamar")',
@@ -137,4 +135,21 @@
             });
 
     });
+  $(".btn-details").click(function () {
+        $.ajax(
+            {
+                url: '@Url.Action("IndexDetail", "Pelamar")',
+                type: 'get',
+               data: { id: $(this).attr("data-id") },
+                success: function (result) {
+                    $(".modal-title").html("Detil Pelamar");
+                    $(".modal-body").html(result);
+                    $(".modal").modal("show");
+                }
+            });
+
+    });
+
+
+
 </script>

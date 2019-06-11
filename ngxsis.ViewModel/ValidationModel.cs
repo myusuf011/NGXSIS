@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace ngxsis.ViewModel
 {
-  public class ValidationModel
+    public class ValidationModel
     {
+
+        public DateTime dob { get; set; }
         public string email { get; set; }
 
         public string phone_number1 { get; set; }
