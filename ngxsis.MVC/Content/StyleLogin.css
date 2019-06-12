@@ -1,4 +1,12 @@
-﻿body {
+﻿* {
+    margin: 0;
+	padding: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body {
     background-color: #f4f4f4;
     color: #000080;
 }
@@ -16,6 +24,11 @@
      border-width: 2px;
 }
 
+#btn-login:hover {
+    background-color: #0303a0;
+    color: white;
+}
+
 .title-login {
     font-size:45px;
     font-weight: bold;
@@ -31,6 +44,7 @@
 
 p, a {
     color: #000080;
+    text-decoration: none;
 }
 
 .tengah {
@@ -45,4 +59,27 @@ p, a {
   color: #ffffff;
   background-color: #000080;
   border-color: #000080;
+}
+
+.container-menu-role {
+    width: 90%;
+	margin-left: 5%;
+	display: inline-block;
+	line-height: 20px;
+}
+
+.container-menu-role .menu-role {
+    color: blue;
+    font-size: 9pt;
+}
+
+.ikon.pinggir-kanan {
+	float: right;
+	margin-left: 10px;
+    color: #1e1e1f;
+}
+
+.container-menu-role .isi-role{
+    color: #000080;
+    border-top: 0 none;
 }

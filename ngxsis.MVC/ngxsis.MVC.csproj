@@ -223,6 +223,10 @@
     <Content Include="Views\Organisasi\_Edit.cshtml" />
     <Content Include="Views\Pendidikan\_List.cshtml" />
     <Content Include="Views\Organisasi\_Delete.cshtml" />
+    <Content Include="Views\UserRole\Index.cshtml" />
+    <Content Include="Views\UserRole\_Form.cshtml" />
+    <Content Include="Views\UserRole\_BioBySearch.cshtml" />
+    <Content Include="Views\UserRole\_RoleList.cshtml" />
     <Content Include="Views\Keahlian\Index.cshtml" />
     <Content Include="Views\Keahlian\_List.cshtml" />
     <Content Include="Views\Keahlian\_Create.cshtml" />

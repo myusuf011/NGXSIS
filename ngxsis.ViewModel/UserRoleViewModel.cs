@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Mvc;
 
 namespace ngxsis.ViewModel
 {
@@ -23,16 +24,17 @@ namespace ngxsis.ViewModel
             get; set;
         }
 
-        [Required]
+        [Required(ErrorMessage = "Sandi role tidak boleh kosong")]
         [DataType(DataType.Password)]
         [Display(Name ="Sandi *")]
         public string Abpwd
         {
             get; set;
         }
-        [Required]
+
+        [Required(ErrorMessage = "Sandi role tidak boleh kosong")]
         [DataType(DataType.Password)]
-        [Compare("Abpwd",ErrorMessage = "Sandi yang dimasukkan tidak sama")]
+        [System.ComponentModel.DataAnnotations.Compare("Abpwd")]
         [Display(Name = "Ulang Sandi *")]
         public string ConfirmAbpwd
         {
@@ -43,10 +45,15 @@ namespace ngxsis.ViewModel
         {
             get; set;
         }
+
+        [StringLength(50)]
+        public string RoleName { get; set; }
+
         public long? AddrBookId
         {
             get; set;
         }
+
         [Required]
         [StringLength(50)]
         [Display(Name = "Nama Lengkap")]
@@ -54,5 +61,18 @@ namespace ngxsis.ViewModel
         {
             get; set;
         }
+
+        public long BiodataId { get; set; }
+
+        public long UserLoginId { get; set; }
+
+        [Required]
+        [DataType(DataType.Password)]
+        [Display(Name = "Sandi *")]
+        public string UserLoginPwd { get; set; }
+
+        public bool check { get; set; }
+
+        
     }
 }
