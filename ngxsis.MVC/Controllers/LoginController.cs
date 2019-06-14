@@ -80,6 +80,8 @@ namespace ngxsis.MVC.Controllers
         {
             Session.Remove("userID");
             Session.Remove("userName");
+            Session.Remove("roleID");
+            Session.Remove("companyID");
             return RedirectToAction("Index", "Login");
         }
     }

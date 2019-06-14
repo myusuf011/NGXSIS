@@ -1,5 +1,15 @@
 ﻿@{
     ViewBag.Title = "Home Page";
+
+    if (Session["userID"] != null && Session["roleID"] == null)
+    {
+        Response.Redirect("~/Account/SelectAccess"); // <-- Sesuaikan acceess bila sudah login
+    }
+
+    if (Session["userID"] == null && Session["roleID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
 }
 
 
@@ -23,8 +33,12 @@
     </div>
     <div class="col-md-4">
         <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        <p>
+            <a href="@Url.Action("Logout","Login")">Logout</a>
+        </p>
+        <p>
+            <a href="@Url.Action("RemoveSessionAkses","Account")">Ganti Akses</a>
+        </p>
     </div>
     <div class="col-md-4">
         <h2>Web Hosting</h2>
