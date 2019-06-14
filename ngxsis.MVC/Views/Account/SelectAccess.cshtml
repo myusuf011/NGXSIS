@@ -2,9 +2,13 @@
 
 @{
     Layout = null;
-    if (Session["userID"] == null)
+    if (Session["userID"] == null && Session["roleID"] == null)
     {
         Response.Redirect("~/Login/Index");
+    }
+    if (Session["userID"] != null && Session["roleID"] != null)
+    {
+        Response.Redirect("~/Home/Index");
     }
 }
 

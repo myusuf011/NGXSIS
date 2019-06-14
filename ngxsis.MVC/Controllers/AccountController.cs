@@ -36,6 +36,15 @@ namespace ngxsis.MVC.Controllers
                 success = result.Success
             }, JsonRequestBehavior.AllowGet);
         }
+        
+        public ActionResult RemoveSessionAkses()
+        {
+            Session.Remove("roleID");
+            Session.Remove("companyID");
+
+            return RedirectToAction("SelectAccess", "Account");
+        }
+
     }
 
 }
