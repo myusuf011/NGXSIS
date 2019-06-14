@@ -9,11 +9,11 @@
                 new { Value = Session["userID"] })
 
 
-    <div class="col-lg-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="margin:1%;margin-top:0.1%">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="row">
-            <div class="col-lg-6">
-                <div class="input-group" style="width:60%;">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                <div class="input-group" style="width:80%;margin-bottom:0px;">
                     <span class="input-group-btn">
                         <button class="btn btn-pp btn-search" style="height:45px;border-top-left-radius:7px;border-bottom-left-radius:7px;" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                     </span>
@@ -31,7 +31,7 @@
         <div class="container" style="padding:0px;">
             <hr style="margin-left:-15px;margin-right:0px;margin-bottom:-3px; border-bottom:4px solid #000080;width:100%;" />
             <div class="row" style="color: #000080;">
-                <div class="col-lg-8">
+                <div class="col-lg-7  col-md-7 col-sm-7 col-xs-7">
                     <div class="row" style="margin-left:-30px;margin-top:10px;">
                         @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "control-label col-md-12 pull-left" })
                     </div>
@@ -49,7 +49,7 @@
                     </div>
 
                     <div class="row " style="margin-top:10px;">
-                        <div class="col-lg-6" style="padding-right:5px;padding-left:0px;">
+                        <div class="col-lg-6  col-md-8 col-sm-8 col-xs-8" style="padding-right:5px;padding-left:0px;">
                             <div class="row">
                                 @Html.LabelFor(model => model.Abpwd, htmlAttributes: new { @class = "control-label col-md-12 pull-left" })
                             </div>
@@ -57,7 +57,7 @@
                             @Html.ValidationMessageFor(model => model.Abpwd, "", new { @class = "text-danger" })
                             <p class="text-danger pass-val" hidden="hidden">Sandi tidak boleh kosong!</p>
                         </div>
-                        <div class="col-lg-6" style="padding-right:0px;padding-left:5px;">
+                        <div class="col-lg-6  col-md-6 col-sm-6 col-xs-6" style="padding-right:0px;padding-left:5px;">
                             <div class="row">
                                 @Html.LabelFor(model => model.ConfirmPwd, htmlAttributes: new { @class = "control-label col-md-12 pull-left" })
                             </div>
@@ -66,7 +66,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-4  col-md-4 col-sm-5 col-xs-5">
                     @* panel list role disini *@
                     <div class="panel panel-blue">
                         <div class="panel-heading">
