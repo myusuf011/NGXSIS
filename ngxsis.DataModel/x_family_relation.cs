@@ -8,12 +8,6 @@ namespace ngxsis.DataModel
 
     public partial class x_family_relation
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public x_family_relation()
-        {
-            x_keluarga = new HashSet<x_keluarga>();
-        }
-
         public long id { get; set; }
 
         public long created_by { get; set; }
@@ -40,8 +34,5 @@ namespace ngxsis.DataModel
         public long? family_tree_type_id { get; set; }
 
         public virtual x_family_tree_type x_family_tree_type { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<x_keluarga> x_keluarga { get; set; }
     }
 }

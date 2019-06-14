@@ -88,6 +88,7 @@ namespace ngxsis.Repository
                               educationName = e.name,
                               major = c.major,
                               city = c.city,
+
                               country = c.country,
                               entry_year = c.entry_year,
                               graduation_year = c.graduation_year,

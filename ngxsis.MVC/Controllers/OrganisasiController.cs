@@ -38,7 +38,7 @@ namespace ngxsis.MVC.Controllers
                     message = "Invalid"
                 }, JsonRequestBehavior.AllowGet);
             }
-            
+
             ResponseResult result = OrganisasiRepo.Update(model);
             return Json(new
             {
@@ -65,6 +65,7 @@ namespace ngxsis.MVC.Controllers
                     message = "Invalid"
                 }, JsonRequestBehavior.AllowGet);
             }
+
             ResponseResult result = OrganisasiRepo.Update(model);
             return Json(new
             {
@@ -91,5 +92,25 @@ namespace ngxsis.MVC.Controllers
                 entity = result.Entity
             }, JsonRequestBehavior.AllowGet);
         }
+
+        //public JsonResult IsExitYearValid(string exit_year, string entry_year)
+        //{
+        //    return Json(OrganisasiRepo.ValidationExitYear(exit_year, entry_year), JsonRequestBehavior.AllowGet);
+        //}
+
+        //public JsonResult IsEntryYearValid(string entry_year, string exit_year)
+        //{
+        //    return Json(OrganisasiRepo.ValidationExitYear(entry_year, exit_year), JsonRequestBehavior.AllowGet);
+        //}
+
+        //[HttpPost]
+        //public ActionResult IsExitYearValid(string exit_year, string entry_year)
+        //{
+        //    if (!OrganisasiRepo.ValidationExitYear(exit_year, entry_year).Success)
+        //    {
+        //        return Json(OrganisasiRepo.ValidationExitYear(exit_year, entry_year).Message);
+        //    }
+        //    return Json(true);
+        //}
     }
 }

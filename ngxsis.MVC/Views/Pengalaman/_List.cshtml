@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ngxsis.ViewModel.PengalamanViewModel>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                DETAIL PEKERJAAN
+            </th>
+            <th>
+                CATATAN
+            </th>
+            <th>
+                #
+            </th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.company_name) (@Html.DisplayFor(modelItem => item.join_year)-@Html.DisplayFor(modelItem => item.join_month) s/d @Html.DisplayFor(modelItem => item.resign_year)-@Html.DisplayFor(modelItem => item.resign_month))
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.notes)
+            </td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-more dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        More
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+                        <li><a href="#" data-container="@item.id" class="btn-edit">Ubah</a></li>
+                        <li><a href="#" data-container="@item.id" class="btn-delete">Hapus</a></li>
+                        <li><a href="#" data-container="@item.id" class="btn-tambah-project">Tambah Project</a></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+
+<script type="text/javascript">
+    $(".btn-edit").click(function () {
+        $.ajax({
+            url: '@Url.Action("Edit", "Pengalaman")',
+            type: 'get',
+            data: { id: $(this).attr("data-container") },
+            success: function (result) {
+                $(".modal-utama .modal-title").html("Ubah Pengalaman");
+                $(".modal-utama .modal-body").html(result);
+                $(".modal-utama").modal("show");
+            }
+        });
+    });
+
+    $(".btn-delete").click(function () {
+        $.ajax({
+            url: '@Url.Action("Delete", "Pengalaman")',
+            type: 'get',
+            data: { id: $(this).attr("data-container") },
+            success: function (result) {
+                $(".modal-delete .modal-title").html("Hapus Pengalaman?");
+                $(".modal-delete .modal-body").html(result);
+                $(".modal-delete").modal("show");
+            }
+        });
+    });
+</script>

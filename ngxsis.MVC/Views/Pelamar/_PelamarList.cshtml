@@ -47,6 +47,18 @@
         </div>
     </div>
 </div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <div class="col-lg-6">
+                    <div class="input-group">
+                        <input type="search" id="txt-search" class="form-control" placeholder="Cari">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default btn-search" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                        </span>
+                    </div>
+                </div>
 
 <table class="table">    
     <tbody>
@@ -122,11 +134,12 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title">Modal title</h3>
+                <h4 class="modal-title">Modal title</h4>
             </div>
             <div class="modal-body">
                 <p>One fine body&hellip;</p>
             </div>
+
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
@@ -134,25 +147,16 @@
 <script type="text/javascript">
     
     $(".btn-create-new").click(function () {
-        $.ajax(
-            {
-                url: '@Url.Action("Create", "Pelamar")',
-                type: 'get',
-                success: function (result) {
-                    $(".modal-title").html("Masukkan Biodata");
-                    $(".modal-body").html(result);
-                    $(".modal").modal("show");
-                }
-            });
+        //alert("Ubah diklik "+$(this).attr("data-container"))
 
     });
     $(".btn-details").click(function () {
         $.ajax(
             {
-                url: '@Url.Action("IndexDetail", "Pelamar")',
+                url: '@Url.Action("Create", "Role")',
                 type: 'get',
-               data: { id: $(this).attr("data-id") },
                 success: function (result) {
+                    $(".modal-title").html("Tambah Role");
                     $(".modal-title").html("Detail Pelamar");
                     $(".modal-body").html(result);
                     $(".modal").modal("show");

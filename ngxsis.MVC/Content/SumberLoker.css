@@ -16,7 +16,7 @@ textarea {
 
 .form-group{
    display:inline-block;
-   width:100%;
+   width:100%
 }
 
 .control-label { 
@@ -47,13 +47,9 @@ hr {
 .btn-pp {
     color: #ffffff;
     background-color: #000080;
-    border-color: #000063;    
+    border-color: #000063;
 }
 
 .form-control {
     border: 2px solid #000080;
-}
-
-.form-control #hasDatepicker {
-    width : 200px;
 }
