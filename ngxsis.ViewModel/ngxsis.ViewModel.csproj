@@ -44,7 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BiodataViewModel.cs" />
     <Compile Include="KeahlianViewModel.cs" />
+    <Compile Include="KeluargaViewModel.cs" />
     <Compile Include="LoginViewModel.cs" />
     <Compile Include="PelamarViewModel.cs" />
     <Compile Include="OrganisasiViewModel.cs" />

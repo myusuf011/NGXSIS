@@ -63,14 +63,14 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="background-color:#000080;">
                             <h6 style="color:white">
                                 <i class="glyphicon glyphicon-bell" style="margin-right:10px;"></i>
-                                <b>Hi, Kawan</b>
+                                <b>Hi, @Session["userName"]</b>
                                 <i class="glyphicon glyphicon-chevron-down" style="margin-left:20px;"></i>
                             </h6>
                         </a>
                         <ul class="dropdown-menu">
                             <li><a href="#">Ubah Kata Sandi</a></li>
                             
-                            <li><a href="#">Logout</a></li>
+                            <li><a href="@Url.Action("Logout","Login")">Logout</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -210,7 +210,6 @@
     <Content Include="Views\Sertifikasi\_Edit.cshtml" />
     <Content Include="Views\Sertifikasi\_List.cshtml" />
     <Content Include="Views\SelectAccess\Gagal.cshtml" />
-    <Content Include="Views\Account\SelectAccess.cshtml" />
     <Content Include="Views\Pelamar\Index.cshtml" />
     <Content Include="Views\Pelamar\_PelamarList.cshtml" />
     <Content Include="Views\SumberLoker\Index.cshtml" />
@@ -244,7 +243,6 @@
     <Content Include="Views\Pendidikan\_ListByEdu.cshtml" />
     <Content Include="Views\Pelamar\_Create.cshtml" />
     <Content Include="Views\Upload\UploadFile.cshtml" />
-    <Content Include="Views\Account\SelectAccess.cshtml" />
     <Content Include="Views\Pelamar\_PelamarList.cshtml" />
     <Content Include="Views\Pelamar\Index.cshtml" />
     <Content Include="Views\Pelamar\_IndexDetail.cshtml" />
@@ -269,6 +267,7 @@
     <Content Include="Views\Dokumen\Index.cshtml" />
     <Content Include="Views\Dokumen\_DokumenList.cshtml" />
     <Content Include="Views\Dokumen\_Create.cshtml" />
+    <Content Include="Views\Account\SelectAccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
