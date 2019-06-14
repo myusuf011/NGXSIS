@@ -239,9 +239,9 @@ textarea {
 }
 
 .panel-blue {
+  font-size:12px;
+  width:100%;
   margin-top:15px;
-  margin-left:20px;
-  margin-right:16px;
   border-color: #000080;
   border-width:2px;
   border-radius:8px;
