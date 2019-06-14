@@ -84,6 +84,7 @@
     <Compile Include="ProfilViewModel.cs" />
     <Compile Include="PendidikanViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProsesPelamarViewModel.cs" />
     <Compile Include="ResponseResult.cs" />
     <Compile Include="ResponseResultLogin.cs" />
     <Compile Include="RoleViewModel.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="SertifikasiViewModel.cs" />
     <Compile Include="SumberLokerViewModel.cs" />
     <Compile Include="UserRoleViewModel.cs" />
+    <Compile Include="UserViewModel.cs" />
     <Compile Include="ValidationModel.cs" />
   </ItemGroup>
   <ItemGroup>

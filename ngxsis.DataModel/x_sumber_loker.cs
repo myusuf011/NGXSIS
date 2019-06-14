@@ -56,8 +56,6 @@ namespace ngxsis.DataModel
         [Column(TypeName = "date")]
         public DateTime? apply_date { get; set; }
 
-        public long? is_process { get; set; }
-
         public virtual x_biodata x_biodata { get; set; }
     }
 }

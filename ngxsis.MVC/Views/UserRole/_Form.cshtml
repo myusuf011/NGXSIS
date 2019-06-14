@@ -1,74 +1,68 @@
-﻿@model ngxsis.ViewModel.UserRoleViewModel
+﻿@model ngxsis.ViewModel.UserViewModel
 
-@using (Html.BeginForm("Create","UserRole",FormMethod.Post, new { id="form-create", name="form-create" }))
+@using (Html.BeginForm("Form", "UserRole", FormMethod.Post, new { id = "form-update", name = "form-update" }))
 {
     @Html.AntiForgeryToken()
-    
+    @Html.HiddenFor(Model => Model.Id)
+    @Html.HiddenFor(Modal => Model.BiodataId)
+    @Html.HiddenFor(model => model.UserLoginId,
+                new { Value = Session["userID"] })
+
+
+    <div class="col-lg-12">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="input-group" style="width:60%;">
-                <span class="input-group-btn">
-                    <button class="btn btn-pp btn-search" style="height:45px;border-top-left-radius:7px;border-bottom-left-radius:7px;" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                </span>
-                <input type="text" id="txt-search" autocomplete="off" onkeyup="OpenDropDown();"  class="form-control text-box single-line" onchange="OpenDropDown();" style="margin-left:0px;border-top-right-radius:7px;border-bottom-right-radius:7px; height:45px;" placeholder="Cari" >
-                <ul class="dropdown-menu btn-link-a" id="bio-List" style="width:100%">
-                    @*<li><a href="javascript:void(0)" class="btn-link btn-list" data-container="">""</a></li>*@
-                </ul>
-                <span class="input-group-btn">
-                    <button class="btn btn-clear" style="height:45px;color:#000080;margin-left:-25px;padding:0px 10px 2px 0px;background-color:transparent;font-size:20px;" type="button"><b>&times;</b></button>
-                </span>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="input-group" style="width:60%;">
+                    <span class="input-group-btn">
+                        <button class="btn btn-pp btn-search" style="height:45px;border-top-left-radius:7px;border-bottom-left-radius:7px;" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                    </span>
+                    <input type="text" id="txt-search" autocomplete="off" onkeyup="OpenDropDown();" class="form-control text-box single-line" onchange="OpenDropDown();" style="margin-left:0px;border-top-right-radius:7px;border-bottom-right-radius:7px; height:45px;" placeholder="Cari">
+                    <ul class="dropdown-menu btn-link-a" id="bio-List" style="width:100%">
+                        @*<li><a href="javascript:void(0)" class="btn-link btn-list" data-container="">""</a></li>*@
+                    </ul>
+                    <span class="input-group-btn">
+                        <button class="btn btn-clear" style="height:45px;color:#000080;margin-left:-25px;padding:0px 10px 2px 0px;background-color:transparent;font-size:20px;" type="button"><b>&times;</b></button>
+                    </span>
+                </div>
             </div>
         </div>
-    </div>
 
         <div class="container" style="padding:0px;">
-            <hr style="margin-left:-15px;margin-right:0px;margin-bottom:-3px; border-bottom:4px solid #000080;width:100%;"/>
+            <hr style="margin-left:-15px;margin-right:0px;margin-bottom:-3px; border-bottom:4px solid #000080;width:100%;" />
             <div class="row" style="color: #000080;">
                 <div class="col-lg-8">
                     <div class="row" style="margin-left:-30px;margin-top:10px;">
-                        @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "control-label col-md-12 pull-left"})
+                        @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "control-label col-md-12 pull-left" })
                     </div>
                     <div class="row ">
-                        @*name*@
-                        @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly"
-                   } })
-                        @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger"})
+                        @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
                     </div>
 
-                    <div class="row username"  style="margin-left:-30px;margin-top:10px;">
-                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-12 pull-left"})
+                    <div class="row" style="margin-left:-30px;margin-top:10px;">
+                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-12 pull-left" })
                     </div>
-                    <div class="row username">
-                        @*email*@
+                    <div class="row">
                         @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-                    </div>
-                    <div class="row pass" style="margin-left:-30px;margin-top:10px;">
-                        @Html.LabelFor(model => model.UserLoginPwd, htmlAttributes: new { @class = "control-label col-md-12 pull-left" })
-                    </div>
-                    <div class="row  pass">
-                        @*email*@
-                        @Html.EditorFor(model => model.UserLoginPwd, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.UserLoginPwd, "", new { @class = "text-danger" })
                     </div>
 
                     <div class="row " style="margin-top:10px;">
                         <div class="col-lg-6" style="padding-right:5px;padding-left:0px;">
-                            @*password*@ 
-                    <div class="row">
-                        @Html.LabelFor(model => model.Abpwd, htmlAttributes: new { @class = "control-label col-md-12 pull-left"})
-                    </div>
-                        @Html.EditorFor(model => model.Abpwd, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Abpwd, "", new { @class = "text-danger" })
+                            <div class="row">
+                                @Html.LabelFor(model => model.Abpwd, htmlAttributes: new { @class = "control-label col-md-12 pull-left" })
+                            </div>
+                            @Html.EditorFor(model => model.Abpwd, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Abpwd, "", new { @class = "text-danger" })
+                            <p class="text-danger pass-val" hidden="hidden">Sandi tidak boleh kosong!</p>
                         </div>
                         <div class="col-lg-6" style="padding-right:0px;padding-left:5px;">
-                            @* confirm password *@
-                    <div class="row">
-                        @Html.LabelFor(model => model.ConfirmAbpwd, htmlAttributes: new { @class = "control-label col-md-12 pull-left"})
-                    </div>
-                        @Html.EditorFor(model => model.ConfirmAbpwd, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.ConfirmAbpwd, "", new { @class = "text-danger" })
+                            <div class="row">
+                                @Html.LabelFor(model => model.ConfirmPwd, htmlAttributes: new { @class = "control-label col-md-12 pull-left" })
+                            </div>
+                            @Html.EditorFor(model => model.ConfirmPwd, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ConfirmPwd, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
@@ -79,9 +73,10 @@
                             <b>Role *</b>
                         </div>
                         <div class="panel-body">
-                        </div>
-                        <div id="data-role" style="overflow-y: scroll; overflow-x:hidden; margin:20px; color:#000080; max-height:85px;">
-                            Loading...
+                            <p class="text-danger role-val" hidden="hidden" style="margin-bottom:0px;margin-top:0px;">Pilih minimal satu role!</p>
+                            <div id="data-role" style="overflow-y: scroll; overflow-x:hidden;color:#000080; height:150px">
+                                Loading...
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -89,10 +84,10 @@
             <hr style="margin-left:-15px;margin-right:0px;margin-top:30px;margin-bottom:15px; border-bottom:4px solid #000080;width:100%;" />
             <div class="row">
                 <div class="col-lg-6 pull-left">
-                    <button type="button" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-trash"></span></button>
+                    <button type="button" class="btn btn-lg btn-danger btn-delete"><span class="glyphicon glyphicon-trash"></span></button>
                 </div>
                 <div class="col-lg-6 pull-right">
-                    <div class="btn-group pull-right" style="margin-right:15px;" >
+                    <div class="btn-group pull-right" style="margin-right:15px;">
                         <button type="button" class="btn btn-warning btn-lg btn-120px btn-batal"><b>Batal</b></button>
                         <button type="submit" class="btn btn-pp btn-lg btn-120px"><b>Simpan</b></button>
 
@@ -100,69 +95,169 @@
                 </div>
             </div>
         </div>
+
+
+        <div class="modal fade modal-delete" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Modal title</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>One fine body&hellip;</p>
+                    </div>
+
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+    </div>
 }
+@Scripts.Render("~/bundles/jqueryval")
 
 <script type="text/javascript">
+            $(document).ready(function () {
+                $("#txt-search").val(search);
+                if (addrbookId == 0) {
+                    //$(".username").attr('hidden', 'hidden');
+                    //$(".pass").removeAttr('hidden');
+                    $(".username").remove();
+                    $(".btn-delete").attr("disabled", "disabled");
+                } else {
+                    //$(".pass").attr('hidden', 'hidden');
+                    //$(".username").removeAttr('hidden');
+                    $(".pass").remove();
+                    $(".btn-delete").removeAttr("disabled");
+                }
+                GetRole();
+            });
+            ////
+            function GetRole() {
+                $.ajax(
+                    {
+                        url: '@Url.Action("RoleList","UserRole")',
+                        type: 'get',
+                        data: { addrbookId: addrbookId },
+                        success: function (result) {
+                            $("#data-role").html(result);
+                        }
+                    });
+            }
+            ////
+            function OpenDropDown() {
+                $.ajax(
+                    {
+                        url: '@Url.Action("BioBySearch","UserRole")',
+                        type: 'get',
+                        data: { search: $("#txt-search").val() },
+                        success: function (result) {
+                            $("#bio-List").html(result);
+                            $("#bio-List").slideDown();
+                        }
+                    });
+            }
+            ////
+            $(document).click(function () {
+                $(".dropdown-menu").hide();
+            });
 
-    $("#form-create").submit(function () {
-        $.ajax(
-            {
-                url: this.action,
-                type: this.method,
-                data: $(this).serialize(),
-                success: function (result) {
-                    if (result.success) {
-                        alert("User Role berhasil dibuat");
-                        GetForm();
-                    } else {
-                        //alert("Role tidak berhasil dibuat\n" + result.message);
+            var data;
+            var roleCnt;
+            var roleList = [];
+            function UpdateData() {
+                roleCnt = 0;
+                $("#data-role").find(".roleList").find(".row").find('input[type="checkbox"]').each(function (item) {
+
+                    if ($(this).prop("checked") == true) {
+                        roleCnt = roleCnt + 1;
+                        var Role = { RoleId: $(this).val() }
+                        roleList.push(Role);
                     }
-                }
-            });
-        return false;
-    });
-
-    $(".btn-batal").click(function ()
-    {
-        $(".username").toggleClass('hidden');
-        $(".pass").toggleClass('hidden');
-        
-    });
-
-    $(document).ready(function () {
-        $(".username").addClass('hidden');
-        GetRole();
-    });
-
-    function GetRole() {
-        //$("#txt-search").val(search)
-        $.ajax(
-            {
-                url: '@Url.Action("RoleList","UserRole")',
-                type: 'get',
-                success: function (result) {
-                    $("#data-role").html(result);
-                }
-            });
-    }
+                });
+            }
 
 
-    function OpenDropDown() {
-        $.ajax(
-            {
-                url: '@Url.Action("BioBySearch","UserRole")',
-                type: 'get',
-                data: { search: $("#txt-search").val() },
-                success: function (result)
+            $("#form-update").submit(function () {
+                var pwd = 1;
+                var i = $("#Id").val();
+                var p = $("#Abpwd").val();
+                if ((i== 0 || i==null )&&( p == 0||p==null))
                 {
-                    $("#bio-List").html(result);
-                    $("#bio-List").slideDown();
+                    pwd = 0;
                 }
-            });
-    }
-    $(document).click(function () {
-        $(".dropdown-menu").hide();
-    });
+                console.log(pwd);
+                console.log($("#Id").val());
+                console.log($("#Abpwd").val());
+                
+                $("#form-update").validate();
+                    UpdateData();
+                    if (roleCnt > 0 && pwd==1)
+                    {
+                        var data = { UserRoleList: roleList, };
+                        var user = JSON.parse(JSON.stringify($(this).serializeArray()));
+                        $(user).each(function (Index, Obj) {
+                            data[Obj.name] = Obj.value;
+                        });
+                        $(".role-val").attr("hidden", "hidden")
+                        $(".pass-val").attr("hidden", "hidden")
+                    }
 
-    
+                    if ($("#form-update").valid() && roleCnt > 0 && pwd == 1) {
+                        //console.log(data);
+                        $.ajax(
+                            {
+                                url: this.action,
+                                type: this.method,
+                                data: { model: data },
+                                success: function (result) {
+                                    if (result.success) {
+                                        alert("Pengguna berhasil disimpan");
+                                        addrbookId = result.entity.Id;
+                                        GetForm();
+                                    }
+                                }
+                            });
+
+                    } else { }
+                    if (pwd != 1) {
+                        $(".pass-val").removeAttr("hidden")
+                    }
+                if (roleCnt == 0) {
+                    //alert("Pilih minimal 1 role");
+                    $(".role-val").removeAttr("hidden")
+                }
+                return false;
+
+            });
+
+
+            $(".btn-delete").click(function () {
+                $("#form-update").validate().settings.ignore="#Username";
+                if ($("#form-update").valid()) {
+
+                $.ajax(
+                    {
+                        url: '@Url.Action("Delete", "UserRole")',
+                        type: 'get',
+                        data: { bioId: bioId },
+                        success: function (result) {
+                            $(".modal-delete .modal-title").html("Hapus Pengguna ?");
+                            $(".modal-delete .modal-body").html(result);
+                            $(".modal-delete").modal("show");
+                        }
+                    });
+                }
+
+            });
+            ////
+            $(".btn-batal").click(function () {
+                location.href = "/";
+            });
+
+            $(".btn-clear").click(function () {
+                search = "";
+                bioId = 0;
+                addrbookId = 0;
+                GetForm();
+            });
 </script>

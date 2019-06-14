@@ -62,7 +62,7 @@ namespace ngxsis.MVC.Controllers
             ResponseResult result = RoleRepo.Delete(model);
             return Json(new
             {
-                success = RoleRepo.RelationCheck(model.Id),
+                success = result.Success,
                 message = result.Message,
                 entity = result.Entity
             }, JsonRequestBehavior.AllowGet);

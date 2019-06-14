@@ -106,7 +106,7 @@
     color: #000080;
 }
 
-.table > tbody > tr > td {
+.table> tbody > tr > td {
     border-bottom-width: 2px;
     border-bottom-style: solid;
     border-bottom-color: #000080;
@@ -239,7 +239,7 @@ textarea {
 }
 
 .panel-blue {
-  margin-top:35px;
+  margin-top:15px;
   margin-left:20px;
   margin-right:16px;
   border-color: #000080;
@@ -268,24 +268,200 @@ textarea {
 }
 
 .panel-blue > .panel-body {
-  max-height:85px;
-  padding-top:0px;
-  padding-bottom:0px;
-  text-align:center;
+  height:100%;
+  max-height:200px;
+  padding-top:20px;
+  padding-bottom:20px;
 }
 
 .btn:focus {
     outline: none;
 }
 
-input[type="checkbox"] {
-  padding: 0;
-  box-sizing:inherit;
-  border-color: #000080;
-  border-width:2px;
-  border-style:solid;
+
+.checkbox label:after{
+    content: '';
+    display: table;
+    clear: both;
 }
-.big-checkbox:checked,
-.big-checkbox:active,
-.big-checkbox:hover,
-.big-checkbox {width: 14px; height: 14px;vertical-align:central;}
+
+.checkbox .cr{
+    position: relative;
+    display: inline-block;
+    border: 2px solid #000080;
+    border-radius: 5px;
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin-right: 10px;
+}
+
+.checkbox .cr .cr-icon{
+    position: absolute;
+    font-size: 14px;
+    color:#000080;
+    line-height: 0;
+    top: 35%;
+    left: 8%;
+}
+
+.checkbox label input[type="checkbox"]{
+    display: none;
+}
+
+.checkbox label input[type="checkbox"] + .cr > .cr-icon{
+    transform: scale(3) rotateZ(-20deg);
+    opacity: 0;
+    transition: all .3s ease-in;
+}
+
+.checkbox label input[type="checkbox"]:checked + .cr > .cr-icon{
+    transform: scale(1) rotateZ(0deg);
+    opacity: 1;
+}
+
+.checkbox label input[type="checkbox"]:disabled + .cr{
+    opacity: .5;
+}
+
+.modal-white .modal-dialog {
+    max-width:80%;
+    width:100%;
+}
+.modal-white .modal-content {
+    border-width: 1px;
+    border-style: solid;
+    border-color: #000080;
+    border-radius:0px;
+    max-width:100%;
+    width:100%;
+}
+
+.modal-white .modal-header {
+    font-size: 24px;
+    font-weight:bold;
+    background-color: #c0c0d8;
+    border-bottom:none;
+    color: #000080;
+    height:60px;
+}
+.modal-white .modal-footer {
+    background-color: #c0c0d8;
+    border-top:none;
+    color: #000080;
+    height:60px;
+    vertical-align:central;
+}
+
+#myTabs {
+    border-bottom:1px solid #808080;
+    max-width:100%;
+    width:100%;
+}
+
+#my-table > tbody > tr:nth-child(odd) > td,
+#my-table > tbody > tr:nth-child(odd) > th {
+  background-color: #ced8ed;
+}
+
+#my-table > tbody > tr > td {
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: #ffffff;
+    border-top-width: 2px;
+    border-top-style: solid;
+    border-top-color: #ffffff;
+    vertical-align: middle;
+    color: #000080;
+}
+
+
+
+#btn-keluar {
+    background-color:#000080;
+    border:1px solid #000080;
+    border-radius:0px;
+    color:#ffffff;
+    margin:0px;
+    width:150px;
+}
+
+#myTabs {
+  border-bottom: 1px solid #c0c0d8;
+}
+
+#myTabs > li {
+  float: left;
+  width:200px;
+  border-radius:0px;
+  margin-right:-4px;
+  margin-left:0px;
+  margin-bottom: -1px;
+}
+
+#myTabs > li > a {
+  margin-right: 2px;
+  text-align:center;
+  background:#ffffff;
+  color:#000080;
+  font-weight:bold;
+  line-height: 1.428571429;
+  border: 1px solid #c0c0d8;
+  border-radius:unset;
+  border-bottom-color:transparent;
+}
+
+#myTabs > li > a:hover {
+  /*border-color: #c0c0d8 #c0c0d8 #c0c0d8;*/
+  background:#ffffff;
+}
+#myTabs > li.
+
+#myTabs > li.active > a,
+#myTabs > li.active > a:hover,
+#myTabs > li.active > a:focus {
+  color: #000080;
+  cursor: default;
+  background-color: #ffffff;
+  border: 1px solid #c0c0d8;
+  border-bottom-color: #ffffff;
+  border-top:5px outset #000080;
+}
+
+#myTabs.nav-justified {
+  width: 100%;
+  border-bottom: 0;
+}
+
+#myTabs.nav-justified > li {
+  float: none;
+}
+
+#myTabs.nav-justified > li > a {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  #myTabs.nav-justified > li {
+    display: table-cell;
+    width: 1%;
+  }
+}
+
+#myTabs.nav-justified > li > a {
+  margin-right: 0;
+  border-bottom: 1px solid #dddddd;
+}
+
+#myTabs.nav-justified > .active > a {
+  border-bottom-color: #ffffff;
+}
+
+.tab-content {
+    margin-top:0px;
+    padding-top:20px;
+    border-top-color:transparent;
+    border-bottom:1px solid #c0c0d8;
+    border-left:1px solid #c0c0d8;
+    border-right:1px solid #c0c0d8;
+}

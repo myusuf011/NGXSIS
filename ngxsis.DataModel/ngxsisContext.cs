@@ -5,7 +5,7 @@ namespace ngxsis.DataModel
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class ngxsisContext : DbContext
+    public partial class ngxsisContext:DbContext
     {
         public ngxsisContext()
             : base("name=ngxsisContext")
@@ -272,6 +272,12 @@ namespace ngxsis.DataModel
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<x_biodata>()
+                .HasMany(e => e.x_sertifikasi)
+                .WithRequired(e => e.x_biodata)
+                .HasForeignKey(e => e.biodata_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<x_biodata>()
                 .HasMany(e => e.x_sumber_loker)
                 .WithRequired(e => e.x_biodata)
                 .HasForeignKey(e => e.biodata_id)
@@ -279,12 +285,6 @@ namespace ngxsis.DataModel
 
             modelBuilder.Entity<x_biodata>()
                 .HasMany(e => e.x_undangan_detail)
-                .WithRequired(e => e.x_biodata)
-                .HasForeignKey(e => e.biodata_id)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<x_biodata>()
-                .HasMany(e => e.x_sertifikasi)
                 .WithRequired(e => e.x_biodata)
                 .HasForeignKey(e => e.biodata_id)
                 .WillCascadeOnDelete(false);

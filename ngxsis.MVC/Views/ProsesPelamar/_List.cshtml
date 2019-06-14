@@ -1,0 +1,176 @@
+﻿@model IEnumerable<ngxsis.ViewModel.ProsesPelamarViewModel>
+
+
+<div class="row" style="margin-bottom:5px;">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-bottom:0px;padding-bottom:0px;">
+        <b style="font-size:24px;margin-left:20px;color:#000080;">Proses Pelamar</b>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-left:0px;text-align:right;">
+        <div class="btn-group btn-trans" style="padding:0px;" role="group" aria-label="...">
+            <div class="btn-group">
+                <button type="button" class="btn dropdown-toggle btn-trans  btn-sm " style="padding:2px;font-size:20px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-sort"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right btn-link-a">
+                    <li class="dropdown-header dh">Order</li>
+                    <li><a href="javascript:void(0)" class="btn-link sort-asc">Ascending</a></li>
+                    <li><a href="javascript:void(0)" class="btn-link sort-desc">Descending</a></li>
+                </ul>
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn dropdown-toggle btn-trans  btn-sm" style="padding:2px;font-size:20px;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </button>
+                <ul class="dropdown-menu btn-link-a">
+                    <li class="dropdown-header dh">Row Per Page</li>
+                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="1">10</a></li>
+                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="2">20</a></li>
+                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="3">30</a></li>
+                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="4">40</a></li>
+                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="5">50</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+<hr style="border-bottom-width: 4px;
+    border-bottom-style: solid;
+    border-bottom-color: #000080;
+    margin-bottom:10px;
+    margin-top:-5px" />
+
+<table class="table table-striped" id="my-table">
+    @*<thead style="border-top:none;">
+        <tr style="padding-top:0px;">
+            <th colspan="2" style="padding:0px;">
+            </th>
+            <th style="padding:0px;text-align:right;">
+            </th>
+        </tr>
+    </thead>*@
+    <tbody style="margin-top:20px;">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-left">
+                    <div>
+                        @Html.DisplayFor(modelItem => item.Fullname)
+
+                    </div>
+                </td>
+                <td class="text-left">
+                    <div>
+                        @item.SchoolName / @item.Major
+
+                    </div>
+                </td>
+                <td style="text-align:right;">
+                    
+                            @{
+                                if (@item.IsProcess == true)
+                                {
+                                    <button type="button" style="border-radius:0px;" data-container="@item.Id" data-html="1" class="btn btn-primary btn-pp btn-90px btn-prodet">
+                                        <b>
+                                            Detail
+                                        </b>
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button type="button" style="border-radius:0px;" data-container="@item.Id" data-html="0" class="btn btn-primary btn-pp btn-90px btn-prodet">
+                                        <b>
+                                            Proses
+                                        </b>
+                                    </button>
+                                }
+
+                            }
+
+                </td>
+            </tr>
+    }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td></td>
+            <td></td>
+            <td style="text-align:right;">
+                <button type="button" class="btn btn-primary btn-sm btn-pill" onclick="min()"><b>&#8592; Previous</b></button>
+                <button type="button" class="btn btn-primary btn-sm btn-pill" onclick="plus()"><b>Next &#8594;</b></button>
+            </td>
+        </tr>
+    </tfoot>
+</table>
+
+<script type="text/javascript">
+    /*ROW PER PAGE*/
+    var bioId;
+    $(".btn-list").click(function () {
+        page = 0;
+        dataPerPage = $(this).attr("data-container");
+        GetList();
+    });
+    /*GO TO PREVIOUS PAGE*/
+    function min() {
+        if (page > 0) {
+            page = page - 1;
+        }
+        console.log(page);
+        GetList();
+    };
+    /*GO TO NEXT PAGE*/
+    function plus() {
+        if (page < maxPage) {
+            page = page + 1;
+        }
+        console.log(page);
+        GetList();
+    };
+
+    /*SORT ASCENDING*/
+    $(".sort-asc").click(function () {
+        desc = 0;
+        page = 0;
+        GetList();
+    });
+
+    /*SORT DESCENDING*/
+    $(".sort-desc").click(function () {
+        desc = 1;
+        page = 0;
+        GetList();
+    });
+
+    /*CLEAR PROSES-DETAIL*/
+    $(".btn-prodet").click(function () {
+        
+        bioId = $(this).data("container");
+        if ($(this).data("html") == 0)
+        {
+            $.ajax(
+            {
+                url: '@Url.Action("Edit", "ProsesPelamar")',
+                type: 'post',
+                data: { bioId: $(this).attr("data-container") },
+                success: function (result) {
+                    GetList();
+                    sub == 0;
+                }
+            });
+        } else if ($(this).data("html") == 1)
+        {
+            $.ajax(
+            {
+                url: '@Url.Action("Detail", "ProsesPelamar")',
+                type: 'get',
+                data: { bioId: $(this).attr("data-container") },
+                success: function (result) {
+                    $(".modal-white .modal-title").html("<b>Detail Proses</b>");
+                    $(".modal-white .modal-body").html(result);
+                    $(".modal-white").modal("show");
+                }
+            });
+        }
+    });
+</script>

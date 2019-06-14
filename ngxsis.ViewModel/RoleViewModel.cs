@@ -20,16 +20,17 @@ namespace ngxsis.ViewModel
         [Required(ErrorMessage = "Kode role tidak boleh kosong")]
         [StringLength(50, ErrorMessage = "Kode tidak boleh lebih dari 50 karakter")]
         [Display(Name = "KODE ROLE")]
-        [Remote("IsCodeUnique","Role",AdditionalFields = "Id",ErrorMessage = "Kode role sudah ada. Gunakan kode yang lain")]
+        [Remote("IsCodeUnique","Role",AdditionalFields = "Id",ErrorMessage = "Kode role sudah digunakan!")]
         public string Code
         {
             get; set;
         }
 
         [Required(ErrorMessage = "Nama role tidak boleh kosong")]
+        [RegularExpression(@"^[a-zA-Z ]*$", ErrorMessage = "Nama role hanya boleh mengandung huruf")]
         [StringLength(50, ErrorMessage = "Nama tidak boleh lebih dari 50 karakter")]
         [Display(Name = "NAMA ROLE")]
-        [Remote("IsNameUnique","Role",AdditionalFields = "Id",ErrorMessage = "Nama role sudah ada. Gunakan nama yang lain")]
+        [Remote("IsNameUnique","Role",AdditionalFields = "Id",ErrorMessage = "Nama role sudah digunakan!")]
         public string Name
         {
             get; set;

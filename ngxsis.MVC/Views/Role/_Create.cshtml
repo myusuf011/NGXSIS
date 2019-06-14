@@ -8,7 +8,9 @@
 }))
 {
     @Html.AntiForgeryToken()
-     
+    @Html.HiddenFor(model => model.LoginUserId,
+                new { Value = Session["userID"] })
+
     <div class="col-lg-12">
         @Html.ValidationSummary(true, "", new
    {
@@ -79,6 +81,9 @@
 }
 <script type="text/javascript">
     $("#form-create").submit(function () {
+        $("#form-create").validate();
+        if ($("#form-create").valid())
+        {
         $.ajax(
             {
                 url: this.action,
@@ -86,7 +91,7 @@
                 data: $(this).serialize(),
                 success: function (result) {
                     if (result.success) {
-                        alert("Role berhasil dibuat\nNama Role : " + result.entity.Name);
+                        alert("Role berhasil dibuat");
                         $(".modal-main").modal("hide");
                         GetList();
                     } else {
@@ -95,6 +100,9 @@
                 }
             });
         return false;
+        } else {
+            //alert("Data tida valid")
+        }
     });
 </script>
 @Scripts.Render("~/bundles/jqueryval")

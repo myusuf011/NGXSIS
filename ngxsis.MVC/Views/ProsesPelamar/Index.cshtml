@@ -1,8 +1,7 @@
 ﻿
 @{
-    ViewBag.Title="Role";
+    ViewBag.Title = "Proses Pelamar";
 }
-
 @{
     ViewBag.UID=Session["userID"];
     if(Session["userID"]==null)
@@ -11,9 +10,8 @@
         Session["userID"]=1;
     }
 }
-
-<link rel="stylesheet" href="~/Content/role.css"/>
-<div class="panel panel-default panel-role" style="width:100%;">
+<link rel="stylesheet" href="~/Content/role.css" />
+<div class="panel panel-default panel-role">
     <div class="panel-body">
     </div>
     <div id="data">
@@ -51,19 +49,36 @@
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
 
+<div class="modal fade modal-white" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+        <div class="modal-footer">
+            <button type="button" id="btn-keluar" data-dismiss="modal">Keluar</button>
+        </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 @section scripts
 {
     <script type="text/javascript">
+
         var page;
-        var search;
         var desc;
         var maxPage;
         var dataPerPage;
+        var biodataId;
         $(document).ready(function () {
             page = 0;
-            search = "";
             desc = 0;
-            dataPerPage = 10;
+            dataPerPage = 3;
             GetList();
         });
 
@@ -71,13 +86,11 @@
             var itemCount = 0;
             $.ajax(
             {
-                url: '@Url.Action("RoleList", "Role")',
+                url: '@Url.Action("List", "ProsesPelamar")',
                 type: 'get',
-                data: { search: search, desc: desc , page: page, dataPerPage: dataPerPage },
+                data: { desc: desc, page: page, dataPerPage: dataPerPage },
                 success: function (result) {
                     $("#data").html(result);
-                    $("#txt-search").val(search);
-
                     $("#data").find("tbody").find("tr").each(function (item) {
                         itemCount = itemCount + 1;
                     });
@@ -89,6 +102,7 @@
                 }
             });
         }
-        
+
     </script>
 }
+

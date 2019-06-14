@@ -15,17 +15,60 @@ namespace ngxsis.MVC.Controllers
         {
             return View();
         }
-        public ActionResult Form()
-        {
-            return PartialView("_Form",new UserRoleViewModel());
-        }
+
         public ActionResult BioBySearch(string search = "0")
         {
             return PartialView("_BioBySearch", UserRoleRepo.BySearch(search));
         }
-        public ActionResult RoleList()
+
+        public ActionResult RoleList(long addrbookId = 0)
         {
-            return PartialView("_RoleList", RoleRepo.All());
+            ViewBag.RoleList=UserRoleRepo.RoleById(addrbookId);
+            return PartialView("_RoleList", UserRoleRepo.All());
+        }
+
+        public ActionResult Form(long bioId = 0)
+        {
+            return PartialView("_Form",UserRoleRepo.UserById(bioId));
+        }
+
+        [HttpPost]
+        public ActionResult Form(UserViewModel model)
+        {
+            ResponseResult result = UserRoleRepo.Update(model);
+            return Json(new
+            {
+                success = result.Success,
+                message = result.Message,
+                entity = result.Entity
+            },JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Delete(long bioId)
+        {
+            UserViewModel model = UserRoleRepo.UserById(bioId);
+            return PartialView("_Delete",model);
+        }
+        [HttpPost]
+        public ActionResult Delete(UserViewModel model)
+        {
+            ResponseResult result = UserRoleRepo.Delete(model);
+            return Json(new
+            {
+                success = result.Success,
+                message = result.Message,
+                entity = result.Entity
+            },JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult PassVerif(string UserLoginPwd = "",int UserLoginId = 0)
+        {
+            return Json(UserRoleRepo.PassVerif(UserLoginPwd,UserLoginId),JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult IsUsernameUnique(string Username, int Id = 0)
+        {
+            return Json(UserRoleRepo.ByUsername(Username, Id), JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -24,9 +24,9 @@ namespace ngxsis.DataModel
             x_riwayat_pekerjaan = new HashSet<x_riwayat_pekerjaan>();
             x_riwayat_pelatihan = new HashSet<x_riwayat_pelatihan>();
             x_riwayat_pendidikan = new HashSet<x_riwayat_pendidikan>();
+            x_sertifikasi = new HashSet<x_sertifikasi>();
             x_sumber_loker = new HashSet<x_sumber_loker>();
             x_undangan_detail = new HashSet<x_undangan_detail>();
-            x_sertifikasi = new HashSet<x_sertifikasi>();
         }
 
         public long id { get; set; }
@@ -119,6 +119,10 @@ namespace ngxsis.DataModel
 
         public long company_id { get; set; }
 
+        public bool? is_process { get; set; }
+
+        public bool? is_complete { get; set; }
+
         public virtual x_addrbook x_addrbook { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -169,12 +173,12 @@ namespace ngxsis.DataModel
         public virtual ICollection<x_riwayat_pendidikan> x_riwayat_pendidikan { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<x_sertifikasi> x_sertifikasi { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<x_sumber_loker> x_sumber_loker { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<x_undangan_detail> x_undangan_detail { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<x_sertifikasi> x_sertifikasi { get; set; }
     }
 }

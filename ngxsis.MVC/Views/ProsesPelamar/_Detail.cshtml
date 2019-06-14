@@ -1,0 +1,55 @@
+﻿@model ngxsis.ViewModel.ProsesPelamarViewModel
+
+<div class="container" style="width:100%;">
+    <ul class="nav nav-tabs" id="myTabs">
+        <li role="presentation" class="active"><a href="#jadwal">Rencana Penjadwalan</a></li>
+        <li role="presentation"><a href="#undangan">Undangan</a></li>
+    </ul>
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="jadwal">JADWAL....</div>
+        <div role="tabpanel" class="tab-pane" id="undangan">UNDANGAN...</div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        GetInvitation();
+        GetSchedule();
+    });
+    function GetInvitation() {
+        $.ajax(
+            {
+                url: '@Url.Action("UndanganList", "ProsesPelamar")',
+                type: 'get',
+                data: { bioId: bioId },
+                success: function (result) {
+                    $("#undangan").html(result);
+                }
+            });
+    }
+
+    function GetSchedule() {
+        $.ajax(
+            {
+                url: '@Url.Action("JadwalList", "ProsesPelamar")',
+                type: 'get',
+                data: { bioId: bioId },
+                success: function (result) {
+                    $("#jadwal").html(result);
+                }
+            });
+    }
+    $('#myTabs a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+        //alert($(this).attr('href'))
+        if ($(this).attr('href') == '#jadwal')
+        {
+            GetInvitation()
+        }
+        if ($(this).attr('href') == '#undangan')
+        {
+            GetSchedule()
+        }
+    })
+</script>

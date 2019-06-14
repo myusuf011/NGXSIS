@@ -133,14 +133,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DokumenController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\DokumenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KeahlianController.cs" />
+    <Compile Include="Controllers\KeluargaController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\OrganisasiController.cs" />
     <Compile Include="Controllers\PelamarController.cs" />
     <Compile Include="Controllers\PendidikanController.cs" />
     <Compile Include="Controllers\ProfilController.cs" />
+    <Compile Include="Controllers\ProsesPelamarController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SelectAccessController.cs" />
     <Compile Include="Controllers\SertifikasiController.cs" />
@@ -256,6 +257,7 @@
     <Content Include="bin\ngxsis.MVC.dll.config" />
     <Content Include="bin\ngxsis.Repository.dll.config" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
+    <Content Include="Scripts\html2canvas.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
@@ -268,12 +270,15 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\jspdf.js" />
+    <Content Include="Scripts\jspdf.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\pdfFromHTML.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -328,7 +333,6 @@
     <Content Include="Views\Pendidikan\_Delete.cshtml" />
     <Content Include="Views\Pendidikan\_ListByEdu.cshtml" />
     <Content Include="Views\Pelamar\_Create.cshtml" />
-    <Content Include="Views\Upload\UploadFile.cshtml" />
     <Content Include="Views\Dokumen\Index.cshtml" />
     <Content Include="Views\Dokumen\_Create.cshtml" />
     <Content Include="Views\Dokumen\_Delete.cshtml" />
@@ -340,6 +344,21 @@
     <Content Include="Views\Pelamar\_IndexDetail.cshtml" />
     <Content Include="Views\Pelamar\_BioList.cshtml" />
     <Content Include="Views\Pelamar\_Edit.cshtml" />
+    <Content Include="Views\Keluarga\Index.cshtml" />
+    <Content Include="Views\Keluarga\_Create.cshtml" />
+    <Content Include="Views\Keluarga\_Delete.cshtml" />
+    <Content Include="Views\Keluarga\_Edit.cshtml" />
+    <Content Include="Views\Keluarga\_List.cshtml" />
+    <Content Include="Views\Keluarga\_ListByFam.cshtml" />
+    <Content Include="Views\Dokumen\UploadFile.cshtml" />
+    <Content Include="Views\Pendidikan\Index.cshtml" />
+    <Content Include="Views\SelectAccess\Gagal.cshtml" />
+    <Content Include="Views\ProsesPelamar\Index.cshtml" />
+    <Content Include="Views\ProsesPelamar\_List.cshtml" />
+    <Content Include="Views\UserRole\_Delete.cshtml" />
+    <Content Include="Views\ProsesPelamar\_Detail.cshtml" />
+    <Content Include="Views\ProsesPelamar\_UndanganList.cshtml" />
+    <Content Include="Views\ProsesPelamar\_JadwalList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
