@@ -7,8 +7,8 @@
     ViewBag.UID=Session["userID"];
     if(Session["userID"]==null)
     {
-        //Response.Redirect("/"); // <-- Sesuaikan acceess bila sudah login
-        Session["userID"]=1;
+        Response.Redirect("/"); // <-- Sesuaikan acceess bila sudah login
+        //Session["userID"]=1;
     }
 }
 

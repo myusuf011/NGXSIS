@@ -78,7 +78,7 @@
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
+        
 
         <div class="row">
             <div class="layoutatas">
@@ -123,22 +123,17 @@
                     <tr>
                         <td style="border:2px solid #000080;">
                             <button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-dropdown">
-                                <span class="dot"></span><b style="text-align:center; margin-left:20px;">Menu 5</b>
+                                <span class="dot"></span><b style="text-align:center; margin-left:20px;">Pengaturan</b>
                                 <i class="glyphicon glyphicon-chevron-down" style="float:right;"></i>
                             </button>
                             <div class="dropdown-container">
                                 <div class="col-md-12" style="border: 2px solid #000080; border-right:5px; border-left:10px; padding-left:45px;
                                     padding-bottom:6px; padding-top:6px; padding-right:12px;">
-                                    <a href="#">Link 1</a>
+                                    <a href="/Role" id="btn-role">Peran</a>
                                 </div>
                                 <div class="col-md-12" style="padding-left:45px; padding-bottom:6px; padding-top:6px; padding-right:12px;">
-                                    <a href="#">Link 2</a>
+                                    <a href="/UserRole"id="btn-user">Pengguna</a>
                                 </div>
-                                <div class="col-md-12" style="border: 2px solid #000080; border-bottom:none; border-right:5px; border-left:10px;padding-left:45px;
-                                    padding-bottom:5px; padding-top:6px; padding-right:12px;">
-                                    <a href="#">Link 3</a>
-                                </div>
-
                             </div>
                         </td>
                     </tr>
@@ -146,7 +141,7 @@
             </div>
             <div class="clear"></div>
             <div class="content col-md-9" id="data-home">
-
+                @RenderBody()
             </div>
         </div>        
         <hr />
@@ -162,8 +157,12 @@
 </html>
 
 <script type="text/javascript">
+    $(".btn-pelamar").click(function ()
+    {
+        location.href = "/Pelamar";
+    });
 
-    $(".btn-pelamar").click(function () {
+    @*$(".btn-pelamar").click(function () {
         $.ajax(
             {
                 url: '@Url.Action("PelamarList", "Pelamar")',
@@ -209,7 +208,7 @@
                     }
                 }
             });
-        }
+        }*@
 
     var dropdown = document.getElementsByClassName("btn-dropdown");
     var i;
@@ -225,5 +224,17 @@
             }
         });
     }
+    @*$("#btn-role").click(function ()
+    {
+        $.ajax(
+            {
+                url: '@Url.Action("Index", "Role")',
+                type: 'get',
+                success: function (result)
+                {
+                    $("#data-home").html(result);
+                }
+            });
+    });*@
 </script>
 
