@@ -3,8 +3,6 @@
     ViewBag.Title = "Pelamar";
 }
 
-<h1>@ViewBag.Title</h1>
-
 <div class="panel panel-default">
     <div class="panel-body">
     </div>
@@ -16,18 +14,38 @@
 @section scripts
 {
     <script type="text/javascript">
+        var page;
+        var search;
+        var desc;
+        var maxPage;
+        var dataPerPage;
         $(document).ready(function () {
+            page = 0;
+            search = "";
+            desc = 0;
+            dataPerPage = 10;
             GetList();
         });
 
         function GetList() {
+            var itemCount = 0;
             $.ajax(
             {
                 url: '@Url.Action("PelamarList", "Pelamar")',
                 type: 'get',
-                data: { search: $(".table #txt-search").val() },
+                data: { search: search, desc: desc , page: page, dataPerPage: dataPerPage },
                 success: function (result) {
                     $("#data").html(result);
+                    $("#txt-search").val(search);
+
+                    $("#data").find("tbody").find("tr").each(function (item) {
+                        itemCount = itemCount + 1;
+                    });
+                    if (itemCount < dataPerPage) {
+                        maxPage = page;
+                    } else {
+                        maxPage = page + 1;
+                    }
                 }
             });
         }

@@ -7,14 +7,14 @@
                 NAMA FILE
             </th>
             <th>
-               KETERANGAN
+                KETERANGAN
             </th>
             <th>
                 #
             </th>
         </tr>
     </thead>
-    
+
     <tbody>
         @foreach (var item in Model)
         {
@@ -44,42 +44,4 @@
     </tbody>
 </table>
 
-<script type="text/javascript">
 
-
-
-    $(".btn-edit").click(function () {
-        $.ajax({
-            url: '@Url.Action("Edit","Dokumen")',
-            type: 'get',
-            data: { id: $(this).attr("data-container") },// attr = atribut
-            //
-
-            success: function (result) {
-                $(".modal-utama .modal-title").html("Ubah Dokumen");
-                $(".modal-utama .modal-body").html(result);
-                $(".modal-utama").modal("show");
-            }
-        });
-
-    });
-</script>
-
-<script type="text/javascript">
-    $(".btn-delete").click(function () {
-        $.ajax({
-            url: '@Url.Action("Delete", "Dokumen")',
-            type: 'get',
-            data: { id: $(this).attr("data-container") },
-
-            success: function (result) {
-                $(".modal-delete .modal-title").html("Hapus Dokumen");
-                $(".modal-delete .modal-body").html(result);
-                $(".modal-delete").modal("show");
-            }
-        });
-
-    });
-    //data id di javascript buat button kalau di a href pakai data-container
-
-</script>
