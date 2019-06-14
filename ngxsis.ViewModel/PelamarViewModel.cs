@@ -19,8 +19,14 @@ namespace ngxsis.ViewModel
 
         [Required]
         [StringLength(100)]
-        [Display(Name = "Nama Panggilan")]
+        [Display(Name = "")]
         public string nick_name { get; set; }
+
+        [StringLength(100)]
+        public string major { get; set; }
+
+        [StringLength(100)]
+        public string school_name { get; set; }
 
         [Required]
         [StringLength(100)]
@@ -54,12 +60,12 @@ namespace ngxsis.ViewModel
 
         [Required]
         [StringLength(100)]
-        [Display(Name = "Email")]
+        [Display(Name = "")]
         public string email { get; set; }
 
         [Required]
         [StringLength(50)]
-        [Display(Name = "No. Handphone")]
+        [Display(Name = "")]
         public string phone_number1 { get; set; }
 
         [StringLength(50)]

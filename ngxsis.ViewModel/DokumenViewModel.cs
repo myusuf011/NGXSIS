@@ -16,6 +16,7 @@ namespace ngxsis.ViewModel
         public long biodata_id { get; set; }
 
         [StringLength(100), Display(Name = "Nama File *")]
+        [Required(ErrorMessage = "Nama file harus di isi.")]
         public string file_name { get; set; }
 
         [StringLength(1000)]

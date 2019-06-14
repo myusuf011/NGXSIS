@@ -1,0 +1,81 @@
+﻿@model IEnumerable<ngxsis.ViewModel.PelatihanViewModel>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                PELATIHAN/WORKSHOP
+            </th>
+            <th>
+                PENYELENGGARA
+            </th>
+            <th>
+                WAKTU
+            </th>
+            <th>
+                DURASI
+            </th>
+            <th>
+                #
+            </th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.training_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.organizer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.training_year)-@Html.DisplayFor(modelItem => item.training_month)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.training_duration) @Html.DisplayFor(modelItem => item.time_period_name)
+            </td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-more dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        More
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+                        <li><a href="#" data-container="@item.id" class="btn-edit">Ubah</a></li>
+                        <li><a href="#" data-container="@item.id" class="btn-delete">Hapus</a></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    }
+</table>
+
+<script type="text/javascript">
+    $(".btn-edit").click(function () {
+        $.ajax({
+            url: '@Url.Action("Edit", "Pelatihan")',
+            type: 'get',
+            data: { id: $(this).attr("data-container") },
+            success: function (result) {
+                $(".modal-utama .modal-title").html("Ubah Pelatihan");
+                $(".modal-utama .modal-body").html(result);
+                $(".modal-utama").modal("show");
+            }
+        });
+    });
+
+    $(".btn-delete").click(function () {
+        $.ajax({
+            url: '@Url.Action("Delete", "Pelatihan")',
+            type: 'get',
+            data: { id: $(this).attr("data-container") },
+            success: function (result) {
+                $(".modal-delete .modal-title").html("Hapus Pelatihan?");
+                $(".modal-delete .modal-body").html(result);
+                $(".modal-delete").modal("show");
+            }
+        });
+    });
+</script>

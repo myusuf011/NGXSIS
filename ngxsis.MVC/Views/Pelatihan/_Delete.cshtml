@@ -1,5 +1,4 @@
-﻿@model ngxsis.ViewModel.OrganisasiViewModel
-
+﻿@model ngxsis.ViewModel.PelatihanViewModel
 
 <div>
     <dl class="dl-horizontal">
@@ -7,36 +6,15 @@
             <span class="glyphicon glyphicon-trash" aria-hidden="true" style="font-size:100px; color:Black; text-align:center"></span>
         </dt>
         <dd>
-            <font style="align-content: center"><font color="red"><font size="4">Anda yakin ingin menghapus organisasi <b>@Html.DisplayFor(model => model.name)?</b></font></font></font>
+            <font style="align-content: center"><font color="red"><font size="4">Anda yakin ingin menghapus Pelatihan <b>@Html.DisplayFor(model => model.training_name)?</b></font></font></font>
         </dd>
     </dl>
-    @*<table class="table">
-            <tr>
-                <th>
-                    <span class="glyphicon glyphicon-trash" aria-hidden="true" style="font-size:100px; color:Black"></span>
-                </th>
-                <th>
-                    Anda yakin ingin menghapus organisasi @Html.DisplayFor(model => model.name)?
-                </th>
-            </tr>
-        </table>*@
 
-    @*<div>
-
-            <span class="glyphicon glyphicon-trash" aria-hidden="true" style="font-size:100px; color:Black"></span>
-            <div class="col-md-offset-8 col-md-10">
-
-                Anda yakin ingin menghapus organisasi @Html.DisplayFor(model => model.name)?
-
-            </div>
-        </div>*@
-
-
-    @using (Html.BeginForm("Delete", "Organisasi", FormMethod.Post, new { id = "form-delete", name = "form-delete" }))
+    @using (Html.BeginForm("Delete", "Pelatihan", FormMethod.Post, new { id = "form-delete", name = "form-delete" }))
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.id)
-        @Html.HiddenFor(model => model.name)
+        @Html.HiddenFor(model => model.training_name)
 
         <div class="row">
             <div class="btn-group col-md-offset-9">

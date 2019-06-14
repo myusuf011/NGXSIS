@@ -133,9 +133,12 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KeahlianController.cs" />
+    <Compile Include="Controllers\KeluargaController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PelamarController.cs" />
     <Compile Include="Controllers\OrganisasiController.cs" />
+    <Compile Include="Controllers\PelatihanController.cs" />
+    <Compile Include="Controllers\PengalamanController.cs" />
     <Compile Include="Controllers\ProfilController.cs" />
     <Compile Include="Controllers\PendidikanController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
@@ -151,6 +154,10 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Dokumen.css" />
+    <Content Include="Content\homecontent.css" />
+    <Content Include="Content\homepage.css" />
+    <Content Include="Content\Pelamar.css" />
     <Content Include="Content\Profil.css" />
     <Content Include="Content\custom.css" />
     <Content Include="Content\Organisasi.css" />
@@ -235,6 +242,33 @@
     <Content Include="Views\Pendidikan\_Edit.cshtml" />
     <Content Include="Views\Pendidikan\_Delete.cshtml" />
     <Content Include="Views\Pendidikan\_ListByEdu.cshtml" />
+    <Content Include="Views\Pelamar\_Create.cshtml" />
+    <Content Include="Views\Upload\UploadFile.cshtml" />
+    <Content Include="Views\Account\SelectAccess.cshtml" />
+    <Content Include="Views\Pelamar\_PelamarList.cshtml" />
+    <Content Include="Views\Pelamar\Index.cshtml" />
+    <Content Include="Views\Pelamar\_IndexDetail.cshtml" />
+    <Content Include="Views\Pelamar\_BioList.cshtml" />
+    <Content Include="Views\Pelamar\_Edit.cshtml" />
+    <Content Include="Views\Pelatihan\Index.cshtml" />
+    <Content Include="Views\Pelatihan\_List.cshtml" />
+    <Content Include="Views\Pelatihan\_Create.cshtml" />
+    <Content Include="Views\Pelatihan\_Edit.cshtml" />
+    <Content Include="Views\Pelatihan\_Delete.cshtml" />
+    <Content Include="Views\Pengalaman\Index.cshtml" />
+    <Content Include="Views\Pengalaman\_List.cshtml" />
+    <Content Include="Views\Pengalaman\_Create.cshtml" />
+    <Content Include="Views\Pengalaman\_Edit.cshtml" />
+    <Content Include="Views\Pengalaman\_Delete.cshtml" />
+    <Content Include="Views\Keluarga\Index.cshtml" />
+    <Content Include="Views\Keluarga\_Create.cshtml" />
+    <Content Include="Views\Keluarga\_Delete.cshtml" />
+    <Content Include="Views\Keluarga\_Edit.cshtml" />
+    <Content Include="Views\Keluarga\_List.cshtml" />
+    <Content Include="Views\Keluarga\_ListByFam.cshtml" />
+    <Content Include="Views\Dokumen\Index.cshtml" />
+    <Content Include="Views\Dokumen\_DokumenList.cshtml" />
+    <Content Include="Views\Dokumen\_Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

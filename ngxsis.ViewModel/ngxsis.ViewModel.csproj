@@ -48,6 +48,8 @@
     <Compile Include="LoginViewModel.cs" />
     <Compile Include="PelamarViewModel.cs" />
     <Compile Include="OrganisasiViewModel.cs" />
+    <Compile Include="PelatihanViewModel.cs" />
+    <Compile Include="PengalamanViewModel.cs" />
     <Compile Include="ProfilViewModel.cs" />
     <Compile Include="PendidikanViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

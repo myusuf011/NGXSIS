@@ -60,15 +60,14 @@ namespace ngxsis.Repository
 
                         dokumen.id = entity.id;
                         dokumen.file_name = entity.file_name;
+                        dokumen.file_path = entity.file_path;
+                        dokumen.is_photo = false;
 
                         dokumen.created_by = 335887;
                         dokumen.created_on = DateTime.Now;
                         dokumen.is_delete = false;
                         dokumen.biodata_id = 1;
                         dokumen.notes = entity.notes;
-
-
-
 
                         db.x_biodata_attachment.Add(dokumen);
                         db.SaveChanges();

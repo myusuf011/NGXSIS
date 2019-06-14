@@ -154,3 +154,18 @@ textarea {
     color: #FFFFFF;
     background-color: #9c1010;
 }
+
+.form-notes {
+    height: 68px;
+}
+
+.close {
+  float: right;
+  font-size: 42px;
+  font-weight: bold;
+  line-height: 1;
+  color: #000000;
+  text-shadow: 0 1px 0 #ffffff;
+  opacity: 0.2;
+  filter: alpha(opacity=20);
+}

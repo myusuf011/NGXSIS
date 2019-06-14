@@ -1,5 +1,52 @@
 ﻿@model IEnumerable<ngxsis.ViewModel.PelamarViewModel>
 
+<link rel="stylesheet" href="~/Content/Pelamar.css">
+
+<div class="row" style="margin-bottom:5px;">
+    <div class="col-lg-6">
+        <div class="input-group" style="width:100%;">
+            <input type="text" id="txt-search" class="form-control" style="" placeholder="Nama Pelamar">
+            <span class="input-group-btn">
+                <button class="btn btn-pp btn-search" style="height:25px;border-radius:0px;" type="button"><h4><b>Cari</b></h4></button>
+            </span>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <button class="btn btn-clear" style="height:25px;border-radius:0px; color:white;background-color:#000080;" 
+                type="button"><h4 style="bottom:10px;"><b>Reset</b></h4></button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-10"></div>
+    <div class="col-lg-2" style="margin-left:0px;">
+        <div class="btn-group btn-trans" style="margin-left:12px;" role="group" aria-label="...">
+            <div class="btn-group">
+                <button type="button" class="btn dropdown-toggle btn-trans  btn-lg " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-sort"></span>
+                </button>
+                <ul class="dropdown-menu dropdown-menu-right btn-link-a">
+                    <li class="dropdown-header dh">Order</li>
+                    <li><a href="javascript:void(0)" class="btn-link sort-asc">Ascending</a></li>
+                    <li><a href="javascript:void(0)" class="btn-link sort-desc">Descending</a></li>
+                </ul>
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn dropdown-toggle btn-trans  btn-lg " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="glyphicon glyphicon-align-justify"></span>
+                </button>
+                <ul class="dropdown-menu btn-link-a">
+                    <li class="dropdown-header dh">Row Per Page</li>
+                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="10">10</a></li>
+                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="20">20</a></li>
+                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="30">30</a></li>
+                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="40">40</a></li>
+                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="50">50</a></li>
+                </ul>
+            </div>
+            <button type="button" class="btn btn-trans btn-lg btn-create-new"><span class="glyphicon glyphicon-plus-sign"></span></button>
+        </div>
+    </div>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -13,83 +60,72 @@
                     </div>
                 </div>
 
-            </th>
-            <th colspan="2">
-            </th>
-            <th>
-                <div class="btn-group" role="group" aria-label="...">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="glyphicon glyphicon-sort"></span>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-">
-                            <li class="dropdown-header">Order</li>
-                            <li><a href="javascript:void(0)" class="btn-link sort-asc" data-container="desc">Ascending</a></li>
-                            <li><a href="javascript:void(0)" class="btn-link sort-desc" data-container="asc">Descending</a></li>
-                        </ul>
-                    </div>
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="glyphicon glyphicon-align-justify"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li class="dropdown-header">Row Per Page</li>
-                            <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="10">10</a></li>
-                            <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="20">20</a></li>
-                            <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="30">30</a></li>
-                            <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="30">40</a></li>
-                            <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="10">60</a></li>
-                        </ul>
-                    </div>
-                    <button type="button" class="btn btn-default btn-create-new"><span class="glyphicon glyphicon-plus-sign"></span></button>
-                </div>
-            </th>
-        </tr>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.fullname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.nick_name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.phone_number1)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
+<table class="table">    
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.fullname)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.nick_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.email)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.phone_number1)
-                </td>
-                <td>
-                    <div class="btn-group btn-group-sm">
-                        <button type="button" class="btn btn-default btn-details" data-id="@item.id" title="Details Pelamar">
-                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-                        </button>
-                        <button type="button" class="btn btn-default btn-token" data-id="@item.id" title="Kirim Token">
-                            <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
-                        </button>
-                    </div>
+                    <div class="row" id="content" style="background-color:#ccccff; margin-left:0px;">
+                        <div class="col-md-10" style="left:10px; bottom:10px;">
+                            <div class="col-md-12" style=" padding-left: 0px; top: 10px;">
+                                <h4 style="color:#000080; font-weight:bold;">@Html.DisplayFor(modelItem => item.fullname)</h4>
+                            </div>
+                            <div class="row">
+                                <div class="secTitle col-md-4">
+                                    Nama Panggilan
+                                </div>
+                                <div class="secContent col-md-8">
+                                    @Html.DisplayFor(modelItem => item.nick_name)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="secTitle col-md-4">
+                                    Email
+                                </div>
+                                <div class="secContent col-md-8">
+                                    @Html.DisplayFor(modelItem => item.email)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="secTitle col-md-4">
+                                    No. Hanphone
+                                </div>
+                                <div class="secContent col-md-8">
+                                    @Html.DisplayFor(modelItem => item.phone_number1)
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="secTitle col-md-4">
+                                    Pendidikan
+                                </div>
+                                <div class="secContent col-md-8">
+
+                                </div>
+                            </div>                            
+                        </div>
+                        <div class="col-md-2" style="top:45px;">
+                            <div class="btn-group btn-group-sm">
+                                <button type="button" class="btn btn-default btn-details" data-id="@item.id" title="Details Pelamar">
+                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                </button>
+                                <button type="button" class="btn btn-default btn-token" data-id="@item.id" title="Kirim Token">
+                                    <span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>             
                 </td>
             </tr>
         }
     </tbody>
+    <tfoot>
+        <tr>
+            <td></td>
+            <td><button type="button" class="btn btn-primary btn-sm btn-pill pull-right" onclick="min()"><b>&#8592; Previous</b></button></td>
+            <td><button type="button" class="btn btn-primary btn-sm btn-pill pull-left" onclick="plus()"><b>Next &#8594;</b></button></td>
+        </tr>
+    </tfoot>
 
 </table>
 
@@ -109,32 +145,76 @@
 </div><!-- /.modal -->
 
 <script type="text/javascript">
-    $(".btn-search").click(function()
-    {
-        console.log($("#txt-search").val());
-        $.ajax(
-             {
-                 url: '@Url.Action("PelamarList", "Pelamar")',
-                 type: 'get',
-                 data: { search: $("#txt-search").val() },
-                 success: function (result) {
-                     $("#data").html(result);
-                 }
-             });
-    });
+    
     $(".btn-create-new").click(function () {
         //alert("Ubah diklik "+$(this).attr("data-container"))
 
+    });
+    $(".btn-details").click(function () {
         $.ajax(
             {
                 url: '@Url.Action("Create", "Role")',
                 type: 'get',
                 success: function (result) {
                     $(".modal-title").html("Tambah Role");
+                    $(".modal-title").html("Detail Pelamar");
                     $(".modal-body").html(result);
                     $(".modal").modal("show");
                 }
             });
 
     });
+
+    /*ROW PER PAGE*/
+    $(".btn-list").click(function () {
+        page = 0;
+        dataPerPage = $(this).attr("data-container");
+        GetList();
+    });
+    /*GO TO PREVIOUS PAGE*/
+    function min() {
+        if (page > 0) {
+            page = page - 1;
+        }
+        console.log(page);
+        GetList();
+    };
+    /*GO TO NEXT PAGE*/
+    function plus() {
+        if (page < maxPage) {
+            page = page + 1;
+        }
+        console.log(page);
+        GetList();
+    };
+
+    /*SHOW DATA BY SEARCH*/
+    $(".btn-search").click(function () {
+        desc = 0;
+        page = 0;
+        search = $("#txt-search").val();
+        GetList();
+    });
+
+    /*SORT ASCENDING*/
+    $(".sort-asc").click(function () {
+        desc = 0;
+        page = 0;
+        GetList();
+    });
+
+    /*SORT DESCENDING*/
+    $(".sort-desc").click(function () {
+        desc = 1;
+        page = 0;
+        GetList();
+    });
+
+    /*CLEAR SEARCH*/
+    $(".btn-clear").click(function () {
+        page = 0;
+        search = "";
+        GetList();
+    });
+
 </script>
