@@ -5,14 +5,13 @@ namespace ngxsis.DataModel
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class ngxsisContext : DbContext
+    public partial class ngxsisContext:DbContext
     {
         public ngxsisContext()
             : base("name=ngxsisContext")
         {
         }
 
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<x_addrbook> x_addrbook { get; set; }
         public virtual DbSet<x_address> x_address { get; set; }
         public virtual DbSet<x_biodata> x_biodata { get; set; }
@@ -171,10 +170,6 @@ namespace ngxsis.DataModel
                 .IsUnicode(false);
 
             modelBuilder.Entity<x_biodata>()
-                .Property(e => e.phone_number2)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<x_biodata>()
                 .Property(e => e.parent_phone_number)
                 .IsUnicode(false);
 
@@ -272,6 +267,12 @@ namespace ngxsis.DataModel
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<x_biodata>()
+                .HasMany(e => e.x_sertifikasi)
+                .WithRequired(e => e.x_biodata)
+                .HasForeignKey(e => e.biodata_id)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<x_biodata>()
                 .HasMany(e => e.x_sumber_loker)
                 .WithRequired(e => e.x_biodata)
                 .HasForeignKey(e => e.biodata_id)
@@ -279,12 +280,6 @@ namespace ngxsis.DataModel
 
             modelBuilder.Entity<x_biodata>()
                 .HasMany(e => e.x_undangan_detail)
-                .WithRequired(e => e.x_biodata)
-                .HasForeignKey(e => e.biodata_id)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<x_biodata>()
-                .HasMany(e => e.x_sertifikasi)
                 .WithRequired(e => e.x_biodata)
                 .HasForeignKey(e => e.biodata_id)
                 .WillCascadeOnDelete(false);
@@ -349,11 +344,6 @@ namespace ngxsis.DataModel
                 .Property(e => e.description)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<x_family_relation>()
-                .HasMany(e => e.x_keluarga)
-                .WithOptional(e => e.x_family_relation)
-                .HasForeignKey(e => e.family_relation_id);
-
             modelBuilder.Entity<x_family_tree_type>()
                 .Property(e => e.name)
                 .IsUnicode(false);
@@ -370,6 +360,11 @@ namespace ngxsis.DataModel
             modelBuilder.Entity<x_family_tree_type>()
                 .HasMany(e => e.x_keluarga)
                 .WithOptional(e => e.x_family_tree_type)
+                .HasForeignKey(e => e.family_tree_type_id);
+
+            modelBuilder.Entity<x_family_tree_type>()
+                .HasMany(e => e.x_keluarga1)
+                .WithOptional(e => e.x_family_tree_type1)
                 .HasForeignKey(e => e.family_tree_type_id);
 
             modelBuilder.Entity<x_identity_type>()

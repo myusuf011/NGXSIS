@@ -22,7 +22,6 @@ namespace ngxsis.Repository
                           join ba in db.x_biodata_attachment on b.id equals ba.biodata_id
                           join s in db.x_sertifikasi on b.id equals s.biodata_id
                           join kt in db.x_keahlian on b.id equals kt.biodata_id
-                          join sl in db.x_skill_level on kt.skill_level_id equals sl.id
                           select new ProfilViewModel
                           {
                               id = b.id,
@@ -45,7 +44,6 @@ namespace ngxsis.Repository
                               Income = pk.income,
 
                               SkillName = kt.skill_name,
-                              SkillLevel = sl.name,
 
                               TrainingName = pl.training_name,
                               TrainingYear = pl.training_year,

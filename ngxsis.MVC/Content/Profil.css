@@ -1,12 +1,19 @@
 ﻿body {
   font-family: Arial;
   margin-left : 10px;
+.modal-dialog {
+    width: 1080px;
+    margin: 30px auto;
 }
 
 input,
 select,
 textarea {
     max-width: 100%;
+.modal-header {
+    background-color :#000080;
+    font-size : 14px;
+    color: white;
 }
 
 .modal-content {
@@ -44,6 +51,7 @@ textarea {
 
 
 details,menu,section {
+details,figcaption,figure,hgroup,menu,section {
 display:block;
 }
 
@@ -52,6 +60,8 @@ display:block;
 #data {
 	width: 100%;
 	color :#000080;
+	max-width: 800px;
+	background: #f3f3f3;
 }
 
 h4 {
@@ -61,8 +71,10 @@ h4 {
 }
 
 .head {
+.mainDetails {
 	
-	background: #fff;
+	border-bottom: 2px solid #000080;
+	background: #ededed;
 }
 
 #headshot {
@@ -75,11 +87,11 @@ h4 {
 	width: 100%;
 	height: auto;
 	-webkit-border-radius: 50px;
-	border-radius: 50%;
+	border-radius: 50px;
 }
 
 #name {
-	font-size: 12px;
+	font-size: 18px;
 	font-weight: 700;
 	font-family: 'Rokkitt', Helvetica, Arial, sans-serif;
 	margin-bottom: -6px;
@@ -91,11 +103,10 @@ h4 {
 	float: right;
 }
 
-section:nth-child(odd) {
+section {
 	border-top: 1px solid #dedede;
 	padding: 12px 0 0;
-    background-color: rgba(0, 0 ,128, 0.1);
-    padding-left: 10px;
+    background-color: rgba(0, 0 ,128, 0.2);
 }
 
 section:nth-child(even) {
@@ -108,17 +119,12 @@ section:nth-child(even) {
 
 .sectionTitle {
 	float: left;
-	width: 20%;
-    font-size : 14px;
+	width: 25%;
 }
 
 .sectionContent {
 	float: right;
-	width: 80%;
-    font-weight: bold;
-    align-items: center;
-    margin-top: 35px;
-    margin-bottom: 10px;
+	width: 75%;
 }
 
 .btn-pp {

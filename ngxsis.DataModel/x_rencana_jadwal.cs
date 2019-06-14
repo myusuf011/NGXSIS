@@ -62,9 +62,9 @@ namespace ngxsis.DataModel
         [StringLength(50)]
         public string status { get; set; }
 
-        public virtual x_schedule_type x_schedule_type { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<x_rencana_jadwal_detail> x_rencana_jadwal_detail { get; set; }
+
+        public virtual x_schedule_type x_schedule_type { get; set; }
     }
 }

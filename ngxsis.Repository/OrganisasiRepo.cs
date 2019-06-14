@@ -186,5 +186,54 @@ namespace ngxsis.Repository
             }
             return result;
         }
+
+        //public static bool ValidationExitYear(string exit_year, string entry_year)
+        //{
+        //    if (int.Parse(exit_year) < int.Parse(entry_year))
+        //    {
+        //        return false;
+        //    }
+        //    else
+        //    {
+        //        return true;
+        //    }
+        //}
+
+        //public static bool ValidationEntryYear(string entry_year, string exit_year)
+        //{
+        //    if (int.Parse(entry_year) > int.Parse(exit_year))
+        //    {
+        //        return false;
+        //    }
+        //    else
+        //    {
+        //        return true;
+        //    }
+        //}
+
+        //public static ResponseResult ValidationExitYear(string exit_year, string entry_year)
+        //{
+
+        //    List<OrganisasiValidationModel> result = new List<OrganisasiValidationModel>();
+        //    ResponseResult validation = new ResponseResult();
+        //    using (var db = new ngxsisContext())
+        //    {
+        //        result = db.x_organisasi.Select(c => new OrganisasiValidationModel
+        //        {
+        //            exit_year = c.exit_year,
+        //            entry_year = c.entry_year
+        //        }).ToList();
+
+        //        foreach (var item in result)
+        //        {
+        //            if (int.Parse(exit_year) < int.Parse(entry_year))
+        //            {
+        //                validation.Success = false;
+        //                validation.Message = "Tahun keluar tidak boleh kurang dari tahun masuk";
+        //            }
+        //        }
+        //    }
+        //    return validation;
+        //}
     }
 }

@@ -6,17 +6,19 @@
     @Html.HiddenFor(model => model.Id)
     @Html.HiddenFor(model => model.Code)
     @Html.HiddenFor(model => model.Name)
-     <div class="col-lg-12">
+    @Html.HiddenFor(model => model.LoginUserId,
+                new { Value = Session["userID"] })
+     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
          <div class="row">
-             <div class="col-lg-3">
+             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                  <span class="glyphicon glyphicon-trash btn-xlg"></span>
              </div>
-             <div class="col-lg-8">
+             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                  <h4 style="color:#d9534f;text-align:center;">Anda yakin ingin menghapus Role <br /><b>@Html.DisplayFor(model => model.Name)</b></h4>
              </div>
          </div>
          <div class="row">
-             <div class="form-actions col-lg-4 pull-right">
+             <div class="form-actions col-lg-4 col-md-4 col-sm-4 col-xs-4 pull-right">
                  <div class="btn-group">
                      <button type="button" class="btn btn-warning btn-70px" data-dismiss="modal"><b>Tidak</b></button>
                      <button type="submit" class="btn btn-danger btn-70px"><b>Ya</b></button>
@@ -35,7 +37,7 @@
                 data: $(this).serialize(),
                 success: function (result) {
                     if (result.success) {
-                        alert("Role berhasil dihapus\nNama Role : " + result.entity.Name);
+                        alert("Pengguna berhasil dihapus\nNama Pengguna : " + result.entity.Name);
                         GetList();
                         $(".modal-delete").modal("hide");
                         

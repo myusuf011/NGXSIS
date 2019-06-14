@@ -1,6 +1,4 @@
-﻿body {
-}
-
+﻿
 input,
 select,
 textarea {
@@ -119,4 +117,33 @@ textarea {
     cursor: pointer;
     opacity: 0;
     filter: alpha(opacity=0);
+}
+
+#btn-upload {
+    width: 400px;
+}
+
+#btn-batal,
+#btn-submit {
+    width: 146px;
+}
+
+#btn-uploadFoto {
+    width: 272px;
+}
+
+#avatar-1 {
+    width: 296px;
+    height: 120px;
+    border: 2px solid #000080;
+    border-radius: 8px;
+    border-color: #000080;
+    color: #000080;
+    margin-left: 15px;
+}
+
+.control-label {
+    font-size: 11px;
+    margin-right: 0px;
+    text-align: left
 }

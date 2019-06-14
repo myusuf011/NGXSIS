@@ -2,8 +2,18 @@
 @{
     ViewBag.Title="Role";
 }
+
+@{
+    ViewBag.UID=Session["userID"];
+    if(Session["userID"]==null)
+    {
+        Response.Redirect("/"); // <-- Sesuaikan acceess bila sudah login
+        //Session["userID"]=1;
+    }
+}
+
 <link rel="stylesheet" href="~/Content/role.css"/>
-<div class="panel panel-default panel-role">
+<div class="panel panel-default panel-role" style="width:100%;">
     <div class="panel-body">
     </div>
     <div id="data">

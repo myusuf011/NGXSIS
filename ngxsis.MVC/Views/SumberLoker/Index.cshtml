@@ -57,7 +57,7 @@
                 url: '@Url.Action("Create", "SumberLoker")',
                 type: 'get',
                 success: function (result) {
-                    $(".modal-title").html("Detil Pelamar");
+                    $(".modal-title").html("Detil Pelamar")
                     $(".modal-body").html(result);
                     $(".modal").modal("show");
                     $("#datepicker").datepicker({
@@ -67,9 +67,4 @@
             });
         });
     </script>
-
-<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-
 }
-
-<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />

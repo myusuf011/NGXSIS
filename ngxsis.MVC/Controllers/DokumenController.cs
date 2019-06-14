@@ -2,6 +2,7 @@
 using ngxsis.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -20,11 +21,20 @@ namespace ngxsis.MVC.Controllers
         //{
         //    return PartialView("_DokumenList",DokumenRepo.All() );
         //}
+        public ActionResult DokumenList()
+        {
+            return PartialView("_DokumenList", DokumenRepo.All());
+        }
 
         //public ActionResult Create()
         //{
         //    return PartialView("_Create", new DokumenViewModel());
         //}
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return PartialView("_Create", new DokumenViewModel());
+        }
 
         //[HttpPost]
         //public ActionResult Create(DokumenViewModel model)
@@ -36,12 +46,44 @@ namespace ngxsis.MVC.Controllers
         //        message = result.Message,
         //        entity = result.Entity
         //    }, JsonRequestBehavior.AllowGet);
+        //[HttpPost]
+        //public ActionResult Create(DokumenViewModel model)
+        //{
+        //    try
+        //    {
+        //        if (file.ContentLength > 0)
+        //        {
+        //            string _FileName = Path.GetFileName(file.FileName);
+        //            string _path = Path.Combine(Server.MapPath("~/Content/Images"), _FileName);
+        //            file.SaveAs(_path);
+        //        }
+        //        ViewBag.Message = "File Uploaded Successfully!!";
+        //        return PartialView("_Create", new DokumenViewModel());
+        //    }
+        //    catch
+        //    {
+        //        ViewBag.Message = "File upload failed!!";
+        //        return PartialView("_Create", new DokumenViewModel());
+        //    }
+        //}
+
+        [HttpPost]
+        public ActionResult CreateUpload()
+        {
+            string FileName = "";
+            HttpFileCollectionBase files = Request.Files;
+            for (int i = 0; i < files.Count; i++)
+            {
+                //string path = AppDomain.CurrentDomain.BaseDirectory + "Uploads/";    
+                //string filename = Path.GetFileName(Request.Files[i].FileName);    
 
         //}
         //public ActionResult Edit(int id)
         //{
         //    return PartialView("_Edit", DokumenRepo.ById(id)); 
         //}
+                HttpPostedFileBase file = files[i];
+                string fname;
 
         //[HttpPost]
         //public ActionResult Edit(DokumenViewModel model)
@@ -54,11 +96,28 @@ namespace ngxsis.MVC.Controllers
         //        entity = result.Entity
         //    }, JsonRequestBehavior.AllowGet);
         //}
+                // Checking for Internet Explorer    
+                if (Request.Browser.Browser.ToUpper() == "IE" || Request.Browser.Browser.ToUpper() == "INTERNETEXPLORER")
+                {
+                    string[] testfiles = file.FileName.Split(new char[] { '\\' });
+                    fname = testfiles[testfiles.Length - 1];
+                }
+                else
+                {
+                    fname = file.FileName;
+                    FileName = file.FileName;
+                }
 
         //public ActionResult Delete(int id) // post
         //{
         //    return PartialView("_Delete", DokumenRepo.ById(id)); //habis ini di add view
         //}
+                // Get the complete folder path and store the file inside it.    
+                fname = Path.Combine(Server.MapPath("~/Content/Images"), fname);
+                file.SaveAs(fname);
+            }
+            return Json(FileName, JsonRequestBehavior.AllowGet);
+        }
 
         //[HttpPost]
         //public ActionResult Delete(DokumenViewModel model)
@@ -71,5 +130,56 @@ namespace ngxsis.MVC.Controllers
         //        entity = result.Entity
         //    }, JsonRequestBehavior.AllowGet);
         //}
+        //public ActionResult Create(HttpPostedFileBase file, string type = "f")
+        //{
+        //    try
+        //    {
+        //        if (file.ContentLength > 0)
+        //        {
+        //            string _FileName = Path.GetFileName(file.FileName);
+        //            string _path = Path.Combine(Server.MapPath("~/Content/Images"), _FileName);
+        //            file.SaveAs(_path);
+        //        }
+        //        ViewBag.Message = "File Uploaded Successfully!!";
+        //        return PartialView("_Create", new DokumenViewModel());
+        //    }
+        //    catch
+        //    {
+        //        ViewBag.Message = "File upload failed!!";
+        //        return PartialView("_Create", new DokumenViewModel());
+        //    }
+        //}
+
+        //public ActionResult uploadFoto()
+        //{
+        //    return PartialView("_UploadFoto",)
+        //}
+
+        //[HttpGet]
+        //public ActionResult UploadFile()
+        //{
+        //    return View();
+        //}
+
+        [HttpPost]
+        public ActionResult UploadFile(HttpPostedFileBase file)
+        {
+            try
+            {
+                if (file.ContentLength > 0)
+                {
+                    string _FileName = Path.GetFileName(file.FileName);
+                    string _path = Path.Combine(Server.MapPath("~/Content/Images"), _FileName);
+                    file.SaveAs(_path);
+                }
+                ViewBag.Message = "File Uploaded Successfully!!";
+                return View();
+            }
+            catch
+            {
+                ViewBag.Message = "File upload failed!!";
+                return View();
+            }
+        }
     }
 }

@@ -1,4 +1,20 @@
-﻿
+﻿@{
+    ViewBag.Title="User";
+}
+
+
+@{
+    ViewBag.Title="User";
+}
+
+@{
+    if(Session["userID"]==null)
+    {
+        Response.Redirect("/"); // <-- Sesuaikan acceess bila sudah login
+        //Session["userID"]=1;
+    }
+}
+
 <link rel="stylesheet" href="~/Content/role.css" />
 <div class="panel panel-default panel-role">
     <div class="panel-body">
@@ -8,73 +24,32 @@
     </div>
 </div>
 
-<div class="modal fade modal-main" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" style="color:#ffffff;font-size:20px;" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Modal title</h4>
-            </div>
-            <div class="modal-body">
-                <p>One fine body&hellip;</p>
-            </div>
-
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
-
-<div class="modal fade modal-delete" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Modal title</h4>
-            </div>
-            <div class="modal-body">
-                <p>One fine body&hellip;</p>
-            </div>
-
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
-
 @section Scripts
-    {
+{
     <script type="text/javascript">
+
         var search;
-        var FullName;
-        var AddrBookId;
-        var RoleList;
+        var bioId;
+        var addrbookId;
         $(document).ready(function () {
-            search = "";
-            FullName = "";
-            AddrBookId = 0;
-            $("#data .username").hide();
+            bioId = 0;
+            addrbookId = 0;
             GetForm();
         });
-
+////
         function GetForm()
         {
-            //$("#txt-search").val(search)
             $.ajax(
                 {
                     url: '@Url.Action("Form","UserRole")',
                     type: 'get',
+                    data: { bioId: bioId },
                     success: function (result)
                     {
                         $("#data").html(result);
-                        $("#txt-search").val(search)
-                        $("#FullName").val(FullName);
-                        if (AddrBookId == 0) {
-                            $(".username").addClass('hidden');
-                            $(".pass").removeClass('hidden');
-                        } else
-                        {
-                            $(".username").removeClass('hidden');
-                            $(".pass").addClass('hidden');
-                        }
                     }
                 });
         }
+////
     </script>
-    }
+}

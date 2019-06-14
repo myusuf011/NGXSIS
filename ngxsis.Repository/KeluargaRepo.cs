@@ -33,7 +33,7 @@ namespace ngxsis.Repository
                              job = c.job,
                               notes = c.notes,
 
-                              family_relation_name = c.x_family_relation.name,
+                              //family_relation_name = c.x_family_relation.name,
                               education_level_name = c.x_education_level.name,
 
 

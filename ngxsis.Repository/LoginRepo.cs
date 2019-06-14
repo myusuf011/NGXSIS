@@ -13,11 +13,13 @@ namespace ngxsis.Repository
         public static ResponseResultLogin cekAkun(LoginViewModel entity)
         {
             ResponseResultLogin result = new ResponseResultLogin();
+            string passwordmd5 = UserRoleRepo.GetMd5Hash(entity.abpwd);
+
             using (var db = new ngxsisContext())
             {
                 var userDetails = db.x_biodata
-                    .Where(o => o.x_addrbook.email == entity.email && o.x_addrbook.abpwd == entity.abpwd || 
-                    o.x_addrbook.abuid == entity.email && o.x_addrbook.abpwd == entity.abpwd).FirstOrDefault();                
+                    .Where(o => o.x_addrbook.email == entity.email && o.x_addrbook.abpwd == passwordmd5 || 
+                    o.x_addrbook.abuid == entity.email && o.x_addrbook.abpwd == passwordmd5).FirstOrDefault();                
 
                 if (userDetails != null)
                 {

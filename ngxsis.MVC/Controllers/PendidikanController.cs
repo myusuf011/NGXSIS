@@ -21,54 +21,40 @@ namespace ngxsis.MVC.Controllers
             return PartialView("_List", PendidikanRepo.All()); // _list nama viewnya,categoryrepo2 objek yg dipanggil untuk  isi list
 
         }
-         
+
         public ActionResult Create()
         {
             ViewBag.PendidikanList = new SelectList(PendidikanRepo.jenjangAll(), "education_level_id", "educationName"); // value = id yg ditampilkan = name --->category list
             return PartialView("_Create", new PendidikanViewModel());  //add-view create
         }
 
-        public ActionResult ListByEdu()       
+        public ActionResult ListByEdu()
         {
             return PartialView("_ListByEdu", PendidikanRepo.All());
         }
-                  
-                         
+
+
         [HttpPost]
         public ActionResult Create(PendidikanViewModel model)
-        { 
-              
-                if (!string.IsNullOrEmpty(model.graduation_year) || !string.IsNullOrEmpty(model.entry_year))
-                {
-                    if (int.Parse(model.graduation_year) < int.Parse(model.entry_year))
-                    {
-                        return Json(new
-                        {
-                            success = false,
-                            message = "InValid"
-                        }, JsonRequestBehavior.AllowGet);
-                    }
-                }
-
-                if (!ModelState.IsValid )
-                {
-                    return Json(new
-                    {
-                        success = false,
-                        message = "InValid"
-                    }, JsonRequestBehavior.AllowGet);
-                }
-
-                ResponseResult result = PendidikanRepo.Update(model);
+        {
+            if (!ModelState.IsValid || (int.Parse(model.graduation_year) < int.Parse(model.entry_year) && model.graduation_year!=null && model.entry_year!=null) )
+            {
                 return Json(new
                 {
-                    success = result.Success,
-                    message = result.Message,
-                    entity = result.Entity
+                    success = false,
+                    message = "InValid"
                 }, JsonRequestBehavior.AllowGet);
-
             }
-                      
+
+            ResponseResult result = PendidikanRepo.Update(model);
+            return Json(new
+            {
+                success = result.Success,
+                message = result.Message,
+                entity = result.Entity
+            }, JsonRequestBehavior.AllowGet);
+
+        }
 
         //edit
         // controller buat Add view edit
@@ -82,27 +68,15 @@ namespace ngxsis.MVC.Controllers
         [HttpPost]
         public ActionResult Edit(PendidikanViewModel model)
         {
-
-            if (!string.IsNullOrEmpty(model.graduation_year) || !string.IsNullOrEmpty(model.entry_year))
-            {
-                if (int.Parse(model.graduation_year) < int.Parse(model.entry_year))
-                {
-                    return Json(new
-                    {
-                        success = false,
-                        message = "InValid"
-                    }, JsonRequestBehavior.AllowGet);
-                }
-            }
-
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid || int.Parse(model.graduation_year) < int.Parse(model.entry_year))
             {
                 return Json(new
                 {
                     success = false,
-                    message = "InValid"     
+                    message = "InValid"
                 }, JsonRequestBehavior.AllowGet);
             }
+
 
             ResponseResult result = PendidikanRepo.Update(model);
             return Json(new

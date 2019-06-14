@@ -1,0 +1,109 @@
+﻿
+@{
+    ViewBag.Title = "Proses Pelamar";
+}
+@{
+    ViewBag.UID=Session["userID"];
+    if(Session["userID"]==null)
+    {
+        Response.Redirect("/"); // <-- Sesuaikan acceess bila sudah login
+        //Session["userID"]=1;
+    }
+
+}
+<link rel="stylesheet" href="~/Content/role.css" />
+<div class="panel panel-default panel-role">
+    <div class="panel-body">
+    </div>
+    <div id="data">
+        Loading...
+    </div>
+</div>
+
+<div class="modal fade modal-main" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" style="color:#ffffff;font-size:20px;" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade modal-delete" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade modal-white" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+        <div class="modal-footer">
+            <button type="button" id="btn-keluar" data-dismiss="modal">Keluar</button>
+        </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+@section scripts
+{
+    <script type="text/javascript">
+
+        var page;
+        var desc;
+        var maxPage;
+        var dataPerPage;
+        var biodataId;
+        $(document).ready(function () {
+            page = 0;
+            desc = 0;
+            dataPerPage = 3;
+            GetList();
+        });
+
+        function GetList() {
+            var itemCount = 0;
+            $.ajax(
+            {
+                url: '@Url.Action("List", "ProsesPelamar")',
+                type: 'get',
+                data: { desc: desc, page: page, dataPerPage: dataPerPage },
+                success: function (result) {
+                    $("#data").html(result);
+                    $("#data").find("tbody").find("tr").each(function (item) {
+                        itemCount = itemCount + 1;
+                    });
+                    if (itemCount < dataPerPage) {
+                        maxPage = page;
+                    } else {
+                        maxPage = page + 1;
+                    }
+                }
+            });
+        }
+
+    </script>
+}
+

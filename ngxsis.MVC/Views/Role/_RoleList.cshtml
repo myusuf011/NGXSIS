@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ngxsis.ViewModel.RoleViewModel>
 
 <div class="row" style="margin-bottom:5px;">
-    <div class="col-lg-6">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
         <div class="input-group" style="width:60%;">
             <input type="text" id="txt-search" class="form-control" style=""placeholder="Cari">
             <span class="input-group-btn">
@@ -10,8 +10,7 @@
             </span>
         </div>
     </div>
-    <div class="col-lg-2"></div>
-        <div class="col-lg-2" style="margin-left:0px;">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-left:0px;text-align:right;">
             <div class="btn-group btn-trans" style="margin-left:12px;" role="group" aria-label="...">
                 <div class="btn-group">
                     <button type="button" class="btn dropdown-toggle btn-trans  btn-lg " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -61,7 +60,7 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
 
-            <th><b>#</b></th>
+            <th style="text-align:right;"><b style="margin-right:70px;">#</b></th>
         </tr>
     </thead>
     <tbody>
@@ -81,15 +80,15 @@
                     </div>
                 </td>
                 <td>
-                    <div class="btn-group pull-left">
+                    <div class="btn-group pull-right">
                         <button type="button" class="btn btn-primary btn-pp"><b>More</b></button>
                         <button type="button" class="btn dropdown-toggle btn-pp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <span class="caret"></span>
                             <span class="sr-only">Toggle Dropdown</span>
                         </button>
                         <ul class="dropdown-menu btn-link-a">
-                            <li><a href="javascript:void(0)" class="btn-link-ubah" data-container="@item.Id">Ubah</a></li>
-                            <li><a href="javascript:void(0)" class="btn-link-hapus" data-container="@item.Id">Hapus</a></li>
+                            <li><a href="javascript:void(0)" class="btn-link-ubah" data-value="@item.Id">Ubah</a></li>
+                            <li><a href="javascript:void(0)" class="btn-link-hapus" data-value="@item.Id">Hapus</a></li>
                         </ul>
                     </div>
                 </td>
@@ -99,8 +98,11 @@
     <tfoot>
         <tr>
             <td></td>
-            <td><button type="button" class="btn btn-primary btn-sm btn-pill pull-right" onclick="min()"><b>&#8592; Previous</b></button></td>
-            <td><button type="button" class="btn btn-primary btn-sm btn-pill pull-left" onclick="plus()"><b>Next &#8594;</b></button></td>
+            <td></td>
+            <td>
+                <button type="button" class="btn btn-primary btn-sm btn-pill pull-right" onclick="plus()"><b>Next &#8594;</b></button>
+                <button type="button" class="btn btn-primary btn-sm btn-pill pull-right" onclick="min()"><b>&#8592; Previous</b></button>
+            </td>
         </tr>
     </tfoot>
 </table>
@@ -174,16 +176,18 @@
 
     });
     /*EDIT DATA*/
+    var submited = true;;
     $(".btn-link-ubah").click(function () {
         $.ajax(
             {
                 url: '@Url.Action("Edit", "Role")',
                 type: 'get',
-                data: { Id: $(this).attr("data-container") },
+                data: { Id: $(this).data("value") },
                 success: function (result) {
-                    $(".modal-title").html("Ubah Role");
-                    $(".modal-body").html(result);
+                    $(".modal-main .modal-title").html("Ubah Role");
+                    $(".modal-main .modal-body").html(result);
                     $(".modal-main").modal("show");
+                    submited = false;
                 }
             });
 
@@ -195,7 +199,7 @@
             {
                 url: '@Url.Action("Delete", "Role")',
                 type: 'get',
-                data: { id: $(this).attr("data-container") },
+                data: { id: $(this).data("value") },
                 success: function (result) {
                     $(".modal-delete .modal-title").html("Hapus Role ?");
                     $(".modal-delete .modal-body").html(result);
