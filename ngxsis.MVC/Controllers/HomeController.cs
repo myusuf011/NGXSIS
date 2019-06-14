@@ -8,8 +8,14 @@ namespace ngxsis.MVC.Controllers
 {
     public class HomeController : Controller
     {
+        
         public ActionResult Index()
         {
+            if (Session["roleID"] != null && Session["userID"] != null)
+            {
+                ViewBag.idRole = Session["roleID"].ToString();
+                ViewBag.idCompany = Session["companyID"].ToString();
+            }            
             return View();
         }
 

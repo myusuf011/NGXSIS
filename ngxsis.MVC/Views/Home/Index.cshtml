@@ -1,31 +1,152 @@
 ﻿@{
     ViewBag.Title = "Home Page";
-}
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+    if (Session["userID"] != null && Session["roleID"] == null)
+    {
+        Response.Redirect("~/Account/SelectAccess"); // <-- Sesuaikan acceess bila sudah login
+    }
+
+    if (Session["userID"] == null && Session["roleID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+@model ngxsis.ViewModel.BiodataViewModel
+
+@Html.AntiForgeryToken()
+
+
+
+@Html.HiddenFor(model => model.id)
+
+<!DOCTYPE html>
+<!--<html>
+<head>
+    <link rel="stylesheet" href="~/Content/homecontent.css">
+</head>
+<body>
+    <div class="container" id="sidebar-tabel">
+
+        <div class="row">
+            <div class="layoutatas">
+                <h1 id="judul" style="color:#000080"><b>XSIS 2.0</b></h1>
+            </div>
+        </div>
+        <div class="row" id="sidebar">
+            <div class="col-md-3">
+                <table style="width:230px; border:2px solid #000080; font-size:small;">
+                    <tr>
+                        <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-biodata"><span class="dot"></span><b style="text-align:center; margin-left:20px;">Menu 1</b></button></td>
+                    </tr>
+                    <tr>
+                        <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-pelamar"><span class="dot"></span><b style="text-align:center; margin-left:20px;">Pelamar</b></button></td>
+                    </tr>
+                    <tr>
+                        <td style="border:2px solid #000080;">
+                            <button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-dropdown">
+                                <span class="dot"></span><b style="text-align:center; margin-left:20px;">Menu 3</b>
+                                <i class="glyphicon glyphicon-chevron-down"style="float:right;"></i>
+                            </button>
+                            <div class="dropdown-container">
+                                <div class="col-md-12" style="border: 2px solid #000080; border-right:5px; border-left:10px; padding-left:45px;
+                                    padding-bottom:6px; padding-top:6px; padding-right:12px;">
+                                    <a href="#">Link 1</a>
+                                </div>
+                                <div class="col-md-12" style="padding-left:45px; padding-bottom:6px; padding-top:6px; padding-right:12px;">
+                                    <a href="#">Link 2</a>
+                                </div>
+                                <div class="col-md-12" style="border: 2px solid #000080; border-bottom:none; border-right:5px; border-left:10px;padding-left:45px;
+                                    padding-bottom:5px; padding-top:6px; padding-right:12px;">
+                                    <a href="#">Link 3</a>
+                                </div>
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-biodata"><span class="dot"></span><b style="text-align:center; margin-left:20px;">Menu 4</b></button></td>
+                    </tr>
+
+                    <tr>
+                        <td style="border:2px solid #000080;">
+                            <button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-dropdown">
+                                <span class="dot"></span><b style="text-align:center; margin-left:20px;">Menu 5</b>
+                                <i class="glyphicon glyphicon-chevron-down" style="float:right;"></i>
+                            </button>
+                            <div class="dropdown-container">
+                                <div class="col-md-12" style="border: 2px solid #000080; border-right:5px; border-left:10px; padding-left:45px;
+                                    padding-bottom:6px; padding-top:6px; padding-right:12px;">
+                                    <a href="#">Link 1</a>
+                                </div>
+                                <div class="col-md-12" style="padding-left:45px; padding-bottom:6px; padding-top:6px; padding-right:12px;">
+                                    <a href="#">Link 2</a>
+                                </div>
+                                <div class="col-md-12" style="border: 2px solid #000080; border-bottom:none; border-right:5px; border-left:10px;padding-left:45px;
+                                    padding-bottom:5px; padding-top:6px; padding-right:12px;">
+                                    <a href="#">Link 3</a>
+                                </div>
+
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="content col-md-9" id="data-home">
+                
+            </div>
+        </div>
 
 <div class="row">
     <div class="col-md-4">
         <h2>Getting started</h2>
         <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+            Company ID = @ViewBag.idCompany
+        </p>
+        <p>
+            Role ID = @ViewBag.idRole
         </p>
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+
+    <!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script> -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+<!--
+</body>
+</html>
+-->
+<!--<script type="text/javascript">
+
+    $(".btn-pelamar").click(function () {
+        $.ajax(
+            {
+                url: '@Url.Action("PelamarList", "Pelamar")',
+                  type: 'get',
+                data: { id: $(this).attr("data-id") },
+                    success: function (result) {
+                    $("#data-home").html(result);
+                }
+            });
+
+    });
+</script>
+
+<script>
+
+    var dropdown = document.getElementsByClassName("btn-dropdown");
+    var i;
+
+    for (i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var dropdownContent = this.nextElementSibling;
+            if (dropdownContent.style.display === "block") {
+                dropdownContent.style.display = "none";
+            } else {
+                dropdownContent.style.display = "block";
+            }
+        });
+    }
+</script>
+    -->
+    

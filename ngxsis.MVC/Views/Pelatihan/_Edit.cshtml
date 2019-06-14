@@ -1,0 +1,160 @@
+﻿@model ngxsis.ViewModel.PelatihanViewModel
+
+
+@using (Html.BeginForm("Edit", "Pelatihan", FormMethod.Post, new { id = "form-edit", name = "form-edit" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.id)
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.training_name, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.training_name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.training_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.organizer, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.organizer, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.organizer, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    @Html.LabelFor(model => model.training_month, htmlAttributes: new { @class = "control-label" })
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            @Html.DropDownListFor(model => model.training_month,
+                new List<SelectListItem> {
+                    new SelectListItem { Value = "1", Text = "Januari" },
+                    new SelectListItem { Value = "2", Text = "Februari" },
+                    new SelectListItem { Value = "3", Text = "Maret" },
+                    new SelectListItem { Value = "4", Text = "April" },
+                    new SelectListItem { Value = "5", Text = "Mei" },
+                    new SelectListItem { Value = "6", Text = "Juni" },
+                    new SelectListItem { Value = "7", Text = "Juli" },
+                    new SelectListItem { Value = "8", Text = "Agustus" },
+                    new SelectListItem { Value = "9", Text = "September" },
+                    new SelectListItem { Value = "10", Text = "Oktober" },
+                    new SelectListItem { Value = "11", Text = "November" },
+                    new SelectListItem { Value = "12", Text = "Desember" }
+                },
+                "- Pilih Bulan -",
+                new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.training_month, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.DropDownListFor(model => model.training_year, new SelectList(Enumerable.Range(DateTime.Today.Year - 20, 21)),
+                            "- Pilih Tahun -",
+                            new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.training_year, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    @Html.LabelFor(model => model.training_duration, htmlAttributes: new { @class = "control-label" })
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.training_duration, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.training_duration, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-6">
+                            @Html.DropDownListFor(model => model.time_period_id,
+                            (IEnumerable<SelectListItem>)ViewBag.PelatihanList,
+                            "- Pilih -", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.time_period_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.city, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.country, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.country, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.country, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.notes, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.notes, new { htmlAttributes = new { @class = "form-control form-notes" } })
+                            @Html.ValidationMessageFor(model => model.notes, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="btn-group col-md-offset-9">
+                    <input type="button" value="Batal" data-dismiss="modal" class="btn btn-batal" />
+                    <input type="submit" value="Simpan" class="btn btn-simpan" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+@Scripts.Render("~/bundles/jqueryval")
+
+<script type="text/javascript">
+    $("#form-edit").submit(function () {
+        $.ajax({
+            url: this.action,
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.success) {
+                    alert("Data berhasil disimpan");
+                    $(".modal-utama").modal("hide");
+                    GetList();
+
+                }
+                //else {
+                //    alert("Error! " + result.message);
+                //}
+            }
+        });
+        return false;
+    });
+</script>

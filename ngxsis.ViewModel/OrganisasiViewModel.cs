@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
 
 namespace ngxsis.ViewModel
 {
@@ -40,12 +42,15 @@ namespace ngxsis.ViewModel
         [StringLength(10)]
         [Display(Name = "Tahun Masuk *")]
         [Required(ErrorMessage = "Tahun masuk harus diisi")]
+        //[Remote("IsEntryYearValid", "Organisasi", AdditionalFields = "exit_year", ErrorMessage = "Tahun masuk tidak boleh lebih dari tahun keluar")]
         public string entry_year { get; set; }
 
         [StringLength(10)]
         [Display(Name = "Tahun Keluar *")]
         [Required(ErrorMessage = "Tahun keluar harus diisi")]
+        //[Remote("IsExitYearValid", "Organisasi", AdditionalFields = "entry_year", ErrorMessage = "Tahun keluar tidak boleh kurang dari tahun masuk")]        
         //[CustomValidation(typeof(OrganisasiViewModel), nameof(OrganisasiViewModel.ValidateExitYear))] //, ErrorMessage = "Tahun masuk harus lebih kecil dari tahun keluar"
+        //[Remote("IsExitYearValid", "Organisasi", HttpMethod = "POST")] //, ErrorMessage = "Tahun keluar tidak boleh kurang dari tahun masuk")]
         public string exit_year { get; set; }
 
         //public ValidationResult ValidateExitYear(string value, ValidationContext context)

@@ -11,7 +11,6 @@ using System.Web.Mvc;
 namespace ngxsis.ViewModel
 {
 
-
     public class BiodataViewModel
     {
 
@@ -33,9 +32,9 @@ namespace ngxsis.ViewModel
 
 
         [Required(ErrorMessage = "Silahkan Isi Kolom Tanggal Lahir Terlebih Dahulu!")]
-        [DataType(DataType.Date)]
-        [Display(Name = "Tgl. Lahir (mm-dd-yyyy) *")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        [Display(Name = "Tgl. Lahir (yyyy-mm-dd) *")]
+
         public DateTime dob { get; set; }
 
 
