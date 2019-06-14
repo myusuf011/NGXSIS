@@ -72,7 +72,7 @@ namespace ngxsis.Repository
 
 
                           }).FirstOrDefault();
-                result.tanggal = result.dob.ToString("dd MMMM yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                result.tanggal = result.dob.ToString("dd MMMM yyyy");
 
                 if (result.gender == true)
                 {

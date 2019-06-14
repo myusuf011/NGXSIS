@@ -75,12 +75,23 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
 
 <script type="text/javascript">
+    function GeneratePDF() {
+        let pdf = new jsPDF('p', 'pt', 'letter');
+        pdf.addHTML(document.body, {
+            callback: function (pdf) {
+                pdf.save('test.pdf');
+            }
+        });
+    }
+</script>
+
+<script type="text/javascript">
     function genPDF() {
         html2canvas(document.getElementById("data"), {
             onrendered: function (canvas) {
                 var img = canvas.toDataURL("image/png");
                 var doc = new jsPDF();
-                doc.addImage(img, 'PNG', 0, 0);
+                doc.addImage(img, 'PNG', 10, 10);
                 doc.save('Profil.pdf');
             }
         });

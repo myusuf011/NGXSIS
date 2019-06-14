@@ -63,6 +63,36 @@ namespace ngxsis.Repository
             return result != null ? result : new SumberLokerViewModel();
         }
 
+        public static List<SumberLokerViewModel> ByBiodataId(int biodata_id)
+        {
+            List<SumberLokerViewModel> result = new List<SumberLokerViewModel>();
+            using (var db = new ngxsisContext())
+            {
+                result = (from sl in db.x_sumber_loker
+                          where sl.biodata_id == biodata_id
+                          select new SumberLokerViewModel
+                          {
+
+                              id = sl.id,
+                              vacancy_source = sl.vacancy_source,
+                              candidate_type = sl.candidate_type,
+                              event_name = sl.event_name,
+                              career_center_name = sl.career_center_name,
+                              referrer_name = sl.referrer_name,
+                              referrer_phone = sl.referrer_phone,
+                              referrer_email = sl.referrer_email,
+                              other_source = sl.other_source,
+                              last_income = sl.last_income,
+                              apply_date = sl.apply_date,
+                          }).ToList();
+                if (result == null)
+                {
+                    result = new List<SumberLokerViewModel>();
+                }
+            }
+            return result;
+        }
+
 
         public static ResponseResult Update(SumberLokerViewModel entity)
         {

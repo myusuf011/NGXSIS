@@ -1,11 +1,45 @@
-﻿.modal-dialog {
-    width: 1080px;
-    margin: 50px auto;
+﻿body {
+  font-family: Arial;
+  margin-left : 10px;
 }
-.modal-header {
-    background-color :#000080;
-    font-size : 10px;
-    color: white;
+
+input,
+select,
+textarea {
+    max-width: 100%;
+}
+
+.modal-content {
+    width: 1000px;
+}
+
+.modal {
+    overflow-x: hidden;
+    text-align: left;
+    overflow-y: auto;
+}
+
+
+.close,
+.close:hover {
+    float: right;
+    font-size: 50px;
+    font-weight: 100;
+    color: #ffffff;
+    opacity: 1;
+}
+
+.modal .modal-header {
+    background-color: #000080;
+    color: #ffffff;
+}
+
+.modal-dialog {
+    right: auto;
+    left: 10%;
+    width: 1000px;
+    padding-top: 10px;
+    padding-bottom: 30px;
 }
 
 
@@ -13,25 +47,21 @@ details,menu,section {
 display:block;
 }
 
-
 .clear {clear: both;}
-
 
 #data {
 	width: 100%;
-	max-width: 720px;
 	color :#000080;
-	margin: 30px auto;
 }
 
 h4 {
     font-weight : bold;
-    margin-top: 5px;
+    margin-top: 0px;
     margin-bottom: 10px;
 }
 
 .head {
-	padding: 25px 35px;
+	
 	background: #fff;
 }
 
@@ -63,14 +93,14 @@ h4 {
 
 section:nth-child(odd) {
 	border-top: 1px solid #dedede;
-	padding: 20px 0 0;
+	padding: 12px 0 0;
     background-color: rgba(0, 0 ,128, 0.1);
     padding-left: 10px;
 }
 
 section:nth-child(even) {
 	border-top: 1px solid #dedede;
-	padding: 20px 0 0;
+	padding: 12px 0 0;
     background-color: rgba(0, 0 ,0, 0);
     padding-left: 10px;
 }
@@ -91,18 +121,20 @@ section:nth-child(even) {
     margin-bottom: 10px;
 }
 
-.close {
-	position: relative;
-	width: 23px;
-	height: 23px;
-	border: 2px solid #eef5df;
-    color: white;
-	border-radius: 50%;
-    opacity : 1;
-}
-
 .btn-pp {
     color: #ffffff;
     background-color: #000080;
     border-color: #000063;
 }
+
+.col-md-3 {
+    float:left;
+}
+
+/*@media print
+{    
+    .download
+    {
+         display: none !important;
+    }
+}*/

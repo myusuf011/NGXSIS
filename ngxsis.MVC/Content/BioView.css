@@ -39,59 +39,6 @@ textarea {
     color: #ffffff;
 }
 
-.btn-pp:hover,
-.btn-pp:focus,
-.btn-pp:active,
-.btn-pp.active,
-.btn-pp {
-    color: #ffffff;
-    background-color: #000080;
-    border-color: #000063;
-}
-
-    .btn-pp:hover,
-    .btn-pp:focus,
-    .btn-pp:active,
-    .btn-pp.active,
-    .open .dropdown-toggle .btn-pp,
-    .close .dropdown-toggle .btn-pp {
-        color: #ffffff;
-        background-color: #000080;
-        border-color: #000080;
-        margin: auto;
-    }
-
-.btn-70px {
-    width: 70px;
-}
-
-.btn-150px {
-    width: 142px;
-    height: 48px;
-}
-
-
-.form-control,
-.form-control:focus {
-    height: 48px;
-    color: #000080;
-    border: 2px solid #000080;
-    font-size: medium;
-}
-
-
-
-.btn-warning,
-.btn-warning:hover {
-    color: #ffffff;
-    background-color: #f75c0e;
-    border-color: #f75c0e;
-}
-
-.control-label {
-    font-weight: 100;
-    font-size: small;
-}
 
 
 

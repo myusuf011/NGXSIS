@@ -12,7 +12,7 @@
 
 
             <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-biodata" data-id="@Model.id">Profil</button></td>
+                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-profil" data-id="@Model.id">Profil</button></td>
             </tr>
             <tr>
                 <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-biodata" data-id="@Model.id">Biodata</button></td>
@@ -33,7 +33,7 @@
             </tr>
 
             <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-biodata" data-id="@Model.id">Sumber Lowongan Kerja</button></td>
+                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-sumlok" data-id="@Model.biodata_id">Sumber Lowongan Kerja</button></td>
             </tr>
             <tr>
                 <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-biodata" data-id="@Model.id">Organisasi</button></td>
@@ -68,7 +68,7 @@
     </div>
 
     <!-- Page content -->
-    <div class="col-md-9" id="datadata" style="left:20px; padding-right:50px; bottom:-20px;">
+    <div class="col-md-9" id="datadata" style="left:20px; padding-right:50px; bottom:-20px;" >
 
     </div>
 </div>
@@ -76,14 +76,15 @@
 
 
 
-
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
 <script type="text/javascript">
 
      $(".btn-biodata").click(function () {
           $.ajax(
             {
                 url: '@Url.Action("BioList", "Pelamar")',
-                  type: 'get',
+                type: 'get',
                 data: { id: $(this).attr("data-id") },
                     success: function (result) {
                     $("#datadata").html(result);
@@ -92,4 +93,36 @@
 
      });
 
+    $(".btn-sumlok").click(function () {
+        biodata_id = $(this).data("id");
+        $.ajax(
+          {
+              url: '@Url.Action("Create", "SumberLoker")',
+              type: 'get',
+              data: { biodata_id: $(this).attr("data-id") },
+              success: function (result) {
+                  $("#datadata").html(result);
+                  $("#datepicker").datepicker({
+                      dateFormat: "yy-mm-dd",
+                  });
+              }
+          });
+
+    });
+
+    $(".btn-profil").click(function () {
+        $.ajax(
+          {
+              url: '@Url.Action("List", "Profil")',
+              type: 'get',
+              data: { id: $(this).attr("data-id") },
+              success: function (result) {
+                  $("#datadata").html(result);
+              }
+          });
+
+    });
+
 </script>
+
+

@@ -12,6 +12,8 @@ namespace ngxsis.ViewModel
         public string FullName { get; set; }
         public DateTime DOB { get; set; }
         public bool Gender { get; set; }
+        public string Photo { get; set; }
+
 
         public string EntryYear { get; set; }
         public string GraduationYear { get; set; }

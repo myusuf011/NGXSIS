@@ -19,6 +19,7 @@ namespace ngxsis.Repository
                           join pd in db.x_riwayat_pendidikan on b.id equals pd.biodata_id
                           join pk in db.x_riwayat_pekerjaan on b.id equals pk.biodata_id
                           join pl in db.x_riwayat_pelatihan on b.id equals pl.biodata_id
+                          join ba in db.x_biodata_attachment on b.id equals ba.biodata_id
                           join s in db.x_sertifikasi on b.id equals s.biodata_id
                           join kt in db.x_keahlian on b.id equals kt.biodata_id
                           join sl in db.x_skill_level on kt.skill_level_id equals sl.id
@@ -28,6 +29,7 @@ namespace ngxsis.Repository
                               FullName = b.fullname,
                               DOB = b.dob,
                               Gender = b.gender,
+                              Photo = ba.file_path,
 
                               EntryYear = pd.entry_year,
                               GraduationYear = pd.graduation_year,

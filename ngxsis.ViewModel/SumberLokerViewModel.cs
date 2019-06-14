@@ -19,7 +19,7 @@ namespace ngxsis.ViewModel
         //public long? deleted_by { get; set; }
         //public DateTime? deleted_on { get; set; }
         //public bool is_delete { get; set; }
-        //public long biodata_id { get; set; }
+        public long biodata_id { get; set; }
 
         [Required(ErrorMessage = "Sumber tidak boleh kosong")]
         [DisplayName("Sumber"), StringLength(20)]
@@ -60,9 +60,8 @@ namespace ngxsis.ViewModel
         public string last_income { get; set; }
 
         //[DataType(DataType.Date)]
-        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         [Display(Name = "Tgl. Lamaran Kerja (yyyy-mm-dd)")]
         public DateTime? apply_date { get; set; }
-        //public long? is_process { get; set; }
     }
 }
