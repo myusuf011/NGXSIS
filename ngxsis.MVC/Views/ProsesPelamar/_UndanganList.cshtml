@@ -30,7 +30,7 @@
             {
                 url: '@Url.Action("Delete","ProsesPelamar")',
                 type: 'post',
-                data: { id: $(this).data("container"), bioId: bioId, type: 0 },
+                data: { id: $(this).data("container"), bioId: bioId, type: 0, userId: $("#item_UserId").val() },
                 success: function (result)
                 {
                     if (result.success)

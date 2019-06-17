@@ -33,7 +33,13 @@ namespace ngxsis.DataModel
         public long? schedule_type_id { get; set; }
 
         [Column(TypeName = "date")]
-        public DateTime invitation_date { get; set; }
+        public DateTime? invitation_date { get; set; }
+
+        [StringLength(20)]
+        public string invitation_code { get; set; }
+
+        [StringLength(10)]
+        public string time { get; set; }
 
         public long? ro { get; set; }
 

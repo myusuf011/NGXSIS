@@ -1,6 +1,6 @@
 ﻿@model ngxsis.ViewModel.UserViewModel
 
-@using (Html.BeginForm("Form", "UserRole", FormMethod.Post, new { id = "form-update", name = "form-update" }))
+@using(Html.BeginForm("Form","UserRole",FormMethod.Post,new { id = "form-update",name = "form-update" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(Model => Model.Id)
@@ -9,11 +9,11 @@
                 new { Value = Session["userID"] })
 
 
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="margin:1%;margin-top:0.1%">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                <div class="input-group" style="width:80%;margin-bottom:0px;">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin:2%;margin-bottom:0px;">
+        @Html.ValidationSummary(true,"",new { @class = "text-danger" })
+        <div class="row" style="margin-bottom:0px;padding-bottom:0px;">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"style="margin-bottom:0px;">
+                <div class="input-group" style="width:100%;">
                     <span class="input-group-btn">
                         <button class="btn btn-pp btn-search" style="height:45px;border-top-left-radius:7px;border-bottom-left-radius:7px;" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                     </span>
@@ -29,44 +29,44 @@
         </div>
 
         <div class="container" style="padding:0px;">
-            <hr style="margin-left:-15px;margin-right:0px;margin-bottom:-3px; border-bottom:4px solid #000080;width:100%;" />
+            <hr style="margin-left:-15px;margin-right:0px;margin-bottom:-3px; margin-top:5px;border-bottom:4px solid #000080;width:100%;" />
             <div class="row" style="color: #000080;">
-                <div class="col-lg-7  col-md-7 col-sm-7 col-xs-7">
+                <div class="col-lg-7 col-md-7 col-sm-7 colxs-7">
                     <div class="row" style="margin-left:-30px;margin-top:10px;">
-                        @Html.LabelFor(model => model.FullName, htmlAttributes: new { @class = "control-label col-md-12 pull-left" })
+                        @Html.LabelFor(model => model.FullName,htmlAttributes: new { @class = "control-label col-md-12 pull-left" })
                     </div>
                     <div class="row ">
-                        @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
-                        @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.FullName,new { htmlAttributes = new { @class = "form-control",@readonly = "readonly" } })
+                        @Html.ValidationMessageFor(model => model.FullName,"",new { @class = "text-danger" })
                     </div>
 
                     <div class="row" style="margin-left:-30px;margin-top:10px;">
-                        @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-12 pull-left" })
+                        @Html.LabelFor(model => model.Email,htmlAttributes: new { @class = "control-label col-md-12 pull-left" })
                     </div>
                     <div class="row">
-                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.Email,new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email,"",new { @class = "text-danger" })
                     </div>
 
                     <div class="row " style="margin-top:10px;">
-                        <div class="col-lg-6  col-md-8 col-sm-8 col-xs-8" style="padding-right:5px;padding-left:0px;">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-right:5px;padding-left:0px;">
                             <div class="row">
-                                @Html.LabelFor(model => model.Abpwd, htmlAttributes: new { @class = "control-label col-md-12 pull-left" })
+                                @Html.LabelFor(model => model.Abpwd,htmlAttributes: new { @class = "control-label col-md-12 pull-left" })
                             </div>
-                            @Html.EditorFor(model => model.Abpwd, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Abpwd, "", new { @class = "text-danger" })
-                            <p class="text-danger pass-val" hidden="hidden">Sandi tidak boleh kosong!</p>
+                            @Html.EditorFor(model => model.Abpwd,new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Abpwd,"",new { @class = "text-danger" })
+
                         </div>
-                        <div class="col-lg-6  col-md-6 col-sm-6 col-xs-6" style="padding-right:0px;padding-left:5px;">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-right:0px;padding-left:5px;">
                             <div class="row">
-                                @Html.LabelFor(model => model.ConfirmPwd, htmlAttributes: new { @class = "control-label col-md-12 pull-left" })
+                                @Html.LabelFor(model => model.ConfirmPwd,htmlAttributes: new { @class = "control-label col-md-12 pull-left" })
                             </div>
-                            @Html.EditorFor(model => model.ConfirmPwd, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.ConfirmPwd, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.ConfirmPwd,new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ConfirmPwd,"",new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4  col-md-4 col-sm-5 col-xs-5">
+                <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                     @* panel list role disini *@
                     <div class="panel panel-blue">
                         <div class="panel-heading">
@@ -83,13 +83,13 @@
             </div>
             <hr style="margin-left:-15px;margin-right:0px;margin-top:30px;margin-bottom:15px; border-bottom:4px solid #000080;width:100%;" />
             <div class="row">
-                <div class="col-lg-6 pull-left">
+                <div class="col-lg-6  col-md-6 col-sm-6 col-xs-6 pull-left">
                     <button type="button" class="btn btn-lg btn-danger btn-delete"><span class="glyphicon glyphicon-trash"></span></button>
                 </div>
-                <div class="col-lg-6 pull-right">
+                <div class="col-lg-6  col-md-6 col-sm-6 col-xs-6 pull-right" style="margin-bottom:15px;">
                     <div class="btn-group pull-right" style="margin-right:15px;">
                         <button type="button" class="btn btn-warning btn-lg btn-120px btn-batal"><b>Batal</b></button>
-                        <button type="submit" class="btn btn-pp btn-lg btn-120px"><b>Simpan</b></button>
+                        <button type="button" class="btn btn-pp btn-lg btn-120px" onclick="simpan();"><b>Simpan</b></button>
 
                     </div>
                 </div>
@@ -116,36 +116,51 @@
 @Scripts.Render("~/bundles/jqueryval")
 
 <script type="text/javascript">
-            $(document).ready(function () {
-                $("#txt-search").val(search);
-                if (addrbookId == 0) {
-                    //$(".username").attr('hidden', 'hidden');
-                    //$(".pass").removeAttr('hidden');
-                    $(".username").remove();
-                    $(".btn-delete").attr("disabled", "disabled");
-                } else {
-                    //$(".pass").attr('hidden', 'hidden');
-                    //$(".username").removeAttr('hidden');
-                    $(".pass").remove();
-                    $(".btn-delete").removeAttr("disabled");
+    var submited;
+    $(document).ready(function () {
+        $("#txt-search").val(search);
+        $("#Id").val(addrbookId);
+        $("#BiodataId").val(bioId);
+        if (addrbookId == 0) {
+            //$(".username").attr('hidden', 'hidden');
+            //$(".pass").removeAttr('hidden');
+            $(".btn-delete").attr("disabled", "disabled");
+
+            $("#Abpwd").removeAttr("disabled");
+            $("#ConfirmPwd").removeAttr("disabled");
+
+            $("#Abpwd").attr("required", "required");
+            $("#ConfirmPwd").attr("required", "required");
+        } else {
+            //$(".pass").attr('hidden', 'hidden');
+            //$(".username").removeAttr('hidden');
+            $(".btn-delete").removeAttr("disabled");
+
+            $("#Abpwd").attr("disabled", "disabled");
+            $("#ConfirmPwd").attr("disabled", "disabled");
+
+            $("#Abpwd").removeAttr("required");
+            $("#ConfirmPwd").removeAttr("required");
+        }
+        GetRole();
+    });
+    ////
+    function GetRole() {
+        $.ajax(
+            {
+                url: '@Url.Action("RoleList","UserRole")',
+                type: 'get',
+                data: { addrbookId: addrbookId },
+                success: function (result) {
+                    $("#data-role").html(result);
                 }
-                GetRole();
             });
-            ////
-            function GetRole() {
-                $.ajax(
-                    {
-                        url: '@Url.Action("RoleList","UserRole")',
-                        type: 'get',
-                        data: { addrbookId: addrbookId },
-                        success: function (result) {
-                            $("#data-role").html(result);
-                        }
-                    });
-            }
-            ////
-            function OpenDropDown() {
-                $.ajax(
+    }
+    ////
+    function OpenDropDown() {
+        search = $("#txt-search").val();
+        if (search.length > 2) {
+            $.ajax(
                     {
                         url: '@Url.Action("BioBySearch","UserRole")',
                         type: 'get',
@@ -155,109 +170,113 @@
                             $("#bio-List").slideDown();
                         }
                     });
+        } else
+        {
+            $(".dropdown-menu").hide();
+        }
+    }
+    ////
+    $(document).click(function () {
+        $(".dropdown-menu").hide();
+    });
+
+    var data;
+    var roleCnt;
+    var roleList = [];
+
+    function UpdateData() {
+        roleCnt = 0;
+
+        $("#data-role").find(".roleList").find(".row").find('input[type="checkbox"]').each(function (item) {
+
+            if ($(this).prop("checked") == true) {
+                roleCnt = roleCnt + 1;
+                var Role = { RoleId: $(this).val() }
+                roleList.push(Role);
             }
-            ////
-            $(document).click(function () {
-                $(".dropdown-menu").hide();
+        });
+    }
+    var submited = true;
+    function simpan() {
+        $("#form-update").valid();
+        setTimeout(validateForm, 100);
+    }
+    function validateForm() {
+
+        $("#form-update").validate();
+        if ($("#form-update").valid()) {
+            //console.log("valid" + $("#form-update").valid());
+            submited = false;
+        } else {
+            //console.log("invalid")
+            submited = true;
+        }
+        UpdateData();
+        if (roleCnt > 0) {
+            var data = { UserRoleList: roleList, };
+            var user = JSON.parse(JSON.stringify($("#form-update").serializeArray()));
+            $(user).each(function (Index, Obj) {
+                data[Obj.name] = Obj.value;
             });
+            $(".role-val").attr("hidden", "hidden")
+        }
 
-            var data;
-            var roleCnt;
-            var roleList = [];
-            function UpdateData() {
-                roleCnt = 0;
-                $("#data-role").find(".roleList").find(".row").find('input[type="checkbox"]').each(function (item) {
 
-                    if ($(this).prop("checked") == true) {
-                        roleCnt = roleCnt + 1;
-                        var Role = { RoleId: $(this).val() }
-                        roleList.push(Role);
+        if (submited || roleCnt == 0) {
+            //console.log("submited true");
+        } else {
+            $.ajax(
+            {
+                url: '@Url.Action("Form","UserRole")',
+                type: 'post',
+                data: { model: data },
+                success: function (result) {
+                    if (result.success) {
+                        alert("Pengguna berhasil disimpan");
+                        //addrbookId = result.entity.Id;
+                        bioId = 0;
+                        addrbookId = 0;
+                        search = "";
+                        submited = true;
+                        GetForm();
+                    }
+                }
+            });
+        }
+        if (roleCnt == 0) {
+            //alert("Pilih minimal 1 role");
+            $(".role-val").removeAttr("hidden")
+        }
+
+        return false;
+    }
+
+
+
+
+    $(".btn-delete").click(function () {
+            $.ajax(
+                {
+                    url: '@Url.Action("Delete", "UserRole")',
+                    type: 'get',
+                    data: { bioId: bioId },
+                    success: function (result) {
+                        $(".modal-delete .modal-title").html("Hapus Pengguna ?");
+                        $(".modal-delete .modal-body").html(result);
+                        $(".modal-delete").modal("show");
                     }
                 });
-            }
 
+    });
+    ////
+    $(".btn-batal").click(function () {
+        location.href = "/UserRole";
+    });
 
-            $("#form-update").submit(function () {
-                var pwd = 1;
-                var i = $("#Id").val();
-                var p = $("#Abpwd").val();
-                if ((i== 0 || i==null )&&( p == 0||p==null))
-                {
-                    pwd = 0;
-                }
-                console.log(pwd);
-                console.log($("#Id").val());
-                console.log($("#Abpwd").val());
-                
-                $("#form-update").validate();
-                    UpdateData();
-                    if (roleCnt > 0 && pwd==1)
-                    {
-                        var data = { UserRoleList: roleList, };
-                        var user = JSON.parse(JSON.stringify($(this).serializeArray()));
-                        $(user).each(function (Index, Obj) {
-                            data[Obj.name] = Obj.value;
-                        });
-                        $(".role-val").attr("hidden", "hidden")
-                        $(".pass-val").attr("hidden", "hidden")
-                    }
-
-                    if ($("#form-update").valid() && roleCnt > 0 && pwd == 1) {
-                        //console.log(data);
-                        $.ajax(
-                            {
-                                url: this.action,
-                                type: this.method,
-                                data: { model: data },
-                                success: function (result) {
-                                    if (result.success) {
-                                        alert("Pengguna berhasil disimpan");
-                                        addrbookId = result.entity.Id;
-                                        GetForm();
-                                    }
-                                }
-                            });
-
-                    } else { }
-                    if (pwd != 1) {
-                        $(".pass-val").removeAttr("hidden")
-                    }
-                if (roleCnt == 0) {
-                    //alert("Pilih minimal 1 role");
-                    $(".role-val").removeAttr("hidden")
-                }
-                return false;
-
-            });
-
-
-            $(".btn-delete").click(function () {
-                $("#form-update").validate().settings.ignore="#Username";
-                if ($("#form-update").valid()) {
-
-                $.ajax(
-                    {
-                        url: '@Url.Action("Delete", "UserRole")',
-                        type: 'get',
-                        data: { bioId: bioId },
-                        success: function (result) {
-                            $(".modal-delete .modal-title").html("Hapus Pengguna ?");
-                            $(".modal-delete .modal-body").html(result);
-                            $(".modal-delete").modal("show");
-                        }
-                    });
-                }
-
-            });
-            ////
-            $(".btn-batal").click(function () {
-                location.href = "/";
-            });
-
-            $(".btn-clear").click(function () {
-                search = "";
-                bioId = 0;
-                addrbookId = 0;
-                GetForm();
-            });
+    $(".btn-clear").click(function () {
+        search = "";
+        bioId = 0;
+        addrbookId = 0;
+        GetForm();
+    });
 </script>

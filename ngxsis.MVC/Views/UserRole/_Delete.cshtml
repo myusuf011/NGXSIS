@@ -39,7 +39,12 @@
                     if (result.success) {
                         alert("Pengguna berhasil dihapus");
                         $(".modal-delete").modal("hide");
-                        location.reload();
+                        $(".modal-backdrop").remove();
+                        search = "";
+                        bioId = 0;
+                        addrbookId = 0;
+                        GetForm();
+                        //location.reload();
 
                     } else {
                         alert("Proses penghapusan gagal\n" + result.message);

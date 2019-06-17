@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<ngxsis.ViewModel.ProsesPelamarViewModel>
 
+<div class="container" style="margin-top:0px;">
 
 <div class="row" style="margin-bottom:5px;">
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-bottom:0px;padding-bottom:0px;">
@@ -23,11 +24,11 @@
                 </button>
                 <ul class="dropdown-menu btn-link-a">
                     <li class="dropdown-header dh">Row Per Page</li>
-                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="1">10</a></li>
-                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="2">20</a></li>
-                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="3">30</a></li>
-                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="4">40</a></li>
-                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="5">50</a></li>
+                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="10">10</a></li>
+                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="20">20</a></li>
+                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="30">30</a></li>
+                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="40">40</a></li>
+                    <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="50">50</a></li>
                 </ul>
             </div>
         </div>
@@ -39,6 +40,7 @@
     border-bottom-color: #000080;
     margin-bottom:10px;
     margin-top:-5px" />
+    <input data-val="true" data-val-number="The field UserId must be a number." data-val-required="The UserId field is required." id="item_UserId" name="item_UserId" type="hidden" value="@Session["userID"]">
 
 <table class="table table-striped" id="my-table">
     @*<thead style="border-top:none;">
@@ -52,25 +54,26 @@
     <tbody style="margin-top:20px;">
         @foreach (var item in Model)
         {
-            <tr>
+            <tr style="font-size:small;">
                 <td class="text-left">
-                    <div>
+                    <div style="margin-right:30px;">
+                        
                         @Html.DisplayFor(modelItem => item.Fullname)
 
                     </div>
                 </td>
                 <td class="text-left">
                     <div>
-                        @item.SchoolName / @item.Major
+                        @Html.DisplayFor(modelItem => item.SchoolName) / @Html.DisplayFor(modelItem => item.Major)
 
                     </div>
                 </td>
-                <td style="text-align:right;">
+                <td style="text-align:right;margin-left:0px;width:40px;">
                     
                             @{
                                 if (@item.IsProcess == true)
                                 {
-                                    <button type="button" style="border-radius:0px;" data-container="@item.Id" data-html="1" class="btn btn-primary btn-pp btn-90px btn-prodet">
+                                    <button type="button" data-container="@item.Id" data-html="1" class="btn btn-primary btn-pp btn-90px btn-prodet">
                                         <b>
                                             Detail
                                         </b>
@@ -78,7 +81,7 @@
                                 }
                                 else
                                 {
-                                    <button type="button" style="border-radius:0px;" data-container="@item.Id" data-html="0" class="btn btn-primary btn-pp btn-90px btn-prodet">
+                                    <button type="button" data-container="@item.Id" data-html="0" class="btn btn-primary btn-pp btn-90px btn-prodet">
                                         <b>
                                             Proses
                                         </b>
@@ -91,17 +94,23 @@
             </tr>
     }
     </tbody>
-    <tfoot>
+    @*<tfoot>
         <tr>
             <td></td>
-            <td></td>
             <td style="text-align:right;">
-                <button type="button" class="btn btn-primary btn-sm btn-pill" onclick="min()"><b>&#8592; Previous</b></button>
-                <button type="button" class="btn btn-primary btn-sm btn-pill" onclick="plus()"><b>Next &#8594;</b></button>
+            </td>
+            <td style="text-align:right;">
+                
             </td>
         </tr>
-    </tfoot>
+    </tfoot>*@
 </table>
+    <div class="row"style="text-align:right;margin-bottom:15px;margin-right:5px;margin-top:-10px;">
+                <button type="button" class="btn btn-primary btn-sm btn-pill" onclick="min()"><b>&#8592; Previous</b></button>
+                <button type="button" class="btn btn-primary btn-sm btn-pill" onclick="plus()"><b>Next &#8594;</b></button>
+
+    </div>
+</div>
 
 <script type="text/javascript">
     /*ROW PER PAGE*/
@@ -152,7 +161,7 @@
             {
                 url: '@Url.Action("Edit", "ProsesPelamar")',
                 type: 'post',
-                data: { bioId: $(this).attr("data-container") },
+                data: { bioId: $(this).attr("data-container"), userId: $("#item_UserId").val() },
                 success: function (result) {
                     GetList();
                     sub == 0;
@@ -164,7 +173,7 @@
             {
                 url: '@Url.Action("Detail", "ProsesPelamar")',
                 type: 'get',
-                data: { bioId: $(this).attr("data-container") },
+                data: { bioId: $(this).attr("data-container"), userId: $("#item_UserId").val() },
                 success: function (result) {
                     $(".modal-white .modal-title").html("<b>Detail Proses</b>");
                     $(".modal-white .modal-body").html(result);

@@ -3,10 +3,10 @@
 <div class="roleList" style="width:100%;">
 @foreach (var item in Model)
 {
-    <div class="row" style="padding-bottom:0px;padding-top:0px;margin-bottom:0px;">
-        <div class="checkbox" style="vertical-align:middle;">
-            <label>
-                <input type="checkbox" value="@item.RoleId">
+    <div class="row" style="padding-bottom:0px;padding-top:0px;margin-bottom:0px;margin-right:5px;">
+        <div class="checkbox" style="vertical-align:middle;padding-bottom:0px;padding-top:0px;margin-bottom:3px;margin-top:3px;">
+            <label style="font-size:12px;margin-bottom:0px;">
+                <input title="@item.RoleName" type="checkbox" value="@item.RoleId">
                 <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
                 @item.RoleName
             </label>

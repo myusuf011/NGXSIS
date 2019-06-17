@@ -15,6 +15,7 @@ namespace ngxsis.MVC.Controllers
         {
             return View();
         }
+        
         public ActionResult RoleList(string search = "", int desc=0, int page=0, int dataPerPage=10)
         {
             List<RoleViewModel> result = RoleRepo.BySearch(search, desc, page, dataPerPage);

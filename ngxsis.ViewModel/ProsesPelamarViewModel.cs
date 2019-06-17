@@ -13,6 +13,7 @@ namespace ngxsis.ViewModel
         public string Fullname { get; set; }
         public string SchoolName { get; set; }
         public string Major { get; set; }
+        public long UserId { get; set; }
         public bool? IsProcess { get; set; }
         public bool? IsComplete { get; set; }
     }
@@ -23,6 +24,8 @@ namespace ngxsis.ViewModel
         public long? ScheduleTypeId { get; set; }
         [Display(Name = "Jenis Jadwal")]
         public string ScheduleTypeName { get; set; }
+
+        public DateTime? InvitationDate { get; set; }
         public string InvitationDateStr { get; set; }
         public string InvitationTime { get; set; }
         public long? RoId { get; set; }
@@ -42,6 +45,7 @@ namespace ngxsis.ViewModel
         public long? ScheduleTypeId { get; set; }
         [Display(Name = "Jenis Undangan")]
         public string ScheduleTypeName { get; set; }
+        public DateTime? ScheduleDate { get; set; }
         public string ScheduleDateStr { get; set; }
         public string ScheduleTime { get; set; }
         public long? RoId { get; set; }
