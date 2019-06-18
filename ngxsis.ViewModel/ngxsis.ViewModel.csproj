@@ -88,6 +88,7 @@
     <Compile Include="BiodataViewModel.cs" />
     <Compile Include="KeahlianViewModel.cs" />
     <Compile Include="LainLainViewModel.cs" />
+    <Compile Include="KeluargaViewModel.cs" />
     <Compile Include="LoginViewModel.cs" />
     <Compile Include="PelamarViewModel.cs" />
     <Compile Include="OrganisasiViewModel.cs" />

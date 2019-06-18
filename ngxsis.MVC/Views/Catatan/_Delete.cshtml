@@ -1,0 +1,57 @@
+﻿@model ngxsis.ViewModel.CatatanViewModel
+
+
+<div>
+    <dl class="dl-horizontal">
+        <dt>
+            <span class="glyphicon glyphicon-trash" aria-hidden="true" style="font-size:100px; color:Black; text-align:center"></span>
+        </dt>
+        <dd>
+
+            <font color="red"> <font size="4"> Anda yakin ingin menghapus Catatan<b> @Html.DisplayFor(model => model.title)? </b></font></font>
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm("Delete", "Catatan", FormMethod.Post, new { id = "form-delete", name = "form-delete" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.id)
+        @Html.HiddenFor(model => model.title)
+        @Html.HiddenFor(model => model.user_id, new { Value = Session["userID"] })
+        <div class="row">
+            <div class="form-actions no-color">
+                <div class="col-md-offset-9">
+                    <div class="btn-group" role="group" aria-label="...">
+                        <input type="button" value="Tidak" data-dismiss="modal" class="btn btn-warning" />
+                        <input type="submit" value="Ya" class="btn btn-danger" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@Scripts.Render("~/bundles/jqueryval")
+@section Scripts {
+}
+
+<script type="text/javascript">
+    //di delete
+    $("#form-delete").submit(function () {
+        $.ajax({
+            url: this.action,
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.success) {
+                    alert("Data Berhasil dihapus");
+                    $(".modal-delete").modal("hide");
+                    GetCatatan();
+                } else {
+                    alert("error" + result.message);
+                }
+            }
+        });
+        return false;
+    });
+</script>

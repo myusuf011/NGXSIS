@@ -1,13 +1,28 @@
 ﻿@model IEnumerable<ngxsis.ViewModel.SertifikasiViewModel>
-<br/>
-<table class="table table-striped">
-    <thead>
+<link rel="stylesheet" href="~/content/sertifikasi.css" />
+<h2>
+    <font color="#000080">
+        <b>Sertifikasi</b>
+        <button type="button" class="btn btn-primary btn-create-a" title="Create New" id="btn-create-new">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+
+        </button>
+    </font>
+</h2>
+<div id="data-list">
+    <!--data-list  harus sama dg yg di javascript jquery--->
+
+</div>
+<!--<input id="btn-create-new" type="button" class="btn btn-default" btn-lg" value="klik" />-->
+
+<table class="table table-striped" style="border-bottom: 2px solid #000080; color: #000080; ">
+    <thead style="border-bottom: 5px solid #000080; border-top :5px solid #000080;">
         <tr>
             <th>
-               NAMA SERTIFIKASI
+                NAMA SERTIFIKASI
             </th>
             <th>
-               PENERBIT
+                PENERBIT
             </th>
 
             <th>
@@ -16,14 +31,14 @@
             <th>
                 #
             </th>
-        
+
         </tr>
 
     </thead>
     <tbody>
 
         @foreach (var item in Model)
-        {  
+        {
 
             <tr>
                 <td>
@@ -69,9 +84,10 @@
             //
 
             success: function (result) {
-                $(".modal-utama .modal-title").html("Edit Sertifikasi");
-                $(".modal-utama .modal-body").html(result);
-                $(".modal-utama").modal("show");
+                $(".modal-create-sertifikasi .modal-title").html("Edit Sertifikasi");
+                $(".modal-create-sertifikasi .modal-body").html(result);
+                $(".modal-pelamar").modal("hide");
+                $(".modal-create-sertifikasi").modal("show");
             }
         });
 
@@ -96,4 +112,32 @@
     });
     //data id di javascript buat button kalau di a href pakai data-container
 
+
+    $("#btn-create-new").click(function () {
+        $.ajax({
+            url: '@Url.Action("Create", "Sertifikasi")',
+            type: 'get',
+            success: function (result) {
+                $(".modal-create-sertifikasi .modal-title").html("Tambah Sertifikasi");
+                $(".modal-create-sertifikasi .modal-body").html(result);
+                $(".modal-pelamar").modal("hide");
+                $(".modal-create-sertifikasi").modal("show");
+            }
+        });
+
+    });
+
+
+
+
+
+
+
+
+
+
 </script>
+
+
+
+

@@ -7,7 +7,7 @@
         </dt>
         <dd>
 
-            <font color="red"> <font size="4"> Anda yakin ingin menghapus Pendidikan @Html.DisplayFor(model => model.school_name)? </font></font>
+            <font color="red"> <font size="4"> Anda yakin ingin menghapus Pendidikan <b>@Html.DisplayFor(model => model.school_name)?</b> </font></font>
         </dd>
     </dl>
 
@@ -16,6 +16,7 @@
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.id)
         @Html.HiddenFor(model => model.school_name)
+        @Html.HiddenFor(model => model.user_id, new { Value = Session["userID"] })
         <div class="row">
             <div class="form-actions no-color">
                 <div class="col-md-offset-9">
@@ -42,9 +43,9 @@
             data: $(this).serialize(),
             success: function (result) {
                 if (result.success) {
-                    alert("hapus Sukses Full Name: " + result.entity.school_name);
+                    alert("Data Berhasil di Hapus");
                     $(".modal-delete").modal("hide");
-                    GetList();
+                    GetPendidikan();
                 } else {
                     alert("error" + result.message);
                 }

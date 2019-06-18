@@ -1,40 +1,58 @@
 ﻿@model IEnumerable<ngxsis.ViewModel.PendidikanViewModel>
+<link rel="stylesheet" href="~/content/sertifikasi.css" />
+<h2>
+    <font color="#000080">
+        <b>Pendidikan</b>
+        <button type="button" class="btn btn-primary btn-create-a" title="Create New" id="btn-create-new">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 
-<table class="table">
-    <thead>
+        </button>
+    </font>
+</h2>
+<div id="data-list">
+    <!--data-list  harus sama dg yg di javascript jquery--->
+
+</div>
+
+
+
+@*<table class="table table-striped" style=" font-size:small; font-weight:700; color:#000080; font-family:Arial;">
+    <thead>*@
+<table class="table table-striped" style="border-bottom: 2px solid #000080; color: #000080; ">
+    <thead style="border-bottom: 5px solid #000080; border-top :5px solid #000080;">
         <tr>
-           
+
             <th>
-               SEKOLAH/INSTANSI
+                SEKOLAH/INSTANSI
             </th>
             <th>
-             JENJANG
+                JENJANG
             </th>
             <th>
-               PERIODE
+                PERIODE
             </th>
             <th>
-               JURUSAN
+                JURUSAN
             </th>
             <th>
-               IPK
+                IPK
             </th>
             <th>
                 #
             </th>
-           
+
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
             <tr>
-                
+
                 <td>
                     @Html.DisplayFor(modelItem => item.school_name)
                 </td>
-            
-      
+
+
                 <td>
                     @Html.DisplayFor(modelItem => item.educationName)
                 </td>
@@ -47,7 +65,7 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.gpa)
                 </td>
-                
+
                 <td>
                     <!-- Split button -->
                     <div class="btn-group">
@@ -73,6 +91,7 @@
 
 
 
+
     $(".btn-edit").click(function () {
         $.ajax({
             url: '@Url.Action("Edit","Pendidikan")',
@@ -81,9 +100,10 @@
             //
 
             success: function (result) {
-                $(".modal-utama .modal-title").html("Edit Pendidikan");
-                $(".modal-utama .modal-body").html(result);
-                $(".modal-utama").modal("show");
+                $(".modal-create-sertifikasi .modal-title").html("Edit Pendidikan");
+                $(".modal-create-sertifikasi .modal-body").html(result);
+                $(".modal-pelamar").modal("hide");
+                $(".modal-create-sertifikasi").modal("show");
             }
         });
 
@@ -99,7 +119,7 @@
             data: { id: $(this).attr("data-container") },
 
             success: function (result) {
-                $(".modal-delete .modal-title").html("Hapus Pendidikan?");
+                $(".modal-delete .modal-title").html("Hapus Pendidikan");
                 $(".modal-delete .modal-body").html(result);
                 $(".modal-delete").modal("show");
             }
@@ -107,5 +127,21 @@
 
     });
     //data id di javascript buat button kalau di a href pakai data-container
+
+
+    $("#btn-create-new").click(function () {
+        $.ajax({
+            url: '@Url.Action("Create", "Pendidikan")',
+            type: 'get',
+            success: function (result) {
+                $(".modal-create-sertifikasi .modal-title").html("Tambah Pendidikan");
+                $(".modal-create-sertifikasi .modal-body").html(result);
+                $(".modal-pelamar").modal("hide");
+                $(".modal-create-sertifikasi").modal("show");
+            }
+        });
+
+    });
+
 
 </script>

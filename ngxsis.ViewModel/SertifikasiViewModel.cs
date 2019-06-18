@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
+using System.Web.Mvc;
 
 namespace ngxsis.ViewModel
 {
@@ -31,15 +33,19 @@ namespace ngxsis.ViewModel
         public string valid_start_month { get; set; }
         [Display(Name ="  ")]
         [StringLength(10)]
+        [Remote("IsBerlakuYearValid", "Sertifikasi", AdditionalFields = "until_month,valid_start_month,valid_start_year ", ErrorMessage = "Berlaku sampai tidak boleh kurang dari berlaku mulai")]
         public string until_year { get; set; }
-
+      
         [Display(Name = "Berlaku Sampai")]
         [StringLength(10)]
+       
         public string until_month { get; set; }
         [Display(Name ="Catatan")]
         [StringLength(1000)]
+        [DataType(DataType.MultilineText)]
         public string notes { get; set; }
         public long biodata_id { get; set; }
+        public long user_id { get; set; }
 
 
 

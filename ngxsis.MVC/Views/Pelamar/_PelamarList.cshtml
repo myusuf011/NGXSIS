@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<ngxsis.ViewModel.PelamarViewModel>
+  
 
 @{
     if (Session["userID"] == null)
@@ -253,7 +254,6 @@
     </tfoot>
 </table>
 
-
 <script type="text/javascript">
     $(".btn-search").click(function () {
         console.log($("#txt-search").val());
@@ -293,6 +293,10 @@
                     $(".modal-title").html("Detail Pelamar");
                     $(".modal-body").html(result);
                     $(".modal-main").modal("show");
+                      $("#datepicker").datepicker({
+                        dateFormat: "yy-mm-dd"
+                    });        
+                
                 }
             });
     });

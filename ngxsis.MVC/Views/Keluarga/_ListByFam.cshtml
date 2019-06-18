@@ -1,0 +1,13 @@
+﻿@model IEnumerable<ngxsis.ViewModel.KeluargaViewModel>
+
+
+
+<option value="0">- Pilih -</option>
+@foreach (var item in Model)
+{
+    <option value="@item.id">@item.name</option>
+}
+
+<!--karena variant yg mau disesuaikan dengan categori makanya bikin listBy cat di variantcontroller
+-->
+<!--item.Id valuenya, item.Name yang ditampilkan-->

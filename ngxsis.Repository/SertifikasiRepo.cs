@@ -38,6 +38,37 @@ namespace ngxsis.Repository
             return result;
         }
 
+
+        public static List<SertifikasiViewModel> ByBiodataId(int biodata_id)
+        {
+            //KeahlianViewModel result = new KeahlianViewModel();
+            List<SertifikasiViewModel> result = new List<SertifikasiViewModel>();
+            using (var db = new ngxsisContext())
+            {
+                result = (from c in db.x_sertifikasi
+                          orderby c.modified_on descending
+                          where c.biodata_id == biodata_id && c.is_delete == false  //db sertifikasi nyambung ke db biodata //biodata_id sama kyk yg int biodata_id
+                          select new SertifikasiViewModel
+                          { //linkq
+                              id = c.id,
+                              certificate_name = c.certificate_name,
+                              publisher = c.publisher,
+
+                              valid_start_year = c.valid_start_year,
+                              valid_start_month = c.valid_start_month,
+
+                              until_year = c.until_year,
+                              until_month = c.until_month,
+                              notes = c.notes
+                          }).ToList();
+                if (result == null)
+                {
+                    result = new List<SertifikasiViewModel>();
+                }
+            }
+            return result; //!= null ? result : new KeahlianViewModel();
+
+        }
         //get by Id dipakai di edit dan delete
         public static SertifikasiViewModel ById(int id)
         {
@@ -80,17 +111,15 @@ namespace ngxsis.Repository
                         x_sertifikasi sertifikasi = new x_sertifikasi();
                         sertifikasi.certificate_name = entity.certificate_name;
                         sertifikasi.publisher = entity.publisher;
-
                         sertifikasi.valid_start_year = entity.valid_start_year;
                         sertifikasi.valid_start_month = entity.valid_start_month;
-
                         sertifikasi.until_year = entity.until_year;
                         sertifikasi.until_month = entity.until_month;
-                        sertifikasi.created_by = 335887;
+                        sertifikasi.created_by = entity.user_id;                      
                         sertifikasi.created_on = DateTime.Now;
                         sertifikasi.modified_on = DateTime.Now;
                         sertifikasi.is_delete = false;
-                        sertifikasi.biodata_id = 1;
+                        sertifikasi.biodata_id = entity.biodata_id;
                         sertifikasi.notes = entity.notes;
 
 
@@ -117,11 +146,13 @@ namespace ngxsis.Repository
 
                             sertifikasi.valid_start_year = entity.valid_start_year;
                             sertifikasi.valid_start_month = entity.valid_start_month;
+                  
+                            sertifikasi.modified_by = entity.user_id;
                             sertifikasi.modified_on = DateTime.Now;
                             sertifikasi.until_year = entity.until_year;
                             sertifikasi.until_month = entity.until_month;
                             sertifikasi.notes = entity.notes;
-
+                            sertifikasi.biodata_id = entity.biodata_id;
                             db.SaveChanges();
                             result.Entity = entity;
                         }
@@ -163,7 +194,11 @@ namespace ngxsis.Repository
                         .FirstOrDefault();
                     if (sertifikasi != null)
                     {
-                        db.x_sertifikasi.Remove(sertifikasi);
+                        //db.x_sertifikasi.Remove(sertifikasi);
+                        sertifikasi.is_delete = true;
+                        sertifikasi.deleted_on = DateTime.Now;
+                   
+                        sertifikasi.deleted_by = entity.user_id;
                         db.SaveChanges();
                         result.Entity = entity;
                     }
@@ -184,8 +219,30 @@ namespace ngxsis.Repository
             }
             return result;
 
+
+        }
+        public static bool ValidationBerlakuYear(string valid_start_year, string valid_start_month, string until_year, string until_month)
+        {
+            try
+            {
+                if (int.Parse(until_year) < int.Parse(valid_start_year) || (int.Parse(until_year) == int.Parse(valid_start_year) && int.Parse(until_month) < int.Parse(valid_start_month)))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                return false;
+            }
         }
     }
-
 }
+
+
 

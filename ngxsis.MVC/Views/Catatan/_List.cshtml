@@ -1,0 +1,125 @@
+﻿@model IEnumerable<ngxsis.ViewModel.CatatanViewModel>
+
+<link rel="stylesheet" href="~/content/sertifikasi.css" />
+<h2>
+    <font color="#000080">
+        <b>Catatan</b>
+        <button type="button" class="btn btn-primary btn-create-a" title="Create New" id="btn-create-new">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+
+        </button>
+    </font>
+</h2>
+<div id="data-list">
+    <!--data-list  harus sama dg yg di javascript jquery--->
+
+</div>
+
+<table class="table table-striped" style="border-bottom: 2px solid #000080; color: #000080; ">
+    <thead style="border-bottom: 5px solid #000080; border-top :5px solid #000080;">
+        <tr>
+            <th>
+                JUDUL CATATAN
+            </th>
+            <th>
+                JENIS CATATAN
+            </th>
+            <th>
+                DIBUAT OLEH
+            </th>
+            <th>
+                #
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.note_type_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.biodata_name)
+                </td>
+                <td>
+                    <!-- Split button -->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-blue">More</button>
+                        <button type="button" class="btn  dropdown-toggle btn-blue" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="caret"></span>
+                            <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" class="btn-edit" data-container="@item.id">Edit</a></li>
+                            <li><a href="#" class="btn-delete" data-container="@item.id">Delete</a></li>
+
+
+                        </ul>
+                    </div>
+
+                </td>
+            </tr>
+        }
+
+</table>
+<script type="text/javascript">
+
+
+
+    $(".btn-edit").click(function () {
+        $.ajax({
+            url: '@Url.Action("Edit","Catatan")',
+            type: 'get',
+            data: { id: $(this).attr("data-container") },// attr = atribut
+            //
+
+            success: function (result) {
+                $(".modal-create-sertifikasi .modal-title").html("Edit Catatan");
+                $(".modal-create-sertifikasi .modal-body").html(result);
+                $(".modal-pelamar").modal("hide");
+                $(".modal-create-sertifikasi").modal("show");
+            }
+        });
+
+    });
+</script>
+
+
+<script type="text/javascript">
+    $(".btn-delete").click(function () {
+        $.ajax({
+            url: '@Url.Action("Delete", "Catatan")',
+            type: 'get',
+            data: { id: $(this).attr("data-container") },
+
+            success: function (result) {
+                $(".modal-delete .modal-title").html("Hapus Catatan");
+                $(".modal-delete .modal-body").html(result);
+                $(".modal-delete").modal("show");
+            }
+        });
+
+    });
+    //data id di javascript buat button kalau di a href pakai data-container
+
+    $("#btn-create-new").click(function () {
+        $.ajax({
+            url: '@Url.Action("Create", "Catatan")',
+            type: 'get',
+            success: function (result) {
+                $(".modal-create-sertifikasi .modal-title").html("Tambah Catatan");
+                $(".modal-create-sertifikasi .modal-body").html(result);
+                $(".modal-pelamar").modal("hide");
+                $(".modal-create-sertifikasi").modal("show");
+            }
+        });
+
+    });
+
+
+</script>

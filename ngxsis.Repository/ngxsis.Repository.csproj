@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessRepo.cs" />
+    <Compile Include="CatatanRepo.cs" />
     <Compile Include="DokumenRepo.cs" />
     <Compile Include="GetAll.cs" />
     <Compile Include="KeahlianRepo.cs" />

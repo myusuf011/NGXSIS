@@ -50,8 +50,8 @@ namespace ngxsis.DataModel
 
         public virtual x_education_level x_education_level { get; set; }
 
-        public virtual x_family_tree_type x_family_tree_type { get; set; }
+        public virtual x_family_relation x_family_relation { get; set; }
 
-        public virtual x_family_tree_type x_family_tree_type1 { get; set; }
+        public virtual x_family_tree_type x_family_tree_type { get; set; }
     }
 }

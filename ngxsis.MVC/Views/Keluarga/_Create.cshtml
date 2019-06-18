@@ -1,0 +1,212 @@
+﻿@model ngxsis.ViewModel.KeluargaViewModel
+
+
+@using (Html.BeginForm("Create", "Keluarga", FormMethod.Post, new { id = "form-create", name = "form-create" }))
+
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.user_id, new { Value = Session["userID"] }) //simpan sesion id
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.biodata_id)
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6"> 
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.family_tree_type_id, htmlAttributes: new { @class = "control-label", style = "font-size:12px" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(model => model.family_tree_type_id
+                       , (IEnumerable<SelectListItem>)ViewBag.KeluargaList, "-Pilih-", new { @class = "form-control", required = "required" })
+                            @Html.ValidationMessageFor(model => model.family_tree_type_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.family_relation_id, htmlAttributes: new { @class = "control-label", style = "font-size:12px" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(model => model.family_relation_id
+                       , (IEnumerable<SelectListItem>)ViewBag.Keluarga1List, "-Pilih-", new { @class = "form-control", required = "required" })
+                            @Html.ValidationMessageFor(model => model.family_relation_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label", style = "font-size:12px" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+                            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.gender, htmlAttributes: new { @class = "control-label", style = "font-size:12px" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(model => model.gender, new List<SelectListItem>
+                           {
+                                new SelectListItem { Value = "true", Text = "Pria" },
+                                new SelectListItem { Value = "false", Text = "Wanita" },
+                                },
+                                " - Pilih - ", htmlAttributes: new { @class = "form-control", id = "gender" })
+
+                            @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-3">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.dob, htmlAttributes: new { @class = "control-label", style = "font-size:12px" })
+                        </div>
+                        <div class="col-md-12">
+                            <div class='input-group date'>
+                                @Html.EditorFor(model => model.dob, new { htmlAttributes = new { @class = "form-control", id = "datepicker" } })  @*, @style = "width : 228px !important"*@
+                                @Html.ValidationMessageFor(model => model.dob, "", new { @class = "text-danger" })
+
+                                <span class="glyphicon glyphicon-calendar" style="margin-left:-25px;"></span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.education_level_id, htmlAttributes: new { @class = "control-label", style = "font-size:12px" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(model => model.education_level_id
+                       , (IEnumerable<SelectListItem>)ViewBag.Keluarga2List, "-Pilih-", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.education_level_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.job, htmlAttributes: new { @class = "control-label", style = "font-size:12px" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.job, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.job, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.notes, htmlAttributes: new { @class = "control-label", style = "font-size:12px" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.notes, new { htmlAttributes = new { @class = "form-control form-notes" } })
+                            @Html.ValidationMessageFor(model => model.notes, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="btn-group col-md-offset-9">
+                <input type="button" value="Batal" data-dismiss="modal" class="btn btn-batal" />
+                <input type="submit" value="Simpan" class="btn btn-simpan" />
+
+            </div>
+        </div>
+    </div>
+
+}
+
+
+
+@Scripts.Render("~/bundles/jqueryval")
+@section Scripts {
+}
+
+
+<script type="text/javascript">
+
+    $("#form-create").submit(function () {
+        $("#biodata_id").val(biodata_id);
+        $("#form-create").validate(); //validasi
+        if ($("#form-create").valid()) //validasi *
+        {
+            $.ajax({
+            url: this.action,
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.success) {
+                    alert("Data Berhasil Disimpan");
+                    $(".modal-create-sertifikasi").modal("hide");
+                    $(".modal-pelamar").modal("show");
+                    GetKeluarga()
+                }
+                else {
+
+                    $("#form-create").validate();
+
+                }
+            }
+        });
+    }
+        //console.log(biodata_id);
+        
+        //console.log(result.entity.certificate_name);
+        return false;
+});
+</script>
+
+
+<script type="text/javascript">
+    $("#family_tree_type_id").change(function () { //CategoryId valuenya yg ditampilkan CategoryName
+        $.ajax({
+            url: '@Url.Action("ListByFam","Keluarga")',//nyambung ke _listbycat variant
+            type: 'get',
+            data: { Id: $(this).val() },
+            success: function (result) {
+                $("#family_relation_id").html(result); //variantId valuenya yg ditampilkan variantName
+            }
+
+        });
+    });
+
+    $(".btn-batal").click(function () {
+        $(".modal-create-sertifikasi").modal("hide");
+        $(".modal-pelamar").modal("show");
+    });
+
+
+    $(".close").click(function () {
+        $(".modal-create-sertifikasi").modal("hide");
+        $(".modal-pelamar").modal("show");
+    });
+
+
+</script>

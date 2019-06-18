@@ -2,7 +2,7 @@
 
 }
 
-input,
+/*input,
 select,
 textarea {
     max-width: 100%;
@@ -15,10 +15,10 @@ textarea {
      border-color :#000080;
     border-width: 3px;
     border-style: solid;
-}
+}*/
 
 /*untuk modal keseluruhan*/
-.modal-dialog {
+/*.modal-dialog {
     right: auto;
     left: 10%;
     width: 800px;
@@ -26,21 +26,22 @@ textarea {
     padding-bottom: 30px;
     color : #000080;
 
-}
+}*/
 
 /*cara buat modal class delete*/
+/*style modal delete*/
 .modal-delete .modal-content 
 {
-    width : 500px;
-    border-color :#9c1010;
-    border-width: 3px;
+    width : 500px;  /*lebar*/
+    border-color :#9c1010; 
+    border-width: 3px; /*tebal pinggiran modal*/
     border-style: solid;
     
 }
 
 .modal-delete .modal-header
 {
-color:#FFFFFF;
+color:#FFFFFF;   /*text tulisan*/
 background-color : #9c1010;
 
     
@@ -49,13 +50,13 @@ background-color : #9c1010;
 .modal-delete .modal-dialog {
     right: auto;
     left: 10%;
-    width: 800px;
+    width: 500px;
     padding-top: 30px;
     padding-bottom: 30px;
 }
 
 
-.table thead > tr > th,
+/*.table thead > tr > th,
 .table tbody > tr > th,
 .table tfoot > tr > th,
 .table thead > tr > td,
@@ -70,10 +71,10 @@ background-color : #9c1010;
 .table thead {
   border-bottom: 5px solid #000080;
   border-top :5px solid #000080;
-}
+}*/
 
 
-
+/*tombol more segitiga*/
 .btn-blue:hover,
 .btn-blue:active,
 .btn-blue::after,
@@ -88,7 +89,7 @@ background-color : #9c1010;
 
 
 
-
+/*tombol more*/
 .caret {
   display: inline-block;
   width: 0;
@@ -112,13 +113,13 @@ background-color : #9c1010;
 }
 
 
-.btn-create-new:hover,
-.btn-create-new:active,
-.btn-create-new:after,
-.btn-create-new:active,
-.btn-create-new:focus,
-.open .dropdown-toggle .btn-create-new,
-.btn-create-new{
+.btn-create-a:hover,
+.btn-create-a:active,
+.btn-create-a:after,
+.btn-create-a:active,
+.btn-create-a:focus,
+.open .dropdown-toggle .btn-create-a,
+.btn-create-a{
     color:#FFFFFF;
     background-color:#000080;
 
@@ -154,5 +155,36 @@ background-color : #9c1010;
 
 
 
+.form-notes{
+    height : 68px;
+}
 
+/*.jenhubkel{
+    pointer-events: none;
+    cursor: default;
+}*/
+/*form-control,
+.form-control:focus {
+    height: 15px;
+    color: #000080;
+    border: 2px solid #000080;
+    font-size: medium;
+}*/
 
+.modal-create-sertifikasi .modal-content 
+{
+    width : 800px;
+    border-color :#000080;
+    border-width: 3px;
+    border-style: solid;
+}
+
+.modal-create-sertifikasi .modal-dialog {
+
+    right: auto;
+    left: auto;
+    width: 800px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color : #000080;
+}
