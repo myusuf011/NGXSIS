@@ -13,20 +13,6 @@ namespace ngxsis.ViewModel
     {
         public long id { get; set; }
 
-        //public long created_by { get; set; }
-
-        //public DateTime created_on { get; set; }
-
-        //public long? modified_by { get; set; }
-
-        //public DateTime? modified_on { get; set; }
-
-        //public long? deleted_by { get; set; }
-
-        //public DateTime? deleted_on { get; set; }
-
-        //public bool is_delete { get; set; }
-
         public long biodata_id { get; set; }
 
         [StringLength(100)]
@@ -42,15 +28,14 @@ namespace ngxsis.ViewModel
         [StringLength(10)]
         [Display(Name = "Tahun Masuk *")]
         [Required(ErrorMessage = "Tahun masuk harus diisi")]
-        //[Remote("IsEntryYearValid", "Organisasi", AdditionalFields = "exit_year", ErrorMessage = "Tahun masuk tidak boleh lebih dari tahun keluar")]
         public string entry_year { get; set; }
 
         [StringLength(10)]
         [Display(Name = "Tahun Keluar *")]
         [Required(ErrorMessage = "Tahun keluar harus diisi")]
-        [Remote("IsExitYearValid","Organisasi",AdditionalFields = "entry_year",ErrorMessage = "Tahun keluar tidak boleh kurang dari tahun masuk")]
-        //[Remote("IsExitYearValid", "Organisasi", HttpMethod = "POST")] //, ErrorMessage = "Tahun keluar tidak boleh kurang dari tahun masuk")]
+        [Remote("IsExitYearValid", "Organisasi", AdditionalFields = "entry_year", ErrorMessage = "Tahun keluar tidak boleh kurang dari tahun masuk")]
         public string exit_year { get; set; }
+
         [StringLength(100)]
         [Display(Name = "Tanggung Jawab")]
         public string responsibility { get; set; }

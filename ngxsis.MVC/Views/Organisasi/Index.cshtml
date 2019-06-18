@@ -8,11 +8,11 @@
         });
 
         function GetList() {
-            biodata_id = $(this).data("id"); // ?
+            biodata_id = $(this).data("id");
             $.ajax({
                 url: '@Url.Action("List", "Organisasi")',
                 type: 'get',
-                data: { biodata_id: $(this).attr("data-id") }, // ?
+                data: { biodata_id: $(this).attr("data-id") },
                 success: function (result) {
                     $("#datadata").html(result);
                 }

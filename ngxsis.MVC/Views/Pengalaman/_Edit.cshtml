@@ -1,12 +1,13 @@
 ﻿@model ngxsis.ViewModel.PengalamanViewModel
 
-
 @using (Html.BeginForm("Edit", "Pengalaman", FormMethod.Post, new { id = "form-edit", name = "form-edit" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.id)
+    @Html.HiddenFor(model => model.user_id, new { Value = Session["userID"] })
     <div class="form-horizontal">
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.biodata_id)
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -194,7 +195,7 @@
 
             <div class="row">
                 <div class="btn-group col-md-offset-9">
-                    <input type="button" value="Batal" data-dismiss="modal" class="btn btn-batal" />
+                    <input type="button" value="Batal" class="btn btn-batal" />
                     <input type="submit" value="Simpan" class="btn btn-simpan" />
                 </div>
             </div>
@@ -207,6 +208,7 @@
 
 <script type="text/javascript">
     $("#form-edit").submit(function () {
+        $("#biodata_id").val(biodata_id);
         $.ajax({
             url: this.action,
             type: this.method,
@@ -214,27 +216,26 @@
             success: function (result) {
                 if (result.success) {
                     alert("Data berhasil disimpan");
-                    $(".modal-utama").modal("hide");
-                    GetList();
-
+                    $(".modal-create-org").modal("hide");
+                    $(".modal-pelamar").modal("show");
+                    GetPengalaman();
                 }
-                //else {
-                //    alert("Error! " + result.message);
-                //}
+                else {
+                    //$("#form-edit").validate();
+                    //alert("Error! " + result.message);
+                }
             }
         });
         return false;
     });
 
-    //$(document).ready(function () {
-	//$('#join-month').on('input change', function () {
-	//    $('#resign-month').attr('disabled', false);
-	//});
-    //})
+    $(".btn-batal").click(function () {
+        $(".modal-create-org").modal("hide");
+        $(".modal-pelamar").modal("show");
+    });
 
-    //$(document).ready(function () {
-	//$('#join-year').on('input change', function () {
-	//    $('#resign-year').attr('disabled', false);
-	//});
-    //})
+    $(".close").click(function () {
+        $(".modal-create-org").modal("hide");
+        $(".modal-pelamar").modal("show");
+    });
 </script>

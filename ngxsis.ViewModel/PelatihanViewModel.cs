@@ -45,8 +45,11 @@ namespace ngxsis.ViewModel
 
         [StringLength(1000)]
         [Display(Name = "Catatan")]
+        [DataType(DataType.MultilineText)]
         public string notes { get; set; }
 
         public string time_period_name { get; set; }
+
+        public long user_id { get; set; }
     }
 }

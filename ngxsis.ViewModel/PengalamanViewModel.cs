@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
 
 namespace ngxsis.ViewModel
 {
@@ -36,10 +38,12 @@ namespace ngxsis.ViewModel
         public string join_month { get; set; }
 
         [StringLength(10)]
+        [Remote("IsResignTimeValid", "Pengalaman", AdditionalFields = "join_month, join_year, resign_month", ErrorMessage = "Waktu keluar tidak boleh kurang dari waktu masuk")]
         public string resign_year { get; set; }
 
         [StringLength(10)]
         [Display(Name = "Waktu Keluar")]
+        //[Remote("IsResignTimeValid", "Pengalaman", AdditionalFields = "join_month, join_year, resign_year", ErrorMessage = "Waktu keluar tidak boleh kurang dari waktu masuk")]
         public string resign_month { get; set; }
 
         [StringLength(100)]
@@ -56,6 +60,7 @@ namespace ngxsis.ViewModel
 
         [StringLength(1000)]
         [Display(Name = "Keterangan Singkat Mengenai Pekerjaan")]
+        [DataType(DataType.MultilineText)]
         public string about_job { get; set; }
 
         [StringLength(500)]
@@ -64,7 +69,11 @@ namespace ngxsis.ViewModel
 
         [StringLength(5000)]
         [Display(Name = "Catatan")]
+        [DataType(DataType.MultilineText)]
         public string notes { get; set; }
+
+        public bool is_delete { get; set; }
+
+        public long user_id { get; set; }
     }
 }
-

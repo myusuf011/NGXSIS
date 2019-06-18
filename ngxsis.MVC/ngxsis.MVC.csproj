@@ -394,16 +394,6 @@
     <Content Include="Web - Copy.config" />
     <Content Include="Views\LainLain\_ListReferensi.cshtml" />
     <Content Include="Views\LainLain\_ListIndex.cshtml" />
-    <Content Include="Views\Pelatihan\Index.cshtml" />
-    <Content Include="Views\Pelatihan\_Create.cshtml" />
-    <Content Include="Views\Pelatihan\_List.cshtml" />
-    <Content Include="Views\Pelatihan\_Edit.cshtml" />
-    <Content Include="Views\Pelatihan\_Delete.cshtml" />
-    <Content Include="Views\Pengalaman\Index.cshtml" />
-    <Content Include="Views\Pengalaman\_List.cshtml" />
-    <Content Include="Views\Pengalaman\_Create.cshtml" />
-    <Content Include="Views\Pengalaman\_Edit.cshtml" />
-    <Content Include="Views\Pengalaman\_Delete.cshtml" />
     <Content Include="Views\Pengalaman\_CreateProject.cshtml" />
     <Content Include="Views\Pengalaman\_EditProject.cshtml" />
     <Content Include="Views\Pengalaman\_DeleteProjet.cshtml" />
@@ -420,10 +410,6 @@
     <Content Include="Views\Keluarga\_Delete.cshtml" />
     <Content Include="Views\Keluarga\_Edit.cshtml" />
     <Content Include="Views\Keluarga\_List.cshtml" />
-    <Content Include="Views\Pelamar\_BioList.cshtml" />
-    <Content Include="Views\Pelamar\_Create.cshtml" />
-    <Content Include="Views\Pelamar\_Edit.cshtml" />
-    <Content Include="Views\Pelamar\_IndexDetail.cshtml" />
     <Content Include="Views\Catatan\_List.cshtml" />
   </ItemGroup>
   <ItemGroup>

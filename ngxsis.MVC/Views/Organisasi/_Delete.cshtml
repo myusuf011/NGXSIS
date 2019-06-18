@@ -10,12 +10,12 @@
         </dd>
     </dl>
 
-    @using(Html.BeginForm("Delete","Organisasi",FormMethod.Post,new { id = "form-delete",name = "form-delete" }))
+    @using (Html.BeginForm("Delete", "Organisasi", FormMethod.Post, new { id = "form-delete", name = "form-delete" }))
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.id)
         @Html.HiddenFor(model => model.name)
-        @Html.HiddenFor(model => model.user_id,new { Value = Session["userID"] })
+        @Html.HiddenFor(model => model.user_id, new { Value = Session["userID"] })
 
         <div class="row">
             <div class="btn-group col-md-offset-9">

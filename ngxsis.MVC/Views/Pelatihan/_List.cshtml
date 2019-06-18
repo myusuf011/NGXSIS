@@ -1,5 +1,12 @@
 ﻿@model IEnumerable<ngxsis.ViewModel.PelatihanViewModel>
 
+<h2>
+    <font style="color: #000080"><b>Pelatihan</b></font>
+    <button type="button" class="btn btn-primary btn-create" id="btn-create-new" title="Tambah Pelatihan">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    </button>
+</h2>
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -53,15 +60,29 @@
 </table>
 
 <script type="text/javascript">
+    $("#btn-create-new").click(function () {
+        $.ajax({
+            url: '@Url.Action("Create", "Pelatihan")',
+            type: 'get',
+            success: function (result) {
+                $(".modal-create-org .modal-title").html("Tambah Pelatihan");
+                $(".modal-create-org .modal-body").html(result);
+                $(".modal-pelamar").modal("hide");
+                $(".modal-create-org").modal("show");
+            }
+        });
+    });
+
     $(".btn-edit").click(function () {
         $.ajax({
             url: '@Url.Action("Edit", "Pelatihan")',
             type: 'get',
             data: { id: $(this).attr("data-container") },
             success: function (result) {
-                $(".modal-utama .modal-title").html("Ubah Pelatihan");
-                $(".modal-utama .modal-body").html(result);
-                $(".modal-utama").modal("show");
+                $(".modal-create-org .modal-title").html("Ubah Pelatihan");
+                $(".modal-create-org .modal-body").html(result);
+                $(".modal-pelamar").modal("hide");
+                $(".modal-create-org").modal("show");
             }
         });
     });
@@ -74,8 +95,11 @@
             success: function (result) {
                 $(".modal-delete .modal-title").html("Hapus Pelatihan?");
                 $(".modal-delete .modal-body").html(result);
+                //$(".modal-pelamar").modal("hide");
                 $(".modal-delete").modal("show");
             }
         });
     });
 </script>
+
+<link rel="stylesheet" href="~/Content/Organisasi.css" />

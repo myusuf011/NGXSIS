@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 
+using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace ngxsis.ViewModel
 {
@@ -20,16 +22,20 @@ namespace ngxsis.ViewModel
         [Display(Name = "Hubungan Keluarga*")]
         [Required(ErrorMessage = "Hubungan Keluarga harus diisi")]
         public long? family_relation_id { get; set; }
-        [Display(Name = "Nama")]
+
+        [Display(Name = "Nama*")]
+        [Required(ErrorMessage = "Nama harus diisi")]
         [StringLength(100)]
         public string name { get; set; }
         [Display(Name = "Jenis Kelamin")]
         public bool gender { get; set; }
 
         //[DataType(DataType.Date)]
-        //[DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
+        // [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]  //tampil di list
+
         [Display(Name = "Tgl. Lahir (yyyy-mm-dd)")]
-        public DateTime?dob { get; set; }
+        public DateTime? dob { get; set; }
         [Display(Name = "Pendidikan")]
         public long? education_level_id { get; set; }
         [Display(Name = "Pekerjaan")]
@@ -37,6 +43,7 @@ namespace ngxsis.ViewModel
         public string job { get; set; }
         [Display(Name = "Catatan")]
         [StringLength(1000)]
+        [DataType(DataType.MultilineText)]
         public string notes { get; set; }
 
         public string family_relation_name { get; set; }

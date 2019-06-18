@@ -16,9 +16,9 @@ namespace ngxsis.MVC.Controllers
             return View();
         }
 
-        public ActionResult List()
+        public ActionResult List(int biodata_id)
         {
-            return PartialView("_List", PelatihanRepo.All());
+            return PartialView("_List", PelatihanRepo.ByBiodataId(biodata_id));
         }
 
         // CREATE

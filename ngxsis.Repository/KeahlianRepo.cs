@@ -14,22 +14,22 @@ namespace ngxsis.Repository
         public static List<KeahlianViewModel> All()
         {
             List<KeahlianViewModel> result = new List<KeahlianViewModel>();
-            using(var db = new ngxsisContext())
+            using (var db = new ngxsisContext())
             {
-                result=db.x_keahlian
+                result = db.x_keahlian
                     .OrderByDescending(k => k.modified_on)
                     .Select(k => new KeahlianViewModel
                     {
-                        id=k.id,
-                        biodata_id=k.biodata_id,
-                        skill_name=k.skill_name,
-                        skill_level_id=k.skill_level_id,
-                        skill_level_name=k.x_skill_level.name,
-                        notes=k.notes
+                        id = k.id,
+                        biodata_id = k.biodata_id,
+                        skill_name = k.skill_name,
+                        skill_level_id = k.skill_level_id,
+                        skill_level_name = k.x_skill_level.name,
+                        notes = k.notes
                     }).ToList();
-                if(result==null)
+                if (result == null)
                 {
-                    result=new List<KeahlianViewModel>();
+                    result = new List<KeahlianViewModel>();
                 }
             }
             return result;
@@ -38,14 +38,14 @@ namespace ngxsis.Repository
         public static List<KeahlianViewModel> LevelAll()
         {
             List<KeahlianViewModel> result = new List<KeahlianViewModel>();
-            using(var db = new ngxsisContext())
+            using (var db = new ngxsisContext())
             {
-                result=(from s in db.x_skill_level
-                        select new KeahlianViewModel
-                        {
-                            skill_level_id=s.id,
-                            skill_level_name=s.name
-                        }).ToList();
+                result = (from s in db.x_skill_level
+                          select new KeahlianViewModel
+                          {
+                              skill_level_id = s.id,
+                              skill_level_name = s.name
+                          }).ToList();
             }
             return result;
         }
@@ -55,43 +55,30 @@ namespace ngxsis.Repository
         {
             KeahlianViewModel result = new KeahlianViewModel();
 
-            using(var db = new ngxsisContext())
+            using (var db = new ngxsisContext())
             {
-                result=(from k in db.x_keahlian
-                        join s in db.x_skill_level
-                        on k.skill_level_id equals s.id
-                        where k.id == id
-                        select new KeahlianViewModel
-                        {
-                            id = k.id,
-                            biodata_id = k.biodata_id,
-                            skill_name = k.skill_name,
-                            skill_level_id = k.skill_level_id,
-                            skill_level_name = s.name,
-                            notes = k.notes
-                        }).FirstOrDefault();
+                result = (from k in db.x_keahlian
+                          join s in db.x_skill_level
+                          on k.skill_level_id equals s.id
+                          where k.id == id
+                          select new KeahlianViewModel
+                          {
+                              id = k.id,
+                              biodata_id = k.biodata_id,
+                              skill_name = k.skill_name,
+                              skill_level_id = k.skill_level_id,
+                              skill_level_name = s.name,
+                              notes = k.notes
+                          }).FirstOrDefault();
             }
-            return result!=null ? result : new KeahlianViewModel();
+            return result != null ? result : new KeahlianViewModel();
         }
 
         public static List<KeahlianViewModel> ByBiodataId(int biodata_id)
         {
             List<KeahlianViewModel> result = new List<KeahlianViewModel>();
-            using(var db = new ngxsisContext())
+            using (var db = new ngxsisContext())
             {
-                //result = (from k in db.x_keahlian
-                //          join s in db.x_skill_level
-                //          on k.skill_level_id equals s.id
-                //          where k.biodata_id == biodata_id
-                //          select new KeahlianViewModel
-                //          {
-                //              id = k.id,
-                //              biodata_id = k.biodata_id,
-                //              skill_name = k.skill_name,
-                //              skill_level_id = k.skill_level_id,
-                //              skill_level_name = s.name,
-                //              notes = k.notes
-                //          }).ToList();
                 result = db.x_keahlian
                     .OrderByDescending(k => k.modified_on)
                     .Where(k => k.biodata_id == biodata_id && k.is_delete == false)
@@ -105,9 +92,9 @@ namespace ngxsis.Repository
                         notes = k.notes
                     }).ToList();
 
-                if(result==null)
+                if (result == null)
                 {
-                    result=new List<KeahlianViewModel>();
+                    result = new List<KeahlianViewModel>();
                 }
             }
             return result;
@@ -119,10 +106,10 @@ namespace ngxsis.Repository
             ResponseResult result = new ResponseResult();
             try
             {
-                using(var db = new ngxsisContext())
+                using (var db = new ngxsisContext())
                 {
                     #region Create New / Insert
-                    if(entity.id==0)
+                    if (entity.id == 0)
                     {
                         x_keahlian ahli = new x_keahlian();
 
@@ -138,7 +125,7 @@ namespace ngxsis.Repository
                         db.x_keahlian.Add(ahli);
                         db.SaveChanges();
 
-                        result.Entity=entity;
+                        result.Entity = entity;
                     }
                     #endregion
                     #region
@@ -148,7 +135,7 @@ namespace ngxsis.Repository
                             .Where(k => k.id == entity.id)
                             .FirstOrDefault();
 
-                        if(ahli!=null)
+                        if (ahli != null)
                         {
                             ahli.modified_by = entity.user_id;
                             ahli.modified_on = DateTime.Now;
@@ -160,21 +147,21 @@ namespace ngxsis.Repository
 
                             db.SaveChanges();
 
-                            result.Entity=entity;
+                            result.Entity = entity;
                         }
                         else
                         {
-                            result.Success=false;
-                            result.Message="Keahlian not found!";
+                            result.Success = false;
+                            result.Message = "Keahlian not found!";
                         }
                     }
                     #endregion Edit
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                result.Success=false;
-                result.Message=ex.Message;
+                result.Success = false;
+                result.Message = ex.Message;
             }
             return result;
         }
@@ -185,12 +172,12 @@ namespace ngxsis.Repository
             ResponseResult result = new ResponseResult();
             try
             {
-                using(var db = new ngxsisContext())
+                using (var db = new ngxsisContext())
                 {
                     x_keahlian ahli = db.x_keahlian
                         .Where(k => k.id == entity.id)
                         .FirstOrDefault();
-                    if(ahli!=null)
+                    if (ahli != null)
                     {
                         ahli.is_delete = true;
                         ahli.deleted_by = entity.user_id;
@@ -207,12 +194,38 @@ namespace ngxsis.Repository
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 result.Success = false;
                 result.Message = ex.Message;
             }
             return result;
         }
+
+        //public static bool ValidationSkillLevel(long? skill_level_id, int biodata_id, int id)
+        //{
+        //    try
+        //    {
+        //        x_keahlian entity = new x_keahlian();
+        //        using (var db = new ngxsisContext())
+        //        {
+        //            entity = db.x_keahlian.Where(k => k.skill_level_id == skill_level_id && k.is_delete == false && k.biodata_id == biodata_id && k.id != id).FirstOrDefault();
+        //        }
+
+        //        if (entity != null)
+        //        {
+        //            return false;
+        //        }
+        //        else
+        //        {
+        //            return true;
+        //        }
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return false;
+        //    }
+        //}
     }
 }

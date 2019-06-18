@@ -1,197 +1,19 @@
-﻿/*body {
+﻿body {
 
 }
 
-input,
-select,
-textarea {
-    max-width: 100%;
-}
-
-
-.modal-content 
-{
-    width : 800px;
-    border-color: #000080;
-    border-width: 3px;
-    border-style: solid;
-}
-
-.modal-dialog {
-    right: auto;
-    left: 10%;
-    width: 800px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    color: #000080;
-}
-
-.modal-delete .modal-content {
-    width: 500px;
-    border-color: #9c1010;
-    border-width: 3px;
-    border-style: solid;
-}
-
-.modal-delete .modal-header {
-    color: #FFFFFF;
-    background-color: #9c1010;
-}
-
-.modal-delete .modal-dialog {
-    right: auto;
-    left: auto;
-    width: 800px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-}
-
-.table thead > tr > th,
-.table tbody > tr > th,
-.table tfoot > tr > th,
-.table thead > tr > td,
-.table tbody > tr > td,
-.table tfoot > tr > td {
-  border-bottom: 2px solid #000080;
-  color: #000080;
-}
-
-.table thead {
-    border-bottom: 4px solid #000080;
-    border-top: 4px solid #000080;
-}
-
-.btn-more:hover,
-.btn-more:active,
-.btn-more:after,
-.btn-more.active,
-.btn-more:focus,
-.open .dropdown-toggle .btn-more,
-
-.btn-more {
-    color: #FFFFFF;
-    background-color: #000080;
-}
-
-.caret {
-  display: inline-block;
-  width: 0;
-  height: 0;
-  margin-left: 2px;
-  vertical-align: middle;
-  border-top: 4px solid #FFFFFF;
-  border-right: 4px solid transparent;
-  border-bottom: 0 dotted;
-  border-left: 4px solid transparent;
-  content: "";
-}
-
-.form-control:focus,
-.form-control:active,
-.form-control:hover,
-
-.form-control {
-    border-color: #000080;
-    color: #000080;
-}
-
-.btn-create-new:hover,
-.btn-create-new:active,
-.btn-create-new:after,
-.btn-create-new.active,
-.btn-create-new:focus,
-.open .dropdown-toggle .btn-create-new,
-
-.btn-create-new {
-    color: #FFFFFF;
-    background-color: #000080;
-}
-
-.btn-batal:hover,
-.btn-batal:active,
-.btn-batal:after,
-.btn-batal.active,
-.btn-batal:focus,
-.open .dropdown-toggle .btn-batal,
-
-.btn-batal {
-    color: #FFFFFF;
-    background-color: #ff6a00;
-}
-
-.btn-simpan:hover,
-.btn-simpan:active,
-.btn-simpan:after,
-.btn-simpan.active,
-.btn-simpan:focus,
-.open .dropdown-toggle .btn-simpan,
-
-.btn-simpan {
-    color: #FFFFFF;
-    background-color: #000080;
-}
-
-.btn-batal:hover,
-.btn-batal:active,
-.btn-batal:after,
-.btn-batal.active,
-.btn-batal:focus,
-.open .dropdown-toggle .btn-batal,
-
-.btn-batal {
-    color: #FFFFFF;
-    background-color: #ff6a00;
-}
-
-
-}*/
-
-body {
-
-}
-
-/*input,
-select,
-textarea {
-    max-width: 100%;
-}
-
-
-.modal-content 
-{
-    width : 800px;
-     border-color :#000080;
-    border-width: 3px;
-    border-style: solid;
-}*/
-
-/*untuk modal keseluruhan*/
-/*.modal-dialog {
-    right: auto;
-    left: 10%;
-    width: 800px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    color : #000080;
-
-}*/
-
-/*cara buat modal class delete*/
 .modal-delete .modal-content 
 {
     width : 500px;
     border-color :#9c1010;
     border-width: 3px;
-    border-style: solid;
-    
+    border-style: solid;    
 }
 
 .modal-delete .modal-header
 {
 color:#FFFFFF;
-background-color : #9c1010;
-
-    
+background-color : #9c1010;   
 }
 
 .modal-delete .modal-dialog {
@@ -201,24 +23,6 @@ background-color : #9c1010;
     padding-top: 30px;
     padding-bottom: 30px;
 }
-
-
-/*.table thead > tr > th,
-.table tbody > tr > th,
-.table tfoot > tr > th,
-.table thead > tr > td,
-.table tbody > tr > td,
-.table tfoot > tr > td {
-
-  border-bottom: 2px solid #000080;
-  color: #000080;
-
-}
-
-.table thead {
-  border-bottom: 5px solid #000080;
-  border-top :5px solid #000080;
-}*/
 
 .table-striped thead > tr > th,
 .table-striped tbody > tr > th,
@@ -229,7 +33,6 @@ background-color : #9c1010;
 
   border-bottom: 2px solid #000080;
   color: #000080;
-
 }
 
 .table-striped thead {
@@ -244,9 +47,9 @@ background-color : #9c1010;
 .btn-more:focus,
 .open .dropdown-toggle .btn-more,
 .btn-more{
-    color:#FFFFFF;
-    background-color:#000080;
-    
+    color: #FFFFFF;
+    background-color: #000080;
+    font-weight: bold;
 }
 
 .caret {
@@ -262,8 +65,8 @@ background-color : #9c1010;
   content: "";
 }
 
-/*.form-control:focus, 
-.form-control:hover, 
+.form-control:focus, 
+.form-control:hover,
 .form-control:active,
 .form-control{
     border-color:#000080;
@@ -271,20 +74,7 @@ background-color : #9c1010;
     font-size: small;
     height: 34px;
     border: 1px solid #000080;
-}*/
-
-
-/*.btn-create-new:hover,
-.btn-create-new:active,
-.btn-create-new:after,
-.btn-create-new:active,
-.btn-create-new:focus,
-.open .dropdown-toggle .btn-create-new,
-.btn-create-new{
-    color:#FFFFFF;
-    background-color:#000080;
-
-}*/
+}
 
 .btn-create:hover,
 .btn-create:active,
@@ -310,9 +100,6 @@ background-color : #9c1010;
 
 }
 
-
-
-
 .btn-simpan:hover,
 .btn-simpan:active,
 .btn-simpan:after,
@@ -322,28 +109,14 @@ background-color : #9c1010;
 .btn-simpan{
     color:#FFFFFF;
     background-color:#000080;
-
 }
 
-
 .form-notes:focus, 
-.form-notes:hover, /*buat pointer*/
+.form-notes:hover,
 .form-notes:active,
 .form-notes{
     height : 68px;
 }
-
-/*.jenhubkel{
-    pointer-events: none;
-    cursor: default;
-}*/
-/*form-control,
-.form-control:focus {
-    height: 15px;
-    color: #000080;
-    border: 2px solid #000080;
-    font-size: medium;
-}*/
 
 .modal-create-org .modal-content 
 {
@@ -373,17 +146,3 @@ background-color : #9c1010;
     background-color: #9c1010;
 }
 
-.form-notes {
-    height: 68px;
-}
-
-.close {
-  float: right;
-  font-size: 42px;
-  font-weight: bold;
-  line-height: 1;
-  color: #000000;
-  text-shadow: 0 1px 0 #ffffff;
-  opacity: 0.2;
-  filter: alpha(opacity=20);
-}

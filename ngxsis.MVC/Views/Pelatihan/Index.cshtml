@@ -1,48 +1,27 @@
-﻿<link rel="stylesheet" href="~/Content/Organisasi.css" />
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h2>
-            <font style="color: #000080"><b>Pelatihan</b></font>
-            <button type="button" class="btn btn-primary btn-create-new" id="btn-create-new" title="Tambah Pelatihan">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-            </button>
-        </h2>
-    </div>
-    <div id="data-list">
-    </div>
+﻿<div id="datadata">
 </div>
 
 @section Scripts{
     <script type="text/javascript">
-        $(document).ready(function () {
+        $('.pelatihan').ready(function () {
             GetList();
         });
 
         function GetList() {
+            biodata_id = $(this).data("id");
             $.ajax({
                 url: '@Url.Action("List", "Pelatihan")',
                 type: 'get',
+                data: { biodata_id: $(this).attr("data-id") },
                 success: function (result) {
-                    $("#data-list").html(result);
+                    $("#datadata").html(result);
                 }
             });
         }
-
-        $("#btn-create-new").click(function () {
-            $.ajax({
-                url: '@Url.Action("Create", "Pelatihan")',
-                type: 'get',
-                success: function (result) {
-                    $(".modal-utama .modal-title").html("Tambah Pelatihan");
-                    $(".modal-utama .modal-body").html(result);
-                    $(".modal-utama").modal("show");
-                }
-            });
-        });
     </script>
 }
 
-<div class="modal fade modal-utama" tabindex="-1" role="dialog" style="display: none">
+<div class="modal fade modal-create-org" tabindex="-1" role="dialog" style="display: none">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header" style="background: darkblue">
@@ -69,3 +48,5 @@
         </div>
     </div>
 </div>
+
+

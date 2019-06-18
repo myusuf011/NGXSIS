@@ -16,9 +16,9 @@ namespace ngxsis.MVC.Controllers
             return View();
         }
 
-        public ActionResult List()
+        public ActionResult List(int biodata_id)
         {
-            return PartialView("_List", PengalamanRepo.All());
+            return PartialView("_List", PengalamanRepo.ByBiodataId(biodata_id));
         }
 
         // CREATE
@@ -115,6 +115,11 @@ namespace ngxsis.MVC.Controllers
                 message = result.Message,
                 entity = result.Entity
             }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult IsResignTimeValid(string join_month, string join_year, string resign_month, string resign_year)
+        {
+            return Json(PengalamanRepo.ValidationResignTime(join_month, join_year, resign_month, resign_year), JsonRequestBehavior.AllowGet);
         }
     }
 }

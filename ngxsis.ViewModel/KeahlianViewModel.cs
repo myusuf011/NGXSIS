@@ -4,27 +4,15 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
+using System.Web.Mvc;
 
 namespace ngxsis.ViewModel
 {
     public class KeahlianViewModel
     {
         public long id { get; set; }
-
-        //public long created_by { get; set; }
-
-        //public DateTime created_on { get; set; }
-
-        //public long? modified_by { get; set; }
-
-        //public DateTime? modified_on { get; set; }
-
-        //public long? deleted_by { get; set; }
-
-        //public DateTime? deleted_on { get; set; }
-
-        //public bool is_delete { get; set; }
-
+        
         public long biodata_id { get; set; }
 
         [StringLength(100)]
@@ -33,6 +21,7 @@ namespace ngxsis.ViewModel
 
         [Display(Name = "Level Keahlian *")]
         [Required(ErrorMessage = "Level keahlian harus diisi")]
+        //[Remote("IsSkillLevelExist", "Keahlian", AdditionalFields = "id, biodata_id", ErrorMessage = "Level keahlian sudah digunakan")]
         public long? skill_level_id { get; set; }
 
         [StringLength(1000)]
@@ -44,9 +33,6 @@ namespace ngxsis.ViewModel
 
         public long user_id { get; set; }
 
-        //public virtual x_biodata x_biodata { get; set; }
-
-        //public virtual x_skill_level x_skill_level { get; set; }
     }
 }
 

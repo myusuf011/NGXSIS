@@ -75,6 +75,40 @@ namespace ngxsis.Repository
             return result != null ? result : new PengalamanViewModel();
         }
 
+        public static List<PengalamanViewModel> ByBiodataId(int biodata_id)
+        {
+            List<PengalamanViewModel> result = new List<PengalamanViewModel>();
+            using (var db = new ngxsisContext())
+            {
+                result = (from p in db.x_riwayat_pekerjaan
+                          orderby p.modified_on descending
+                          where p.biodata_id == biodata_id && p.is_deleted == false
+                          select new PengalamanViewModel
+                          {
+                              id = p.id,
+                              biodata_id = p.biodata_id,
+                              company_name = p.company_name,
+                              city = p.city,
+                              country = p.country,
+                              join_year = p.join_year,
+                              join_month = p.join_month,
+                              resign_year = p.resign_year,
+                              resign_month = p.resign_month,
+                              last_position = p.last_position,
+                              income = p.income,
+                              is_it_related = p.is_it_related,
+                              about_job = p.about_job,
+                              exit_reason = p.exit_reason,
+                              notes = p.notes
+                          }).ToList();
+                if (result == null)
+                {
+                    result = new List<PengalamanViewModel>();
+                }
+            }
+            return result;
+        }
+
         // Create New & Edit
         public static ResponseResult Update(PengalamanViewModel entity)
         {
@@ -88,11 +122,11 @@ namespace ngxsis.Repository
                     {
                         x_riwayat_pekerjaan job = new x_riwayat_pekerjaan();
 
-                        job.created_by = 123;
+                        job.created_by = entity.user_id;
                         job.created_on = DateTime.Now;
                         job.modified_on = DateTime.Now;
                         job.is_deleted = false;
-                        job.biodata_id = 1;
+                        job.biodata_id = entity.biodata_id;
                         job.company_name = entity.company_name;
                         job.city = entity.city;
                         job.country = entity.country;
@@ -122,11 +156,10 @@ namespace ngxsis.Repository
 
                         if (job != null)
                         {
-                            job.created_by = 123;
-                            job.created_on = DateTime.Now;
+                            job.modified_by = entity.user_id;
                             job.modified_on = DateTime.Now;
                             job.is_deleted = false;
-                            job.biodata_id = 1;
+                            job.biodata_id = entity.biodata_id;
                             job.company_name = entity.company_name;
                             job.city = entity.city;
                             job.country = entity.country;
@@ -175,7 +208,10 @@ namespace ngxsis.Repository
                         .FirstOrDefault();
                     if (job != null)
                     {
-                        db.x_riwayat_pekerjaan.Remove(job);
+                        job.is_deleted = true;
+                        job.deleted_by = entity.user_id;
+                        job.deleted_on = DateTime.Now;
+
                         db.SaveChanges();
 
                         result.Entity = entity;
@@ -193,6 +229,25 @@ namespace ngxsis.Repository
                 result.Message = ex.Message;
             }
             return result;
+        }
+
+        public static bool ValidationResignTime(string join_month, string join_year, string resign_month, string resign_year)
+        {
+            try
+            {
+                if (int.Parse(resign_year) < int.Parse(join_year) || (int.Parse(resign_year) == int.Parse(join_year) && int.Parse(resign_month) < int.Parse(join_month)))
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }
