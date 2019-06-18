@@ -15,20 +15,23 @@ namespace ngxsis.ViewModel
         public string FullName { get; set; }
 
         [Required(ErrorMessage = "Email harus diisi!")]
-        [DataType(DataType.EmailAddress,ErrorMessage = "Format email salah!")]
+        [DataType(DataType.EmailAddress)]
+        [Remote("IsUsernameUnique","UserRole",AdditionalFields = "Id",ErrorMessage = "Email sudah dipakai!")]
         [Display(Name = "Email *")]
+        [EmailAddress(ErrorMessage = "Format email salah!")]
         public string Email { get; set; }
 
-        //[Required(ErrorMessage = "Sandi tidak boleh kosong")]
+        [Required(ErrorMessage = "Sandi tidak boleh kosong")]
         [DataType(DataType.Password)]
-        [StringLength(50,ErrorMessage = "Sandi tidak boleh lebih dari 50 karakter")]
-        [RegularExpression(@"^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[a-zA-Z0-9]*$",
- ErrorMessage = "Password harus terdiri dari kombinasi angka, huruf kapital, dan huruf kecil")]
+        [StringLength(16,MinimumLength = 8,ErrorMessage = "Panjang sandi yang diperbolehkan 8 - 16 karakter")]
+        [RegularExpression(@"^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!#\$%&\(\)\*\+,\-\./:;<=>\?@\[\\\]\^_\{\|\}~])[a-zA-Z0-9!#\$%&\(\)\*\+,\-\./:;<=>\?@\[\\\]\^_\{\|\}~]*$",
+ ErrorMessage = "Password harus terdiri dari kombinasi angka, huruf kapital, huruf kecil dan symbol")]
         [Display(Name = "Sandi *")]
         //[Remote("IsPassNull", "UserRole", AdditionalFields = "Id",ErrorMessage ="Sandi tidak boleh kosong!")]
         public string Abpwd { get; set; }
 
         //[Remote("IsPassNull", "UserRole",, AdditionalFields = "Id", ErrorMessage = "Sandi tidak boleh kosong!")]
+        [Required(ErrorMessage = "Sandi tidak boleh kosong")]
         [DataType(DataType.Password)]
         [System.ComponentModel.DataAnnotations.Compare("Abpwd",ErrorMessage = "Sandi yang dimasukan tidak sama")]
         [Display(Name = "Ulang Sandi *")]
@@ -57,7 +60,7 @@ namespace ngxsis.ViewModel
         //[Remote("PassVerif","UserRole",AdditionalFields = "UserLoginId",ErrorMessage = "Sandi salah!")]
         //public string UserLoginPwd { get; set; }
 
-       
- 
+
+
     }
 }

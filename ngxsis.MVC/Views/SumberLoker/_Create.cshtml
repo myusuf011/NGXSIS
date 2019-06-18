@@ -4,11 +4,15 @@
 @using (Html.BeginForm("Create", "SumberLoker", FormMethod.Post, new { id = "form-create", name = "form-create" }))
 {
     @Html.AntiForgeryToken()
-    <font color="#000080"><h5><b>&ensp;Sumber Loker</b></h5></font>
-    <hr>
+    <div class="col-md-12">
+        <font color="#000080"><h4><b>Sumber Loker</b></h4></font>
+        <hr>
+    </div>
+    
     <div class="form-horizontal">
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.biodata_id)
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -18,6 +22,7 @@
                             @Html.DropDownListFor(model => model.vacancy_source,
                                 new List<SelectListItem>
                                 {
+                                    new SelectListItem { Value = "EventName", Text="Event Name"},
                                     new SelectListItem { Value = "CareerCenter", Text="Career Center"},
                                     new SelectListItem { Value = "Reference", Text="Reference"},
                                     new SelectListItem { Value = "Others", Text="Others"},
@@ -50,6 +55,7 @@
                         @Html.LabelFor(model => model.event_name, htmlAttributes: new { @class = "control-label col-md-2 ", style = "font-size:10px" })
                         <div style="clear: both;"></div>
                         <div class="col-md-12">
+                            @Html.EditorFor(model => model.event_name, new { htmlAttributes = new { @class = "form-control",  id = "eventName" , disabled = "disabled" , @required = true } })
                             @Html.EditorFor(model => model.event_name, new { htmlAttributes = new { @class = "form-control", id = "eventName" , disabled = "disabled" } })
                             @Html.ValidationMessageFor(model => model.event_name, "", new { @class = "text-danger" })
                         </div>
@@ -86,6 +92,7 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.referrer_phone, htmlAttributes: new { @class = "control-label col-md-3", style = "font-size:10px" })
                         <div class="col-md-12">
+                            @Html.EditorFor(model => model.referrer_phone, new { htmlAttributes = new { @class = "form-control", data_val_length = "Panjang maksimal no telepone tidak lebih dari 20 digit", data_val_regex = "No telepon tidak sesuai ketentuan" ,id = "referrerPhone", disabled = "disabled" , @required = true } })
                             @Html.EditorFor(model => model.referrer_phone, new { htmlAttributes = new { @class = "form-control", id = "referrerPhone", disabled = "disabled" } })
                             @Html.ValidationMessageFor(model => model.referrer_phone, "", new { @class = "text-danger" })
                         </div>
@@ -98,6 +105,7 @@
                     <div class="form-group pull-left">
                         @Html.LabelFor(model => model.referrer_email, htmlAttributes: new { @class = "control-label col-md-3", style = "font-size:10px" })
                         <div class="col-md-12">
+                            @Html.EditorFor(model => model.referrer_email, new { htmlAttributes = new { @class = "form-control", data_val_length = "Panjang maksimal email tidak lebih dari 100 karakter",  data_val_regex = "email tidak memenuhi ketentetuan", id = "referrerEmail", disabled = "disabled" , @required = true } })
                             @Html.EditorFor(model => model.referrer_email, new { htmlAttributes = new { @class = "form-control", id = "referrerEmail", disabled = "disabled" } })
                             @Html.ValidationMessageFor(model => model.referrer_email, "", new { @class = "text-danger" })
                         </div>
@@ -117,39 +125,40 @@
                 </div>
             </div>
 
-
-
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.last_income, htmlAttributes: new { @class = "control-label col-md-7", style = "font-size:10px" })
+                        @Html.LabelFor(model => model.last_income, htmlAttributes: new { @class = "control-label col-md-7", style = "font-size:10px"  })
                         <div class="col-md-12">
+                            @Html.EditorFor(model => model.last_income, new { htmlAttributes = new { @class = "form-control" , type = "number", min = "0", step = "1"  } })
                             @Html.EditorFor(model => model.last_income, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.last_income, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.apply_date, htmlAttributes: new { @class = "control-label col-md-8", style = "font-size:10px" })
                         <div class="col-md-12">
                             <div class='input-group date'>
+                                @Html.EditorFor(model => model.apply_date, new { htmlAttributes = new { @class = "form-control", id = "datepicker", data_val_date = "Tgl. Lamaran Kerja (yyyy-mm-dd) harus valid.", @style = "width : 320px !important; "} })    
+                                <i class="glyphicon glyphicon-calendar" style="margin-left:-30px"></i>
                                 @Html.EditorFor(model => model.apply_date, new { htmlAttributes = new { @class = "form-control" , id = "datetimepicker" } })
                                 @Html.ValidationMessageFor(model => model.apply_date, "", new { @class = "text-danger" })
-                                <span class="input-group-addon">
-                                    <span class="glyphicon glyphicon-calendar"></span>
-                                </span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <br />
 
             <div class="row">
+                <div class="form-actions col-md-4 pull-right col-md-offset-1">
                 <div class="form-actions col-lg-4 pull-right">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-warning btn-70px" data-dismiss="modal"><b>Batal</b></button>
-                        <button type="submit" class="btn btn-pp btn-70px "><b>Simpan</b></button>
+                        <button type="reset" class="btn btn-warning btn-150px" ><b>Batal</b></button>
+                        <button type="submit" class="btn btn-pp btn-150px "><b>Simpan</b></button>
 
                     </div>
                 </div>
@@ -162,10 +171,48 @@
 
 @Scripts.Render("~/bundles/jqueryval")
 <link href="~/Content/SumberLoker.css" rel="stylesheet" />
+<link href="~/Content/BioView.css" rel="stylesheet" />
 
 <script type="text/javascript">
 
     $("#form-create").submit(function () {
+        $("#biodata_id").val(biodata_id);
+        if ($.trim($("#details").val()) === "" || $.trim($("#candidate").val()) === "" ) {
+            alert('field tidak boleh kosong');
+            return false;
+        }
+
+        $("#details").change(function () {
+
+            if ($(this).val() == "CareerCenter") {
+                if ($.trim($("#careerCenter").val()) === "") {
+                    alert('field tidak boleh kosong');
+                    return false;
+                }
+            }
+
+            if ($(this).val() == "EventName") {
+                if ($.trim($("#eventName").val()) === "") {
+                    alert('field tidak boleh kosong');
+                    return false;
+                }
+            }
+
+            if ($(this).val() == "Reference") {
+                if ($.trim($("#referrerName").val()) === "" || $.trim($("#referrerPhone").val()) === "" || $.trim($("#referrerEmail").val()) === "") {
+                    alert('field tidak boleh kosong');
+                    return false;
+                }
+            }
+
+            if ($(this).val() == "Others") {
+                if ($.trim($("#otherSource").val()) === "") {
+                    alert('field tidak boleh kosong');
+                    return false;
+                }
+            }
+        });
+
         $.ajax({
             url: this.action,
             type: this.method,
@@ -173,7 +220,8 @@
             success: function (result) {
                 if (result.success) {
                     alert("Save succesful! Name : " + result.entity.Name);
-                    $('.modal').modal('hide');
+                    //$('.modal-utama-sumberloker').modal('hide');
+                    $('.modal-pelamar').modal('show');
                     GetList();
                 } else {
                     console.log("Error" + result.message);
@@ -184,6 +232,10 @@
         return false;
     });
 
+    $(".btn-150px").click(function () {
+        //$(".modal-utama-sumberloker").modal("hide");
+        $(".modal-pelamar").modal("show");
+    });
 
 
     $("#details").change(function () {
@@ -196,8 +248,11 @@
         $("#otherSource").prop("disabled", true);
 
         if ($(this).val() == "CareerCenter") {
-            $("#eventName").prop("disabled", false);
             $("#careerCenter").prop("disabled", false);
+        }
+
+        if ($(this).val() == "EventName") {
+            $("#eventName").prop("disabled", false);
         }
 
         if ($(this).val() == "Reference") {
@@ -213,5 +268,7 @@
 </script>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+
 
 

@@ -16,9 +16,9 @@ namespace ngxsis.MVC.Controllers
             return View();
         }
 
-        public ActionResult List()
+        public ActionResult List(int biodata_id)
         {
-            return PartialView("_List", SumberLokerRepo.All());
+            return PartialView("_List",  SumberLokerRepo.ByBiodataId(biodata_id)); //SumberLokerRepo.All()
         }
 
         public ActionResult Create()

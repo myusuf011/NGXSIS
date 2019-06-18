@@ -57,6 +57,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Rotativa, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Rotativa.1.7.4-rc\lib\net45\Rotativa.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -146,6 +151,7 @@
     <Compile Include="Controllers\SelectAccessController.cs" />
     <Compile Include="Controllers\SertifikasiController.cs" />
     <Compile Include="Controllers\SumberLokerController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\UserRoleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -219,6 +225,7 @@
     <Content Include="bin\ngxsis.DataModel.dll.config" />
     <Content Include="bin\ngxsis.MVC.dll.config" />
     <Content Include="bin\ngxsis.Repository.dll.config" />
+    <Content Include="App_Browsers\qt.browser" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\html2canvas.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
@@ -231,6 +238,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -301,11 +310,20 @@
     <Content Include="Views\Pendidikan\_Delete.cshtml" />
     <Content Include="Views\Pendidikan\_ListByEdu.cshtml" />
     <Content Include="Views\Pelamar\_Create.cshtml" />
+    <Content Include="Views\Dokumen\Index.cshtml" />
+    <Content Include="Views\Dokumen\_Create.cshtml" />
+    <Content Include="Views\Dokumen\_Delete.cshtml" />
+    <Content Include="Views\Dokumen\_DokumenList.cshtml" />
+    <Content Include="Views\Dokumen\_Edit.cshtml" />
+    <Content Include="Views\Account\SelectAccess.cshtml" />
     <Content Include="Views\Pelamar\_PelamarList.cshtml" />
     <Content Include="Views\Pelamar\Index.cshtml" />
     <Content Include="Views\Pelamar\_IndexDetail.cshtml" />
     <Content Include="Views\Pelamar\_BioList.cshtml" />
     <Content Include="Views\Pelamar\_Edit.cshtml" />
+    <Content Include="Views\View1.cshtml" />
+    <Content Include="Views\Shared\_LayoutProfile.cshtml" />
+    <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Pelatihan\Index.cshtml" />
     <Content Include="Views\Pelatihan\_List.cshtml" />
     <Content Include="Views\Pelatihan\_Create.cshtml" />

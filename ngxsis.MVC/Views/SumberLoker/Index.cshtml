@@ -60,6 +60,9 @@
                     $(".modal-title").html("Detil Pelamar")
                     $(".modal-body").html(result);
                     $(".modal").modal("show");
+                    $("#datepicker").datepicker({
+                        dateFormat: "yy-mm-dd",
+                    });
                 }
             });
         });

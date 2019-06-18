@@ -82,27 +82,28 @@
 <script type="text/javascript">
     $("#form-create").submit(function () {
         $("#form-create").validate();
-        if ($("#form-create").valid())
-        {
-        $.ajax(
-            {
-                url: this.action,
-                type: this.method,
-                data: $(this).serialize(),
-                success: function (result) {
-                    if (result.success) {
-                        alert("Role berhasil dibuat");
-                        $(".modal-main").modal("hide");
-                        GetList();
-                    } else {
-                        //alert("Role tidak berhasil dibuat\n" + result.message);
-                    }
-                }
-            });
+        $("#form-create").valid();
+        setTimeout(Create, 100);
         return false;
-        } else {
-            //alert("Data tida valid")
-        }
     });
+    function Create() {
+        if ($("#form-create").valid()) {
+            $.ajax(
+                {
+                    url: '@Url.Action("Create","Role")',
+                    type: 'post',
+                    data: $("#form-create").serialize(),
+                    success: function (result) {
+                        if (result.success) {
+                            alert("Role berhasil dibuat");
+                            $(".modal-main").modal("hide");
+                            GetList();
+                        } else {
+                            //alert("Role tidak berhasil dibuat\n" + result.message);
+                        }
+                    }
+                });
+        }
+    }
 </script>
 @Scripts.Render("~/bundles/jqueryval")

@@ -24,8 +24,7 @@ namespace ngxsis.Repository
                     {
                         Id=r.id,
                         Code=r.code,
-                        Name=r.name,
-                        LoginUserId=1
+                        Name=r.name
                     }).FirstOrDefault();
             }
             return result!=null ? result : new RoleViewModel();

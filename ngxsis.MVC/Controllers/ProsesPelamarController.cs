@@ -21,9 +21,9 @@ namespace ngxsis.MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(long bioId)
+        public ActionResult Edit(long bioId, long userId)
         {
-            ResponseResult result = ProsesPelamarRepo.Edit(bioId);
+            ResponseResult result = ProsesPelamarRepo.Edit(bioId, userId);
             return Json(new
             {
                 success = result.Success
@@ -43,9 +43,9 @@ namespace ngxsis.MVC.Controllers
             return PartialView("_JadwalList",ProsesPelamarRepo.Jadwal(bioId));
         }
         [HttpPost]
-        public ActionResult Delete(long id,long bioId, int type)
+        public ActionResult Delete(long id,long bioId, int type, long userId)
         {
-            ResponseResult result = ProsesPelamarRepo.Delete(id,bioId, type);
+            ResponseResult result = ProsesPelamarRepo.Delete(id,bioId, type, userId);
             return Json(new
             {
                 success = result.Success

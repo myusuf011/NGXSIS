@@ -55,22 +55,37 @@ namespace ngxsis.Repository
                 else
                 {
                     x_addrbook user = db.x_addrbook.Where(a => a.id==entity.Id&&a.is_deleted==false).FirstOrDefault();
-                    //user.abuid = entity.Username;
-                    user.email = entity.Email;
+                    //user.abuid = entity.Email;
+                    user.email=entity.Email;
                     user.modified_by=entity.UserLoginId;
                     user.modified_on=DateTime.Now;
 
                     List<x_userrole> urByAbId = db.x_userrole.Where(ur => ur.addrbook_id==entity.Id&&ur.is_deleted==false).ToList();
+
+                    //DELETED ROLE
                     foreach(var ur in urByAbId)
                     {
-                        ur.is_deleted=true;
-                        ur.deleted_by=entity.UserLoginId;
-                        ur.deleted_on=DateTime.Now;
+                        bool unChecked = true;
+                        foreach(var item in entity.UserRoleList)
+                        {
+                            if(ur.role_id==item.RoleId)
+                            {
+                                unChecked = false;
+                                break;
+                            }
+                        }
+                        if(unChecked)
+                        {
+                            ur.is_deleted=true;
+                            ur.deleted_by=entity.UserLoginId;
+                            ur.deleted_on=DateTime.Now;
+                        }
                     }
 
+                    //ADDED ROLE
                     foreach(var item in entity.UserRoleList)
                     {
-                        x_userrole userRole = db.x_userrole.Where(ur => ur.addrbook_id==entity.Id&&ur.role_id==item.RoleId).FirstOrDefault();
+                        x_userrole userRole = db.x_userrole.Where(ur => ur.addrbook_id==entity.Id&&ur.role_id==item.RoleId&&ur.is_deleted==false).FirstOrDefault();
                         if(userRole==null)
                         {
                             userRole=new x_userrole();
@@ -78,19 +93,11 @@ namespace ngxsis.Repository
                             userRole.addrbook_id=user.id;
                             userRole.is_deleted=false;
                             userRole.created_by=entity.UserLoginId;
-                            userRole.deleted_by=null;
-                            userRole.deleted_on=null;
                             userRole.created_on=DateTime.Now;
                             db.x_userrole.Add(userRole);
                         }
-                        else
-                        {
-                            userRole.is_deleted=false;
-                            userRole.modified_by=entity.UserLoginId;
-                            userRole.modified_on=DateTime.Now;
-                        }
-                        db.SaveChanges();
                     }
+                    db.SaveChanges();
                 }
             }
             #endregion
@@ -103,7 +110,7 @@ namespace ngxsis.Repository
             List<UserViewModel> result = new List<UserViewModel>();
             using(var db = new ngxsisContext())
             {
-                result=db.x_biodata.Where(bio => bio.fullname.Contains(search))
+                result=db.x_biodata.Where(bio => bio.fullname.Contains(search)&&bio.is_deleted==false)
                     .Take(5)
                     .Select(bio => new UserViewModel
                     {
@@ -125,8 +132,8 @@ namespace ngxsis.Repository
                         BiodataId=bioId,
                         FullName=b.fullname,
                         Username=b.x_addrbook.abuid,
-                        Email=b.email,
-                        Id=b.x_addrbook.is_deleted==true||b.addrbook_id==null ? null : b.addrbook_id
+                        Email=b.x_addrbook.email==null||b.x_addrbook.is_deleted==true ? b.email : b.x_addrbook.email,
+                        Id=(b.x_addrbook.is_deleted||b.addrbook_id==null) ? null : b.addrbook_id
                     }).FirstOrDefault();
             }
             return result;
@@ -172,7 +179,6 @@ namespace ngxsis.Repository
             using(var db = new ngxsisContext())
             {
                 x_addrbook ab = db.x_addrbook.Where(a => a.id==entity.Id).FirstOrDefault();
-                ab.abuid=ab.abuid+"("+ab.id.ToString()+")";
                 ab.is_deleted=true;
                 ab.deleted_by=entity.UserLoginId;
                 ab.deleted_on=DateTime.Now;
@@ -223,20 +229,20 @@ namespace ngxsis.Repository
             string userPwd;
             using(var db = new ngxsisContext())
             {
-                userPwd = db.x_addrbook.Where(ab=>ab.id==userId&&ab.is_deleted==false)
-                    .Select(ab=>ab.abpwd).FirstOrDefault();
+                userPwd=db.x_addrbook.Where(ab => ab.id==userId&&ab.is_deleted==false)
+                    .Select(ab => ab.abpwd).FirstOrDefault();
             }
             return VerifyMd5Hash(pass,userPwd);
         }
-        public static bool ByUsername(string name, int id)
+        public static bool ByUsername(string name,int id)
         {
             x_addrbook entity = new x_addrbook();
-            using (var db = new ngxsisContext())
+            using(var db = new ngxsisContext())
             {
-                entity = db.x_addrbook.Where(r => (r.abuid == name || r.email==name) && r.is_deleted==false && r.id != id).FirstOrDefault();
+                entity=db.x_addrbook.Where(r => (r.abuid==name||r.email==name)&&r.id!=id).FirstOrDefault();
             }
 
-            if (entity != null)
+            if(entity!=null)
             {
                 return false;
             }

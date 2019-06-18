@@ -85,6 +85,23 @@
 
 
 <script type="text/javascript">
+
+    $("#btn-create-new").click(function () {
+        $.ajax({
+            url: '@Url.Action("Create", "SumberLoker")',
+            type: 'get',
+            success: function (result) {
+                $(".modal-utama-sumberloker .modal-title").html("Detil Pelamar");
+                $(".modal-utama-sumberloker .modal-body").html(result);
+                $(".modal-pelamar").modal("hide");
+                $(".modal-utama-sumberloker").modal("show");
+                $("#datepicker").datepicker({
+                    dateFormat: "yy-mm-dd",
+                });
+            }
+        });
+    });
+
     $(".btn-edit").click(function () {
         $.ajax({
             url: '@Url.Action("Edit", "SumberLoker")',

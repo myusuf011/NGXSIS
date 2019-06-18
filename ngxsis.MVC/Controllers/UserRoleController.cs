@@ -66,9 +66,10 @@ namespace ngxsis.MVC.Controllers
             return Json(UserRoleRepo.PassVerif(UserLoginPwd,UserLoginId),JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult IsUsernameUnique(string Username, int Id = 0)
+        public JsonResult IsUsernameUnique(string Email,int Id = 0)
         {
-            return Json(UserRoleRepo.ByUsername(Username, Id), JsonRequestBehavior.AllowGet);
+            return Json(UserRoleRepo.ByUsername(Email,Id),JsonRequestBehavior.AllowGet);
         }
     }
+
 }

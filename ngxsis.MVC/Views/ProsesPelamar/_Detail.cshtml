@@ -1,16 +1,17 @@
 ﻿@model ngxsis.ViewModel.ProsesPelamarViewModel
 
+
 <div class="container" style="width:100%;">
     <ul class="nav nav-tabs" id="myTabs">
         <li role="presentation" class="active"><a href="#jadwal">Rencana Penjadwalan</a></li>
         <li role="presentation"><a href="#undangan">Undangan</a></li>
     </ul>
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="jadwal">JADWAL....</div>
-        <div role="tabpanel" class="tab-pane" id="undangan">UNDANGAN...</div>
+        <div role="tabpanel" class="tab-pane active" id="jadwal">Loading...</div>
+        <div role="tabpanel" class="tab-pane" id="undangan">Loading...</div>
     </div>
 </div>
-
+<input data-val="true" data-val-number="The field UserId must be a number." data-val-required="The UserId field is required." id="item_UserId" name="item_UserId" type="hidden" value="@Session["userID"]">
 <script type="text/javascript">
     $(document).ready(function () {
         GetInvitation();
@@ -24,6 +25,9 @@
                 data: { bioId: bioId },
                 success: function (result) {
                     $("#undangan").html(result);
+                },
+                error: function () {
+                    $("#jadwal").html("Loading Failed!");
                 }
             });
     }
@@ -36,6 +40,9 @@
                 data: { bioId: bioId },
                 success: function (result) {
                     $("#jadwal").html(result);
+                },
+                error: function () {
+                    $("#jadwal").html("Loading Failed!");
                 }
             });
     }

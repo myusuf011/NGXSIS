@@ -1,6 +1,9 @@
 ﻿@model IEnumerable<ngxsis.ViewModel.ProfilViewModel>
 
 
+@{
+    Layout = "~/Views/Shared/_LayoutProfile.cshtml";
+}
 @foreach (var item in Model)
 {
     <div id="data">
@@ -17,9 +20,49 @@
                 @Html.DisplayFor(modelItem => item.Major) ,  @Html.DisplayFor(modelItem => item.SchoolName)
             </div>
 
-            <div id="download">
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Profil</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    @*<link href="~/Content/Profil.css" rel="stylesheet" media="screen, print"type="text/css"/>*@
+    <link href="~/Content/Profil.css" rel="stylesheet"/>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/BioView.css" rel="stylesheet" />
+    @*<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />*@
+    
+</head>
+<body>
+    @foreach (var item in Model)
+    {
+        <div id="data">
+            <div class="head">
+                <div id="headshot">
+                    <img src="@Url.Content(item.Photo)" alt="Gambar" />
+                </div>
+
                 <button type="button" class="btn btn-pp btn-70px" onclick="window.location.href = 'javascript:genPDF()'">Unduh</button>
+                <div id="name">
+                    <span style="font-size : 20px"><b>@Html.DisplayFor(modelItem => item.FullName)</b><br /></span>
+                    <span style="font-size : 14px ; color : #808080">@Html.DisplayFor(modelItem => item.LastPosition)<br /></span>
+                    <span style="font-size : 14px ; color : #808080">@{ var age = DateTime.UtcNow.Year - item.DOB.Year; @Html.DisplayTextFor(modelItem => age); <text> tahun </text>}<br /></span>
+                    <span style="font-size : 14px ; color : #808080">@(item.Gender ? "Laki - Laki" : "Perempuan")<br /></span>
+                    <span style="font-size : 14px ; color : #808080">@Html.DisplayFor(modelItem => item.Major),  @Html.DisplayFor(modelItem => item.SchoolName)<br /></span>
+                </div>
+
+                <div id="download">
+                    <button type="button" name="colmd" class="btn btn-pp btn-70px" onclick="location.href='@Url.Action("PrintViewToPdf")'">
+                        Unduh
+                    </button>
+                </div>
+                <div class="clear"></div>
             </div>
+
+            <div>
+                <section>
+
             <div class="clear"></div>
         </div>
 
@@ -39,11 +82,18 @@
                 </article>
                 <div class="clear"></div>
             </section>
+
+                    <div class="clear"></div>
+                </section>
+
+
+                <section>
+
             <section>
                 <article>
                     <div class="sectionTitle">
                         <h4>Pengalaman</h4>
-                       @Html.DisplayFor(modelItem => item.JoinYear) - @Html.DisplayFor(modelItem => item.ResignYear)
+                        @Html.DisplayFor(modelItem => item.JoinYear) - @Html.DisplayFor(modelItem => item.ResignYear)
                     </div>
 
                     <div class="sectionContent">
@@ -55,6 +105,11 @@
                 <div class="clear"></div>
             </section>
 
+                    <div class="clear"></div>
+                </section>
+
+
+                <section>
 
             <section>
                 <article>
@@ -70,6 +125,11 @@
                 <div class="clear"></div>
             </section>
 
+                    <div class="clear"></div>
+                </section>
+
+                <section>
+
             <section>
                 <article>
                     <div class="sectionTitle">
@@ -84,6 +144,11 @@
                 <div class="clear"></div>
             </section>
 
+                    <div class="clear"></div>
+                </section>
+
+                <section>
+
             <section>
                 <article>
                     <div class="sectionTitle">
@@ -97,10 +162,14 @@
                 <div class="clear"></div>
             </section>
 
+                    <div class="clear"></div>
+                </section>
+
+            </div>
         </div>
-    </div>
+        <br /><br />
+                        }
+</body>
 
-}
+</html>
 
-
-<link href="~/Content/Profil.css" rel="stylesheet" />
