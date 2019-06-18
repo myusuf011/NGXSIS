@@ -74,6 +74,28 @@ namespace ngxsis.Repository
 
         }
 
+        public static List<DropDownModel> AllTpriod()
+        {
+
+            List<DropDownModel> result = new List<DropDownModel>();
+            using (var db = new ngxsisContext())
+            {
+
+                result = db.x_time_period.Select(c => new DropDownModel
+                {
+                    id = c.id,
+                    name = c.name,
+                    description = c.description,
+                }).ToList();
+
+
+            }
+
+            return result;
+
+        }
+
+
 
     }
 }

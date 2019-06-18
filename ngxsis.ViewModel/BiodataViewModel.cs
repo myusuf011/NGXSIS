@@ -74,21 +74,21 @@ namespace ngxsis.ViewModel
 
         [Required(ErrorMessage = "Silahkan Isi Kolom Nomor Identitas Terlebih Dahulu!")]
         [StringLength(50)]
-        [Remote("VerifyIdentity", "Pelamar", AdditionalFields = "identity_type_id, dob", HttpMethod = "POST")]
+        [Remote("VerifyIdentity", "Pelamar", AdditionalFields = "identity_type_id, id", HttpMethod = "POST")]
         [Display(Name = "Nomor Identitas")]
         public string identity_no { get; set; }
 
         [Required(ErrorMessage = "Silahkan Isi Kolom Email Terlebih Dahulu!")]
         [StringLength(100)]
         [EmailAddress(ErrorMessage = "Silahkan Isi Format Email dengan Benar!")]
-        [Remote("VerifyEmail", "Pelamar", AdditionalFields = "dob", HttpMethod = "POST", ErrorMessage = "Email Telah Terdaftar!. Silahkan Isi dengan Email yang Berbeda")]
+        [Remote("VerifyEmail", "Pelamar", AdditionalFields = "id", HttpMethod = "POST", ErrorMessage = "Email Telah Terdaftar!. Silahkan Isi dengan Email yang Berbeda")]
         [Display(Name = "Email *")]
 
         public string email { get; set; }
 
         [Required(ErrorMessage = "Silahkan Isi Kolom No. Hp Terlebih Dahulu!")]
         [StringLength(50)]
-        [Remote("VerifyPhone", "Pelamar", AdditionalFields = "dob", HttpMethod = "POST", ErrorMessage = "No. HP Telah Terdaftar!. Silahkan Isi dengan No. HP yang Berbeda")]
+        [Remote("VerifyPhone", "Pelamar", AdditionalFields = "id", HttpMethod = "POST", ErrorMessage = "No. HP Telah Terdaftar!. Silahkan Isi dengan No. HP yang Berbeda")]
         [Display(Name = "No. HP *")]
         public string phone_number1 { get; set; }
 
@@ -101,6 +101,7 @@ namespace ngxsis.ViewModel
         [Display(Name = "No. Tlp (Rumah/Orang Tua) *")]
         public string parent_phone_number { get; set; }
 
+        
         [Required(ErrorMessage = "Silahkan Isi Kolom Anak Ke- Terlebih Dahulu!")]
         [StringLength(5)]
         [Display(Name = "Anak Ke *")]
@@ -200,8 +201,9 @@ namespace ngxsis.ViewModel
         public string namagender { get; set; }
         public string namaagama { get; set; }
         public string namastatus { get; set; }
-
+        public long user_id { get; set; }
         public string tanggal { get; set; }
+
 
 
     }

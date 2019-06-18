@@ -135,14 +135,17 @@
     <Compile Include="Controllers\KeahlianController.cs" />
     <Compile Include="Controllers\KeluargaController.cs" />
     <Compile Include="Controllers\LainLainController.cs" />
+    <Compile Include="Controllers\LainLainController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PelamarController.cs" />
     <Compile Include="Controllers\OrganisasiController.cs" />
     <Compile Include="Controllers\PelatihanController.cs" />
     <Compile Include="Controllers\PengalamanController.cs" />
     <Compile Include="Controllers\ProfilController.cs" />
+    <Compile Include="Controllers\PelatihanController.cs" />
     <Compile Include="Controllers\PendidikanController.cs" />
-    <Compile Include="Controllers\ProsesPelamarController.cs" />
+    <Compile Include="Controllers\PengalamanController.cs" />
+    <Compile Include="Controllers\ProfilController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SelectAccessController.cs" />
     <Compile Include="Controllers\SertifikasiController.cs" />
@@ -218,6 +221,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="ngxsis.MVC - Copy.csproj" />
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="bin\ngxsis.DataModel.dll.config" />
@@ -293,7 +301,6 @@
     <Content Include="Views\Keahlian\Index.cshtml" />
     <Content Include="Views\Keahlian\_List.cshtml" />
     <Content Include="Views\Keahlian\_Create.cshtml" />
-    <Content Include="Views\Keahlian\_ListBySkillLevel.cshtml" />
     <Content Include="Views\Keahlian\_Edit.cshtml" />
     <Content Include="Views\Keahlian\_Delete.cshtml" />
     <Content Include="Views\Pendidikan\_Create.cshtml" />
@@ -349,6 +356,22 @@
     <Content Include="Views\Dokumen\Index.cshtml" />
     <Content Include="Views\Dokumen\_DokumenList.cshtml" />
     <Content Include="Views\Dokumen\_Create.cshtml" />
+    <Content Include="Web - Copy.config" />
+    <Content Include="Views\LainLain\_ListReferensi.cshtml" />
+    <Content Include="Views\LainLain\_ListIndex.cshtml" />
+    <Content Include="Views\Pelatihan\Index.cshtml" />
+    <Content Include="Views\Pelatihan\_Create.cshtml" />
+    <Content Include="Views\Pelatihan\_List.cshtml" />
+    <Content Include="Views\Pelatihan\_Edit.cshtml" />
+    <Content Include="Views\Pelatihan\_Delete.cshtml" />
+    <Content Include="Views\Pengalaman\Index.cshtml" />
+    <Content Include="Views\Pengalaman\_List.cshtml" />
+    <Content Include="Views\Pengalaman\_Create.cshtml" />
+    <Content Include="Views\Pengalaman\_Edit.cshtml" />
+    <Content Include="Views\Pengalaman\_Delete.cshtml" />
+    <Content Include="Views\Pengalaman\_CreateProject.cshtml" />
+    <Content Include="Views\Pengalaman\_EditProject.cshtml" />
+    <Content Include="Views\Pengalaman\_DeleteProjet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

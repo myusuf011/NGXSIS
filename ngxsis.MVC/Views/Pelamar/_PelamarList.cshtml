@@ -1,7 +1,12 @@
 ﻿@model IEnumerable<ngxsis.ViewModel.PelamarViewModel>
 
-<link rel="stylesheet" href="~/Content/Pelamar.css">
-
+@{
+    if (Session["userID"] == null)
+    {
+        //Response.Redirect("/"); // <-- Sesuaikan acceess bila sudah login
+        Session["userID"] = 1234;
+    }
+}
 <div class="row" style="margin-bottom:5px;">
     <div class="col-lg-6">
         <div class="input-group" style="width:100%;">
@@ -173,7 +178,7 @@
             <th>
                 <div class="col-lg-6">
                     <div class="input-group">
-                        <input type="search" id="txt-search" class="form-control" placeholder="Cari">
+                        <input type="search" id="txt-search" class="form-control" placeholder="Cari" style=" height:34px; border:1px solid #cccccc;">
                         <span class="input-group-btn">
                             <button class="btn btn-default btn-search" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
                         </span>
@@ -250,16 +255,31 @@
 
 
 <script type="text/javascript">
-    
+    $(".btn-search").click(function () {
+        console.log($("#txt-search").val());
+        $.ajax(
+             {
+                 url: '@Url.Action("PelamarList", "Pelamar")',
+                 type: 'get',
+                 data: { search: $("#txt-search").val() },
+                 success: function (result) {
+                     $("#data").html(result);
+                 }
+             });
+    });
     $(".btn-create-new").click(function () {
         $.ajax(
             {
                 url: '@Url.Action("Create", "Pelamar")',
                 type: 'get',
                 success: function (result) {
-                    $(".modal-title").html("Masukkan Biodata");
-                    $(".modal-body").html(result);
-                    $(".modal-create").modal("show");
+                    $(".modal-pelamar .modal-title").html("Masukkan Biodata");
+                    $(".modal-pelamar .modal-body").html(result);
+                    $(".modal-pelamar").modal("show");
+                    $("#datepicker").datepicker({
+                        dateFormat: "yy-mm-dd"
+                    });
+
                 }
             });
     });
@@ -315,6 +335,9 @@
         GetList();
     });
 
+</script>
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
     /*SORT DESCENDING*/
     $(".sort-desc").click(function () {
         desc = 1;

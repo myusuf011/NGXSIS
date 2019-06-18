@@ -1,21 +1,22 @@
 ﻿@model ngxsis.ViewModel.OrganisasiViewModel
 
-
-@using (Html.BeginForm("Create", "Organisasi", FormMethod.Post, new { id = "form-create", name = "form-create" }))
+@using(Html.BeginForm("Create","Organisasi",FormMethod.Post,new { id = "form-create",name = "form-create" }))
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.user_id,new { Value = Session["userID"] })
     <div class="form-horizontal">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.ValidationSummary(true,"",new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.biodata_id)
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
                         <div class="col-md-12">
-                            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label" })
+                            @Html.LabelFor(model => model.name,htmlAttributes: new { @class = "control-label" })
                         </div>
                         <div class="col-md-12">
-                            @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.name,new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.name,"",new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
@@ -23,11 +24,11 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <div class="col-md-12">
-                            @Html.LabelFor(model => model.position, htmlAttributes: new { @class = "control-label" })
+                            @Html.LabelFor(model => model.position,htmlAttributes: new { @class = "control-label" })
                         </div>
                         <div class="col-md-12">
-                            @Html.EditorFor(model => model.position, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.position, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.position,new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.position,"",new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
@@ -37,13 +38,13 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <div class="col-md-12">
-                            @Html.LabelFor(model => model.entry_year, htmlAttributes: new { @class = "control-label" })
+                            @Html.LabelFor(model => model.entry_year,htmlAttributes: new { @class = "control-label" })
                         </div>
                         <div class="col-md-12">
-                            @Html.DropDownListFor(model => model.entry_year, new SelectList(Enumerable.Range(DateTime.Today.Year - 20, 21)),
+                            @Html.DropDownListFor(model => model.entry_year,new SelectList(Enumerable.Range(DateTime.Today.Year-20,21)),
                             "- Pilih Tahun -",
                             new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.entry_year, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.entry_year,"",new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
@@ -51,13 +52,13 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <div class="col-md-12">
-                            @Html.LabelFor(model => model.exit_year, htmlAttributes: new { @class = "control-label" })
+                            @Html.LabelFor(model => model.exit_year,htmlAttributes: new { @class = "control-label" })
                         </div>
                         <div class="col-md-12">
-                            @Html.DropDownListFor(model => model.exit_year, new SelectList(Enumerable.Range(DateTime.Today.Year - 20, 21)),
+                            @Html.DropDownListFor(model => model.exit_year,new SelectList(Enumerable.Range(DateTime.Today.Year-20,21)),
                             "- Pilih Tahun -",
                             new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.exit_year, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.exit_year,"",new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
@@ -67,11 +68,11 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <div class="col-md-12">
-                            @Html.LabelFor(model => model.responsibility, htmlAttributes: new { @class = "control-label" })
+                            @Html.LabelFor(model => model.responsibility,htmlAttributes: new { @class = "control-label" })
                         </div>
                         <div class="col-md-12">
-                            @Html.EditorFor(model => model.responsibility, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.responsibility, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.responsibility,new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.responsibility,"",new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
@@ -81,11 +82,11 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <div class="col-md-12">
-                            @Html.LabelFor(model => model.notes, htmlAttributes: new { @class = "control-label" })
+                            @Html.LabelFor(model => model.notes,htmlAttributes: new { @class = "control-label" })
                         </div>
                         <div class="col-md-12">
-                            @Html.EditorFor(model => model.notes, new { htmlAttributes = new { @class = "form-control form-notes" } })
-                            @Html.ValidationMessageFor(model => model.notes, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.notes,new { htmlAttributes = new { @class = "form-control form-notes" } })
+                            @Html.ValidationMessageFor(model => model.notes,"",new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
@@ -94,64 +95,46 @@
 
             <div class="row">
                 <div class="btn-group col-md-offset-9">
-                    <input type="button" value="Batal" data-dismiss="modal" class="btn btn-batal" />
+                    <input type="button" value="Batal" class="btn btn-batal" />
                     <input type="submit" value="Simpan" class="btn btn-simpan" />
                 </div>
             </div>
         </div>
     </div>
-
 }
 
 @Scripts.Render("~/bundles/jqueryval")
 
 <script type="text/javascript">
-    //$("#form-create").submit(function () {
-    //    $("#form-create").validate();
-    //    if ($("#form-create").valid())
-    //    {
-    //    $.ajax({
-    //        url: this.action,
-    //        type: this.method,
-    //        data: $(this).serialize(),
-    //        success: function (result) {
-    //            if (result.success) {
-    //                alert("Data berhasil disimpan");
-    //                $(".modal-utama").modal("hide");
-    //                GetList();
-    //            }
-    //            else {
-    //                alert("Error! " + result.message);
-    //            }
-    //        }
-    //    });
-
-    //    }
-    //    //debugger;
-    //    return false;
-    //});
-
     $("#form-create").submit(function () {
-        //$("#form-create").validate();
-        //if ($("#form-create").valid()) {
-            $.ajax({
-                url: this.action,
-                type: this.method,
-                data: $(this).serialize(),
-                success: function (result) {
-                    if (result.success) {
-                        alert("Data berhasil disimpan");
-                        $(".modal-utama").modal("hide");
-                        GetList();
-                    }
-                    else {
-                        alert("Error! " + result.message);
-                    }
+        $("#biodata_id").val(biodata_id);
+        $.ajax({
+            url: this.action,
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.success) {
+                    alert("Data berhasil disimpan");
+                    $(".modal-create-org").modal("hide");
+                    $(".modal-pelamar").modal("show");
+                    GetOrganisasi();
                 }
-            });
-
-        //}
-        //debugger;
+                else {
+                    //$("#form-create").validate();
+                    //alert("Error! " + result.message);
+                }
+            }
+        });
         return false;
+    });
+
+    $(".btn-batal").click(function () {
+        $(".modal-create-org").modal("hide");
+        $(".modal-pelamar").modal("show");
+    });
+
+    $(".close").click(function () {
+        $(".modal-create-org").modal("hide");
+        $(".modal-pelamar").modal("show");
     });
 </script>

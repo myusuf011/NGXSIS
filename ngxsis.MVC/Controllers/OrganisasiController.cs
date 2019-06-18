@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace ngxsis.MVC.Controllers
 {
-    public class OrganisasiController : Controller
+    public class OrganisasiController:Controller
     {
         // GET: Organisasi
         public ActionResult Index()
@@ -16,27 +16,27 @@ namespace ngxsis.MVC.Controllers
             return View();
         }
 
-        public ActionResult List()
+        public ActionResult List(int biodata_id)
         {
-            return PartialView("_List", OrganisasiRepo.All());
+            return PartialView("_List",OrganisasiRepo.ByBiodataId(biodata_id));
         }
 
         // CREATE
         public ActionResult Create()
         {
-            return PartialView("_Create", new OrganisasiViewModel());
+            return PartialView("_Create",new OrganisasiViewModel());
         }
 
         [HttpPost]
         public ActionResult Create(OrganisasiViewModel model)
         {
-            if (!ModelState.IsValid || int.Parse(model.exit_year) < int.Parse(model.entry_year))
+            if(!ModelState.IsValid||int.Parse(model.exit_year)<int.Parse(model.entry_year))
             {
                 return Json(new
                 {
                     success = false,
                     message = "Invalid"
-                }, JsonRequestBehavior.AllowGet);
+                },JsonRequestBehavior.AllowGet);
             }
 
             ResponseResult result = OrganisasiRepo.Update(model);
@@ -45,25 +45,25 @@ namespace ngxsis.MVC.Controllers
                 success = result.Success,
                 message = result.Message,
                 entity = result.Entity
-            }, JsonRequestBehavior.AllowGet);
+            },JsonRequestBehavior.AllowGet);
         }
 
         // EDIT
         public ActionResult Edit(int id)
         {
-            return PartialView("_Edit", OrganisasiRepo.ById(id));
+            return PartialView("_Edit",OrganisasiRepo.ById(id));
         }
 
         [HttpPost]
         public ActionResult Edit(OrganisasiViewModel model)
         {
-            if (!ModelState.IsValid || int.Parse(model.exit_year) < int.Parse(model.entry_year))
+            if(!ModelState.IsValid||int.Parse(model.exit_year)<int.Parse(model.entry_year))
             {
                 return Json(new
                 {
                     success = false,
                     message = "Invalid"
-                }, JsonRequestBehavior.AllowGet);
+                },JsonRequestBehavior.AllowGet);
             }
 
             ResponseResult result = OrganisasiRepo.Update(model);
@@ -72,13 +72,13 @@ namespace ngxsis.MVC.Controllers
                 success = result.Success,
                 message = result.Message,
                 entity = result.Entity
-            }, JsonRequestBehavior.AllowGet);
+            },JsonRequestBehavior.AllowGet);
         }
 
         // DELETE
         public ActionResult Delete(int id)
         {
-            return PartialView("_Delete", OrganisasiRepo.ById(id));
+            return PartialView("_Delete",OrganisasiRepo.ById(id));
         }
 
         [HttpPost]
@@ -90,7 +90,12 @@ namespace ngxsis.MVC.Controllers
                 success = result.Success,
                 message = result.Message,
                 entity = result.Entity
-            }, JsonRequestBehavior.AllowGet);
+            },JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult IsExitYearValid(string exit_year,string entry_year)
+        {
+            return Json(OrganisasiRepo.ValidationExitYear(exit_year,entry_year),JsonRequestBehavior.AllowGet);
         }
 
         //public JsonResult IsExitYearValid(string exit_year, string entry_year)

@@ -58,6 +58,9 @@
     <Compile Include="KeluargaRepo.cs" />
     <Compile Include="LainLainRepo.cs" />
     <Compile Include="LoginRepo.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="PelamarRepo.cs" />
     <Compile Include="OrganisasiRepo.cs" />
     <Compile Include="PelatihanRepo.cs" />
@@ -82,8 +85,17 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App - Copy.config" />
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\ngxsis.Repository.dll" />
+    <Content Include="bin\Debug\ngxsis.Repository.pdb" />
+    <Content Include="Rotativa\help-wkhtmltoimage.txt" />
+    <Content Include="Rotativa\help-wkhtmltopdf.txt" />
+    <Content Include="Rotativa\wkhtmltoimage.exe" />
+    <Content Include="Rotativa\wkhtmltopdf.exe" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace ngxsis.MVC.Controllers
 {
-    public class KeahlianController : Controller
+    public class KeahlianController:Controller
     {
         // GET: Keahlian
         public ActionResult Index()
@@ -16,74 +16,81 @@ namespace ngxsis.MVC.Controllers
             return View();
         }
 
-        public ActionResult List()
+        //public ActionResult List()
+        //{
+        //    return PartialView("_List", KeahlianRepo.All());
+        //}
+
+        public ActionResult List(int biodata_id)
         {
-            return PartialView("_List", KeahlianRepo.All());
+            return PartialView("_List",KeahlianRepo.ByBiodataId(biodata_id));
         }
 
-        public ActionResult ListBySkillLevel(int id)
-        {
-            return PartialView("_ListBySkillLevel", KeahlianRepo.All());
-        }
+        //public ActionResult ListBySkillLevel(int id)
+        //{
+        //    return PartialView("_ListBySkillLevel", KeahlianRepo.All());
+        //}
 
         // CREATE
         public ActionResult Create()
         {
-            ViewBag.KeahlianList = new SelectList(KeahlianRepo.LevelAll(), "skill_level_id", "skill_level_name"); //menggantikan category menjadi dropdown
-            return PartialView("_Create", new KeahlianViewModel());
+            ViewBag.KeahlianList=new SelectList(KeahlianRepo.LevelAll(),"skill_level_id","skill_level_name"); //menggantikan category menjadi dropdown
+            return PartialView("_Create",new KeahlianViewModel());
         }
 
         [HttpPost]
         public ActionResult Create(KeahlianViewModel model)
         {
-            if (!ModelState.IsValid)
+            if(!ModelState.IsValid)
             {
                 return Json(new
                 {
                     success = false,
                     message = "Invalid"
-                }, JsonRequestBehavior.AllowGet);
+                },JsonRequestBehavior.AllowGet);
             }
+
             ResponseResult result = KeahlianRepo.Update(model);
             return Json(new
             {
                 success = result.Success,
                 message = result.Message,
                 entity = result.Entity
-            }, JsonRequestBehavior.AllowGet);
+            },JsonRequestBehavior.AllowGet);
         }
 
         // EDIT
         public ActionResult Edit(int id)
         {
-            ViewBag.KeahlianList = new SelectList(KeahlianRepo.LevelAll(), "skill_level_id", "skill_level_name");
-            return PartialView("_Edit", KeahlianRepo.ById(id));
+            ViewBag.KeahlianList=new SelectList(KeahlianRepo.LevelAll(),"skill_level_id","skill_level_name");
+            return PartialView("_Edit",KeahlianRepo.ById(id));
         }
 
         [HttpPost]
         public ActionResult Edit(KeahlianViewModel model)
         {
-            if (!ModelState.IsValid)
+            if(!ModelState.IsValid)
             {
                 return Json(new
                 {
                     success = false,
                     message = "Invalid"
-                }, JsonRequestBehavior.AllowGet);
+                },JsonRequestBehavior.AllowGet);
             }
+
             ResponseResult result = KeahlianRepo.Update(model);
             return Json(new
             {
                 success = result.Success,
                 message = result.Message,
                 entity = result.Entity
-            }, JsonRequestBehavior.AllowGet);
+            },JsonRequestBehavior.AllowGet);
         }
 
         // DELETE
         public ActionResult Delete(int id)
         {
-            return PartialView("_Delete", KeahlianRepo.ById(id));
+            return PartialView("_Delete",KeahlianRepo.ById(id));
         }
 
         [HttpPost]
@@ -95,7 +102,7 @@ namespace ngxsis.MVC.Controllers
                 success = result.Success,
                 message = result.Message,
                 entity = result.Entity
-            }, JsonRequestBehavior.AllowGet);
+            },JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -4,118 +4,107 @@
 
 @Html.HiddenFor(model => model.id)
 
-
+@{
+    if(Session["userID"]==null)
+    {
+        //Response.Redirect("/"); // <-- Sesuaikan acceess bila sudah login
+        Session["userID"]=1234;
+    }
+}
 
 <div class="row">
     <div class="col-md-3" style="padding-top:8px">
         <table style="width:230px; border:2px solid #000080; font-size:small;">
 
+
             <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-profil" data-id="@Model.id">Profil</button></td>
+                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-profil" class="btn btn-link" data-id="@Model.id">Profil</button></td>
             </tr>
             <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-biodata" data-id="@Model.id">Biodata</button></td>
+                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-biodata" class="btn btn-link" data-id="@Model.biodata_id">Biodata</button></td>
             </tr>
             <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-biodata" data-id="@Model.id">Pengalaman Kerja</button></td>
+                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-pengalaman" class="btn btn-link" data-id="@Model.biodata_id">Pengalaman Kerja</button></td>
             </tr>
             <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-biodata" data-id="@Model.id">Pendidikan</button></td>
+                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.id">Pendidikan</button></td>
             </tr>
 
             <tr>
-                <td style="border:2px solid #000080;">
-                <button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-biodata" data-id="@Model.id">Pelatihan</button>
-                </td>
+                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-pelatihan" class="btn btn-link" data-id="@Model.biodata_id">Pelatihan</button></td>
             </tr>
 
             <tr>
-                <td style="border:2px solid #000080;">
-                    <button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-biodata" data-id="@Model.id">Sertifikasi</button>
-                </td>
+                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.id">Sertifikasi</button></td>
             </tr>
 
             <tr>
-                <td style="border:2px solid #000080;">
-                <button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-biodata" data-id="@Model.id">Sumber Lowongan Kerja</button>
-                </td>
+                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.id">Sumber Lowongan Kerja</button></td>
             </tr>
             <tr>
-                <td style="border:2px solid #000080;">
-                <button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-biodata" data-id="@Model.id">Organisasi</button>
-                </td>
+                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-organisasi" class="btn btn-link" data-id="@Model.biodata_id">Organisasi</button></td>
             </tr>
 
             <tr>
-                <td style="border:2px solid #000080;">
-                <button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-biodata" data-id="@Model.id">Keluarga</button>
-                </td>
+                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.id">Keluarga</button></td>
             </tr>
             <tr>
-                <td style="border:2px solid #000080;">
-                <button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-biodata" data-id="@Model.id">Keahlian</button>
-                </td>
+                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-keahlian" class="btn btn-link" data-id="@Model.biodata_id">Keahlian</button></td>
             </tr>
             <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit"id="btn-lainlain" class="btn btn-link" data-id="@Model.biodata_id">Lain-lain</button></td>
+                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-lainlain" class="btn btn-link" data-id="@Model.biodata_id">Lain-lain</button></td>
             </tr>
             <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-dokumen" data-id="@Model.id">Dokumen</button></td>
+                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.id">Dokumen</button></td>
             </tr>
             <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-biodata" data-id="@Model.id">Catatan</button></td>
+                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.id">Catatan</button></td>
             </tr>
             <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-biodata" data-id="@Model.id">Aktivasi Akun</button></td>
+                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.id">Aktivasi Akun</button></td>
             </tr>
             <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-biodata" data-id="@Model.id">Lihat Tes</button></td>
+                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.id">Lihat Tes</button></td>
             </tr>
             <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-biodata" data-id="@Model.id">Hasil Tes</button></td>
+                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.biodata_id">Hasil Tes</button></td>
             </tr>
 
         </table>
     </div>
 
     <!-- Page content -->
-    <div class="col-md-9" id="datadata" style="left:20px; padding-right:50px; bottom:-20px;" >
-
+    <div class="col-md-9" id="datadata" style="left:20px; padding-right:50px; bottom:-20px;">
     </div>
 </div>
 
 
 
 
-<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
-<script type="text/javascript">
 
-    $(".btn-biodata").click(function () {
+<script type="text/javascript">
+    var biodataId
+    $("#btn-biodata").click(function () {
+        biodataId = $(this).attr("data-id");
+        console.log(biodataId)
+        GetListP();
+
+    });
+
+    function GetListP() {
         $.ajax(
             {
                 url: '@Url.Action("BioList", "Pelamar")',
                 type: 'get',
-                data: { id: $(this).attr("data-id") },
-                    success: function (result) {
+                data: { id: biodataId },
+                success: function (result) {
                     $("#datadata").html(result);
+                    $("#datepicker").datepicker({
+                        dateFormat: "yy-mm-dd"
+                    });
                 }
             });
-
-    });
-
-    $(".btn-dokumen").click(function () {
-          $.ajax(
-            {
-                url: '@Url.Action("DokumenList", "Dokumen")',
-                  type: 'get',
-                data: { id: $(this).attr("data-id") },
-                    success: function (result) {
-                    $("#datadata").html(result);
-                }
-            });
-    });
-
+    }
     $("#btn-lainlain").click(function () {
         //alert("ID Biodata : " + $(this).attr("data-id"));
         $.ajax({
@@ -127,51 +116,112 @@
             }
         });
     });
-    });
 
-    $(".btn-dokumen").click(function () {
-          $.ajax(
-            {
-                url: '@Url.Action("DokumenList", "Dokumen")',
-                  type: 'get',
-                data: { id: $(this).attr("data-id") },
-                    success: function (result) {
-                    $("#datadata").html(result);
-                }
-            });
-
-     });
-
-    $(".btn-sumlok").click(function () {
+    $("#btn-keahlian").click(function () {
         biodata_id = $(this).data("id");
-        $.ajax(
-          {
-              url: '@Url.Action("Create", "SumberLoker")',
-              type: 'get',
-              data: { biodata_id: $(this).attr("data-id") },
-              success: function (result) {
-                  $("#datadata").html(result);
-                  $("#datepicker").datepicker({
-                      dateFormat: "yy-mm-dd",
-                  });
-              }
-          });
-
+        //alert("ID Biodata : " + $(this).attr("data-id"));
+        $.ajax({
+            url: '@Url.Action("List", "Keahlian")',
+            type: 'get',
+            data: { biodata_id: $(this).attr("data-id") },
+            success: function (result) {
+                $("#datadata").html(result);
+            }
+        });
     });
 
-    $(".btn-profil").click(function () {
-        $.ajax(
-          {
-              url: '@Url.Action("List", "Profil")',
-              type: 'get',
-              data: { id: $(this).attr("data-id") },
-              success: function (result) {
-                  $("#datadata").html(result);
-              }
-          });
-
+    $("#btn-organisasi").click(function () {
+        biodata_id = $(this).data("id");
+        //alert("ID Biodata : " + $(this).attr("data-id"));
+        $.ajax({
+            url: '@Url.Action("List", "Organisasi")',
+            type: 'get',
+            data: { biodata_id: $(this).attr("data-id") },
+            success: function (result) {
+                $("#datadata").html(result);
+            }
+        });
     });
+
+    $("#btn-pelatihan").click(function () {
+        biodata_id = $(this).data("id");
+        //alert("ID Biodata : " + $(this).attr("data-id"));
+        $.ajax({
+            url: '@Url.Action("List", "Pelatihan")',
+            type: 'get',
+            data: { biodata_id: $(this).attr("data-id") },
+            success: function (result) {
+                $("#datadata").html(result);
+            }
+        });
+    });
+
+    $("#btn-pengalaman").click(function () {
+        biodata_id = $(this).data("id");
+        //alert("ID Biodata : " + $(this).attr("data-id"));
+        $.ajax({
+            url: '@Url.Action("List", "Pengalaman")',
+            type: 'get',
+            data: { biodata_id: $(this).attr("data-id") },
+            success: function (result) {
+                $("#datadata").html(result);
+            }
+        });
+    });
+
+    function GetPengalaman() {
+        $.ajax({
+            url: '@Url.Action("List", "Pengalaman")',
+            type: 'get',
+            data: { biodata_id: biodata_id },
+            success: function (result) {
+                $("#datadata").html(result);
+                //   console.log(bioid);
+            }
+        });
+    }
+
+    function GetKeahlian() {
+        $.ajax({
+            url: '@Url.Action("List", "Keahlian")',
+            type: 'get',
+            data: { biodata_id: biodata_id },
+            success: function (result) {
+                $("#datadata").html(result);
+                //   console.log(bioid);
+            }
+        });
+    }
+
+    function GetOrganisasi() {
+        $.ajax({
+            url: '@Url.Action("List", "Organisasi")',
+            type: 'get',
+            data: { biodata_id: biodata_id },
+            success: function (result) {
+                $("#datadata").html(result);
+                //   console.log(bioid);
+            }
+        });
+    }
+
+    function GetPelatihan() {
+        $.ajax({
+            url: '@Url.Action("List", "Pelatihan")',
+            type: 'get',
+            data: { biodata_id: biodata_id },
+            success: function (result) {
+                $("#datadata").html(result);
+                //   console.log(bioid);
+            }
+        });
+    }
+
+       $(".close").click(function () {
+
+         GetList();
+ });
 
 </script>
-
-
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />

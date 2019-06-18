@@ -37,9 +37,12 @@ namespace ngxsis.ViewModel
 
         [StringLength(1000)]
         [Display(Name = "Catatan")]
+        [DataType(DataType.MultilineText)]
         public string notes { get; set; }
 
         public string skill_level_name { get; set; }
+
+        public long user_id { get; set; }
 
         //public virtual x_biodata x_biodata { get; set; }
 

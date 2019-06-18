@@ -4,6 +4,7 @@
 @using (Html.BeginForm("Create", "Pelamar", FormMethod.Post, new { id = "form-create", name = "form-create" }))
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.user_id, new { Value = Session["userID"] })
 
     <div class="form-horizontal">
 
@@ -303,8 +304,9 @@
                             @Html.LabelFor(model => model.marriage_year, htmlAttributes: new { @class = "control-label" })
                         </div>
                         <div class="col-md-12">
-                            @Html.DropDownListFor(model => model.marriage_year, (IEnumerable<SelectListItem>)ViewBag.yearList, " - Pilih - ",
-                 new { @class = "form-control" })
+                            @Html.DropDownListFor(model => model.marriage_year, new SelectList(Enumerable.Range(DateTime.Today.Year - 20, 21).Reverse()),
+                  "- Pilih Tahun -",
+                  new { @class = "form-control", id = "marriage_year" })
                             @Html.ValidationMessageFor(model => model.marriage_year, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -531,8 +533,8 @@
             success: function (result) {
                 if (result.success) {
                     alert("Data Pelamar " + result.entity.fullname + " Berhasil Disimpan");
-                    $(".modal").modal("hide");
-
+                    $(".modal-pelamar").modal("hide");
+                    GetList();
                 }
             }
         });

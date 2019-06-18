@@ -166,7 +166,58 @@ namespace ngxsis.Repository
 
 
                           }).FirstOrDefault();
-                result.tanggal = result.dob.ToString("dd MMMM yyyy", System.Globalization.CultureInfo.InvariantCulture);
+
+
+                string[] w = result.dob.ToString().Split('/');
+                string[] x = w[2].Split(' ');
+                w[2] = x[0];
+
+                switch (int.Parse(w[0]))
+                {
+                    case 1:
+                        w[0] = ("Januari");
+                        break;
+                    case 2:
+                        w[0] = ("Februari");
+                        break;
+                    case 3:
+                        w[0] = ("Maret");
+                        break;
+                    case 4:
+                        w[0] = ("April");
+                        break;
+                    case 5:
+                        w[0] = ("Mei");
+                        break;
+                    case 6:
+                        w[0] = ("Juni");
+                        break;
+                    case 7:
+                        w[0] = ("Juli");
+                        break;
+                    case 8:
+                        w[0] = ("Agustus");
+                        break;
+                    case 9:
+                        w[0] = ("September");
+                        break;
+                    case 10:
+                        w[0] = ("Oktober");
+                        break;
+                    case 11:
+                        w[0] = ("November");
+                        break;
+                    case 12:
+                        w[0] = ("Desember");
+                        break;
+                    default:
+                        w[0] = (" ");
+                        break;
+
+
+                }
+
+                result.tanggal = string.Format("{0} {1} {2}", w[1], w[0], w[2]);
 
                 if (result.gender == true)
                 {
@@ -241,36 +292,19 @@ namespace ngxsis.Repository
             return result != null ? result : new List<PelamarViewModel>();
         }
 
-        public static List<string> YearMarriage()
-        {
-            List<string> year = new List<string>();
-            string d = DateTime.Now.ToString("yyyy dd MMMM ");
-            string[] w = d.Split(' ');
-            int a = int.Parse(w[0]);
-            for (int i = a; i >= 1980; i--)
-            {
-                d = i.ToString();
-                year.Add(d);
-            }
 
 
-            return year;
-
-        }
-
-
-
-        public static ResponseResult ValidationMail(string email, DateTime date)
+        public static ResponseResult ValidationMail(string email, long id=0)
         {
 
-            List<ValidationModel> result = new List<ValidationModel>();
+            List<BiodataViewModel> result = new List<BiodataViewModel>();
             ResponseResult validation = new ResponseResult();
             using (var db = new ngxsisContext())
             {
 
-                result = db.x_biodata.Select(c => new ValidationModel
+                result = db.x_biodata.Select(c => new BiodataViewModel
                 {
-                    dob = c.dob,
+                    id = c.id,
                     email = c.email,
                     phone_number1 = c.phone_number1,
                     identity_type_id = c.identity_type_id,
@@ -282,7 +316,7 @@ namespace ngxsis.Repository
 
                 foreach (var item in result)
                 {
-                    if (email == item.email && date != item.dob)
+                    if (email == item.email && id != item.id)
                     {
                         validation.Success = false;
 
@@ -294,18 +328,18 @@ namespace ngxsis.Repository
 
         }
 
-        public static ResponseResult ValidationPhone(string phone, DateTime date)
+        public static ResponseResult ValidationPhone(string phone, long id=0)
         {
 
-            List<ValidationModel> result = new List<ValidationModel>();
+            List<BiodataViewModel> result = new List<BiodataViewModel>();
             ResponseResult validation = new ResponseResult();
             using (var db = new ngxsisContext())
             {
 
-                result = db.x_biodata.Select(c => new ValidationModel
+                result = db.x_biodata.Select(c => new BiodataViewModel
                 {
 
-                    dob = c.dob,
+                    id = c.id,
                     email = c.email,
                     phone_number1 = c.phone_number1,
                     identity_type_id = c.identity_type_id,
@@ -317,7 +351,7 @@ namespace ngxsis.Repository
 
                 foreach (var item in result)
                 {
-                    if (phone == item.phone_number1 && date != item.dob)
+                    if (phone == item.phone_number1 && id != item.id)
                     {
                         validation.Success = false;
                     }
@@ -329,23 +363,23 @@ namespace ngxsis.Repository
         }
 
 
-        public static ResponseResult ValidationIdentity(string IdentityNo, long IdentityId, DateTime date)
+        public static ResponseResult ValidationIdentity(string IdentityNo, long IdentityId, long id=0)
         {
 
-            List<ValidationModel> result = new List<ValidationModel>();
+            List<BiodataViewModel> result = new List<BiodataViewModel>();
             ResponseResult validation = new ResponseResult();
             using (var db = new ngxsisContext())
             {
 
-                result = db.x_biodata.Select(c => new ValidationModel
+                result = db.x_biodata.Select(c => new BiodataViewModel
                 {
 
-                    dob = c.dob,
+                    id = c.id,
                     email = c.email,
                     phone_number1 = c.phone_number1,
                     identity_type_id = c.identity_type_id,
                     identity_no = c.identity_no,
-                    identity_name = c.x_identity_type.name
+                    namaidentitas = c.x_identity_type.name
 
 
 
@@ -356,12 +390,12 @@ namespace ngxsis.Repository
 
                 foreach (var item in result)
                 {
-                    if (IdentityNo == item.identity_no && IdentityId == item.identity_type_id && date != item.dob)
+                    if (IdentityNo == item.identity_no && IdentityId == item.identity_type_id && id != item.id)
                     {
 
 
                         validation.Success = false;
-                        validation.Message = string.Format("{0} dengan Nomor Identitas {1} Telah Terdaftar!", item.identity_name, item.identity_no);
+                        validation.Message = string.Format("{0} dengan Nomor Identitas {1} Telah Terdaftar!", item.namaidentitas, item.identity_no);
 
                     }
                 }
@@ -416,7 +450,7 @@ namespace ngxsis.Repository
                         biodata.is_deleted = false;
 
 
-                        biodata.created_by = db.x_biodata.Max(o => o.id) + 1;
+                        biodata.created_by = entity.user_id;
                         biodata.created_on = DateTime.Now;
 
                         x_address address = new x_address();
@@ -435,7 +469,7 @@ namespace ngxsis.Repository
                         address.kelurahan2 = entity.kelurahan2;
                         address.kecamatan2 = entity.kecamatan2;
                         address.region2 = entity.region2;
-                        address.created_by = db.x_biodata.Max(o => o.id) + 1; ;
+                        address.created_by = entity.user_id;
                         address.created_on = DateTime.Now;
                         address.is_deleted = false;
 
@@ -487,7 +521,7 @@ namespace ngxsis.Repository
                         biodata.marriage_year = entity.marriage_year;
                         biodata.company_id = 1;
 
-                        biodata.modified_by = entity.id;
+                        biodata.modified_by = entity.user_id;
                         biodata.modified_on = DateTime.Now;
 
 
@@ -505,7 +539,7 @@ namespace ngxsis.Repository
                         address.kelurahan2 = entity.kelurahan2;
                         address.kecamatan2 = entity.kecamatan2;
                         address.region2 = entity.region2;
-                        address.modified_by = entity.id;
+                        address.modified_by = entity.user_id;
                         address.modified_on = DateTime.Now;
 
                         db.SaveChanges();

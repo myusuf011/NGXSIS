@@ -1,6 +1,5 @@
 ﻿@model ngxsis.ViewModel.OrganisasiViewModel
 
-
 <div>
     <dl class="dl-horizontal">
         <dt>
@@ -10,37 +9,17 @@
             <font style="align-content: center"><font color="red"><font size="4">Anda yakin ingin menghapus organisasi <b>@Html.DisplayFor(model => model.name)?</b></font></font></font>
         </dd>
     </dl>
-    @*<table class="table">
-            <tr>
-                <th>
-                    <span class="glyphicon glyphicon-trash" aria-hidden="true" style="font-size:100px; color:Black"></span>
-                </th>
-                <th>
-                    Anda yakin ingin menghapus organisasi @Html.DisplayFor(model => model.name)?
-                </th>
-            </tr>
-        </table>*@
 
-    @*<div>
-
-            <span class="glyphicon glyphicon-trash" aria-hidden="true" style="font-size:100px; color:Black"></span>
-            <div class="col-md-offset-8 col-md-10">
-
-                Anda yakin ingin menghapus organisasi @Html.DisplayFor(model => model.name)?
-
-            </div>
-        </div>*@
-
-
-    @using (Html.BeginForm("Delete", "Organisasi", FormMethod.Post, new { id = "form-delete", name = "form-delete" }))
+    @using(Html.BeginForm("Delete","Organisasi",FormMethod.Post,new { id = "form-delete",name = "form-delete" }))
     {
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.id)
         @Html.HiddenFor(model => model.name)
+        @Html.HiddenFor(model => model.user_id,new { Value = Session["userID"] })
 
         <div class="row">
             <div class="btn-group col-md-offset-9">
-                <input type="button" value="Tidak" data-dismiss="modal" class="btn btn-batal" />
+                <input type="button" value="Tidak" class="btn btn-batal" />
                 <input type="submit" value="Ya" class="btn btn-ya" />
             </div>
         </div>
@@ -57,7 +36,8 @@
                 if (result.success) {
                     alert("Data berhasil dihapus");
                     $(".modal-delete").modal("hide");
-                    GetList();
+                    $(".modal-pelamar").modal("show");
+                    GetOrganisasi();
                 } else
                 {
                     alert("Error! " + result.message);
@@ -65,5 +45,15 @@
             }
         });
         return false;
+    });
+
+    $(".btn-batal").click(function () {
+        $(".modal-delete").modal("hide");
+        //$(".modal-pelamar").modal("show");
+    });
+
+    $(".close").click(function () {
+        $(".modal-delete").modal("hide");
+        //$(".modal-pelamar").modal("show");
     });
 </script>

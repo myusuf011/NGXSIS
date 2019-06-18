@@ -99,6 +99,7 @@
     <Compile Include="ProsesPelamarViewModel.cs" />
     <Compile Include="ResponseResult.cs" />
     <Compile Include="ResponseResultLogin.cs" />
+    <Compile Include="RiwayatProyekModel.cs" />
     <Compile Include="RoleViewModel.cs" />
     <Compile Include="SelectAccessViewModel.cs" />
     <Compile Include="SertifikasiViewModel.cs" />

@@ -28,15 +28,15 @@ namespace ngxsis.MVC.Controllers
             ViewBag.maritalList = new SelectList(GetAll.AllMarital(), "id", "name");
             ViewBag.identityList = new SelectList(GetAll.AllIdentity(), "id", "name");
             ViewBag.religionList = new SelectList(GetAll.AllReligion(), "id", "name");
-            ViewBag.yearList = new SelectList(PelamarRepo.YearMarriage());
+      
             return PartialView("_Create");
         }
 
         [HttpPost]
         public ActionResult Create(BiodataViewModel model)
         {
-            if (!ModelState.IsValid || !PelamarRepo.ValidationIdentity(model.identity_no, model.identity_type_id, model.dob).Success || !PelamarRepo.ValidationMail(model.email, model.dob).Success ||
-                           !PelamarRepo.ValidationPhone(model.phone_number1, model.dob).Success)
+            if (!ModelState.IsValid || !PelamarRepo.ValidationIdentity(model.identity_no, model.identity_type_id, model.id).Success || !PelamarRepo.ValidationMail(model.email, model.id).Success ||
+                           !PelamarRepo.ValidationPhone(model.phone_number1, model.id).Success)
             {
                 return PartialView(model);
             }
@@ -52,30 +52,30 @@ namespace ngxsis.MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult VerifyEmail(string email, DateTime dob)
+        public ActionResult VerifyEmail(string email, long id=0)
         {
 
 
-            return Json(PelamarRepo.ValidationMail(email, dob).Success);
+            return Json(PelamarRepo.ValidationMail(email, id).Success);
         }
 
         [HttpPost]
-        public ActionResult VerifyPhone(string phone_number1, DateTime dob)
+        public ActionResult VerifyPhone(string phone_number1, long id=0)
         {
 
 
-            return Json(PelamarRepo.ValidationPhone(phone_number1, dob).Success);
+            return Json(PelamarRepo.ValidationPhone(phone_number1, id).Success);
         }
 
         [HttpPost]
-        public ActionResult VerifyIdentity(string identity_no, long identity_type_id, DateTime dob)
+        public ActionResult VerifyIdentity(string identity_no, long identity_type_id, long id=0)
         {
 
 
-            if (!PelamarRepo.ValidationIdentity(identity_no, identity_type_id, dob).Success)
+            if (!PelamarRepo.ValidationIdentity(identity_no, identity_type_id, id).Success)
 
             {
-                return Json(PelamarRepo.ValidationIdentity(identity_no, identity_type_id, dob).Message);
+                return Json(PelamarRepo.ValidationIdentity(identity_no, identity_type_id, id).Message);
             }
             return Json(true);
         }
@@ -99,15 +99,15 @@ namespace ngxsis.MVC.Controllers
             ViewBag.maritalList = new SelectList(GetAll.AllMarital(), "id", "name");
             ViewBag.identityList = new SelectList(GetAll.AllIdentity(), "id", "name");
             ViewBag.religionList = new SelectList(GetAll.AllReligion(), "id", "name");
-            ViewBag.yearList = new SelectList(PelamarRepo.YearMarriage());
+   
             return PartialView("_Edit", PelamarRepo.ById(id));
         }
 
         [HttpPost]
         public ActionResult Edit(BiodataViewModel model)
         {
-            if (!ModelState.IsValid || !PelamarRepo.ValidationIdentity(model.identity_no, model.identity_type_id, model.dob).Success || !PelamarRepo.ValidationMail(model.email, model.dob).Success ||
-                           !PelamarRepo.ValidationPhone(model.phone_number1, model.dob).Success)
+            if (!ModelState.IsValid || !PelamarRepo.ValidationIdentity(model.identity_no, model.identity_type_id, model.id).Success || !PelamarRepo.ValidationMail(model.email, model.id).Success ||
+                           !PelamarRepo.ValidationPhone(model.phone_number1, model.id).Success)
             {
                 return PartialView(model);
             }

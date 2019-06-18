@@ -1,10 +1,12 @@
 ﻿@model ngxsis.ViewModel.KeahlianViewModel
 
-@using (Html.BeginForm("Create", "Keahlian", FormMethod.Post, new { id = "form-create", name = "form-create" }))
+@using(Html.BeginForm("Create","Keahlian",FormMethod.Post,new { id = "form-create", name = "form-create" }))
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.user_id, new { Value = Session["userID"] })
     <div class="form-horizontal">
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.ValidationSummary(true,"",new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.biodata_id)
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
@@ -41,7 +43,7 @@
                             @Html.LabelFor(model => model.notes, htmlAttributes: new { @class = "control-label" })
                         </div>
                         <div class="col-md-12">
-                            @Html.EditorFor(model => model.notes, new { htmlAttributes = new { @class = "form-control form-notes" } })
+                            @Html.EditorFor(model => model.notes,new { htmlAttributes = new { @class = "form-control form-notes" } })
                             @Html.ValidationMessageFor(model => model.notes, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -51,19 +53,19 @@
 
             <div class="row">
                 <div class="btn-group col-md-offset-9">
-                    <input type="button" value="Batal" data-dismiss="modal" class="btn btn-batal" />
+                    <input type="button" value="Batal" class="btn btn-batal" />
                     <input type="submit" value="Simpan" class="btn btn-simpan" />
                 </div>
             </div>
         </div>
     </div>
-
 }
 
 @Scripts.Render("~/bundles/jqueryval")
 
 <script type="text/javascript">
     $("#form-create").submit(function () {
+        $("#biodata_id").val(biodata_id);
         $.ajax({
             url: this.action,
             type: this.method,
@@ -71,15 +73,26 @@
             success: function (result) {
                 if (result.success) {
                     alert("Data berhasil disimpan");
-                    $(".modal-utama").modal("hide");
-                    GetList();
-
+                    $(".modal-create-org").modal("hide");
+                    $(".modal-pelamar").modal("show");
+                    GetKeahlian();
                 }
-                //else {
-                //    alert("Error! " + result.message);
-                //}
+                else {
+                    $("#form-create").validate();
+                    //alert("Error! " + result.message);
+                }
             }
         });
         return false;
+    });
+
+    $(".btn-batal").click(function () {
+        $(".modal-create-org").modal("hide");
+        $(".modal-pelamar").modal("show");
+    });
+
+    $(".close").click(function () {
+        $(".modal-create-org").modal("hide");
+        $(".modal-pelamar").modal("show");
     });
 </script>

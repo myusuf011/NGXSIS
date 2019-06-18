@@ -1,48 +1,97 @@
-﻿<link rel="stylesheet" href="~/Content/Organisasi.css" />
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h2>
-            <font style="color: #000080"><b>Keahlian</b></font>
-            <button type="button" class="btn btn-primary btn-create-new" id="btn-create-new" title="Tambah Keahlian">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-            </button>
-        </h2>
-    </div>
-    <div id="data-list">
-    </div>
+﻿@*<link rel="stylesheet" href="~/Content/Organisasi.css" />*@
+
+@*id untuk created_by*@
+@*@{
+        if (Session["userID"] == null)
+        {
+            // Response.Redirect("~/Account/SelectAccess");
+            Session["userID"] = 1;
+        }
+
+    }*@
+@*<div class="panel panel-default">
+        <div class="panel-heading">
+            <h2>
+                <font style="color: #000080"><b>Keahlian</b></font>
+                <button type="button" class="btn btn-primary btn-create-new" id="btn-create-new" title="Tambah Keahlian">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </button>
+            </h2>
+        </div>
+        <div id="data-list">
+        </div>
+    </div>*@
+
+@*@section Scripts{
+        <script type="text/javascript">
+            $(document).ready(function () {
+                GetList();
+            });
+
+            function GetList() {
+                $.ajax({
+                    url: '@Url.Action("List", "Keahlian")',
+                    type: 'get',
+                    success: function (result) {
+                        $("#data-list").html(result);
+                    }
+                });
+            }
+
+            $("#btn-create-new").click(function () {
+                $.ajax({
+                    url: '@Url.Action("Create", "Keahlian")',
+                    type: 'get',
+                    success: function (result) {
+                        $(".modal-utama .modal-title").html("Tambah Keahlian");
+                        $(".modal-utama .modal-body").html(result);
+                        $(".modal-utama").modal("show");
+                    }
+                });
+            });
+        </script>
+    }*@
+
+<div id="datadata">
 </div>
 
 @section Scripts{
     <script type="text/javascript">
-        $(document).ready(function () {
-            GetList();
+        $('.keahlian').ready(function () {
+            GetListKeahlian();
         });
 
-        function GetList() {
+        function GetListKeahlian() {
+            biodata_id = $(this).data("id"); // ?
             $.ajax({
                 url: '@Url.Action("List", "Keahlian")',
                 type: 'get',
+                data: { biodata_id: $(this).attr("data-id") }, // ?
                 success: function (result) {
-                    $("#data-list").html(result);
+                    $("#datadata").html(result);
                 }
             });
         }
 
-        $("#btn-create-new").click(function () {
+        @*$("#btn-create-new").click(function () {
             $.ajax({
                 url: '@Url.Action("Create", "Keahlian")',
                 type: 'get',
                 success: function (result) {
+
                     $(".modal-utama .modal-title").html("Tambah Keahlian");
                     $(".modal-utama .modal-body").html(result);
                     $(".modal-utama").modal("show");
+                    //$(".modal").modal("hide");
                 }
             });
-        });
+        });*@
     </script>
 }
 
-<div class="modal fade modal-utama" tabindex="-1" role="dialog" style="display: none">
+
+
+<div class="modal fade modal-create-org" tabindex="-1" role="dialog" style="display: none">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header" style="background: darkblue">
@@ -69,3 +118,5 @@
         </div>
     </div>
 </div>
+
+

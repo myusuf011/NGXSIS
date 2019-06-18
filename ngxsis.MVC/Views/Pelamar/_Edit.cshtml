@@ -4,6 +4,7 @@
 @using (Html.BeginForm("Edit", "Pelamar", FormMethod.Post, new { id = "form-edit", name = "form-edit" }))
 {
     @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.user_id, new { Value = Session["userID"] })
     @Html.HiddenFor(model => model.id)
     <div class="form-horizontal">
 
@@ -303,8 +304,9 @@
                             @Html.LabelFor(model => model.marriage_year, htmlAttributes: new { @class = "control-label" })
                         </div>
                         <div class="col-md-12">
-                            @Html.DropDownListFor(model => model.marriage_year, (IEnumerable<SelectListItem>)ViewBag.yearList, " - Pilih - ",
-                 new { @class = "form-control" })
+                            @Html.DropDownListFor(model => model.marriage_year, new SelectList(Enumerable.Range(DateTime.Today.Year - 20, 21).Reverse()),
+                  "- Pilih Tahun -",
+                  new { @class = "form-control", id = "marriage_year" })
                             @Html.ValidationMessageFor(model => model.marriage_year, "", new { @class = "text-danger" })
                         </div>
                     </div>
@@ -509,7 +511,7 @@
             <div class="form-actions col-md-4 pull-right col-md-offset-1">
                 <div class="btn-group">
                     <button type="button" class="btn btn-warning btn-150px" data-dismiss="modal"><b>Batal</b></button>
-                    <button type="submit" class="btn btn-pp btn-150px "><b>Simpan</b></button>
+                    <button type="button" id="submit" class="btn btn-pp btn-150px "><b>Simpan</b></button>
 
                 </div>
             </div>
@@ -523,21 +525,53 @@
 @Scripts.Render("~/bundles/jqueryval")
 
 <script type="text/javascript">
-    $("#form-edit").submit(function () {
-        $.ajax({
-            url: this.action,
-            type: this.method,
-            data: $(this).serialize(),
-            success: function (result) {
-                if (result.success) {
-                    alert("Data Pelamar " + result.entity.fullname + " Berhasil Diubah");
-                    $(".modal").modal("hide");
+      $("#submit").click(function () {
+          simpan();
 
-                }
-            }
-        });
-        return false;
     });
 
+     function simpan()
+    {
+        $("#form-edit").valid();
+        setTimeout(validateForm, 100);
+    }
+    function validateForm()
+    {
 
+        $("#form-edit").validate();
+        if ($("#form-edit").valid()) {
+            console.log("valid" + $("#form-edit").valid());
+            submited = false;
+        } else
+        {
+            console.log("invalid")
+            submited = true;
+        }
+
+        if (submited) {
+            console.log("submited true");
+        } else {
+            $.ajax(
+            {
+                url: '@Url.Action("Edit","Pelamar")',
+                type: 'post',
+                data: $("#form-edit").serialize(),
+                success: function (result) {
+                    if (result.success) {
+                        console.log("submited false, submited true")
+                      alert("Data Pelamar " + result.entity.fullname + " Berhasil Diubah");
+                        $(".modal-object").modal("hide");
+                        GetListP();
+                        submited = true;
+                    } else {
+                        //alert("Role tidak berhasil dibuat\n" + result.message);
+                    }
+                }
+            });
+        }
+
+        return false;
+
+
+    }
 </script>

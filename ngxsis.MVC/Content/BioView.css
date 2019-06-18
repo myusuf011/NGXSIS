@@ -1,5 +1,3 @@
-
-
 input,
 select,
 textarea {
@@ -39,6 +37,45 @@ textarea {
     color: #ffffff;
 }
 
+/*.btn-pp:hover,
+.btn-pp:focus,
+.btn-pp:active,
+.btn-pp.active,
+.btn-pp {
+    color: #ffffff;
+    background-color: #000080;
+    border-color: #000063;
+}
+
+
+
+.btn-150px {
+    width: 142px;
+    height: 48px;
+}*/
+
+
+/*.form-control,
+.form-control:focus {
+    height: 48px;
+    color: #000080;
+    border: 2px solid #000080;
+    font-size: medium;
+}
+
+
+
+.btn-warning,
+.btn-warning:hover {
+    color: #ffffff;
+    background-color: #f75c0e;
+    border-color: #f75c0e;
+}*/
+
+.control-label {
+    font-weight: 100;
+    font-size: small;
+}
 
 
 
@@ -91,7 +128,7 @@ textarea {
 .table-striped > tbody > tr:nth-child(odd) > td,
 .table-striped > tbody > tr:nth-child(odd) > th {
     background-color: #ffffff;
-    border-bottom: 2px solid #000080;
+   
 }
 
 
@@ -99,10 +136,27 @@ textarea {
 .table-striped > tbody > tr:nth-child(even) > td,
 .table-striped > tbody > tr:nth-child(even) > th {
     background-color: #f9f9f9;
-    border-bottom: 2px solid #000080;
+  
 }
 
 .close:focus,
 .glyphicon-edit:focus {
+    outline: none;
+}
+
+form-control,
+.form-control:focus {
+    color: #000080;
+    border: 2px solid #000080;
+    font-size: medium;
+}
+
+.close:focus {
+    outline: none;
+}
+
+
+.close:focus,
+.glyphicon-trash:focus {
     outline: none;
 }

@@ -1,85 +1,27 @@
-﻿@*@{
-        ViewBag.Title = "Organisasi";
-    }
-
-    <h2>@ViewBag.Title</h2>
-
-    <div class="btn-group btn-group-sm">
-        <button type="button" class="btn btn-primary btn-create-new" id="btn-create-new" title="Create New">
-            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-        </button>
-    </div>*@
-
-<link rel="stylesheet" href="~/Content/Organisasi.css" />
-<div class="panel panel-default">
-    <!-- Default panel contents -->
-    <div class="panel-heading">
-        @*<input id="btn-create-new" type="button" class="btn btn-default btn-lg" value="Create new" />*@
-        <!--<input id="btn-create-new" type="button" class="btn btn-default btn-lg" value="Bikin baru" />-->
-        <h2>
-            <font style="color: #000080"><b>Organisasi</b></font>
-            <button type="button" class="btn btn-primary btn-create-new" id="btn-create-new" title="Tambah Organisasi">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-            </button>
-        </h2>
-        @*</div>
-            <div class="panel-body">*@
-    </div>
-
-    <!-- Table -->
-    <div id="data-list">
-        @*Loading...*@
-    </div>
+﻿<div id="datadata">
 </div>
-
-@*<div class="panel panel-primary">*@
-@*<!-- Default panel contents -->
-    <div class="panel-heading">
-        <input id="btn-create-new" type="button" class="btn btn-default btn-lg" value="Create new" />
-        <!--<input id="btn-create-new" type="button" class="btn btn-default btn-lg" value="Bikin baru" />-->
-    </div>
-    <div class="panel-body">
-    </div>
-
-    <!-- Table -->*@
-@*<div id="data-list">*@
-@*Loading...*@
-@*</div>*@
-@*</div>*@
-
-
 
 @section Scripts{
     <script type="text/javascript">
-        $(document).ready(function () {
+        $('.organisasi').ready(function () {
             GetList();
         });
 
         function GetList() {
+            biodata_id = $(this).data("id"); // ?
             $.ajax({
                 url: '@Url.Action("List", "Organisasi")',
                 type: 'get',
+                data: { biodata_id: $(this).attr("data-id") }, // ?
                 success: function (result) {
-                    $("#data-list").html(result);
+                    $("#datadata").html(result);
                 }
             });
         }
-
-        $("#btn-create-new").click(function () {
-            $.ajax({
-                url: '@Url.Action("Create", "Organisasi")',
-                type: 'get',
-                success: function (result) {
-                    $(".modal-utama .modal-title").html("Tambah Organisasi");
-                    $(".modal-utama .modal-body").html(result);
-                    $(".modal-utama").modal("show");
-                }
-            });
-        });
     </script>
 }
 
-<div class="modal fade modal-utama" tabindex="-1" role="dialog" style="display: none">
+<div class="modal fade modal-create-org" tabindex="-1" role="dialog" style="display: none">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header" style="background: darkblue">
@@ -89,9 +31,9 @@
             <div class="modal-body">
                 <p>One fine body&hellip;</p>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        </div>
+    </div>
+</div>
 
 <div class="modal fade modal-delete" tabindex="-1" role="dialog" style="display: none">
     <div class="modal-dialog" role="document">
@@ -103,6 +45,8 @@
             <div class="modal-body">
                 <p>One fine body&hellip;</p>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+        </div>
+    </div>
+</div>
+
+

@@ -1,5 +1,16 @@
 ﻿@model IEnumerable<ngxsis.ViewModel.KeahlianViewModel>
 
+<h2>
+    <font style="color: #000080"><b>Keahlian</b></font>
+    <button type="button" class="btn btn-primary btn-create" id="btn-create-new" title="Tambah Keahlian">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+    </button>
+</h2>
+
+@*<div id="data-list-keahlian">
+    </div>*@
+
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -15,7 +26,7 @@
         </tr>
     </thead>
 
-    @foreach (var item in Model)
+    @foreach(var item in Model)
     {
         <tr>
             <td>
@@ -41,15 +52,29 @@
 </table>
 
 <script type="text/javascript">
+    $("#btn-create-new").click(function () {
+        $.ajax({
+            url: '@Url.Action("Create", "Keahlian")',
+            type: 'get',
+            success: function (result) {
+                $(".modal-create-org .modal-title").html("Tambah Keahlian");
+                $(".modal-create-org .modal-body").html(result);
+                $(".modal-pelamar").modal("hide");
+                $(".modal-create-org").modal("show");
+            }
+        });
+    });
+
     $(".btn-edit").click(function () {
         $.ajax({
             url: '@Url.Action("Edit", "Keahlian")',
             type: 'get',
             data: { id: $(this).attr("data-container") },
             success: function (result) {
-                $(".modal-utama .modal-title").html("Ubah Keahlian");
-                $(".modal-utama .modal-body").html(result);
-                $(".modal-utama").modal("show");
+                $(".modal-create-org .modal-title").html("Ubah Keahlian");
+                $(".modal-create-org .modal-body").html(result);
+                $(".modal-pelamar").modal("hide");
+                $(".modal-create-org").modal("show");
             }
         });
     });
@@ -62,8 +87,26 @@
             success: function (result) {
                 $(".modal-delete .modal-title").html("Hapus Keahlian?");
                 $(".modal-delete .modal-body").html(result);
+                //$(".modal-pelamar").modal("hide");
                 $(".modal-delete").modal("show");
             }
         });
     });
 </script>
+
+
+@*<div class="modal fade modal-delete" tabindex="-1" role="dialog" style="display: none">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <p>One fine body&hellip;</p>
+                </div>
+            </div>
+        </div>
+    </div>*@
+
+<link rel="stylesheet" href="~/Content/Organisasi.css" />
