@@ -58,7 +58,7 @@
                 </td>
             </tr>
             <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-biodata" data-id="@Model.id">Lain-lain</button></td>
+                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit"id="btn-lainlain" class="btn btn-link" data-id="@Model.biodata_id">Lain-lain</button></td>
             </tr>
             <tr>
                 <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-dokumen" data-id="@Model.id">Dokumen</button></td>
@@ -115,8 +115,19 @@
                     $("#datadata").html(result);
                 }
             });
+    });
 
-     });
+    $("#btn-lainlain").click(function () {
+        //alert("ID Biodata : " + $(this).attr("data-id"));
+        $.ajax({
+            url: '@Url.Action("ListIndex", "LainLain")',
+            type: 'get',
+            data: { idBiodata: $(this).attr("data-id") },
+            success: function (result) {
+                $("#datadata").html(result);
+            }
+        });
+    });
 
     $(".btn-sumlok").click(function () {
         biodata_id = $(this).data("id");

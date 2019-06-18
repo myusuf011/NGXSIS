@@ -19,5 +19,7 @@ namespace ngxsis.ViewModel
         public long CompanyId { get; set; }
 
         public string CompanyName { get; set; }
+
+        public bool is_deleted { get; set; }
     }
 }

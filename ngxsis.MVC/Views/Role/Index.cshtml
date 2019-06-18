@@ -4,11 +4,15 @@
 }
 
 @{
-    ViewBag.UID=Session["userID"];
-    if(Session["userID"]==null)
+    ViewBag.UID=Session["userID"];    
+    if (Session["userID"] != null && Session["roleID"] == null)
     {
-        Response.Redirect("/"); // <-- Sesuaikan acceess bila sudah login
-        //Session["userID"]=1;
+        Response.Redirect("~/Account/SelectAccess"); // <-- Sesuaikan acceess bila sudah login
+    }
+
+    if (Session["userID"] == null && Session["roleID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
     }
 }
 

@@ -20,8 +20,7 @@
     <title>Login Page</title>
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/StyleLogin.css" rel="stylesheet" />
-    <!--<script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>-->
-    <script src="~/Scripts/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery-1.10.2.js"></script>
 </head>
 
 <body>
@@ -41,11 +40,11 @@
                             <p class="text-center title-login">XSIS 2.0</p>
                         </div>                        
                         <div class="margin-login">
-                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control margin-login", @placeholder = "Email", @required = "required" } })
+                            @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control margin-login input-login", @placeholder = "Email", @required = "required" } })
                             @Html.ValidationMessageFor(model => model.email)
                         </div>
                         <div class="margin-login">
-                            @Html.EditorFor(model => model.abpwd, new { htmlAttributes = new { @class = "form-control margin-login", @placeholder = "Password", @required = "required" } })
+                            @Html.EditorFor(model => model.abpwd, new { htmlAttributes = new { @class = "form-control margin-login input-login", @placeholder = "Password", @required = "required" } })
                             @Html.ValidationMessageFor(model => model.abpwd)
                         </div> 
                         <div class="margin-login">
@@ -57,7 +56,7 @@
                     </div>
                 }
                 <div>
-                    <p class="tengah">2020 - Xsis Mitra Utama</p>
+                    <p class="tengah" style="margin-top:50px">2020 - Xsis Mitra Utama</p>
                 </div>
             </div>
             <div class="col-sm-4">

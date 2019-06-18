@@ -1,0 +1,164 @@
+﻿@model ngxsis.ViewModel.LainLainViewModel
+@Html.AntiForgeryToken()
+@Html.HiddenFor(model => model.biodata_id)
+
+<div class="row referensi">
+    <hr style="border:solid #000080; margin-bottom:-47px;" />
+    <h4 style="font-weight:bolder; color:#000080;  font-family:Arial;">
+        Referensi <span style="font-size:10pt">(Dosen Pembimbing/Atasan sebelumnya yang dapat diminta keterangan diri)</span>
+        <button type="button" id="btn-detail-tambahan" class="glyphicon glyphicon-plus-sign" style="background-color:#ffffff; border:none;" data-id="@Model.biodata_id" title="Tambah Referensi"></button>
+    </h4>
+
+    <h4 id="list-referensi"></h4>
+</div>
+
+<hr />
+
+<div class="row">
+    <hr style="border:solid #000080; margin-bottom:-47px;" />
+    <h4 style="font-weight:bolder; color:#000080;  font-family:Arial;">
+        Keterangan Tambahan
+        <button type="button" id="btn-detail-tambahan" class="glyphicon glyphicon-search" style="background-color:#ffffff; border:none;" data-id="@Model.tambahanId" title="Detail"></button>
+        <button type="button" id="btn-edit-tambahan" class="glyphicon glyphicon-edit" style="background-color:#ffffff; border:none;" data-id="@Model.tambahanId" title="Edit"></button>
+    </h4>
+
+    <table class="table table-striped" style="font-size:small; font-weight:700; color:#000080; font-family:Arial;">
+        <tr>
+            <td>
+                <div class="col-md-8" style="left: -15px;"> Gaji Yang Diharapkan </div>
+                <div class="col-md-1" style="right:5px;">:</div>
+                @if (Model.expected_salary == null)
+                {
+                    <div class="col-md-3" style="left:-30px;"> - </div>
+                }
+                else
+                {
+                    <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.expected_salary) </div>
+                }
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="col-md-8" style="left: -15px;"> Negotiable </div>
+                <div class="col-md-1" style="right:5px;">:</div>
+                @if (Model.is_negotiable == null)
+                {
+                    <div class="col-md-3" style="left:-30px;"> - </div>
+                }
+                else if (Model.is_negotiable == true)
+                {
+                    <div class="col-md-3" style="left:-30px;"> Ya </div>
+                }
+                else if (Model.is_negotiable == false)
+                {
+                    <div class="col-md-3" style="left:-30px;"> Tidak </div>
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="col-md-8" style="left: -15px;"> Kapan Siap Mulai Bekerja </div>
+                <div class="col-md-1" style="right:5px;">:</div>
+                @if (Model.start_working == null)
+                {
+                    <div class="col-md-3" style="left:-30px;"> - </div>
+                }
+                else
+                {
+                    <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.start_working) </div>
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="col-md-8" style="left: -15px;"> Bersedia Ditempatkan Di Luar Kota </div>
+                <div class="col-md-1" style="right:5px;">:</div>
+                @if (Model.is_ready_to_outoftown == null)
+                {
+                    <div class="col-md-3" style="left:-30px;"> - </div>
+                }
+                else if (Model.is_ready_to_outoftown == true)
+                {
+                    <div class="col-md-3" style="left:-30px;"> Ya </div>
+                }
+                else if (Model.is_ready_to_outoftown == false)
+                {
+                    <div class="col-md-3" style="left:-30px;"> Tidak </div>
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="col-md-8" style="left: -15px;"> Kontak Darurat (Keluarga Tidak Serumah) </div>
+                <div class="col-md-1" style="right:5px;">:</div>
+                @if (Model.emergency_contact_name == null)
+                {
+                    <div class="col-md-3" style="left:-30px;"> - </div>
+                }
+                else
+                {
+                    <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.emergency_contact_name) </div>
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="col-md-8" style="left: -15px;"> Nomor Telp. Darurat </div>
+                <div class="col-md-1" style="right:5px;">:</div>
+                @if (Model.emergency_contact_phone == null)
+                {
+                    <div class="col-md-3" style="left:-30px;"> - </div>
+                }
+                else
+                {
+                    <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.emergency_contact_phone) </div>
+                }
+            </td>
+        </tr>
+    </table>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        GetList();
+    });
+
+    function GetList() {
+        $.ajax({
+            url: '@Url.Action("ListReferensi", "LainLain")',
+            type: 'get',
+            data: { idBiodata: @Model.biodata_id },
+            success: function (result) {
+                $("#list-referensi").html(result);
+            }
+        });
+    };
+
+    $("#btn-create-new").click(function () {
+        $.ajax({
+            url: '@Url.Action("CreateReferensi", "LainLain")',
+            type: 'get',
+            success: function (result) {
+                $(".modal-utama .modal-title").html("Tambah Keahlian");
+                $(".modal-utama .modal-body").html(result);
+                $(".modal-utama").modal("show");
+            }
+        });
+    });
+
+    $('#btn-detail-tambahan').click(function(){
+        $.ajax({
+            url: '@Url.Action("ListTambahan", "LainLain")',
+            type: 'get',
+            data: { idBiodata: $(this).attr('data-id')},
+            success: function (result) {
+                $(".modal-utama .modal-title").html("Keterangan Tambahan");
+                $(".modal-utama .modal-body").html(result);
+                $(".modal-utama").modal("show");
+                $(".modal-detail").modal("hide");
+            }
+        });
+    });
+
+</script>

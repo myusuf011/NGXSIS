@@ -79,14 +79,12 @@
 
 .form-control:focus,
 .form-control {
-    border-radius:0px;
     border-color: #000080;
     color: #000080;
 }
 
 #txt-search {
     width: 100%;
-    height: 25px;
 }
 /*
 .table > thead > tr > th {
@@ -137,7 +135,6 @@
     background-color: #d9534f;
     color: #ffffff;
 }
-
 
 .modal-main .modal-content {
     border-width: 2px;
@@ -223,18 +220,3 @@ textarea {
     text-align: left;
     vertical-align: middle;
 }
-
-.secContent {
-    font-weight:bold;
-    color:#000080;
-    padding-left: 0px;
-    left: 0px;
-    right: 0px;
-}
-
-.secTitle {
-    color: gray;
-    padding-right: 0px;
-    width: 135px;
-}
-

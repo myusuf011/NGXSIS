@@ -1,6 +1,15 @@
 ﻿
 @{
     ViewBag.Title = "Pelamar";
+    if (Session["userID"] != null && Session["roleID"] == null)
+    {
+        Response.Redirect("~/Account/SelectAccess"); // <-- Sesuaikan acceess bila sudah login
+    }
+
+    if (Session["userID"] == null && Session["roleID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
 }
 
 <div class="panel panel-default">
@@ -8,6 +17,49 @@
     </div>
     <div id="data">
         Loading...
+    </div>
+</div>
+
+<div class="modal fade modal-main" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade modal-create-org" tabindex="-1" role="dialog" style="display: none">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background: darkblue">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" style="background: darkblue; color: white">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade modal-delete" tabindex="-1" role="dialog" style="display: none">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+        </div>
     </div>
 </div>
 
