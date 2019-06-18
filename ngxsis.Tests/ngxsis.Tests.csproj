@@ -112,7 +112,7 @@
       <Name>ngxsis.DataModel</Name>
     </ProjectReference>
     <ProjectReference Include="..\ngxsis.MVC\ngxsis.MVC.csproj">
-      <Project>{9BD8E84D-799A-47F8-BB30-D2B9DF6940DB}</Project>
+      <Project>{9bd8e84d-799a-47f8-bb30-d2b9df6940db}</Project>
       <Name>ngxsis.MVC</Name>
     </ProjectReference>
     <ProjectReference Include="..\ngxsis.Repository\ngxsis.Repository.csproj">

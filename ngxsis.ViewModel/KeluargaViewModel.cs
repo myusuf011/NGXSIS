@@ -44,6 +44,7 @@ namespace ngxsis.ViewModel
         public string education_level_name { get; set; }
 
         public string family_tree_type_name { get; set; }
+        public long user_id { get; set; }
 
 
     }

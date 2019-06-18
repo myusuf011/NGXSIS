@@ -62,7 +62,6 @@ namespace ngxsis.ViewModel
         //[DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}")]
         [Display(Name = "Tgl. Lamaran Kerja (yyyy-mm-dd)")]
         public DateTime? apply_date { get; set; }
     }

@@ -16,9 +16,9 @@ namespace ngxsis.MVC.Controllers
             return View();
         }
 
-        public ActionResult List()
+        public ActionResult List(int biodata_id)
         {
-            return PartialView("_List", KeluargaRepo.All()); // _list nama viewnya,categoryrepo2 objek yg dipanggil untuk  isi list
+            return PartialView("_List", KeluargaRepo.ByBiodataId(biodata_id));  // _list nama viewnya,categoryrepo2 objek yg dipanggil untuk  isi list
 
         }
 
@@ -30,33 +30,24 @@ namespace ngxsis.MVC.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.KeluargaList = new SelectList(KeluargaRepo.jeniskelAll(), "family_tree_type_id", "name"); // value = id yg ditampilkan = name --->category list
+            ViewBag.KeluargaList = new SelectList(KeluargaRepo.jeniskelAll(), "family_tree_type_id", "name"); // value = id yg ditampilkan = name --->
             ViewBag.Keluarga1List = new SelectList(KeluargaRepo.hubkelAll(), "family_relation_id", "family_relation_name");
             ViewBag.Keluarga2List = new SelectList(KeluargaRepo.eduAll(), "education_level_id", "education_level_name");
             return PartialView("_Create", new KeluargaViewModel());  //add-view create
         }
-        //public ActionResult ListByjeniskel()
-        //{
-        //    return PartialView("_ListByjeniskel", KeluargaRepo.All());
-        //}
 
-        //public ActionResult Create()
-        //{
-        //    ViewBag.KeluargaList = new SelectList(KeluargaRepo.jeniskelAll(), "family_tree_type_id", "famtreeName"); // value = id yg ditampilkan = name --->category list
-        //    return PartialView("_Create", new KeluargaViewModel());  //add-view create
-        //}
 
         [HttpPost]
         public ActionResult Create(KeluargaViewModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return Json(new
-                {
-                    success = false,
-                    message = "InValid"
-                }, JsonRequestBehavior.AllowGet);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return Json(new
+            //    {
+            //        success = false,
+            //        message = "InValid"
+            //    }, JsonRequestBehavior.AllowGet);
+            //}
 
             ResponseResult result = KeluargaRepo.Update(model);
             return Json(new
@@ -80,14 +71,7 @@ namespace ngxsis.MVC.Controllers
         [HttpPost]
         public ActionResult Edit(KeluargaViewModel model)
         {
-            if (!ModelState.IsValid)
-            {
-                return Json(new
-                {
-                    success = false,
-                    message = "InValid"
-                }, JsonRequestBehavior.AllowGet);
-            }
+
 
             ResponseResult result = KeluargaRepo.Update(model);
             return Json(new

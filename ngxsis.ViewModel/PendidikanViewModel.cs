@@ -33,7 +33,7 @@ namespace ngxsis.ViewModel
         [Display(Name = "Jenjang Pendidikan*")]
         [Required(ErrorMessage ="Jenjang Pendidikan harus diisi")]
         public long? education_level_id { get; set; }
-        [Remote("jenjang", "Pendidikan", AdditionalFields = "education_level_id", ErrorMessage = "jenjang pendidikan tidak boleh sama")]
+       
         [Display(Name = "Tahun Masuk")]
         [StringLength(10)]
   
