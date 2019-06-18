@@ -15,7 +15,9 @@ namespace ngxsis.MVC.Controllers
         {
             return View();
         }
-        public ActionResult PelamarList(string search = "", int desc = 0, int page = 0, int dataPerPage = 10)
+
+
+        public ActionResult PelamarList(string search = "", int desc = 0, int page = 0, int dataPerPage = 5)
         {
             List<PelamarViewModel> result = PelamarRepo.GetBySearch(search, desc, page, dataPerPage);
             return PartialView("_PelamarList", result);

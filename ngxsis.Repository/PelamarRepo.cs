@@ -184,6 +184,63 @@ namespace ngxsis.Repository
 
         }
 
+
+
+        public static List<PelamarViewModel> GetBySearch(string search, int desc, int page, int dataPerPage)
+        {
+            List<PelamarViewModel> result = new List<PelamarViewModel>();
+            using (var db = new ngxsisContext())
+            {
+                if(desc == 1)
+                {
+                    result = db.x_biodata.
+                    Join(db.x_riwayat_pendidikan, u => u.id, uir => uir.biodata_id,
+                    (u, uir) => new { u, uir })
+                    .Where(v => v.u.is_deleted == false && (v.u.fullname.Contains(search)
+                    || v.u.nick_name.Contains(search)))
+                    .OrderByDescending(v => v.u.fullname)
+                    .Skip(page * dataPerPage)
+                    .Take(dataPerPage)
+                    .Select(v => new PelamarViewModel
+                    {
+                        id = v.u.id,
+                        fullname = v.u.fullname,
+                        nick_name = v.u.nick_name,
+                        email = v.u.email,
+                        phone_number1 = v.u.phone_number1,
+                        pendidikan = v.uir.school_name,
+                        jurusan = v.uir.major
+
+                    }).ToList();
+                }
+                else
+                {
+                    result = db.x_biodata.
+                    Join(db.x_riwayat_pendidikan, u => u.id, uir => uir.biodata_id,
+                    (u, uir) => new { u, uir })
+                    .Where(v => v.u.is_deleted == false && (v.u.fullname.Contains(search)
+                    || v.u.nick_name.Contains(search)))
+                    .OrderBy(v => v.u.fullname)
+                    .Skip(page * dataPerPage)
+                    .Take(dataPerPage)
+                    .Select(v => new PelamarViewModel
+                    {
+                        id = v.u.id,
+                        fullname = v.u.fullname,
+                        nick_name = v.u.nick_name,
+                        email = v.u.email,
+                        phone_number1 = v.u.phone_number1,
+                        pendidikan = v.uir.school_name,
+                        jurusan = v.uir.major
+
+                    }).ToList();
+                }
+                
+            }
+
+            return result != null ? result : new List<PelamarViewModel>();
+        }
+
         public static List<string> YearMarriage()
         {
             List<string> year = new List<string>();

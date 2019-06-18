@@ -95,5 +95,10 @@ namespace ngxsis.ViewModel
         public string marriage_year { get; set; }
 
         public long company_id { get; set; }
+
+        [StringLength(100)]
+        public string pendidikan { get; set; }
+        [StringLength(100)]
+        public string jurusan { get; set; }
     }
 }

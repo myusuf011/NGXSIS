@@ -78,7 +78,6 @@
     </div>
     <div class="container body-content">
         
-
         <div class="row">
             <div class="layoutatas">
                 <h1 id="judul" style="color:#000080; margin-top:10px;"><b>XSIS 2.0</b></h1>
@@ -92,9 +91,6 @@
                     </tr>
                     <tr>
                         <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-pelamar"><span class="dot"></span><b style="text-align:center; margin-left:20px;">Pelamar</b></button></td>
-                    </tr>
-                    <tr>
-                        <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-proses-pelamar"><span class="dot"></span><b style="text-align:center; margin-left:20px;">Proses Pelamar</b></button></td>
                     </tr>
                     <tr>
                         <td style="border:2px solid #000080;">
@@ -125,17 +121,22 @@
                     <tr>
                         <td style="border:2px solid #000080;">
                             <button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-dropdown">
-                                <span class="dot"></span><b style="text-align:center; margin-left:20px;">Pengaturan</b>
+                                <span class="dot"></span><b style="text-align:center; margin-left:20px;">Menu 5</b>
                                 <i class="glyphicon glyphicon-chevron-down" style="float:right;"></i>
                             </button>
                             <div class="dropdown-container">
                                 <div class="col-md-12" style="border: 2px solid #000080; border-right:5px; border-left:10px; padding-left:45px;
                                     padding-bottom:6px; padding-top:6px; padding-right:12px;">
-                                    <a href="/Role" id="btn-role">Peran</a>
+                                    <a href="#">Link 1</a>
                                 </div>
                                 <div class="col-md-12" style="padding-left:45px; padding-bottom:6px; padding-top:6px; padding-right:12px;">
-                                    <a href="/UserRole"id="btn-user">Pengguna</a>
+                                    <a href="#">Link 2</a>
                                 </div>
+                                <div class="col-md-12" style="border: 2px solid #000080; border-bottom:none; border-right:5px; border-left:10px;padding-left:45px;
+                                    padding-bottom:5px; padding-top:6px; padding-right:12px;">
+                                    <a href="#">Link 3</a>
+                                </div>
+
                             </div>
                         </td>
                     </tr>
@@ -159,62 +160,12 @@
 </html>
 
 <script type="text/javascript">
-    $(".btn-pelamar").click(function ()
-    {
-        location.href = "/Pelamar";
-    });
-    $(".btn-proses-pelamar").click(function () {
-        location.href = "/ProsesPelamar";
+
+    $(".btn-pelamar").click(function () {
+        location.href = "/Pelamar"
     });
 
-    @*$(".btn-pelamar").click(function () {
-        $.ajax(
-            {
-                url: '@Url.Action("PelamarList", "Pelamar")',
-                  type: 'get',
-                    success: function (result) {
-                    $("#data-home").html(result);
-                }
-            });
-
-    });
-    //asc||dsc||rowpage
-     var page;
-        var search;
-        var desc;
-        var maxPage;
-        var dataPerPage;
-        $(document).ready(function () {
-            page = 0;
-            search = "";
-            desc = 0;
-            dataPerPage = 10;
-            GetList();
-        });
-
-        function GetList() {
-            var itemCount = 0;
-            $.ajax(
-            {
-                url: '@Url.Action("PelamarList", "Pelamar")',
-                type: 'get',
-                data: { search: search, desc: desc , page: page, dataPerPage: dataPerPage },
-                success: function (result) {
-                    $("#data").html(result);
-                    $("#txt-search").val(search);
-
-                    $("#data").find("tbody").find("tr").each(function (item) {
-                        itemCount = itemCount + 1;
-                    });
-                    if (itemCount < dataPerPage) {
-                        maxPage = page;
-                    } else {
-                        maxPage = page + 1;
-                    }
-                }
-            });
-        }*@
-
+    
     var dropdown = document.getElementsByClassName("btn-dropdown");
     var i;
 
@@ -229,17 +180,5 @@
             }
         });
     }
-    @*$("#btn-role").click(function ()
-    {
-        $.ajax(
-            {
-                url: '@Url.Action("Index", "Role")',
-                type: 'get',
-                success: function (result)
-                {
-                    $("#data-home").html(result);
-                }
-            });
-    });*@
 </script>
 

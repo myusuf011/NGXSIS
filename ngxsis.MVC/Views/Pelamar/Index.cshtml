@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Pelamar";
     if (Session["userID"] != null && Session["roleID"] == null)
     {
@@ -108,7 +107,7 @@
             page = 0;
             search = "";
             desc = 0;
-            dataPerPage = 10;
+            dataPerPage = 5;
             GetList();
         });
 

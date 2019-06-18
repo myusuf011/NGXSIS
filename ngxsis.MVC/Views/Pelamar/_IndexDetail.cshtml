@@ -36,7 +36,6 @@
             </tr>
 
             <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-sumlok" data-id="@Model.biodata_id">Sumber Lowongan Kerja</button></td>
                 <td style="border:2px solid #000080;">
                 <button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link btn-biodata" data-id="@Model.id">Sumber Lowongan Kerja</button>
                 </td>
@@ -128,6 +127,20 @@
             }
         });
     });
+    });
+
+    $(".btn-dokumen").click(function () {
+          $.ajax(
+            {
+                url: '@Url.Action("DokumenList", "Dokumen")',
+                  type: 'get',
+                data: { id: $(this).attr("data-id") },
+                    success: function (result) {
+                    $("#datadata").html(result);
+                }
+            });
+
+     });
 
     $(".btn-sumlok").click(function () {
         biodata_id = $(this).data("id");

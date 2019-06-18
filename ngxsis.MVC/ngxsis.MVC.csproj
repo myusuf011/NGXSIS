@@ -151,6 +151,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -317,9 +320,6 @@
     <Content Include="Views\Keluarga\_Edit.cshtml" />
     <Content Include="Views\Keluarga\_List.cshtml" />
     <Content Include="Views\Keluarga\_ListByFam.cshtml" />
-    <Content Include="Views\Dokumen\Index.cshtml" />
-    <Content Include="Views\Dokumen\_DokumenList.cshtml" />
-    <Content Include="Views\Dokumen\_Create.cshtml" />
     <Content Include="Views\Account\SelectAccess.cshtml" />
     <Content Include="Views\Keluarga\Index.cshtml" />
     <Content Include="Views\Keluarga\_Create.cshtml" />
@@ -340,6 +340,15 @@
     <Content Include="Views\LainLain\_ListReferensi.cshtml" />
     <Content Include="Views\LainLain\_DeleteReferensi.cshtml" />
     <Content Include="Views\LainLain\_ListTambahan.cshtml" />
+    <Content Include="Views\Keluarga\Index.cshtml" />
+    <Content Include="Views\Keluarga\_Create.cshtml" />
+    <Content Include="Views\Keluarga\_Delete.cshtml" />
+    <Content Include="Views\Keluarga\_Edit.cshtml" />
+    <Content Include="Views\Keluarga\_List.cshtml" />
+    <Content Include="Views\Keluarga\_ListByFam.cshtml" />
+    <Content Include="Views\Dokumen\Index.cshtml" />
+    <Content Include="Views\Dokumen\_DokumenList.cshtml" />
+    <Content Include="Views\Dokumen\_Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
