@@ -47,8 +47,6 @@ textarea {
     border-color: #000063;
 }
 
-
-
 .btn-150px {
     width: 142px;
     height: 48px;
@@ -127,8 +125,7 @@ textarea {
 
 .table-striped > tbody > tr:nth-child(odd) > td,
 .table-striped > tbody > tr:nth-child(odd) > th {
-    background-color: #ffffff;
-   
+    background-color: #ffffff;   
 }
 
 

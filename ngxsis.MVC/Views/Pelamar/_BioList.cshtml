@@ -1,5 +1,5 @@
 ﻿@model ngxsis.ViewModel.BiodataViewModel
- 
+
 @Html.AntiForgeryToken()
 @Html.HiddenFor(model => model.id)
 <link rel="stylesheet" href="~/Content/CreateBio.css">
@@ -7,58 +7,57 @@
 <td>
     <h4 style="font-weight:bolder; color:#000080;  font-family:Arial;">
         Biodata
-        <button type="button" class="glyphicon glyphicon-edit" style="background-color:#ffffff; border:none;" data-id="@Model.id" title="Edit"></button>
+        <button type="button" class="glyphicon glyphicon-edit" style="background-color:#ffffff; border:none;" data-id="@Model.biodata_id" title="Edit"></button>
     </h4>
 </td>
 <table class="table table-striped" style=" font-size:small; font-weight:700; color:#000080; font-family:Arial;">
 
     <tr>
-        <td style=" border-bottom: 2px solid #000080; background-color: #ffffff;"><div class="col-md-6" style="left: -15px;"> Nama Lengkap </div> <div class="col-md-1" style="right:5px;">:</div> <div class="col-md-5" style="left:-30px;">@Html.DisplayFor(model => model.fullname) </div></td>
+        <td style=" border-bottom 2px solid #000080; background-color #ffffff;"><div class="col-md-6" style="left: -15px;"> Nama Lengkap </div> <div class="col-md-1" style="right:5px;">:</div> <div class="col-md-5" style="left:-30px;">@Html.DisplayFor(model => model.fullname) </div></td>
     </tr>
     <tr>
-        <td style=" border-bottom: 2px solid #000080;background-color: #f9f9f9;"><div class="col-md-6" style="left: -15px;">Nama Panggilan </div> <div class="col-md-1" style="right:5px;">:</div> <div class="col-md-5 " style="left:-30px;"> @Html.DisplayFor(model => model.nick_name)</div></td>
+        <td style=" border-bottom 2px solid #000080;background-color #f9f9f9;"><div class="col-md-6" style="left: -15px;">Nama Panggilan </div> <div class="col-md-1" style="right:5px;">:</div> <div class="col-md-5 " style="left:-30px;"> @Html.DisplayFor(model => model.nick_name)</div></td>
     </tr>
     <tr>
-        <td style=" border-bottom: 2px solid #000080; background-color: #ffffff;"><div class="col-md-6" style="left: -15px;"> Kontak </div> <div class="col-md-1" style="right:5px;">:</div> <div class="col-md-5" style="left:-30px;"> @Html.DisplayTextFor(model => model.email) /  @Html.DisplayFor(model => model.phone_number1)</div></td>
+        <td style=" border-bottom 2px solid #000080; background-color #ffffff;"><div class="col-md-6" style="left: -15px;"> Kontak </div> <div class="col-md-1" style="right:5px;">:</div> <div class="col-md-5" style="left:-30px;"> @Html.DisplayTextFor(model => model.email) /  @Html.DisplayFor(model => model.phone_number1)</div></td>
     </tr>
     <tr>
-        <td style=" border-bottom: 2px solid #000080;background-color: #f9f9f9;" ><div class="col-md-6" style="left: -15px;">Tempat, Tgl. Lahir</div> <div class="col-md-1" style="right:5px;">:</div> <div class="col-md-5" style="left:-30px;"> @Html.DisplayFor(model => model.pob),  @Html.DisplayFor(model => model.tanggal)</div> </td>
+        <td style=" border-bottom 2px solid #000080;background-color #f9f9f9;"><div class="col-md-6" style="left: -15px;">Tempat, Tgl. Lahir</div> <div class="col-md-1" style="right:5px;">:</div> <div class="col-md-5" style="left:-30px;"> @Html.DisplayFor(model => model.pob),  @Html.DisplayFor(model => model.tanggal)</div> </td>
     </tr>
     <tr>
-        <td style=" border-bottom: 2px solid #000080; background-color: #ffffff;"><div class="col-md-6" style="left: -15px;">Jenis Kelamin, Tinggi (cm), Berat (kg)</div> <div class="col-md-1" style="right:5px;">:</div> <div class="col-md-5" style="left:-30px;"> @Html.DisplayFor(model => model.namagender), @Html.DisplayFor(model => model.high), @Html.DisplayFor(model => model.weight) </div></td>
+        <td style=" border-bottom 2px solid #000080; background-color #ffffff;"><div class="col-md-6" style="left: -15px;">Jenis Kelamin, Tinggi (cm), Berat (kg)</div> <div class="col-md-1" style="right:5px;">:</div> <div class="col-md-5" style="left:-30px;"> @Html.DisplayFor(model => model.namagender), @Html.DisplayFor(model => model.high), @Html.DisplayFor(model => model.weight) </div></td>
     </tr>
     <tr>
-        <td style=" border-bottom: 2px solid #000080; background-color: #f9f9f9;"><div class="col-md-6" style="left: -15px;">Agama </div> <div class="col-md-1" style="right:5px;">:</div> <div class="col-md-5" style="left:-30px;">@Html.DisplayFor(model => model.namaagama)</div></td>
+        <td style=" border-bottom 2px solid #000080; background-color #f9f9f9;"><div class="col-md-6" style="left: -15px;">Agama </div> <div class="col-md-1" style="right:5px;">:</div> <div class="col-md-5" style="left:-30px;">@Html.DisplayFor(model => model.namaagama)</div></td>
     </tr>
     <tr>
-        <td style=" border-bottom: 2px solid #000080; background-color: #ffffff;"><div class="col-md-6" style="left: -15px;">Kewarganegaraan, Suku Bangsa</div> <div class="col-md-1" style="right:5px;">:</div> <div class="col-md-5" style="left:-30px;">@Html.DisplayFor(model => model.nationality), @Html.DisplayFor(model => model.ethnic)</div></td>
+        <td style=" border-bottom 2px solid #000080; background-color #ffffff;"><div class="col-md-6" style="left: -15px;">Kewarganegaraan, Suku Bangsa</div> <div class="col-md-1" style="right:5px;">:</div> <div class="col-md-5" style="left:-30px;">@Html.DisplayFor(model => model.nationality), @Html.DisplayFor(model => model.ethnic)</div></td>
     </tr>
     <tr>
-        <td style=" border-bottom: 2px solid #000080; background-color: #f9f9f9;"><div class="col-md-6" style="left: -15px;">Kegemaran \ Hobi</div> <div class="col-md-1" style="right:5px;">:</div> <div class="col-md-5" style="left:-30px;">@Html.DisplayFor(model => model.hobby)</div></td>
+        <td style=" border-bottom 2px solid #000080; background-color #f9f9f9;"><div class="col-md-6" style="left: -15px;">Kegemaran \ Hobi</div> <div class="col-md-1" style="right:5px;">:</div> <div class="col-md-5" style="left:-30px;">@Html.DisplayFor(model => model.hobby)</div></td>
     </tr>
     <tr>
-        <td style=" border-bottom: 2px solid #000080; background-color: #ffffff;"><div class="col-md-6" style="left: -15px;">Jenis & Nomor Identitas </div> <div class="col-md-1" style="right:5px;">:</div> <div class="col-md-5" style="left:-30px;">@Html.DisplayFor(model => model.namaidentitas) - @Html.DisplayFor(model => model.identity_no)</div></td>
+        <td style=" border-bottom 2px solid #000080; background-color #ffffff;"><div class="col-md-6" style="left: -15px;">Jenis & Nomor Identitas </div> <div class="col-md-1" style="right:5px;">:</div> <div class="col-md-5" style="left:-30px;">@Html.DisplayFor(model => model.namaidentitas) - @Html.DisplayFor(model => model.identity_no)</div></td>
     </tr>
     <tr>
-        <td  style="background-color: #f9f9f9;"><div class="col-md-6" style="left: -15px;">Status & Tahun Pernikahan </div> <div class="col-md-1" style="right:5px;">:</div> <div class="col-md-5" style="left:-30px;">@Html.DisplayFor(model => model.namastatus) - @Html.DisplayFor(model => model.marriage_year)</div></td>
+        <td style="background-color: #f9f9f9;"><div class="col-md-6" style="left: -15px;">Status & Tahun Pernikahan </div> <div class="col-md-1" style="right:5px;">:</div> <div class="col-md-5" style="left:-30px;">@Html.DisplayFor(model => model.namastatus) - @Html.DisplayFor(model => model.marriage_year)</div></td>
     </tr>
 </table>
 
 <script type="text/javascript">
- $(".glyphicon-edit").click(function () {
+    $(".glyphicon-edit").click(function () {
         $.ajax(
             {
                 url: '@Url.Action("Edit", "Pelamar")',
                 type: 'get',
                 data: { id: $(this).attr("data-id") },
                 success: function (result) {
-                $(".modal-object .modal-title").html("Edit Biodata");
-                $(".modal-object .modal-body").html(result);
-                $(".modal-object").modal("show");
+                    $(".modal-object .modal-title").html("Edit Biodata");
+                    $(".modal-object .modal-body").html(result);
+                    $(".modal-object").modal("show");
                 }
-                });
+            });
 
- });
+    });
 
 </script>
-
