@@ -10,7 +10,7 @@
 
 
             <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-profil" class="btn btn-link" data-id="@Model.id">Profil</button></td>
+                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-profil" class="btn btn-link" data-id="@Model.biodata_id">Profil</button></td>
             </tr>
             <tr>
                 <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-biodata" class="btn btn-link" data-id="@Model.biodata_id">Biodata</button></td>
@@ -31,7 +31,7 @@
             </tr>
 
             <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.id">Sumber Lowongan Kerja</button></td>
+                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-sumlok" class="btn btn-link" data-id="@Model.biodata_id">Sumber Lowongan Kerja</button></td>
             </tr>
             <tr>
                 <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-organisasi" class="btn btn-link" data-id="@Model.biodata_id">Organisasi</button></td>
@@ -66,7 +66,8 @@
     </div>
 
     <!-- Page content -->
-    <div class="col-md-9" id="datadata" style="left:20px; padding-right:50px; bottom:-20px;">
+    <div class="col-md-9" id="datadata" style=" padding-right:50px; bottom:-20px;">
+
     </div>
 </div>
 
@@ -209,117 +210,145 @@
         });
     }
 
-       $(".close").click(function () {
+    $(".close").click(function () {
 
-         GetList();
-       });
-
-
-       $("#btn-sertifikasi").click(function () {
-           biodata_id = $(this).data("id");
-           $.ajax({
-               url: '@Url.Action("List", "Sertifikasi")',
-               type: 'get',
-               data: { biodata_id: $(this).attr("data-id") },
-               success: function (result) {
-                   $("#datadata").html(result);
-                   //   console.log(bioid);
-               }
-           });
-       });
-       function GetSertifikasi() {
-           $.ajax({
-               url: '@Url.Action("List", "Sertifikasi")',
-               type: 'get',
-               data: { biodata_id: biodata_id },
-               success: function (result) {
-                   $("#datadata").html(result);
-                   //   console.log(bioid);
-               }
-           });
-       }
+        GetList();
+    });
 
 
-
-       $("#btn-pendidikan").click(function () {
-           biodata_id = $(this).data("id");
-           //console.log($(this).data("id"));
-           //alert("ID Biodata : " + $(this).attr("data-id"));
-           //    var bioid = $(this).attr("data-id");
-           $.ajax({
-               url: '@Url.Action("List", "Pendidikan")',
-               type: 'get',
-               data: { biodata_id: $(this).attr("data-id") },
-               success: function (result) {
-                   $("#datadata").html(result);
-                   //   console.log(bioid);
-               }
-           });
-       });
-       function GetPendidikan() {
-           $.ajax({
-               url: '@Url.Action("List", "Pendidikan")',
-               type: 'get',
-               data: { biodata_id: biodata_id },
-               success: function (result) {
-                   $("#datadata").html(result);
-                   //   console.log(bioid);
-               }
-           });
-       }
-
-
-       $("#btn-keluarga").click(function () {
-           biodata_id = $(this).data("id");
-           $.ajax({
-               url: '@Url.Action("List", "Keluarga")',
-               type: 'get',
-               data: { biodata_id: $(this).data("id") },
-               success: function (result) {
-                   $("#datadata").html(result);
-                   //   console.log(bioid);
-               }
-           });
-       });
-       //agar bisa reload
-       function GetKeluarga() {
-           $.ajax({
-               url: '@Url.Action("List", "Keluarga")',
-               type: 'get',
-               data: { biodata_id: biodata_id },
-               success: function (result) {
-                   $("#datadata").html(result);
-                   //   console.log(bioid);
-               }
-           });
-       }
+    $("#btn-sertifikasi").click(function () {
+        biodata_id = $(this).data("id");
+        $.ajax({
+            url: '@Url.Action("List", "Sertifikasi")',
+            type: 'get',
+            data: { biodata_id: $(this).attr("data-id") },
+            success: function (result) {
+                $("#datadata").html(result);
+                //   console.log(bioid);
+            }
+        });
+    });
+    function GetSertifikasi() {
+        $.ajax({
+            url: '@Url.Action("List", "Sertifikasi")',
+            type: 'get',
+            data: { biodata_id: biodata_id },
+            success: function (result) {
+                $("#datadata").html(result);
+                //   console.log(bioid);
+            }
+        });
+    }
 
 
 
-       $("#btn-catatan").click(function () {
-           biodata_id = $(this).data("id");
-           $.ajax({
-               url: '@Url.Action("List", "Catatan")',
-               type: 'get',
-               data: { biodata_id: $(this).attr("data-id") },
-               success: function (result) {
-                   $("#datadata").html(result);
-                   //   console.log(bioid);
-               }
-           });
-       });
+    $("#btn-pendidikan").click(function () {
+        biodata_id = $(this).data("id");
+        //console.log($(this).data("id"));
+        //alert("ID Biodata : " + $(this).attr("data-id"));
+        //    var bioid = $(this).attr("data-id");
+        $.ajax({
+            url: '@Url.Action("List", "Pendidikan")',
+            type: 'get',
+            data: { biodata_id: $(this).attr("data-id") },
+            success: function (result) {
+                $("#datadata").html(result);
+                //   console.log(bioid);
+            }
+        });
+    });
+    function GetPendidikan() {
+        $.ajax({
+            url: '@Url.Action("List", "Pendidikan")',
+            type: 'get',
+            data: { biodata_id: biodata_id },
+            success: function (result) {
+                $("#datadata").html(result);
+                //   console.log(bioid);
+            }
+        });
+    }
 
-       function GetCatatan() {
-           $.ajax({
-               url: '@Url.Action("List", "Catatan")',
-               type: 'get',
-               data: { biodata_id: biodata_id },
-               success: function (result) {
-                   $("#datadata").html(result);
-                   //   console.log(bioid);
-               }
-           });
-       }
+
+    $("#btn-keluarga").click(function () {
+        biodata_id = $(this).data("id");
+        $.ajax({
+            url: '@Url.Action("List", "Keluarga")',
+            type: 'get',
+            data: { biodata_id: $(this).data("id") },
+            success: function (result) {
+                $("#datadata").html(result);
+                //   console.log(bioid);
+            }
+        });
+    });
+    //agar bisa reload
+    function GetKeluarga() {
+        $.ajax({
+            url: '@Url.Action("List", "Keluarga")',
+            type: 'get',
+            data: { biodata_id: biodata_id },
+            success: function (result) {
+                $("#datadata").html(result);
+                //   console.log(bioid);
+            }
+        });
+    }
+
+
+
+    $("#btn-catatan").click(function () {
+        biodata_id = $(this).data("id");
+        $.ajax({
+            url: '@Url.Action("List", "Catatan")',
+            type: 'get',
+            data: { biodata_id: $(this).attr("data-id") },
+            success: function (result) {
+                $("#datadata").html(result);
+                //   console.log(bioid);
+            }
+        });
+    });
+
+    function GetCatatan() {
+        $.ajax({
+            url: '@Url.Action("List", "Catatan")',
+            type: 'get',
+            data: { biodata_id: biodata_id },
+            success: function (result) {
+                $("#datadata").html(result);
+                //   console.log(bioid);
+            }
+        });
+    }
+
+    $("#btn-sumlok").click(function () {
+        $.ajax(
+          {
+              url: '@Url.Action("Create", "SumberLoker")',
+              type: 'get',
+              success: function (result) {
+                  $("#datadata").html(result);
+                  $("#datepicker").datepicker({
+                      dateFormat: "yy-mm-dd",
+                  });
+              }
+          });
+
+    });
+
+    $("#btn-profil").click(function () {
+        $.ajax(
+          {
+              url: '@Url.Action("List", "Profil")',
+              type: 'get',
+              data: { id: $(this).attr("data-id") },
+              success: function (result) {
+                  $("#datadata").html(result);
+              }
+          });
+
+    });
 
 </script>
 <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>

@@ -13,6 +13,7 @@ namespace ngxsis.ViewModel
     {
         public long id { get; set; }
 
+        public List<RiwayatProyekModel> proyek { get; set; }
         public long biodata_id { get; set; }
 
         [StringLength(500)]
@@ -43,7 +44,6 @@ namespace ngxsis.ViewModel
 
         [StringLength(10)]
         [Display(Name = "Waktu Keluar")]
-        //[Remote("IsResignTimeValid", "Pengalaman", AdditionalFields = "join_month, join_year, resign_year", ErrorMessage = "Waktu keluar tidak boleh kurang dari waktu masuk")]
         public string resign_month { get; set; }
 
         [StringLength(100)]

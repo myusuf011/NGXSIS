@@ -121,5 +121,73 @@ namespace ngxsis.MVC.Controllers
         {
             return Json(PengalamanRepo.ValidationResignTime(join_month, join_year, resign_month, resign_year), JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult CreateProject()
+        {
+            ViewBag.TPeriodList = new SelectList(GetAll.AllTpriod(), "id", "name");
+
+            return PartialView("_CreateProject", new RiwayatProyekModel());
+        }
+
+
+        [HttpPost]
+        public ActionResult CreateProject(RiwayatProyekModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return PartialView(model);
+            }
+
+            ResponseResult result = PengalamanRepo.UpdateProject(model);
+            return Json(new
+            {
+                success = result.Success,
+                message = result.Message,
+                entity = result.Entity
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult EditProject(long id)
+        {
+            ViewBag.TPeriodList = new SelectList(GetAll.AllTpriod(), "id", "name");
+
+            return PartialView("_EditProject", PengalamanRepo.ProjectById(id));
+        }
+
+        [HttpPost]
+        public ActionResult EditProject(RiwayatProyekModel model)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return PartialView(model);
+            }
+            ResponseResult result = PengalamanRepo.UpdateProject(model);
+            return Json(new
+            {
+                success = result.Success,
+                message = result.Message,
+                entity = result.Entity
+            }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult DeleteProjet(long id)
+        {
+            return PartialView("_DeleteProjet", PengalamanRepo.ProjectById(id));
+        }
+
+
+        [HttpPost]
+        public ActionResult DeleteProjet(RiwayatProyekModel model)
+        {
+            ResponseResult result = PengalamanRepo.DeleteProject(model);
+            return Json(new
+            {
+                success = result.Success,
+                message = result.Message,
+                entity = result.Entity
+            }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

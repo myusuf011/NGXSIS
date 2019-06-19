@@ -32,7 +32,7 @@ namespace ngxsis.Repository
             using (var db = new ngxsisContext())
             {
                 result = db.x_userrole
-                    .Where(o => o.addrbook_id == id && o.x_role.is_deleted == false)                    
+                    .Where(o => o.addrbook_id == id && o.x_role.is_deleted == false && o.is_deleted == false)                    
                     .Select(o => new SelectAccessViewModel
                     {
                         RoleId = o.role_id,

@@ -26,7 +26,21 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.company_name) (@Html.DisplayFor(modelItem => item.join_year)-@Html.DisplayFor(modelItem => item.join_month) s/d @Html.DisplayFor(modelItem => item.resign_year)-@Html.DisplayFor(modelItem => item.resign_month))
+                <div>  @Html.DisplayFor(modelItem => item.company_name) (@Html.DisplayFor(modelItem => item.join_year)-@Html.DisplayFor(modelItem => item.join_month) s/d @Html.DisplayFor(modelItem => item.resign_year)-@Html.DisplayFor(modelItem => item.resign_month))</div>
+
+                @foreach (var item2 in item.proyek)
+                {
+                    <div style="padding-left:1px; font-weight:700;">
+                        -@Html.DisplayFor(modelItem2 => item2.poject_name) (@Html.DisplayFor(modelItem2 => item2.start_year)-@Html.DisplayFor(modelItem2 => item2.start_month) ; @Html.DisplayFor(modelItem2 => item2.project_duration) @Html.DisplayFor(modelItem2 => item2.periodname) )
+                        <div class="btn-group btn-group-sm">
+                            <button type="button" class="glyphicon glyphicon-edit" style="background-color:transparent; border:none;" data-container="@item2.id" title="Edit"></button>
+                            <button type="button" class="glyphicon glyphicon-trash" style="left:-7px; background-color:transparent; border:none;" data-container="@item2.id" title="Delete"></button>
+                        </div>
+                    </div>
+                    <div style="padding-left:6px"> @Html.DisplayFor(modelItem2 => item2.project_position), @Html.DisplayFor(modelItem2 => item2.client)</div>
+                    <div style="padding-left:6px"> Ket : @Html.DisplayFor(modelItem2 => item2.description)</div>
+                }
+
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.notes)
@@ -49,6 +63,8 @@
 </table>
 
 <script type="text/javascript">
+
+     var riwayatId;
     $("#btn-create-new").click(function () {
         $.ajax({
             url: '@Url.Action("Create", "Pengalaman")',
@@ -89,6 +105,52 @@
             }
         });
     });
+
+        $(".btn-tambah-project").click(function () {
+          riwayatId = $(this).data("container");
+            $.ajax({
+                url: '@Url.Action("CreateProject", "Pengalaman")',
+                type: 'get',
+              data: { id: $(this).attr("data-container") },
+                success: function (result) {
+
+
+                    $(".modal-object .modal-title").html("Tambah Proyek");
+                    $(".modal-object .modal-body").html(result);
+                    $(".modal-object").modal("show");
+                }
+            });
+        });
+
+         $(".glyphicon-edit").click(function () {
+                     $.ajax({
+                url: '@Url.Action("EditProject", "Pengalaman")',
+                type: 'get',
+                      data: { id: $(this).attr("data-container") },
+                      success: function (result) {
+
+                    $(".modal-object .modal-title").html("Ubah Proyek");
+                    $(".modal-object .modal-body").html(result);
+                    $(".modal-object").modal("show");
+                }
+            });
+         });
+
+        $(".glyphicon-trash").click(function () {
+        $.ajax({
+            url: '@Url.Action("DeleteProjet", "Pengalaman")',
+            type: 'get',
+            data: { id: $(this).attr("data-container") },
+            success: function (result) {
+                $(".modal-delete .modal-title").html("Hapus Proyek?");
+                $(".modal-delete .modal-body").html(result);
+                $(".modal-delete").modal("show");
+            }
+        });
+    });
+
+
+
 </script>
 
 <link rel="stylesheet" href="~/Content/Organisasi.css" />

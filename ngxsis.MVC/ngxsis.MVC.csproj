@@ -399,9 +399,6 @@
     <Content Include="Web - Copy.config" />
     <Content Include="Views\LainLain\_ListReferensi.cshtml" />
     <Content Include="Views\LainLain\_ListIndex.cshtml" />
-    <Content Include="Views\Pengalaman\_CreateProject.cshtml" />
-    <Content Include="Views\Pengalaman\_EditProject.cshtml" />
-    <Content Include="Views\Pengalaman\_DeleteProjet.cshtml" />
     <Content Include="Views\Catatan\Index.cshtml" />
     <Content Include="Views\Catatan\_Create.cshtml" />
     <Content Include="Views\Catatan\_Delete.cshtml" />
@@ -416,6 +413,9 @@
     <Content Include="Views\Keluarga\_Edit.cshtml" />
     <Content Include="Views\Keluarga\_List.cshtml" />
     <Content Include="Views\Catatan\_List.cshtml" />
+    <Content Include="Views\Pengalaman\_CreateProject.cshtml" />
+    <Content Include="Views\Pengalaman\_EditProject.cshtml" />
+    <Content Include="Views\Pengalaman\_DeleteProjet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

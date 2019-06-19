@@ -1,0 +1,170 @@
+﻿@model ngxsis.ViewModel.RiwayatProyekModel
+
+<link rel="stylesheet" href="~/Content/CreateBio.css">
+@using (Html.BeginForm("EditProject", "Pengalaman", FormMethod.Post, new { id = "form-edit", name = "form-edit" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.id)
+    @Html.HiddenFor(model => model.user_id, new { Value = Session["userID"] })
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="container" style="font-weight:100; color:#000080;">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div style="font-size:small;" class="col-md-6">
+                            @Html.LabelFor(model => model.start_month, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(model => model.start_month,
+new List<SelectListItem> {
+   new SelectListItem { Value = "1", Text = "Januari" },
+   new SelectListItem { Value = "2", Text = "Februari" },
+   new SelectListItem { Value = "3", Text = "Maret" },
+   new SelectListItem { Value = "4", Text = "April" },
+   new SelectListItem { Value = "5", Text = "Mei" },
+   new SelectListItem { Value = "6", Text = "Juni" },
+   new SelectListItem { Value = "7", Text = "Juli" },
+   new SelectListItem { Value = "8", Text = "Agustus" },
+   new SelectListItem { Value = "9", Text = "September" },
+   new SelectListItem { Value = "10", Text = "Oktober" },
+   new SelectListItem { Value = "11", Text = "November" },
+   new SelectListItem { Value = "12", Text = "Desember" }
+},
+"- Pilih Bulan -",
+new { @class = "form-control", id = "start_month" })
+                            @Html.ValidationMessageFor(model => model.start_month, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div style="font-size:small; color:#ffffff;" class="col-md-6">
+                            @Html.LabelFor(model => model.start_year, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(model => model.start_year, new SelectList(Enumerable.Range(DateTime.Today.Year - 20, 21).Reverse()),
+                  "- Pilih Tahun -",
+                  new { @class = "form-control", id = "start_year" })
+                            @Html.ValidationMessageFor(model => model.start_year, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div style="font-size:small;" class="col-md-12">
+                            @Html.LabelFor(model => model.poject_name, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.poject_name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.poject_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div style="font-size:small;" class="col-md-6">
+                            @Html.LabelFor(model => model.project_duration, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.project_duration, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.project_duration, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div style="font-size:small; color:#ffffff;" class="col-md-6">
+                            @Html.LabelFor(model => model.time_period_id, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(model => model.time_period_id, (IEnumerable<SelectListItem>)ViewBag.TPeriodList, " - Pilih - ",
+                 new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.time_period_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div style="font-size:small;" class="col-md-6">
+                            @Html.LabelFor(model => model.client, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.client, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.client, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div style="font-size:small;" class="col-md-6">
+                            @Html.LabelFor(model => model.project_position, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.project_position, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.project_position, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div style="font-size:small;" class="col-md-12">
+                            @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control", style = "height:100px;" } })
+                            @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <div class="form-actions col-md-4 pull-right col-md-offset-1">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-warning btn-150px" data-dismiss="modal"><b>Batal</b></button>
+                        <button type="submit" class="btn btn-pp btn-150px "><b>Simpan</b></button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+}
+@Scripts.Render("~/bundles/jqueryval")
+<script type="text/javascript">
+    $("#form-edit").submit(function () {
+        $.ajax({
+            url: this.action,
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.success) {
+                    alert("Data Proyek " + result.entity.poject_name + " Berhasil Diubah");
+                    $(".modal-object").modal("hide");
+                    GetPengalaman();
+                }
+            }
+        });
+        return false;
+    });
+
+
+</script>
