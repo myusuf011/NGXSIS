@@ -19,7 +19,7 @@
                 <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-pengalaman" class="btn btn-link" data-id="@Model.biodata_id">Pengalaman Kerja</button></td>
             </tr>
             <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.id">Pendidikan</button></td>
+                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-pendidikan" class="btn btn-link" data-id="@Model.biodata_id">Pendidikan</button></td>
             </tr>
 
             <tr>
@@ -27,7 +27,7 @@
             </tr>
 
             <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.id">Sertifikasi</button></td>
+                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-sertifikasi" class="btn btn-link" data-id="@Model.biodata_id">Sertifikasi</button></td>
             </tr>
 
             <tr>
@@ -38,7 +38,7 @@
             </tr>
 
             <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.id">Keluarga</button></td>
+                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-keluarga" class="btn btn-link" data-id="@Model.biodata_id">Keluarga</button></td>
             </tr>
             <tr>
                 <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-keahlian" class="btn btn-link" data-id="@Model.biodata_id">Keahlian</button></td>
@@ -50,7 +50,7 @@
                 <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.id">Dokumen</button></td>
             </tr>
             <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.id">Catatan</button></td>
+                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-catatan" class="btn btn-link" data-id="@Model.biodata_id">Catatan</button></td>
             </tr>
             <tr>
                 <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.id">Aktivasi Akun</button></td>
@@ -212,7 +212,114 @@
        $(".close").click(function () {
 
          GetList();
- });
+       });
+
+
+       $("#btn-sertifikasi").click(function () {
+           biodata_id = $(this).data("id");
+           $.ajax({
+               url: '@Url.Action("List", "Sertifikasi")',
+               type: 'get',
+               data: { biodata_id: $(this).attr("data-id") },
+               success: function (result) {
+                   $("#datadata").html(result);
+                   //   console.log(bioid);
+               }
+           });
+       });
+       function GetSertifikasi() {
+           $.ajax({
+               url: '@Url.Action("List", "Sertifikasi")',
+               type: 'get',
+               data: { biodata_id: biodata_id },
+               success: function (result) {
+                   $("#datadata").html(result);
+                   //   console.log(bioid);
+               }
+           });
+       }
+
+
+
+       $("#btn-pendidikan").click(function () {
+           biodata_id = $(this).data("id");
+           //console.log($(this).data("id"));
+           //alert("ID Biodata : " + $(this).attr("data-id"));
+           //    var bioid = $(this).attr("data-id");
+           $.ajax({
+               url: '@Url.Action("List", "Pendidikan")',
+               type: 'get',
+               data: { biodata_id: $(this).attr("data-id") },
+               success: function (result) {
+                   $("#datadata").html(result);
+                   //   console.log(bioid);
+               }
+           });
+       });
+       function GetPendidikan() {
+           $.ajax({
+               url: '@Url.Action("List", "Pendidikan")',
+               type: 'get',
+               data: { biodata_id: biodata_id },
+               success: function (result) {
+                   $("#datadata").html(result);
+                   //   console.log(bioid);
+               }
+           });
+       }
+
+
+       $("#btn-keluarga").click(function () {
+           biodata_id = $(this).data("id");
+           $.ajax({
+               url: '@Url.Action("List", "Keluarga")',
+               type: 'get',
+               data: { biodata_id: $(this).data("id") },
+               success: function (result) {
+                   $("#datadata").html(result);
+                   //   console.log(bioid);
+               }
+           });
+       });
+       //agar bisa reload
+       function GetKeluarga() {
+           $.ajax({
+               url: '@Url.Action("List", "Keluarga")',
+               type: 'get',
+               data: { biodata_id: biodata_id },
+               success: function (result) {
+                   $("#datadata").html(result);
+                   //   console.log(bioid);
+               }
+           });
+       }
+
+
+
+       $("#btn-catatan").click(function () {
+           biodata_id = $(this).data("id");
+           $.ajax({
+               url: '@Url.Action("List", "Catatan")',
+               type: 'get',
+               data: { biodata_id: $(this).attr("data-id") },
+               success: function (result) {
+                   $("#datadata").html(result);
+                   //   console.log(bioid);
+               }
+           });
+       });
+
+       function GetCatatan() {
+           $.ajax({
+               url: '@Url.Action("List", "Catatan")',
+               type: 'get',
+               data: { biodata_id: biodata_id },
+               success: function (result) {
+                   $("#datadata").html(result);
+                   //   console.log(bioid);
+               }
+           });
+       }
 
 </script>
 <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
