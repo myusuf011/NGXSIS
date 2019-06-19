@@ -244,7 +244,7 @@ namespace ngxsis.Repository
                     return true;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }

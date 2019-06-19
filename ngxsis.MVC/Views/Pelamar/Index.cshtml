@@ -1,6 +1,6 @@
 ﻿
 
-@*@{
+@{
     ViewBag.Title = "Pelamar";
     if (Session["userID"] != null && Session["roleID"] == null)
     {
@@ -11,7 +11,7 @@
     {
         Response.Redirect("~/Login/Index");
     }
-}*@
+}
 
 <div class="panel panel-default">
     <div class="panel-body">
@@ -190,8 +190,7 @@
 
 @section scripts
 {
-
-    <script type="text/javascript">
+        <script type="text/javascript">
         var page;
         var search;
         var desc;
@@ -229,8 +228,5 @@
         }
 
     </script>
+    
 }
-
-
-<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
-<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
