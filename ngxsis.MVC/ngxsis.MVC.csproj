@@ -343,7 +343,6 @@
     <Content Include="Views\Organisasi\_List.cshtml" />
     <Content Include="Views\Organisasi\_Create.cshtml" />
     <Content Include="Views\Profil\Index.cshtml" />
-    <Content Include="Views\Pendidikan\Index.cshtml" />
     <Content Include="Views\Profil\Test.cshtml" />
     <Content Include="Views\View.cshtml" />
     <Content Include="Views\Profil\_List.cshtml" />
@@ -362,7 +361,6 @@
     <Content Include="Views\Pendidikan\_Create.cshtml" />
     <Content Include="Views\Pendidikan\_Edit.cshtml" />
     <Content Include="Views\Pendidikan\_Delete.cshtml" />
-    <Content Include="Views\Pendidikan\_ListByEdu.cshtml" />
     <Content Include="Views\Pelamar\_Create.cshtml" />
     <Content Include="Views\Pelamar\_IndexDetail.cshtml" />
     <Content Include="Views\Pelamar\_BioList.cshtml" />

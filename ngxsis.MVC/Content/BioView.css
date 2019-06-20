@@ -47,6 +47,22 @@ textarea {
     border-color: #000063;
 }
 
+    .btn-pp:hover,
+    .btn-pp:focus,
+    .btn-pp:active,
+    .btn-pp.active,
+    .open .dropdown-toggle .btn-pp,
+    .close .dropdown-toggle .btn-pp {
+        color: #ffffff;
+        background-color: #000080;
+        border-color: #000080;
+        margin: auto;
+    }
+
+.btn-70px {
+    width: 70px;
+}
+
 .btn-150px {
     width: 142px;
     height: 48px;
@@ -123,9 +139,10 @@ textarea {
                 background-color: #ccccff;
             }
 
-.table-striped > tbody > tr:nth-child(odd) > td,
+/*.table-striped > tbody > tr:nth-child(odd) > td,
 .table-striped > tbody > tr:nth-child(odd) > th {
-    background-color: #ffffff;   
+    background-color: #ffffff;
+    border-bottom: 2px solid #000080;
 }
 
 
@@ -133,27 +150,17 @@ textarea {
 .table-striped > tbody > tr:nth-child(even) > td,
 .table-striped > tbody > tr:nth-child(even) > th {
     background-color: #f9f9f9;
-  
+    border-bottom: 2px solid #000080;
 }
 
 .close:focus,
 .glyphicon-edit:focus {
     outline: none;
-}
-
+}*/
 form-control,
 .form-control:focus {
+
     color: #000080;
     border: 2px solid #000080;
     font-size: medium;
-}
-
-.close:focus {
-    outline: none;
-}
-
-
-.close:focus,
-.glyphicon-trash:focus {
-    outline: none;
 }

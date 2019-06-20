@@ -4,69 +4,69 @@
 
 @Html.HiddenFor(model => model.id)
 
-<div class="row">
-    <div class="col-md-3" style="padding-top:8px">
-        <table style="width:230px; border:2px solid #000080; font-size:small;">
-            <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-profil" class="btn btn-link" data-id="@Model.biodata_id">Profil</button></td>
-            </tr>
-            <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-biodata" class="btn btn-link" data-id="@Model.biodata_id">Biodata</button></td>
-            </tr>
-            <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-pengalaman" class="btn btn-link" data-id="@Model.biodata_id">Pengalaman Kerja</button></td>
-            </tr>
-            <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-pendidikan" class="btn btn-link" data-id="@Model.biodata_id">Pendidikan</button></td>
-            </tr>
+<div class="container" >
+    <div class="row">
+        <div class="col-sm-3">
+            <table style="width:230px; border:2px solid #000080; font-size:small;">
+               <tr>
+                    <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-profil" class="btn btn-link" data-id="@Model.id">Profil</button></td>
+                </tr>
+                <tr>
+                    <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-biodata" class="btn btn-link" data-id="@Model.biodata_id">Biodata</button></td>
+                </tr>
+                <tr>
+                    <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-pengalaman" class="btn btn-link" data-id="@Model.biodata_id">Pengalaman Kerja</button></td>
+                </tr>
+                <tr>
+                    <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-pendidikan" class="btn btn-link" data-id="@Model.biodata_id">Pendidikan</button></td>
+                </tr>
+                <tr>
+                    <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-sertifikasi" class="btn btn-link" data-id="@Model.biodata_id">Sertifikasi</button></td>
+                </tr>
 
-            <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-pelatihan" class="btn btn-link" data-id="@Model.biodata_id">Pelatihan</button></td>
-            </tr>
+                <tr>
+                    <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.id">Sumber Lowongan Kerja</button></td>
+                </tr>
+                <tr>
+                    <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-organisasi" class="btn btn-link" data-id="@Model.biodata_id">Organisasi</button></td>
+                </tr>
 
-            <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-sertifikasi" class="btn btn-link" data-id="@Model.biodata_id">Sertifikasi</button></td>
-            </tr>
+                <tr>
+                    <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-keluarga" class="btn btn-link" data-id="@Model.biodata_id">Keluarga</button></td>
+                </tr>
+                <tr>
+                    <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-keahlian" class="btn btn-link" data-id="@Model.biodata_id">Keahlian</button></td>
+                </tr>
+                <tr>
+                    <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-lainlain" class="btn btn-link" data-id="@Model.biodata_id">Lain-lain</button></td>
+                </tr>
+                <tr>
+                    <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.id">Dokumen</button></td>
+                </tr>
+                <tr>
+                    <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-catatan" class="btn btn-link" data-id="@Model.biodata_id">Catatan</button></td>
+                </tr>
+                <tr>
+                    <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.id">Aktivasi Akun</button></td>
+                </tr>
+                <tr>
+                    <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.id">Lihat Tes</button></td>
+                </tr>
+                <tr>
+                    <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.biodata_id">Hasil Tes</button></td>
+                </tr>
 
-            <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-sumlok" class="btn btn-link" data-id="@Model.biodata_id">Sumber Lowongan Kerja</button></td>
-            </tr>
-            <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-organisasi" class="btn btn-link" data-id="@Model.biodata_id">Organisasi</button></td>
-            </tr>
+            </table>
 
-            <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-keluarga" class="btn btn-link" data-id="@Model.biodata_id">Keluarga</button></td>
-            </tr>
-            <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-keahlian" class="btn btn-link" data-id="@Model.biodata_id">Keahlian</button></td>
-            </tr>
-            <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-lainlain" class="btn btn-link" data-id="@Model.biodata_id">Lain-lain</button></td>
-            </tr>
-            <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.id">Dokumen</button></td>
-            </tr>
-            <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-catatan" class="btn btn-link" data-id="@Model.biodata_id">Catatan</button></td>
-            </tr>
-            <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.id">Aktivasi Akun</button></td>
-            </tr>
-            <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.id">Lihat Tes</button></td>
-            </tr>
-            <tr>
-                <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.biodata_id">Hasil Tes</button></td>
-            </tr>
+        </div>
+        <div class="col-sm-9">
 
-        </table>
+            <!-- Page content -->
+            <div id="datadata" style="bottom:-20px;">
+            </div>
+        </div>
     </div>
 
-    <!-- Page content -->
-    <div class="col-md-9" id="datadata" style="left:20px; padding-right:50px; bottom:-20px;">
-
-    </div>
 </div>
 
 

@@ -152,9 +152,9 @@
                 type: 'get',
                 data: { id: $(this).attr("data-id") },
                 success: function (result) {
-                    $(".modal-title").html("Detail Pelamar");
-                    $(".modal-body").html(result);
-                    $(".modal-main").modal("show");
+                    $(".modal-pelamar .modal-title").html("Detail Pelamar");
+                    $(".modal-pelamar .modal-body").html(result);
+                    $(".modal-pelamar").modal("show");
                       $("#datepicker").datepicker({
                         dateFormat: "yy-mm-dd"
                     });        
