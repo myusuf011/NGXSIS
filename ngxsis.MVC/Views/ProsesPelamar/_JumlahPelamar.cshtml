@@ -1,0 +1,21 @@
+﻿<li style="margin-top:5px;margin-bottom:5px;color:#000080;background-color:#C8BFE7">
+    <a href="#">
+        <b style="margin-right:30%;">Pelamar</b>
+        <span id="count" style="background-color:red;width:20px;margin-left:5px;margin-right:5px;padding-top: 5px;padding-bottom: 5px;padding-right: 8px;padding-left: 8px;border-radius:50%;color:#ffffff;font-weight:bold;text-align:center;">0</span>
+    </a>
+</li>
+
+<script type="text/javascript">
+    $.ajax(
+           {
+               url: '@Url.Action("JumlahPelamar","ProsesPelamar")',
+               type: 'get',
+               success: function (result) {
+                   $("#count").text(result);
+               }
+           });
+    $("#count").click(function ()
+    {
+        $(".dd-notif").toggle();
+    });
+</script>

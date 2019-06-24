@@ -11,6 +11,15 @@ namespace ngxsis.Repository
 {
     public class ProsesPelamarRepo
     {
+        public static long JumlahPelamar()
+        {
+            long result = 0;
+            using(var db = new ngxsisContext())
+            {
+                result=db.x_biodata.Where(b => b.is_complete==false && b.is_deleted==false).Count();
+            }
+                return result;
+        }
         public static List<ProsesPelamarViewModel> ProsesPelamarList(int desc,int page,int dataPerPage)
         {
             List<ProsesPelamarViewModel> result = new List<ProsesPelamarViewModel>();

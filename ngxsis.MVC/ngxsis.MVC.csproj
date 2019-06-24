@@ -148,10 +148,12 @@
     <Compile Include="Controllers\PelatihanController.cs" />
     <Compile Include="Controllers\PendidikanController.cs" />
     <Compile Include="Controllers\PengalamanController.cs" />
+    <Compile Include="Controllers\ProsesPelamarController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SelectAccessController.cs" />
     <Compile Include="Controllers\SertifikasiController.cs" />
     <Compile Include="Controllers\SumberLokerController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\UserRoleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -414,6 +416,11 @@
     <Content Include="Views\Pengalaman\_CreateProject.cshtml" />
     <Content Include="Views\Pengalaman\_EditProject.cshtml" />
     <Content Include="Views\Pengalaman\_DeleteProjet.cshtml" />
+    <Content Include="Views\Shared\_NavBar.cshtml" />
+    <Content Include="Views\Shared\_SideBar.cshtml" />
+    <Content Include="Views\ProsesPelamar\_JumlahPelamar.cshtml" />
+    <Content Include="Views\Account\_ChangeAccess.cshtml" />
+    <Content Include="Views\Account\_ConfirmLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

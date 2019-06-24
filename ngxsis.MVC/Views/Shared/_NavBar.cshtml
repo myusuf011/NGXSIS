@@ -1,0 +1,47 @@
+﻿@model IEnumerable<ngxsis.ViewModel.MenuViewModel>
+
+<li>
+    <a href="/Home" style="background-color:#000080;">
+        <h6 style="color:white">
+            <b>Home</b>
+        </h6>
+    </a>
+</li>
+@{
+    foreach(var menu in Model)
+    {
+        if(menu.IsDropdown&&menu.Level==1)
+        {
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="background-color:#000080;">
+                    <h6 style="color:white;margin-top: 8px;">
+                        <b>@menu.Title</b>
+                        <i class="glyphicon glyphicon-chevron-down" style="margin-left:20px;"></i>
+                    </h6>
+                </a>
+                <ul class="dropdown-menu" style="margin-top:-20px;right:15px;border-radius:4px;">
+                    <li class="dropdown-header dh">@menu.Title</li>
+                    @{
+                        foreach(var menu2 in Model)
+                        {
+                            if(menu2.Level==2&&menu2.ParentId==menu.Id)
+                            {
+                                <li><a href="@menu2.Url">@menu2.Title</a></li>
+                            }
+                        }
+                    }
+                </ul>
+            </li>
+                        }
+                        else if(menu.Level==1)
+                        {
+                            <li>
+                                <a href="@menu.Url" style="background-color:#000080;">
+                                    <h6 style="color:white">
+                                        <b>@menu.Title</b>
+                                    </h6>
+                                </a>
+                            </li>
+                            }
+                        }
+}

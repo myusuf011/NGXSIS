@@ -63,33 +63,37 @@
         var desc;
         var maxPage;
         var dataPerPage;
+            var itemCount = 0;
         $(document).ready(function () {
             page = 0;
             search = "";
             desc = 0;
-            dataPerPage = 10;
+            maxPage = 0;
+            dataPerPage = 1;
             GetList();
         });
 
         function GetList() {
-            var itemCount = 0;
+            
             $.ajax(
             {
                 url: '@Url.Action("RoleList", "Role")',
                 type: 'get',
                 data: { search: search, desc: desc , page: page, dataPerPage: dataPerPage },
                 success: function (result) {
-                    $("#data").html(result);
                     $("#txt-search").val(search);
-
-                    $("#data").find("tbody").find("tr").each(function (item) {
-                        itemCount = itemCount + 1;
-                    });
-                    if (itemCount < dataPerPage) {
-                        maxPage = page;
-                    } else {
-                        maxPage = page + 1;
-                    }
+                    $("#data").html(result);
+                    //$("#data").find("tbody").find("tr").each(function (item) {
+                    //    itemCount = itemCount + 1;
+                    //    console.log("itemcount=" + itemCount);
+                    //});
+                    //if (itemCount < dataPerPage) {
+                    //    maxPage = page;
+                    //    console.log("if" + itemCount + "<" + dataPerPage);
+                    //} else {
+                    //    maxPage = page + 1;
+                    //    console.log("else");
+                    //}
                 }
             });
         }

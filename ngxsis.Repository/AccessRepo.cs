@@ -41,5 +41,43 @@ namespace ngxsis.Repository
             }
             return result;
         }
+        public static List<MenuViewModel> NavBar(long RoleId)
+        {
+            List<MenuViewModel> result = new List<MenuViewModel>();
+            using(var db = new ngxsisContext())
+            {
+                result=db.x_menu_acces.Where(ma => ma.role_id==RoleId&&ma.is_deleted==false&&ma.x_menutree.is_deleted==false&&ma.x_menutree.menu_type=="NAVBAR")
+                    .OrderBy(ma=>ma.x_menutree.menu_level).ThenBy(ma=>ma.x_menutree.menu_parent).ThenBy(ma=>ma.x_menutree.menu_order)
+                    .Select(m => new MenuViewModel()
+                    {
+                        Id = m.x_menutree.id,
+                        Title=m.x_menutree.title,
+                        Level=m.x_menutree.menu_level,
+                        Url = m.x_menutree.menu_url,
+                        IsDropdown = db.x_menutree.Where(mt=>mt.menu_parent==m.x_menutree.id&&mt.is_deleted==false).FirstOrDefault()!=null,
+                        ParentId = m.x_menutree.menu_parent,
+                    }).ToList();
+            }
+            return result;
+        }
+        public static List<MenuViewModel> SideBar(long RoleId)
+        {
+            List<MenuViewModel> result = new List<MenuViewModel>();
+            using(var db = new ngxsisContext())
+            {
+                result=db.x_menu_acces.Where(ma => ma.role_id==RoleId&&ma.is_deleted==false&&ma.x_menutree.is_deleted==false&&ma.x_menutree.menu_type=="SIDEBAR")
+                    .OrderBy(ma => ma.x_menutree.menu_level).ThenBy(ma => ma.x_menutree.menu_parent).ThenBy(ma => ma.x_menutree.menu_order)
+                    .Select(m => new MenuViewModel()
+                    {
+                        Id=m.x_menutree.id,
+                        Title=m.x_menutree.title,
+                        Level=m.x_menutree.menu_level,
+                        Url=m.x_menutree.menu_url,
+                        IsDropdown=db.x_menutree.Where(mt => mt.menu_parent==m.x_menutree.id&&mt.is_deleted==false).FirstOrDefault()!=null,
+                        ParentId=m.x_menutree.menu_parent,
+                    }).ToList();
+            }
+            return result;
+        }
     }
 }

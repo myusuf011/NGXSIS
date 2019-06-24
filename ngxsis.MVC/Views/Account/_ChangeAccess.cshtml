@@ -1,0 +1,57 @@
+﻿@model ngxsis.ViewModel.SelectAccessViewModel
+<link href="~/Content/StyleLogin.css" rel="stylesheet" />
+<link href="~/Content/role.css" rel="stylesheet" />
+<div class="container" style="min-height:150px;">
+    <div class="panel-body tengah" style="margin-top: 5px; padding:0;">
+        <p style="font-size:9pt; font-weight: bold;">Selamat datang di XSIS 2.0, silahkan pilih akses anda</p>
+    </div>
+
+    <div class="container-menu-role">
+        @using(Html.BeginForm())
+        {
+            <div class="list-group list-group-root well" id="Company">
+                @foreach(var company in ViewBag.CompanyList)
+                {
+                    <a href="#Role" class="menu-role list-group-item" data-toggle="collapse">
+                        @company.Text<i class="glyphicon glyphicon-chevron-down ikon pinggir-kanan"></i>
+                    </a>
+
+                    <div class="list-group collapse" id="Role">
+                        @foreach(var role in ViewBag.RoleList)
+                        {
+                            <a href="#" class="list-group-item isi-role" data-value="@role.Value" data-company="@company.Value">@role.Text</a>
+                        }
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
+</div>
+
+
+
+<script type="text/javascript">
+    $('.menu-role').on('click', function () {
+        $('.glyphicon', this)
+          .toggleClass('glyphicon-chevron-down')
+          .toggleClass('glyphicon-chevron-up');
+    });
+
+    $(".isi-role").click(function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: '@Url.Action("ConfirmLogin", "Account")',
+            type: 'get',
+            data: { idRole: $(this).data("value"), idCompany: $(this).data("company") },
+            success: function (result) {
+                $(".modal-layout .modal-title").html("Masuk");
+                $(".modal-layout .modal-body").html(result);
+            }
+        });
+
+        //alert("Role ID =" + $(this).data("value") +"\n"+ "Company ID =" + $(this).data("company"));
+    });
+
+</script>

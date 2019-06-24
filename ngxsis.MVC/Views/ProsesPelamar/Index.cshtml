@@ -76,15 +76,24 @@
         var maxPage;
         var dataPerPage;
         var biodataId;
+            var itemCount = 0;
         $(document).ready(function () {
             page = 0;
             desc = 0;
             dataPerPage = 10;
             GetList();
+            $.ajax(
+           {
+               url: '@Url.Action("JmlPelamar","ProsesPelamar")',
+               type: 'get',
+               success: function (result) {
+                   $(".dd-notif").html(result);
+                   $(".dd-notif").toggle();
+               }
+           });
         });
 
         function GetList() {
-            var itemCount = 0;
             $.ajax(
             {
                 url: '@Url.Action("List", "ProsesPelamar")',
@@ -92,14 +101,6 @@
                 data: { desc: desc, page: page, dataPerPage: dataPerPage },
                 success: function (result) {
                     $("#data").html(result);
-                    $("#data").find("tbody").find("tr").each(function (item) {
-                        itemCount = itemCount + 1;
-                    });
-                    if (itemCount < dataPerPage) {
-                        maxPage = page;
-                    } else {
-                        maxPage = page + 1;
-                    }
                 }
             });
         }

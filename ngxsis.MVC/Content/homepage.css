@@ -63,5 +63,17 @@
 #sidebar-tabel {
     width: 100%;
 }
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
 
-   
+    color: #000080;
+    text-decoration: none;
+    background-color: #f5f5f5;
+
+}
+.dd-notif > li > a:hover, 
+.dd-notif  > li > a:focus {
+    color: #000080;
+    text-decoration: none;
+    background-color: #9480dc;
+}

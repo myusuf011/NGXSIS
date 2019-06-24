@@ -47,9 +47,10 @@ tr {
 }
 
 .dot {
-    margin-left: -35px;
-    height: 12px;
-    width: 12px;
+    margin-left: 0px;
+    margin-right:35px;
+    height: 14px;
+    width: 14px;
     background-color: #000080;
     border-radius: 50%;
     display: inline-block;
@@ -179,4 +180,33 @@ tr {
     height: 45px;
     margin-left: 15px;
 }
+.tree-toggle
+{
+    padding-left:45px;
+}
 
+.tree-toggle,
+.my-sidebar > li>a:hover,
+.my-sidebar > li>a:focus{
+    color:#000080;
+    background-color: #ffffff;
+    vertical-align: middle;
+    font-size: 14px;
+    font-weight: bold;
+    border: 2px solid #000080;
+}
+
+.my-sidebar > li {
+    margin-bottom:-2px;
+}
+.tree > li,
+.tree > li > a {
+    color:#000080;
+    background-color: #ffffff;
+}
+
+.tree > li > a:hover,
+.tree > li > a:focus {
+    color:#000080;
+    background-color: #ccccff;
+}

@@ -51,5 +51,15 @@ namespace ngxsis.MVC.Controllers
                 success = result.Success
             }, JsonRequestBehavior.AllowGet);
         }
+
+        public long JumlahPelamar()
+        {
+            return ProsesPelamarRepo.JumlahPelamar();
+        }
+
+        public ActionResult JmlPelamar()
+        {
+            return PartialView("_JumlahPelamar");
+        }
     }
 }

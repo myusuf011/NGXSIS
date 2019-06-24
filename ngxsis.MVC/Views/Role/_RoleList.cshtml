@@ -102,14 +102,39 @@
                 <td></td>
                 <td></td>
                 <td>
-                    <button type="button" class="btn btn-primary btn-sm btn-pill pull-right" onclick="plus()"><b>Next &#8594;</b></button>
-                    <button type="button" class="btn btn-primary btn-sm btn-pill pull-right" onclick="min()"><b>&#8592; Previous</b></button>
+                    <button type="button" class="btn btn-primary btn-sm btn-pill pull-right btn-next" onclick="plus()"><b>Next &#8594;</b></button>
+                    <button type="button" class="btn btn-primary btn-sm btn-pill pull-right btn-prev" onclick="min()"><b>&#8592; Previous</b></button>
                 </td>
             </tr>
         </tfoot>
     </table>
 </div>
 <script type="text/javascript">
+
+    $(document).ready(function ()
+    {
+        itemCount = 0;
+        $("#data").find("tbody").find("tr").each(function (item) {
+            itemCount = itemCount + 1;
+        });
+        if (itemCount < dataPerPage) {
+            maxPage = page;
+        } else {
+            maxPage = page + 1;
+        }
+        if (page == 0) {
+            $(".btn-prev").hide();
+        } else
+        {
+            $(".btn-prev").show();
+        }
+        if (page == maxPage) {
+            $(".btn-next").hide();
+        } else
+        {
+            $(".btn-next").show();
+        }
+    });
     /*ROW PER PAGE*/
     $(".btn-list").click(function ()
     {
@@ -122,7 +147,6 @@
         if (page > 0) {
             page = page - 1;
         }
-        console.log(page);
         GetList();
     };
     /*GO TO NEXT PAGE*/
@@ -130,7 +154,6 @@
         if (page < maxPage) {
             page = page + 1;
         }
-        console.log(page);
         GetList();
     };
 

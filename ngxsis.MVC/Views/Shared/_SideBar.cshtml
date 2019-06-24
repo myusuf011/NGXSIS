@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ngxsis.ViewModel.MenuViewModel>
+
+<ul class="nav my-sidebar">
+    <li><a href="/" class="tree-toggle"><span class="dot"></span>Beranda</a></li>
+    @{
+        foreach(var menu in Model)
+        {
+            if(menu.IsDropdown&&menu.Level==1)
+            {
+                <li>
+                    <a href="@menu.Url" class="tree-toggle"><span class="dot"></span>@menu.Title<i class="glyphicon glyphicon-chevron-down" style="float:right;"></i></a>
+                    <ul class="nav tree">
+                        @foreach(var menu2 in Model)
+                        {
+                            if(menu2.Level==2&&menu2.ParentId==menu.Id)
+                            {
+                                <li><a href="@menu2.Url">@menu2.Title</a></li>
+                            }
+                        }
+                    </ul>
+                </li>
+            }
+            else if(menu.Level==1)
+            {
+                <li><a href="@menu.Url" class="tree-toggle"><span class="dot"></span>@menu.Title</a></li>
+            }
+        }
+    }
+</ul>
+
+<script type="text/javascript">
+    $('.tree-toggle').click(function () {
+        $(this).parent().children('ul.tree').toggle(200);
+    });
+    $(function () {
+        $('.tree-toggle').parent().children('ul.tree').toggle(200);
+    })
+</script>

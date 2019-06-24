@@ -112,6 +112,30 @@ namespace ngxsis.Repository
             }
             return result;
         }
+        public static ResponseResultLogin cekAkunGantiAkses(LoginViewModel entity)
+        {
+            ResponseResultLogin result = new ResponseResultLogin();
+            string passwordmd5 = UserRoleRepo.GetMd5Hash(entity.abpwd);
+
+            using(var db = new ngxsisContext())
+            {
+                var userDetails = db.x_biodata
+                    .Where(o =>o.addrbook_id==entity.id &&( (o.x_addrbook.email==entity.email&&o.x_addrbook.abpwd==passwordmd5)||
+                    (o.x_addrbook.abuid==entity.email&&o.x_addrbook.abpwd==passwordmd5))).FirstOrDefault();
+
+                if(userDetails==null)
+                {
+                        result.Message="E-mail atau password salah!";
+                        result.Success=false;
+                }
+                else if(userDetails!=null)
+                {
+                    result.Message="Akses berhasil dirubah!";
+                    result.Success=true;
+                }
+            }
+            return result;
+        }
 
     }
 }
