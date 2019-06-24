@@ -100,10 +100,10 @@
             //
 
             success: function (result) {
-                $(".modal-create-sertifikasi .modal-title").html("Edit Pendidikan");
-                $(".modal-create-sertifikasi .modal-body").html(result);
+                $(".modal-create .modal-title").html("Edit Pendidikan");
+                $(".modal-create .modal-body").html(result);
                 $(".modal-pelamar").modal("hide");
-                $(".modal-create-sertifikasi").modal("show");
+                $(".modal-create").modal("show");
             }
         });
 
@@ -134,10 +134,10 @@
             url: '@Url.Action("Create", "Pendidikan")',
             type: 'get',
             success: function (result) {
-                $(".modal-create-sertifikasi .modal-title").html("Tambah Pendidikan");
-                $(".modal-create-sertifikasi .modal-body").html(result);
+                $(".modal-create .modal-title").html("Tambah Pendidikan");
+                $(".modal-create .modal-body").html(result);
                 $(".modal-pelamar").modal("hide");
-                $(".modal-create-sertifikasi").modal("show");
+                $(".modal-create").modal("show");
             }
         });
 

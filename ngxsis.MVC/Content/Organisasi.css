@@ -71,9 +71,9 @@ background-color : #9c1010;
 .form-control{
     border-color:#000080;
     color: #000080;
-    font-size: small;
-    height: 34px;
-    border: 1px solid #000080;
+    font-size: medium;
+    height: 48px;
+    border: 2px solid #000080;
 }
 
 .btn-create:hover,
@@ -118,7 +118,7 @@ background-color : #9c1010;
     height : 68px;
 }
 
-.modal-create-org .modal-content 
+.modal-create .modal-content 
 {
     width : 800px;
     border-color: #000080;
@@ -126,7 +126,7 @@ background-color : #9c1010;
     border-style: solid;
 }
 
-.modal-create-org .modal-dialog {
+.modal-create .modal-dialog {
     right: auto;
     left: auto;
     width: 800px;
@@ -146,3 +146,6 @@ background-color : #9c1010;
     background-color: #9c1010;
 }
 
+.control-label {
+    color: #000080;
+}

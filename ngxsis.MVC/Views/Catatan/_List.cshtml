@@ -79,10 +79,10 @@
             //
 
             success: function (result) {
-                $(".modal-create-sertifikasi .modal-title").html("Edit Catatan");
-                $(".modal-create-sertifikasi .modal-body").html(result);
+                $(".modal-create .modal-title").html("Edit Catatan");
+                $(".modal-create .modal-body").html(result);
                 $(".modal-pelamar").modal("hide");
-                $(".modal-create-sertifikasi").modal("show");
+                $(".modal-create").modal("show");
             }
         });
 
@@ -112,10 +112,10 @@
             url: '@Url.Action("Create", "Catatan")',
             type: 'get',
             success: function (result) {
-                $(".modal-create-sertifikasi .modal-title").html("Tambah Catatan");
-                $(".modal-create-sertifikasi .modal-body").html(result);
+                $(".modal-create .modal-title").html("Tambah Catatan");
+                $(".modal-create .modal-body").html(result);
                 $(".modal-pelamar").modal("hide");
-                $(".modal-create-sertifikasi").modal("show");
+                $(".modal-create").modal("show");
             }
         });
 

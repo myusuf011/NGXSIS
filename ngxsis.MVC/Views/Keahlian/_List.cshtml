@@ -53,10 +53,10 @@
             url: '@Url.Action("Create", "Keahlian")',
             type: 'get',
             success: function (result) {
-                $(".modal-create-org .modal-title").html("Tambah Keahlian");
-                $(".modal-create-org .modal-body").html(result);
+                $(".modal-create .modal-title").html("Tambah Keahlian");
+                $(".modal-create .modal-body").html(result);
                 $(".modal-pelamar").modal("hide");
-                $(".modal-create-org").modal("show");
+                $(".modal-create").modal("show");
             }
         });
     });
@@ -67,10 +67,10 @@
             type: 'get',
             data: { id: $(this).attr("data-container") },
             success: function (result) {
-                $(".modal-create-org .modal-title").html("Ubah Keahlian");
-                $(".modal-create-org .modal-body").html(result);
+                $(".modal-create .modal-title").html("Ubah Keahlian");
+                $(".modal-create .modal-body").html(result);
                 $(".modal-pelamar").modal("hide");
-                $(".modal-create-org").modal("show");
+                $(".modal-create").modal("show");
             }
         });
     });

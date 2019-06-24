@@ -70,10 +70,10 @@
             url: '@Url.Action("Create", "Pengalaman")',
             type: 'get',
             success: function (result) {
-                $(".modal-create-org .modal-title").html("Tambah Pengalaman Kerja");
-                $(".modal-create-org .modal-body").html(result);
+                $(".modal-create .modal-title").html("Tambah Pengalaman Kerja");
+                $(".modal-create .modal-body").html(result);
                 $(".modal-pelamar").modal("hide");
-                $(".modal-create-org").modal("show");
+                $(".modal-create").modal("show");
             }
         });
     });
@@ -84,10 +84,10 @@
             type: 'get',
             data: { id: $(this).attr("data-container") },
             success: function (result) {
-                $(".modal-create-org .modal-title").html("Ubah Pengalaman Kerja");
-                $(".modal-create-org .modal-body").html(result);
+                $(".modal-create .modal-title").html("Ubah Pengalaman Kerja");
+                $(".modal-create .modal-body").html(result);
                 $(".modal-pelamar").modal("hide");
-                $(".modal-create-org").modal("show");
+                $(".modal-create").modal("show");
             }
         });
     });
@@ -115,9 +115,10 @@
                 success: function (result) {
 
 
-                    $(".modal-object .modal-title").html("Tambah Proyek");
-                    $(".modal-object .modal-body").html(result);
-                    $(".modal-object").modal("show");
+                    $(".modal-create .modal-title").html("Tambah Proyek");
+                    $(".modal-create .modal-body").html(result);
+                    $(".modal-pelamar").modal("hide");
+                    $(".modal-create").modal("show");
                 }
             });
         });
@@ -129,9 +130,10 @@
                       data: { id: $(this).attr("data-container") },
                       success: function (result) {
 
-                    $(".modal-object .modal-title").html("Ubah Proyek");
-                    $(".modal-object .modal-body").html(result);
-                    $(".modal-object").modal("show");
+                    $(".modal-create .modal-title").html("Ubah Proyek");
+                    $(".modal-create .modal-body").html(result);
+                    $(".modal-pelamar").modal("hide");
+                    $(".modal-create").modal("show");
                 }
             });
          });

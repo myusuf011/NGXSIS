@@ -136,8 +136,8 @@ new { @class = "form-control", id = "start_month" })
 
                 <div class="form-actions col-md-4 pull-right col-md-offset-1">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-warning btn-150px" data-dismiss="modal"><b>Batal</b></button>
-                        <button type="submit" class="btn btn-pp btn-150px "><b>Simpan</b></button>
+                        <button type="button" class="btn btn-warning btn-90px" data-dismiss="modal"><b>Batal</b></button>
+                        <button type="submit" class="btn btn-pp btn-90px "><b>Simpan</b></button>
 
                     </div>
                 </div>
@@ -158,7 +158,8 @@ new { @class = "form-control", id = "start_month" })
             success: function (result) {
                 if (result.success) {
                     alert("Data Proyek " + result.entity.poject_name + " Berhasil Diubah");
-                    $(".modal-object").modal("hide");
+                    $(".modal-create").modal("hide");
+                    $(".modal-pelamar").modal("show");
                     GetPengalaman();
                 }
             }
@@ -166,5 +167,13 @@ new { @class = "form-control", id = "start_month" })
         return false;
     });
 
+    $(".btn-warning").click(function () {
+        $(".modal-create").modal("hide");
+        $(".modal-pelamar").modal("show");
+    });
 
+    $(".btn-pp").click(function () {
+        $(".modal-create").modal("hide");
+        $(".modal-pelamar").modal("show");
+    });
 </script>

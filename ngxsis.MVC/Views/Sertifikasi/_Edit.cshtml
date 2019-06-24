@@ -163,7 +163,7 @@
             success: function (result) {
                 if (result.success) {
                     alert("Data Berhasil di ubah");
-                    $(".modal-create-sertifikasi").modal("hide");
+                    $(".modal-create").modal("hide");
                     $(".modal-pelamar").modal("show");
                     GetSertifikasi();
                     //} else {
@@ -180,13 +180,13 @@
 
 
     $(".btn-batal").click(function () {
-        $(".modal-create-sertifikasi").modal("hide");
+        $(".modal-create").modal("hide");
         $(".modal-pelamar").modal("show");
     });
 
 
     $(".close").click(function () {
-        $(".modal-create-sertifikasi").modal("hide");
+        $(".modal-create").modal("hide");
         $(".modal-pelamar").modal("show");
     });
 

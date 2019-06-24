@@ -6,7 +6,7 @@ textarea {
     max-width: 100%;
 }
 
-.modal-content {
+/*.modal-content {
     width: 1000px;
 }
 
@@ -22,7 +22,7 @@ textarea {
     overflow-x: hidden;
     text-align: left;
     overflow-y: auto;
-}
+}*/
 
 
 .close,
@@ -34,10 +34,10 @@ textarea {
     opacity: 1;
 }
 
-.modal .modal-header {
+/*.modal .modal-header {
     background-color: #000080;
     color: #ffffff;
-}
+}*/
 
 .btn-pp:hover,
 .btn-pp:focus,

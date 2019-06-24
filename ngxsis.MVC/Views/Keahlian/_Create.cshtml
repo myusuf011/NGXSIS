@@ -74,7 +74,7 @@
             success: function (result) {
                 if (result.success) {
                     alert("Data berhasil disimpan");
-                    $(".modal-create-org").modal("hide");
+                    $(".modal-create").modal("hide");
                     $(".modal-pelamar").modal("show");
                     GetKeahlian();
                 }
@@ -87,12 +87,12 @@
     });
 
     $(".btn-batal").click(function () {
-        $(".modal-create-org").modal("hide");
+        $(".modal-create").modal("hide");
         $(".modal-pelamar").modal("show");
     });
 
     $(".close").click(function () {
-        $(".modal-create-org").modal("hide");
+        $(".modal-create").modal("hide");
         $(".modal-pelamar").modal("show");
     });
 </script>

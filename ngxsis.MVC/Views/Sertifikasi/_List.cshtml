@@ -84,10 +84,10 @@
             //
 
             success: function (result) {
-                $(".modal-create-sertifikasi .modal-title").html("Edit Sertifikasi");
-                $(".modal-create-sertifikasi .modal-body").html(result);
+                $(".modal-create .modal-title").html("Edit Sertifikasi");
+                $(".modal-create .modal-body").html(result);
                 $(".modal-pelamar").modal("hide");
-                $(".modal-create-sertifikasi").modal("show");
+                $(".modal-create").modal("show");
             }
         });
 
@@ -118,10 +118,10 @@
             url: '@Url.Action("Create", "Sertifikasi")',
             type: 'get',
             success: function (result) {
-                $(".modal-create-sertifikasi .modal-title").html("Tambah Sertifikasi");
-                $(".modal-create-sertifikasi .modal-body").html(result);
+                $(".modal-create .modal-title").html("Tambah Sertifikasi");
+                $(".modal-create .modal-body").html(result);
                 $(".modal-pelamar").modal("hide");
-                $(".modal-create-sertifikasi").modal("show");
+                $(".modal-create").modal("show");
             }
         });
 

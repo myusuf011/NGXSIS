@@ -171,7 +171,7 @@ background-color : #9c1010;
     font-size: medium;
 }*/
 
-.modal-create-sertifikasi .modal-content 
+.modal-create .modal-content 
 {
     width : 800px;
     border-color :#000080;
@@ -179,7 +179,7 @@ background-color : #9c1010;
     border-style: solid;
 }
 
-.modal-create-sertifikasi .modal-dialog {
+.modal-create .modal-dialog {
 
     right: auto;
     left: auto;

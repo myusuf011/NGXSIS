@@ -1,15 +1,4 @@
-﻿
-@{
-    if (Session["userID"] == null)
-    {
-       // Response.Redirect("~/Account/SelectAccess");
-        Session["userID"] = 1;
-    }
-
-}
-
-
-@*<link rel="stylesheet" href="~/Content/sertifikasi.css" />
+﻿@*<link rel="stylesheet" href="~/Content/sertifikasi.css" />
 <div class="panel panel-default">
     <div class="panel-heading">
         <h2>
@@ -54,7 +43,7 @@
 
 }
 <!-- /.modal-content create dan edit -->
-<div class="modal fade modal-utama" tabindex="-1" role="dialog">
+<div class="modal fade modal-create" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header" style="background: darkblue">

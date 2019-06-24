@@ -164,7 +164,7 @@
             success: function (result) {
                 if (result.success) {
                     alert("Data Berhasil Disimpan");
-                    $(".modal-create-sertifikasi").modal("hide");
+                    $(".modal-create").modal("hide");
                     $(".modal-pelamar").modal("show");
                     GetKeluarga()
                 }
@@ -198,13 +198,13 @@
     });
 
     $(".btn-batal").click(function () {
-        $(".modal-create-sertifikasi").modal("hide");
+        $(".modal-create").modal("hide");
         $(".modal-pelamar").modal("show");
     });
 
 
     $(".close").click(function () {
-        $(".modal-create-sertifikasi").modal("hide");
+        $(".modal-create").modal("hide");
         $(".modal-pelamar").modal("show");
     });
 

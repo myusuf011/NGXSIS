@@ -164,7 +164,7 @@
             success: function (result) {
                 if (result.success) {
                     alert("Data berhasil diubah");
-                    $(".modal-create-sertifikasi").modal("hide");
+                    $(".modal-create").modal("hide");
                     $(".modal-pelamar").modal("show");
                     GetPendidikan();
                 }
@@ -183,13 +183,13 @@
 
 
     $(".btn-batal").click(function () {
-        $(".modal-create-sertifikasi").modal("hide");
+        $(".modal-create").modal("hide");
         $(".modal-pelamar").modal("show");
     });
 
 
     $(".close").click(function () {
-        $(".modal-create-sertifikasi").modal("hide");
+        $(".modal-create").modal("hide");
         $(".modal-pelamar").modal("show");
     });
 </script>
