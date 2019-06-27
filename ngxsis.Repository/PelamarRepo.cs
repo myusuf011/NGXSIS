@@ -150,45 +150,91 @@ namespace ngxsis.Repository
             {
                 if(desc == 1)
                 {
-                    result = db.x_biodata.
-                    Join(db.x_riwayat_pendidikan, u => u.id, uir => uir.biodata_id,
-                    (u, uir) => new { u, uir })
-                    .Where(v => v.u.is_deleted == false && (v.u.fullname.Contains(search)
-                    || v.u.nick_name.Contains(search)))
-                    .OrderByDescending(v => v.u.fullname)
-                    .Skip(page * dataPerPage)
+                    //result = db.x_biodata.
+                    //Join(db.x_riwayat_pendidikan, u => u.id, uir => uir.biodata_id,
+                    //(u, uir) => new { u, uir })
+                    //.Where(v => v.u.is_deleted == false && (v.u.fullname.Contains(search)
+                    //|| v.u.nick_name.Contains(search)))
+                    //.OrderByDescending(v => v.u.fullname)
+                    //.Skip(page * dataPerPage)
+                    //.Take(dataPerPage)
+                    //.Select(v => new PelamarViewModel
+                    //{
+                    //    id = v.u.id,
+                    //    fullname = v.u.fullname,
+                    //    nick_name = v.u.nick_name,
+                    //    email = v.u.email,
+                    //    phone_number1 = v.u.phone_number1,
+                    //    pendidikan = v.uir.school_name,
+                    //    jurusan = v.uir.major
+
+                    //}).ToList();
+                    result=db.x_biodata
+                        .Where(b => b.is_deleted==false&&(b.fullname.Contains(search)
+                    ||b.nick_name.Contains(search)))
+                    .OrderByDescending(b => b.fullname)
+                    .Skip(page*dataPerPage)
                     .Take(dataPerPage)
-                    .Select(v => new PelamarViewModel
+                    .Select(b => new PelamarViewModel
                     {
-                        id = v.u.id,
-                        fullname = v.u.fullname,
-                        nick_name = v.u.nick_name,
-                        email = v.u.email,
-                        phone_number1 = v.u.phone_number1,
-                        pendidikan = v.uir.school_name,
-                        jurusan = v.uir.major
+                        id=b.id,
+                        fullname=b.fullname,
+                        nick_name=b.nick_name,
+                        email=b.email,
+                        phone_number1=b.phone_number1,
+                        pendidikan=db.x_riwayat_pendidikan.Where(rp => rp.biodata_id==b.id)
+                        .OrderByDescending(rp => rp.graduation_year)
+                        .Select(rp=>rp.school_name)
+                        .FirstOrDefault(),
+                        jurusan=db.x_riwayat_pendidikan.Where(rp => rp.biodata_id==b.id)
+                        .OrderByDescending(rp => rp.graduation_year)
+                        .Select(rp => rp.major)
+                        .FirstOrDefault(),
 
                     }).ToList();
                 }
                 else
                 {
-                    result = db.x_biodata.
-                    Join(db.x_riwayat_pendidikan, u => u.id, uir => uir.biodata_id,
-                    (u, uir) => new { u, uir })
-                    .Where(v => v.u.is_deleted == false && (v.u.fullname.Contains(search)
-                    || v.u.nick_name.Contains(search)))
-                    .OrderBy(v => v.u.fullname)
-                    .Skip(page * dataPerPage)
+                    //result = db.x_biodata.
+                    //Join(db.x_riwayat_pendidikan, u => u.id, uir => uir.biodata_id,
+                    //(u, uir) => new { u, uir })
+                    //.Where(v => v.u.is_deleted == false && (v.u.fullname.Contains(search)
+                    //|| v.u.nick_name.Contains(search)))
+                    //.OrderBy(v => v.u.fullname)
+                    //.Skip(page * dataPerPage)
+                    //.Take(dataPerPage)
+                    //.Select(v => new PelamarViewModel
+                    //{
+                    //    id = v.u.id,
+                    //    fullname = v.u.fullname,
+                    //    nick_name = v.u.nick_name,
+                    //    email = v.u.email,
+                    //    phone_number1 = v.u.phone_number1,
+                    //    pendidikan = v.uir.school_name,
+                    //    jurusan = v.uir.major
+
+                    //}).ToList();
+                    result=db.x_biodata
+                        .Where(b => b.is_deleted==false&&(b.fullname.Contains(search)
+                    ||b.nick_name.Contains(search)))
+                    .OrderBy(b => b.fullname)
+                    .Skip(page*dataPerPage)
                     .Take(dataPerPage)
-                    .Select(v => new PelamarViewModel
+                    .Select(b => new PelamarViewModel
                     {
-                        id = v.u.id,
-                        fullname = v.u.fullname,
-                        nick_name = v.u.nick_name,
-                        email = v.u.email,
-                        phone_number1 = v.u.phone_number1,
-                        pendidikan = v.uir.school_name,
-                        jurusan = v.uir.major
+                        id=b.id,
+                        fullname=b.fullname,
+                        nick_name=b.nick_name,
+                        email=b.email,
+                        phone_number1=b.phone_number1,
+                        pendidikan=db.x_riwayat_pendidikan.Where(rp => rp.biodata_id==b.id)
+                        .OrderByDescending(rp => rp.graduation_year)
+                        .Select(rp => rp.school_name)
+                        .FirstOrDefault(),
+                        jurusan=db.x_riwayat_pendidikan.Where(rp => rp.biodata_id==b.id)
+                        .OrderByDescending(rp => rp.graduation_year)
+                        .Select(rp => rp.major)
+                        .FirstOrDefault(),
 
                     }).ToList();
                 }

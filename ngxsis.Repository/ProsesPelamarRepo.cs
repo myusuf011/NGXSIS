@@ -36,13 +36,16 @@ namespace ngxsis.Repository
                     {
                         Id=b.id,
                         Fullname=b.fullname,
+
                         SchoolName=db.x_riwayat_pendidikan.Where(rp => rp.biodata_id==b.id&&rp.is_delete==false)
                         .OrderByDescending(rp => rp.graduation_year)
                         .Select(rp => rp.school_name).FirstOrDefault(),
+
                         Major=db.x_riwayat_pendidikan.Where(rp => rp.biodata_id==b.id&&rp.is_delete==false)
                         .OrderByDescending(rp => rp.graduation_year)
                         .Select(rp => rp.major)
                         .FirstOrDefault(),
+
                         IsProcess=b.is_process,
                         IsComplete=b.is_complete
 

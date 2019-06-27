@@ -10,12 +10,27 @@
         Response.Redirect("~/Login/Index");
     }
 }
-
 <div class="panel panel-default">
+    <div class="row" style="margin-bottom:5px;">
+        <div class="col-lg-6">
+            <div class="input-group" style="width:100%;">
+                <input type="text" id="txt-search" class="form-control" style="" placeholder="Nama Pelamar">
+                <span class="input-group-btn">
+                    <button class="btn btn-pp btn-search" style="height:25px;border-radius:0px;font-size:x-small;font-weight:bold;padding:0px;" type="button"><h4><b>Cari</b></h4></button>
+                </span>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <button class="btn btn-clear" style="height:25px;border-radius:0px; color:white;background-color:#000080;"
+                    type="button">
+                <h4 style="bottom:10px;"><b>Reset</b></h4>
+            </button>
+        </div>
+    </div>
     <div class="panel-body">
     </div>
     <div id="data">
-        Loading...
+        ...
     </div>
 </div>
 
@@ -162,9 +177,20 @@
             search = "";
             desc = 0;
             dataPerPage = 5;
-            GetList();
+            //GetList();
         });
-
+        $(".btn-search").click(function () {
+            console.log($("#txt-search").val());
+            $.ajax(
+                 {
+                     url: '@Url.Action("PelamarList", "Pelamar")',
+                     type: 'get',
+                     data: { search: $("#txt-search").val() },
+                     success: function (result) {
+                         $("#data").html(result);
+                     }
+                 });
+        });
         function GetList() {
             var itemCount = 0;
             $.ajax(
@@ -191,3 +217,4 @@
     <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
 }
 <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+

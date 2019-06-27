@@ -1,19 +1,7 @@
 ﻿@model IEnumerable<ngxsis.ViewModel.PelamarViewModel>
+
   
-<div class="row" style="margin-bottom:5px;">
-    <div class="col-lg-6">
-        <div class="input-group" style="width:100%;">
-            <input type="text" id="txt-search" class="form-control" style="" placeholder="Nama Pelamar">
-            <span class="input-group-btn">
-                <button class="btn btn-pp btn-search" style="height:25px;border-radius:0px;" type="button"><h4><b>Cari</b></h4></button>
-            </span>
-        </div>
-    </div>
-    <div class="col-lg-6">
-        <button class="btn btn-clear" style="height:25px;border-radius:0px; color:white;background-color:#000080;" 
-                type="button"><h4 style="bottom:10px;"><b>Reset</b></h4></button>
-    </div>
-</div>
+
 <div class="row">
     <div class="col-lg-8"></div>
     <div class="col-lg-4" style="margin-left:0px;padding-left:130px;">
@@ -76,7 +64,7 @@
                             </div>
                             <div class="row">
                                 <div class="secTitle col-md-4">
-                                    No. Hanphone
+                                    No. Handphone
                                 </div>
                                 <div class="secContent col-md-8">
                                     @Html.DisplayFor(modelItem => item.phone_number1)
@@ -215,5 +203,18 @@
         GetList();
     });
 
+    var bioId = 0;
+    $(".btn-token").click(function () {
+        bioId = $(this).attr("data-id");
+        $.ajax(
+            {
+                url: '@Url.Action("KirimToken","Email")',
+                type: 'get',
+                success: function (result) {
+                    $(".modal-layout .modal-title").html("Kirim Token");
+                    $(".modal-layout .modal-body").html(result);
+                    $(".modal-layout").modal("show");
+                }
+            });
+    });
 </script>
-

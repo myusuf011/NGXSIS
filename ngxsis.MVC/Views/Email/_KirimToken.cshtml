@@ -1,0 +1,82 @@
+﻿
+<div class="container">
+    <div class="row">
+        <div class="input-group date">
+            <input class="form-control text-box single-line hasDatepicker" id="datepicker" style="border-right:none;" type="date" value="">
+            <span class="input-group-addon" style="border: 2px solid #000080;border-left:none; background:none;">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+    </div>
+    <p id="date-val" class="text-danger pull-left" style="margin-left:-15px;" hidden="hidden">Tanggal kadaluarsa tidak boleh lebih kecil dari hari ini</p>
+    <div class="row" style="margin-top:30px;padding-right:0px;margin-right:-28px;">
+        <div class="btn-group pull-right" style="margin-right:15px;">
+            <button type="button" data-dismiss="modal" class="btn btn-warning btn-lg btn-120px btn-batal"><b>Batal</b></button>
+            <button type="button" class="btn btn-pp btn-lg btn-120px" onclick="checkExpDate();"><b>Kirim</b></button>
+
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    .form-control:focus,
+.form-control {
+    border-color: #000080;
+    color: #000080;
+    border-width: 2px;
+    height: 45px;
+    width:100%;
+    max-width:100%;
+}
+
+    .form-control[readonly],
+    .form-control[disabled] {
+        background-color: #CCCCFF;
+    }
+</style>
+<script type="text/javascript">
+    //$(document).ready(function ()
+    //{
+    //    //$("#datepicker").datepicker({
+    //    //    dateFormat: "dd MMMM yyyy"
+    //    //});
+    //});
+
+    function checkExpDate()
+    {
+        var ExpDate = new Date($("#datepicker").val());
+        ExpDate.setHours(0, 0, 0, 0);
+        var dateNow = new Date(Date.now());
+        dateNow.setHours(0, 0, 0, 0);
+        if (ExpDate.getTime() >= dateNow.getTime()) {
+            $("#date-val").attr('hidden', 'hidden');
+            Kirim();
+        } else
+        {
+            $("#date-val").removeAttr('hidden');
+        }
+    };
+
+    function Kirim()
+    {
+        var date = $("#datepicker").val();
+        $.ajax({
+            url: '@Url.Action("Kirim", "Email")',
+            type: 'post',
+            data: { date: date, bioId: bioId },
+            success: function (result) {
+                if (result.success) {
+
+                    alert("Terkirim");
+                    $(".modal").modal("hide");
+                } else {
+                    alert(result.message)
+                }
+            },
+            error: function () {
+                alert("Pengiriman Gagal!");
+            }
+        });
+    }
+</script>
+@*<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />*@

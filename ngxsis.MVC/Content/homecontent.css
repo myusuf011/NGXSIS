@@ -210,3 +210,15 @@ tr {
     color:#000080;
     background-color: #ccccff;
 }
+
+.modal-layout .modal-content {
+    border-width: 2px;
+    border-style: solid;
+    border-color: #000080;
+}
+
+.modal-layout .modal-header {
+    font-size: 24px;
+    background-color: #000080;
+    color: #ffffff;
+}

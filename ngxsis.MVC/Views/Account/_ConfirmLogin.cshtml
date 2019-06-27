@@ -34,7 +34,7 @@
                 success: function (result) {
                     if (result.success == true) {
                         alert(result.message);
-                        location.reload();
+                        location.href = '/';
                     }
                     else if (result.success == false) {
                         alert(result.message);
@@ -44,3 +44,4 @@
             return false;
         });
 </script>
+@Scripts.Render("~/bundles/jqueryval")
