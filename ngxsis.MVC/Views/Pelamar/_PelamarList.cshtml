@@ -123,9 +123,9 @@
                 url: '@Url.Action("Create", "Pelamar")',
                 type: 'get',
                 success: function (result) {
-                    $(".modal-pelamar .modal-title").html("Masukkan Biodata");
-                    $(".modal-pelamar .modal-body").html(result);
-                    $(".modal-pelamar").modal("show");
+                    $(".modal-object .modal-title").html("Masukkan Biodata");
+                    $(".modal-object .modal-body").html(result);
+                    $(".modal-object").modal("show");
                     $("#datepicker").datepicker({
                         dateFormat: "yy-mm-dd"
                     });
