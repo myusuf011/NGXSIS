@@ -1,0 +1,227 @@
+﻿@model IEnumerable<ngxsis.ViewModel.PenjadwalanUndanganViewModel>
+
+
+
+ 
+    <table class="table table-striped" id="my-table">
+      
+        <tbody style="margin-top:20px;">
+            @foreach (var item in Model)
+            {
+                <tr style="font-size:small;">
+                    <td class="text-left" title="@item.invitation_code">
+                        <div style="margin-right:30px;">
+
+                            @Html.DisplayFor(modelItem => item.invitation_code)
+
+                        </div>
+                    </td>
+                    <td class="text-left">
+                        <div style="margin-right:30px;">
+
+                            @Html.DisplayFor(modelItem => item.Fullname)
+
+                        </div>
+                    </td>
+                    <td class="text-left">
+                        <div>
+                            @Html.DisplayFor(modelItem => item.SchoolName) / @Html.DisplayFor(modelItem => item.Major)
+
+                        </div>
+                    </td>
+                    <td class="text-left">
+                        <div style="margin-right:30px;">
+
+                            @Html.DisplayFor(modelItem => item.date_string)
+
+                        </div>
+                    </td>
+                    <td>
+
+                        <div class="btn-group btn-group-sm">
+                            <button href="#" type="button" class="btn btn-tampilkan btn-warna" data-container="@item.id" title="Tampilkan" id="btn-tampilkan">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="btn btn-edit btn-warna" data-container="@item.id" title="Edit">
+                                <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" class="btn btn-delete btn-warna" data-container="@item.id" title="Delete">
+                                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            </button>
+                        </div>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+      
+    </table>
+    <div class="row" style="text-align:right;margin-bottom:15px;margin-right:5px;margin-top:-10px;">
+        <button type="button" class="btn btn-primary btn-sm btn-pill btn-prev" onclick="min()"><b>&#8592; Previous</b></button>
+        <button type="button" class="btn btn-primary btn-sm btn-pill btn-next" onclick="plus()"><b>Next &#8594;</b></button>
+
+    </div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () { //menghitung jumlah baris
+        itemCount = 0;
+        $("#data").find("tbody").find("tr").each(function (item) {
+            itemCount = itemCount + 1;
+        });
+        if (itemCount < dataPerPage) {
+            maxPage = page;   //halaman terakir
+        } else {
+            maxPage = page + 1; //sama
+        }
+        if (page == 0) {
+            $(".btn-prev").hide();
+        } else {
+            $(".btn-prev").show();
+        }
+        if (page == maxPage) { //halaman terakir next nya hilang
+            $(".btn-next").hide();
+        } else {
+            $(".btn-next").show();
+        }
+    });
+    /*ROW PER PAGE*/
+    $(".btn-list").click(function () {
+        page = 0;
+        dataPerPage = $(this).attr("data-container");
+        GetList();
+    });
+    /*GO TO PREVIOUS PAGE*/
+    function min() {
+        if (page > 0) {
+            page = page - 1;
+        }
+        console.log(page);
+        GetList();
+    };
+    /*GO TO NEXT PAGE*/
+    function plus() {
+        if (page < maxPage) {
+            page = page + 1;
+        }
+        console.log(page);
+        GetList();
+    };
+
+    /*SORT ASCENDING*/
+    $(".sort-asc").click(function () {
+        desc = 0;
+        page = 0;
+        GetList();
+    });
+
+    /*SORT DESCENDING*/
+    $(".sort-desc").click(function () {
+        desc = 1;
+        page = 0;
+        GetList();
+    });
+
+    $(".btn-detail").click(function () {
+        $.ajax({
+            url: '@Url.Action("PenjadwalanUndangan", "PenjadwalanUndangan")',
+            type: 'get',
+            data: { id: $(this).attr("data-container") },
+
+            success: function (result) {
+                (".modal-create .modal-title").html("Tampilkan Penjadwalan Undangan");
+                $(".modal-create .modal-body").html(result);
+                $(".modal-create").modal("show");
+            }
+        });
+
+    });
+
+
+
+
+    $("#btn-create-new").click(function () {
+        $.ajax({
+            url: '@Url.Action("Create", "PenjadwalanUndangan")',
+            type: 'get',
+            success: function (result) {
+                $(".modal-create .modal-title").html("Buat Undangan");
+                $(".modal-create .modal-body").html(result);
+             
+                $(".modal-create").modal("show");
+                $("#datepicker").datepicker({
+                    dateFormat: "yy-mm-dd"
+                });
+            }
+        });
+
+    });
+
+
+       $(".btn-edit").click(function () {
+        $.ajax({
+            url: '@Url.Action("Edit", "PenjadwalanUndangan")',
+            type: 'get',
+            data: { id: $(this).attr("data-container") },// attr = atribut
+            //
+
+            success: function (result) {
+                $(".modal-create .modal-title").html("Ubah Undangan");
+                $(".modal-create .modal-body").html(result);
+              
+                $(".modal-create").modal("show");
+                $("#datepicker").datepicker({
+                    dateFormat: "yy-mm-dd"
+                });
+            }
+        });
+
+    });
+</script>
+
+
+<script type="text/javascript">
+    $(".btn-delete").click(function () {
+        $.ajax({
+            url: '@Url.Action("Delete", "PenjadwalanUndangan")',
+            type: 'get',
+            data: { id: $(this).attr("data-container") },
+
+            success: function (result) {
+                $(".modal-delete .modal-title").html("Hapus Undangan");
+                $(".modal-delete .modal-body").html(result);
+                $(".modal-delete").modal("show");
+            }
+        });
+        console.log($(this).attr("data-container"));
+    });
+
+    $(".btn-tampilkan").click(function () {
+        var invitation_code = $(this).closest("tr").find("td").attr("title");
+        $.ajax({
+            url: '@Url.Action("undangandetailList", "PenjadwalanUndangan")',
+            type: 'get',
+            data: { id: $(this).attr("data-container") },
+            success: function (result) {
+                $(".modal-detailundangan .modal-title").html("Undangan " +invitation_code);
+                $(".modal-detailundangan .modal-body").html(result);
+                $(".modal-detailundangan").modal("show");
+            }
+        });
+
+    });
+
+
+    $(".btn-batal").click(function () {
+        $(".modal-create").modal("hide");
+        
+    });
+
+
+    $(".close").click(function () {
+        $(".modal-create").modal("hide");
+        
+    });
+
+</script>

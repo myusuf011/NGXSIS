@@ -1,0 +1,60 @@
+﻿@model ngxsis.ViewModel.PenjadwalanUndanganViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            Tgl.Undangan :@Html.DisplayFor(model => model.date_string) <br />
+            Jam :@Html.DisplayFor(model => model.time) <br />
+            Pelamar :@Html.DisplayFor(model => model.Fullname) <br />
+            Jenis Undangan :@Html.DisplayFor(model => model.schedule_type_name) <br />
+            RO :@Html.DisplayFor(model => model.ro_name) <br />
+            TRO :@Html.DisplayFor(model => model.tro_name) <br />
+            RO/TRO Lain :@Html.DisplayFor(model => model.other_ro_tro) <br />
+            Lokasi :@Html.DisplayFor(model => model.location) <br />
+            Catatan :@Html.DisplayFor(model => model.notes) <br />
+
+        </div>
+        <div class="col-md-4">
+            <span class="glyphicon glyphicon-envelope" aria-hidden="true" style="font-size:130px; color:Black; text-align:center"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <div class="col-lg-12">
+                    <div class="form-actions pull-right">
+                        <div class="btn-group" role="group" aria-label="...">
+                       
+                            <input type="button" class="btn btn-ubah" value="Ubah" data-container=@Model.id>
+                            <input type="button" value="Close" data-dismiss="modal" class="btn btn-close" />
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+   $(".btn-ubah").click(function () {
+        $.ajax({
+            url: '@Url.Action("Edit", "PenjadwalanUndangan")',
+            type: 'get',
+            data: { id: $(this).attr("data-container") },// attr = atribut
+            //
+
+            success: function (result) {
+            $(".modal-create .modal-title").html("Ubah Undangan");
+            $(".modal-create .modal-body").html(result);
+            $(".modal-detailundangan").modal("hide");
+            $(".modal-create").modal("show");
+            $("#datepicker").datepicker({
+            dateFormat: "yy-mm-dd"
+            });
+            }
+            });
+
+   });
+
+</script>

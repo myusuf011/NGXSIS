@@ -146,6 +146,7 @@
     <Compile Include="Controllers\PelamarController.cs" />
     <Compile Include="Controllers\OrganisasiController.cs" />
     <Compile Include="Controllers\PenjadwalanController.cs" />
+    <Compile Include="Controllers\PenjadwalanUndanganController.cs" />
     <Compile Include="Controllers\ProfilController.cs" />
     <Compile Include="Controllers\PelatihanController.cs" />
     <Compile Include="Controllers\PendidikanController.cs" />
@@ -267,6 +268,7 @@
     <Content Include="Content\themes\base\tabs.css" />
     <Content Include="Content\themes\base\theme.css" />
     <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Content\undangan.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -426,11 +428,17 @@
     <Content Include="Views\Account\_ChangeAccess.cshtml" />
     <Content Include="Views\Account\_ConfirmLogin.cshtml" />
     <Content Include="Views\Email\_KirimToken.cshtml" />
+    <Content Include="Views\PenjadwalanUndangan\_List.cshtml" />
     <Content Include="Views\Penjadwalan\_Create.cshtml" />
+    <Content Include="Views\PenjadwalanUndangan\Index.cshtml" />
     <Content Include="Views\Penjadwalan\_Delete.cshtml" />
+    <Content Include="Views\PenjadwalanUndangan\_Create.cshtml" />
     <Content Include="Views\Penjadwalan\_DetailKirimUndangan.cshtml" />
+    <Content Include="Views\PenjadwalanUndangan\_Edit.cshtml" />
     <Content Include="Views\Penjadwalan\_DetailKirimUndanganSemua.cshtml" />
+    <Content Include="Views\PenjadwalanUndangan\_Delete.cshtml" />
     <Content Include="Views\Penjadwalan\_Edit.cshtml" />
+    <Content Include="Views\PenjadwalanUndangan\_undangandetailList.cshtml" />
     <Content Include="Views\Penjadwalan\_EditJadwalPelamarTerjadwal.cshtml" />
     <Content Include="Views\Penjadwalan\_List.cshtml" />
     <Content Include="Views\Penjadwalan\_ListPelamar.cshtml" />

@@ -406,7 +406,7 @@ namespace ngxsis.Repository
                         biodata.created_on = DateTime.Now;
 
                         x_address address = new x_address();
-                        address.biodata_id = entity.id;
+                       
                         address.address1 = entity.address1;
                         address.postal_code1 = entity.postal_code1;
                         address.rt1 = entity.rt1;
@@ -444,7 +444,8 @@ namespace ngxsis.Repository
                     {
 
 
-                        x_biodata biodata = db.x_biodata.Where(o => o.id == entity.id).FirstOrDefault();
+                        x_biodata biodata = db.x_biodata//
+                            .Where(o => o.id == entity.id).FirstOrDefault();
                         x_address address = db.x_address.Where(o => o.id == entity.id).FirstOrDefault();
 
                         #endregion

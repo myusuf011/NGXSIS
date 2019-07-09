@@ -1,0 +1,216 @@
+﻿@model ngxsis.ViewModel.PenjadwalanUndanganViewModel
+
+
+@using (Html.BeginForm("Create", "PenjadwalanUndangan", FormMethod.Post, new { id = "form-create", name = "form-create" }))
+
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.user_id, new { Value = Session["userID"] }) //nangkap user id di form ui tapi gk ditampilkan
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-horizontal">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+                            @Html.EditorFor(model => model.invitation_date, new { htmlAttributes = new { @class = "form-control", id = "datepicker", placeholder = "Tgl. Undangan*", required = "required" } })  @*, @style = "width : 228px !important"*@
+                            @Html.ValidationMessageFor(model => model.invitation_date, "", new { @class = "text-danger" })
+                          
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            @Html.DropDownListFor(model => model.time,
+                    new List<SelectListItem>
+                    {
+                        new SelectListItem { Value = "08:00", Text = "08:00" },
+                        new SelectListItem { Value = "09:00", Text = "09:00" },
+                        new SelectListItem { Value = "10:00", Text = "10:00" },
+                        new SelectListItem { Value = "11:00", Text = "11:00" },
+                        new SelectListItem { Value = "13:00", Text = "13:00" },
+                        new SelectListItem { Value = "14:00", Text = "14:00" },
+                        new SelectListItem { Value = "15:00", Text = "15:00" },
+                        new SelectListItem { Value = "16:00", Text = "16:00" },
+                        new SelectListItem { Value = "17:00", Text = "17:00" },
+
+                    },
+                    "Jam*",
+                    new { @class = "form-control", id = "time" })
+                            @Html.ValidationMessageFor(model => model.time, "", new { @class = "text-danger", required = "required" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            @Html.DropDownListFor(model => model.biodata_id
+                       , (IEnumerable<SelectListItem>)ViewBag.PenjadwalanUndanganList, "Pelamar*", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.biodata_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            @Html.DropDownListFor(model => model.schedule_type_id
+                       , (IEnumerable<SelectListItem>)ViewBag.PenjadwalanUndangan1List, "Jenis Undangan*", new { @class = "form-control", required = "required" })
+                            @Html.ValidationMessageFor(model => model.schedule_type_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-12">
+                            @Html.DropDownListFor(model => model.ro
+                       , (IEnumerable<SelectListItem>)ViewBag.PenjadwalanUndangan2List, "RO", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ro, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            @Html.DropDownListFor(model => model.tro
+                       , (IEnumerable<SelectListItem>)ViewBag.PenjadwalanUndangan3List, "TRO", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.tro, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            @Html.EditorFor(model => model.other_ro_tro, new { htmlAttributes = new { @class = "form-control", placeholder = "RO/TRO Lain" } })
+                            @Html.ValidationMessageFor(model => model.other_ro_tro, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            @Html.EditorFor(model => model.location, new { htmlAttributes = new { @class = "form-control", placeholder = "Lokasi" } })
+                            @Html.ValidationMessageFor(model => model.location, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding-right:0px;">
+
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            @Html.EditorFor(model => model.notes, new { htmlAttributes = new { @class = "form-control", placeholder = "Catatan", id = "form-notes" } })
+                            @Html.ValidationMessageFor(model => model.notes, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-actions pull-right">
+                                <div class="btn-group" role="group" aria-label="...">
+
+                                    <input type="button" value="Batal" data-dismiss="modal" class="btn btn-batal" />
+                                    <input type="button" value="Simpan" class="btn btn-simpan" onclick="simpan();" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}
+
+
+
+@Scripts.Render("~/bundles/jqueryval")
+@section Scripts {
+}
+
+<script type="text/javascript">
+
+    function simpan() {
+        $("#form-create").valid();
+        setTimeout(validateForm, 100);
+    }
+    function validateForm() {
+
+        $("#form-create").validate();
+        if ($("#form-create").valid()) {
+            console.log("valid" + $("#form-create").valid());
+            submited = false;
+        } else {
+            console.log("invalid")
+            submited = true;
+        }
+
+        if (submited) {
+            console.log("submited true");
+        } else {
+            $.ajax(
+            {
+                url: '@Url.Action("Create","PenjadwalanUndangan")',
+                type: 'post',
+                data: $("#form-create").serialize(),
+                success: function (result) {
+                    if (result.success) {
+                        console.log("submited false, submited true")
+                        alert("Data Berhasil Disimpan");
+                        $(".modal-create").modal("hide");
+
+                        search = "";
+                        $("#txt-search").val(search);
+                        $('#data').empty();
+
+                       
+                        submited = true;
+
+
+                    }
+                }
+            });
+        }
+
+        return false;
+
+
+    }
+
+
+
+
+    $(".btn-batal").click(function () {
+        $(".modal-create").modal("hide");
+        
+    });
+
+
+    $(".close").click(function () {
+        $(".modal-create").modal("hide");
+       
+    });
+
+
+</script>

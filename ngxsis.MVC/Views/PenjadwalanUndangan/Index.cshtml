@@ -1,0 +1,310 @@
+﻿
+@{
+    ViewBag.Title = "Penjadwalan Undangan";
+}
+
+@{
+    ViewBag.UID = Session["userID"];
+    if (Session["userID"] == null)
+    {
+        Response.Redirect("/"); // <-- Sesuaikan acceess bila sudah login
+                                //Session["userID"]=1;
+    }
+
+}
+<link rel="stylesheet" href="~/Content/undangan.css" />
+
+<div class="container" style="margin-top:0px;">
+    <div class="panel panel-default panel-undangan">
+        <div class="row" style="margin-bottom:5px;">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-bottom:0px;padding-bottom:0px;">
+                <b style="font-size:24px;margin-left:20px;color:#000080;">Undangan</b>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-left:0px;text-align:right;margin-top:5px;">
+                <div class="btn-group btn-trans" style="margin-left:12px;" role="group" aria-label="...">
+                    <div class="btn-group">
+                        <button type="button" class="btn dropdown-toggle btn-trans  btn-lg " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-sort"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-right btn-link-a">
+                            <li class="dropdown-header dh">Order</li>
+                            <li><a href="javascript:void(0)" class="btn-link sort-asc">Ascending</a></li>
+                            <li><a href="javascript:void(0)" class="btn-link sort-desc">Descending</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn dropdown-toggle btn-trans  btn-lg " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-align-justify"></span>
+                        </button>
+                        <ul class="dropdown-menu btn-link-a">
+                            <li class="dropdown-header dh">Row Per Page</li>
+                            <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="10">10</a></li>
+                            <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="20">20</a></li>
+                            <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="30">30</a></li>
+                            <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="40">40</a></li>
+                            <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="50">50</a></li>
+                        </ul>
+                    </div>
+                    <button type="button" class="btn btn-trans btn-lg btn-create-new" id="btn-create-new"><span class="glyphicon glyphicon-plus-sign"></span></button>
+                </div>
+            </div>
+        </div>
+        <hr style="border-bottom-width: 4px;
+    border-bottom-style: solid;
+    border-bottom-color: #000080;
+    margin-bottom:10px;
+    margin-top:-5px" />
+        <div class="input-group" style="width:40%;">
+            <input type="text" id="txt-search" class="form-control form-cari" style="" placeholder="Cari">
+            <span class="input-group-btn">
+                <button class="btn btn-pp btn-search" style="height:40px; width:70px; margin-left:-2px" type="button">Cari</button>
+            </span>
+            <button class="btn btn-pp btn-reset" style="height:40px; width:70px; margin-left:3px" type="button" title="reset">Reset</button>
+        </div>
+        <div class="panel-body" style="padding-top:0px;">
+        </div>
+        <div id="data">
+
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts
+{
+
+    <script type="text/javascript">
+        var page;
+        var search = "";
+        var desc;
+        var maxPage;
+        var dataPerPage;
+        var itemCount = 0;
+        $(document).ready(function () {
+
+            page = 0;
+            search = "";
+            desc = 0;
+            maxPage = 0;
+            dataPerPage = 10;
+
+        });
+
+        function GetList() {
+            $.ajax(
+       {
+           url: '@Url.Action("List", "PenjadwalanUndangan")',
+           type: 'get',
+           data: { search: search, desc: desc, page: page, dataPerPage: dataPerPage },
+           success: function (result) {
+               $("#txt-search").val(search);
+               $("#data").html(result);
+
+           }
+       });
+        }
+
+
+
+
+        $(".btn-search").click(function () {
+            desc = 0;
+            page = 0;
+            search = $("#txt-search").val();
+            // GetList();
+
+            if ($("#txt-search").val().length < 1) {
+                alert('Nama Pelamar Harus diisi');
+                $("#txt-search").val(search);
+                $("#data").html(result);
+
+            } else {
+
+                var itemCount = 0;
+                console.log($("#txt-search").val());
+                $.ajax(
+                     {
+                         url: '@Url.Action("List", "PenjadwalanUndangan")',
+                         type: 'get',
+                         data: { search: $("#txt-search").val() },
+                         success: function (result) {
+                             $("#data").html(result);
+                             $("#data").find("tbody").find("tr").each(function (item) {
+                                 itemCount = itemCount + 1;
+                             });
+                             if (itemCount == 0) {
+                                 alert("data tidak ditemukan");
+
+                             }
+
+                         }
+                     });
+            }
+        });
+
+
+        $(".btn-reset").click(function () {
+            search = "";
+            $("#txt-search").val(search);
+            $('#data').empty();
+            return false;
+        }
+        );
+
+
+        function GetPenjadwalanUndangan() {
+            $.ajax({
+                url: '@Url.Action("List", "PenjadwalanUndangan")',
+                type: 'get',         
+                success: function (result) {
+                    $("#data").html(result);
+                    
+                }
+            });
+        }
+
+
+        /*ROW PER PAGE*/
+        $(".btn-list").click(function () {
+            page = 0; //halaman
+            dataPerPage = $(this).attr("data-container");
+            GetList();
+        });
+        /*GO TO PREVIOUS PAGE*/
+        function min() {
+            if (page > 0) {
+                page = page - 1;
+            }
+            console.log(page);
+            GetList();
+        };
+        /*GO TO NEXT PAGE*/
+        function plus() {
+            if (page < maxPage) {
+                page = page + 1;
+            }
+            console.log(page);
+            GetList();
+        };
+
+
+
+        /*SORT ASCENDING*/
+        $(".sort-asc").click(function () {
+            desc = 0;
+            page = 0;
+            GetList();
+        });
+
+        /*SORT DESCENDING*/
+        $(".sort-desc").click(function () {
+            desc = 1;
+            page = 0;
+            GetList();
+        });
+
+
+
+
+        $("#btn-create-new").click(function () {
+            $.ajax({
+                url: '@Url.Action("Create", "PenjadwalanUndangan")',
+                type: 'get',
+                success: function (result) {
+                    $(".modal-create .modal-title").html("Buat Undangan");
+                    $(".modal-create .modal-body").html(result);
+                   
+                    $(".modal-create").modal("show");
+                    $("#datepicker").datepicker({
+                        dateFormat: "yy-mm-dd"
+                    });
+                }
+            });
+
+        });
+
+
+
+        $(".btn-batal").click(function () {
+            $(".modal-create").modal("hide");
+            
+        });
+
+
+        $(".close").click(function () {
+            $(".modal-create").modal("hide");
+           
+        });
+
+
+    </script>
+
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+
+
+}
+
+
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
+
+<div class="modal fade modal-white" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+           
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade modal-create" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">             
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+<!-- /.modal-content DELETE -->
+<div class="modal fade modal-delete" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">            
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--edit-->
+
+<div class="modal fade modal-detailundangan" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header" style="background: white">        
+                <h4 class="modal-title" style="background: white">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!--edit-->
