@@ -34,16 +34,21 @@
         height: 0px;
     }
 </style>
-@using(Html.BeginForm("Create","Dokumen",FormMethod.Post,new { enctype = "multipart/form-data",id = "form-create",name = "form-create" }))
+@using(Html.BeginForm("Create","Dokumen",FormMethod.Post,new { enctype = "multipart/form-data",id = "form-edit",name = "form-edit" }))
 {
     @Html.AntiForgeryToken()
-    @Html.HiddenFor(model => model.is_photo);
+    @Html.HiddenFor(Model => Model.id);
+    @Html.HiddenFor(Model => Model.is_photo);
+    @Html.HiddenFor(Model => Model.biodata_id);
+    @Html.HiddenFor(Model => Model.file_path);
 
     <div class="form-horizontal">
 
 
         @Html.ValidationSummary(true,"",new { @class = "text-danger" })
 
+        <input type="file" name="file" id="file" hidden="hidden" />
+        <input type="file" name="foto" id="foto" hidden="hidden" />
         <div class="container" style="width:800px;max-width:100%;">
             <div class="row">
                 <div class="col-md-6">
@@ -65,56 +70,89 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="col-md-12">
-
-                            @*@Html.TextBoxFor(model => model.file,new { type = "file", name="file"})*@
-                            <input type="file" name="file" id="file" hidden="hidden" />
-                            <input type="button" style="width:100%;height:45px;" onclick="browse();" value="Unggah File" class="btn btn-info btn-new-file" />
-                            <div class="row" id="afoto">
-                                <span class="glyphicon glyphicon-user icon-foto"></span>
+            @{
+                if(Model.is_photo==true)
+                {
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @*@Html.TextBoxFor(model => model.foto,new { type = "file", name="foto" })*@
+                                @*@Html.TextBoxFor(model => model.file,new { type = "file", name="file"})*@
+                                <div class="col-md-12">
+                                    <input type="button" style="width:100%;height:45px;" disabled="disabled" onclick="browse();" value="Unggah File" class="btn btn-info btn-new-file" />
+                                    <div class="row" id="afoto">
+                                        @{string Img = Uri.EscapeUriString(@Model.file_path);
+                                            <img id="img-prev" style="object-fit:contain;margin:5px;" src=@Img />}
+                                    </div>
+                                    <input type="button" style="width:100%;height:45px;" onclick="browsefoto();" value="Unggah Foto" class="btn btn-info btn-new-foto" />
+                                </div>
                             </div>
-                            @*@Html.TextBoxFor(model => model.foto,new { type = "file", name="foto" })*@
-                            <input type="file" name="foto" id="foto" hidden="hidden" />
-                            <input type="button" style="width:100%;height:45px;" onclick="browsefoto();" value="Unggah Foto" class="btn btn-info btn-new-foto" />
-                        </div>
-                    </div>
-                    <div class="btn-group" style="width:100%">
-                        <button type="button" class="btn btn-warning btn-batal-foto" style="width:50%;height:45px;"><b>Batal</b></button>
-                        <button type="button" style="width:50%;height:45px;" class="btn btn-pp btn-save-foto"><b>Simpan</b></button>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <div class="col-md-12">
                             <div class="btn-group" style="width:100%">
-                                <button type="button" class="btn btn-warning btn-batal-file" style="width:50%;height:45px;"><b>Batal</b></button>
-                                <button type="button" style="width:50%;height:45px;" class="btn btn-pp btn-save-file"><b>Simpan</b></button>
+                                <button type="button" class="btn btn-warning btn-batal-foto" style="width:50%;height:45px;"><b>Batal</b></button>
+                                <button type="button" style="width:50%;height:45px;" class="btn btn-pp btn-save-foto"><b>Simpan</b></button>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <div class="btn-group" style="width:100%">
+                                        <button type="button" class="btn btn-warning btn-batal-file" style="width:50%;height:45px;"><b>Batal</b></button>
+                                        <button type="button" disabled="disabled" style="width:50%;height:45px;" class="btn btn-pp btn-save-file"><b>Simpan</b></button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
+                }
+                else
+                {
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            @*@Html.TextBoxFor(model => model.foto,new { type = "file", name="foto" })*@
+                                                            @*@Html.TextBoxFor(model => model.file,new { type = "file", name="file"})*@
+                                                            <div class="col-md-12">
+                                                                <input type="button" style="width:100%;height:45px;" onclick="browse();" value="Unggah File" class="btn btn-info btn-new-file" />
+                                                                <div class="row" id="afoto">
+                                                                    <span class="glyphicon glyphicon-user icon-foto"></span>
+                                                                </div>
+                                                                <input type="button" style="width:100%;height:45px;" onclick="browsefoto();" value="Unggah Foto" disabled="disabled" class="btn btn-info btn-new-foto" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="btn-group" style="width:100%">
+                                                            <button type="button" class="btn btn-warning btn-batal-foto" style="width:50%;height:45px;"><b>Batal</b></button>
+                                                            <button type="button" disabled="disabled" style="width:50%;height:45px;" class="btn btn-pp btn-save-foto"><b>Simpan</b></button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <div class="col-md-12">
+                                                                <div class="btn-group" style="width:100%">
+                                                                    <button type="button" class="btn btn-warning btn-batal-file" style="width:50%;height:45px;"><b>Batal</b></button>
+                                                                    <button type="button" style="width:50%;height:45px;" class="btn btn-pp btn-save-file"><b>Simpan</b></button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                    
+                                                                        }
+            }
         </div>
     </div>
-}
+                                    }
 
 @Scripts.Render("~/bundles/jqueryval")
-
 <script type="text/javascript">
-    var a
-    $(document).ready(function ()
-    {
-       a=@Model.biodata_id;
-        console.log("create = "+a);
-        $("#biodata_id").val(a);
-    });
     var fileEmpty = true;
     var fotoEmpty = true;
-    var isPhoto = true;
+    var isPhoto;
     //////////////////////////////////////
+    $("#file_name").keyup(function ()
+    {
+        var change = $("#file_name").val();
+        $("#file_name").val(change);
+    });
     function browse() {
         $("#file").attr("accept", ".doc, .docx, .pdf, .jpg, .jpeg, .png");
         $("#file").trigger("click");
@@ -151,23 +189,22 @@
         }
     }
     //////////////////////////////////////
-    $(document).ready(function ()
-    {
-        $("#biodata_id").val(biodata_id);
+    $(document).ready(function () {
+        isPhoto = $("#is_photo").val();
     });
     $(".btn-save-file").click(function () {
         cekFile();
-        $("#form-create").valid();
         if (fileEmpty) {
-            $("#file").attr("accept", ".doc, .docx, .pdf, .jpg, .jpeg, .png");
-            $("#file").trigger("click");
-        }else if($("#file_name").val() == "")
-        {
-            $(".valname").html("Nama tidak boleh kosong")
+            $("#is_photo").val(isPhoto);
         }  else {
-            isPhoto = false;
+            $("#is_photo").val(false);
             $(".valname").html(null)
             $("#foto").replaceWith($("#foto").val('').clone(true));
+        }
+        if ($("#file_name").val() == "" || $("#file_name").val().length < 1) {
+            $(".valname").html("Nama tidak boleh kosong")
+        } else {
+
             save();
         }
     });
@@ -176,26 +213,26 @@
         if (fileEmpty) {
             $(".modal-layout").modal("hide");
             //$(".modal-pelamar").modal("show");
-        }else {
+        } else {
             $(".btn-new-file").val("Unggah File");
             $("#file").replaceWith($("#file").val('').clone(true));
         }
-        
+
     });
     $(".btn-save-foto").click(function () {
         cekFoto();
         if (fotoEmpty) {
-            $("#foto").attr("accept", ".jpg, .jpeg, .png");
-            $("#foto").trigger("click");
-        }else if($("#file_name").val() == "")
-        {
-            $(".valname").html("Nama tidak boleh kosong")
-        } 
-        else {
-            isPhoto = true;
+            $("#is_photo").val(isPhoto);
+        }else {
             $(".valname").html(null)
+            $("#is_photo").val(true);
             $("#file").replaceWith($("#file").val('').clone(true));
-            save();
+        }
+        if ($("#file_name").val() == "" || $("#file_name").val().length < 1) {
+            $(".valname").html("Nama tidak boleh kosong")
+        } else {
+
+        save();
         }
     });
     $(".btn-batal-foto").click(function () {
@@ -207,8 +244,8 @@
             $(".btn-new-foto").val("Unggah Foto");
             $("#foto").replaceWith($("#foto").val('').clone(true));
             $("#afoto").html('<span class="glyphicon glyphicon-user icon-foto"></span>')
-        } 
-        
+        }
+
     });
     $("#file").change(function () {
         //var extension = $(this).val().split('.').pop().toLowerCase();
@@ -241,42 +278,41 @@
         //    } else {
         $(".btn-new-foto").val("Unggah Foto : " + name);
         $("#file_name").val(name);
-                readURL(this);
+        readURL(this);
         //    }
         //}
     });
 
     function save() {
-        $("#is_photo").val(isPhoto);
-        var form = document.getElementById('form-create');
+        //$("#is_photo").val(isPhoto);
+        var form = document.getElementById('form-edit');
         var formData = new FormData(form);
         $.ajax({
-            url: '@Url.Action("Create","Dokumen")',
+            url: '@Url.Action("Edit","Dokumen")',
             type: 'post',
             data: formData,
             processData: false,
             contentType: false,
             success: function (result) {
-                if (result.success)
-                {
-                    alert("Dokumen berhasil di simpan")
+                if (result.success) {
+                    alert("Dokumen berhasil diubah")
                     $(".modal-layout").modal("hide");
                     //$(".modal-pelamar").modal("show");
                     //GetDokumen();
-                } else
-                {
+
+                } else {
                     alert(result.message)
                 }
             },
-            error: function ()
-            {
+            error: function () {
                 alert("Error: Dokumen tidak tersimpan")
             }
         });
         return false;
     };
-    var a=0;
+    var a = 0;
     $('.modal-layout').on('hidden.bs.modal', function () {
+        // Load up a new modal...
         $('.modal-pelamar').modal('show')
         if (a == 0)
         {

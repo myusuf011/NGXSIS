@@ -222,3 +222,27 @@ tr {
     background-color: #000080;
     color: #ffffff;
 }
+
+.del .modal-header {
+    font-size: 24px;
+    background-color: #000080;
+    color: #ffffff;
+}
+
+.del .modal-content {
+    border-width: 2px;
+    border-style: solid;
+    border-color: #d9534f;
+    width:600px;
+    max-width:100%;
+}
+
+.del .modal-header {
+    font-size: 24px;
+    background-color: #d9534f;
+    color: #ffffff;
+}
+
+.btn-70px {
+    width: 60px;
+}

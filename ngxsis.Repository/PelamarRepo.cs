@@ -170,7 +170,7 @@ namespace ngxsis.Repository
 
                     //}).ToList();
                     result=db.x_biodata
-                        .Where(b => b.is_deleted==false&&(b.fullname.Contains(search)
+                        .Where(b => b.is_deleted==false&&b.addrbook_id==null&&(b.fullname.Contains(search)
                     ||b.nick_name.Contains(search)))
                     .OrderByDescending(b => b.fullname)
                     .Skip(page*dataPerPage)
@@ -215,7 +215,7 @@ namespace ngxsis.Repository
 
                     //}).ToList();
                     result=db.x_biodata
-                        .Where(b => b.is_deleted==false&&(b.fullname.Contains(search)
+                        .Where(b => b.is_deleted==false&&b.addrbook_id==null&&(b.fullname.Contains(search)
                     ||b.nick_name.Contains(search)))
                     .OrderBy(b => b.fullname)
                     .Skip(page*dataPerPage)

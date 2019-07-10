@@ -104,7 +104,9 @@
 
 </table>
 
+
 <script type="text/javascript">
+    var bio;
     $(".btn-search").click(function () {
         console.log($("#txt-search").val());
         $.ajax(
@@ -134,18 +136,18 @@
             });
     });
     $(".btn-details").click(function () {
+        $(".modal-pelamar .modal-body").html(null);
+        bioId = $(this).attr("data-id");
+        console.log($(this).attr("data-id"));
         $.ajax(
             {
                 url: '@Url.Action("IndexDetail", "Pelamar")',
                 type: 'get',
-                data: { id: $(this).attr("data-id") },
+                data: { id: $(this).data("id") },
                 success: function (result) {
                     $(".modal-pelamar .modal-title").html("Detail Pelamar");
                     $(".modal-pelamar .modal-body").html(result);
-                    $(".modal-pelamar").modal("show");
-                      $("#datepicker").datepicker({
-                        dateFormat: "yy-mm-dd"
-                    });        
+                    $(".modal-pelamar").modal("show");      
                 
                 }
             });
@@ -208,7 +210,7 @@
         bioId = $(this).attr("data-id");
         $.ajax(
             {
-                url: '@Url.Action("KirimToken","Email")',
+                url: '@Url.Action("KirimToken","Token")',
                 type: 'get',
                 success: function (result) {
                     $(".modal-layout .modal-title").html("Kirim Token");
@@ -217,4 +219,9 @@
                 }
             });
     });
+    $('.modal-pelamar').on('hidden.bs.modal', function () {
+        // Load up a new modal...
+        $("#datadata").html(null);
+        //GetDokumen();
+    })
 </script>

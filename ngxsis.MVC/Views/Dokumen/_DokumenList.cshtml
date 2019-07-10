@@ -1,47 +1,134 @@
-﻿@model IEnumerable<ngxsis.ViewModel.DokumenViewModel>
+﻿@model ngxsis.ViewModel.Bio
+<link rel="stylesheet" type="text/css" href="~/Content/Dokumen.css" />
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>
-                NAMA FILE
-            </th>
-            <th>
-                KETERANGAN
-            </th>
-            <th>
-                #
-            </th>
-        </tr>
-    </thead>
+@Html.HiddenFor(Model=>Model.id)
+<div class="container">
+    <h4>
+        <font color="#000080">
+            <b>
+                Dokumen
+            </b>
+            <button style="padding:0px;" type="button" class="btn btn-lg btn-trans btn-create-doc" title="Create New" id="btn-create-new">
+                <span class="glyphicon glyphicon-plus-sign" style="color:#000080;background-color:none;" aria-hidden="true"></span>
 
-    <tbody>
-        @foreach (var item in Model)
-        {
+            </button>
+        </font>
+    </h4>
+    <hr style="border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: #000080;
+    margin-top:10px;" />
+    <table class="table table-striped my-table">
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.file_name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.notes)
-                </td>
-                <td>
-                    <!-- Split button -->
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-blue">More</button>
-                        <button type="button" class="btn  dropdown-toggle btn-blue" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="caret"></span>
-                            <span class="sr-only">Toggle Dropdown</span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#" class="btn-edit" data-container="@item.id">Edit</a></li>
-                            <li><a href="javascript:void(0)" class="btn-delete" data-container="@item.id">Delete</a></li>
-                        </ul>
-                    </div>
-                </td>
+                <th>
+                    NAMA FILE
+                </th>
+                <th>
+                    KETERANGAN
+                </th>
+                <th>
+                    #
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+
+        <tbody>
+            @foreach(var item in Model.dokumen)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.file_name)
+                    </td>
+                    @{
+                        if(item.notes==null)
+                        {
+                            <td>
+                                -
+                            </td>
+                        }
+                        else
+                        {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.notes)
+                            </td>
+                        }
+
+                    }
+                    <td>
+                        <!-- Split button -->
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-pp">More</button>
+                            <button type="button" class="btn  dropdown-toggle btn-pp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul class="dropdown-menu btn-link-a">
+                                <li><a href="#" class="btn-edit" data-container="@item.id">Edit</a></li>
+                                <li><a href="javascript:void(0)" class="btn-delete" data-container="@item.id">Delete</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div class="modal fade modal-del" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script type="text/javascript">
+    $(".btn-create-doc").click(function () {
+        $.ajax({
+            url: '@Url.Action("Create", "Dokumen")',
+            type: 'get',
+            data: {id : @Model.id},
+            success: function (result) {
+                $(".modal-layout  .modal-body").html(result);
+                $(".modal-layout .modal-title").html("Tambah Dokumen (Max: 500 KB)");
+                $(".modal-layout ").modal("show");
+                $(".modal-pelamar ").modal("hide");
+            }
+        });
+    });
+    $(".btn-edit").click(function () {
+        $.ajax({
+            url: '@Url.Action("Edit", "Dokumen")',
+            type: 'get',
+            data: {id: $(this).data("container")},
+            success: function (result) {
+                $(".modal").modal("hide");
+                $(".modal-layout .modal-body").html(result);
+                $(".modal-layout .modal-title").html("Ubah Dokumen (Max: 500 KB)");
+                $(".modal-layout").modal("show");
+            }
+        });
+    });
+    $(".btn-delete").click(function () {
+        $.ajax({
+            url: '@Url.Action("Delete", "Dokumen")',
+            type: 'get',
+            data: { id: $(this).data("container") },
+            success: function (result) {
+                $(".modal").modal("hide");
+                $(".del .modal-body").html(result);
+                $(".del .modal-title").html("Hapus Dokumen ?");
+                $(".del").modal("show");
+            }
+        });
+    });
+    
+</script>
 
 

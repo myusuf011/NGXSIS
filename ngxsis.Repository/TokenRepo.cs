@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ngxsis.Repository
 {
-    public class EmailRepo
+    public class TokenRepo
     {
         static int num;
         public static string generateToken()
@@ -59,6 +59,24 @@ namespace ngxsis.Repository
                     bio.token=token;
                     bio.expired_token=date;
                     db.SaveChanges();
+                }
+            }
+            return result;
+        }
+        public static ResponseResult isComplete(long bioId)
+        {
+            ResponseResult result = new ResponseResult();
+            using(var db = new ngxsisContext())
+            {
+                x_biodata bio = db.x_biodata.Where(b => b.is_complete==true&&b.is_deleted==false&&b.id==bioId).FirstOrDefault();
+                if(bio != null)
+                {
+                    result.Entity=null;
+                    result.Message="Proses komplit";
+                    result.Success=false;
+                }else
+                {
+                    result.Entity=bio;
                 }
             }
             return result;

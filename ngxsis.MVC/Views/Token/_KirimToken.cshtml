@@ -1,14 +1,17 @@
 ﻿
-<div class="container">
+<div class="container" style="width:500px;max-width:100%;">
     <div class="row">
-        <div class="input-group date">
-            <input class="form-control text-box single-line hasDatepicker" id="datepicker" style="border-right:none;" type="date" value="">
+        <label class="control-label col-md-offset-1" style="margin-left: 15px;color: #000080;margin-bottom: 5px;">Atur tanggal kadaluarsa</label>
+    </div>
+    <div class="row">
+        <div class="input-group date col-sm-12">
+            <input class="form-control text-box single-line hasDatepicker" id="datepicker" placeholder="Tanggal Kadaluarsa" style="border-right:none;" type="date" value="">
             <span class="input-group-addon" style="border: 2px solid #000080;border-left:none; background:none;">
                 <span class="glyphicon glyphicon-calendar"></span>
             </span>
         </div>
     </div>
-    <p id="date-val" class="text-danger pull-left" style="margin-left:-15px;" hidden="hidden">Tanggal kadaluarsa tidak boleh lebih kecil dari hari ini</p>
+    <p id="date-val" class="text-danger pull-left" hidden="hidden">Tanggal kadaluarsa tidak boleh lebih kecil dari hari ini</p>
     <div class="row" style="margin-top:30px;padding-right:0px;margin-right:-28px;">
         <div class="btn-group pull-right" style="margin-right:15px;">
             <button type="button" data-dismiss="modal" class="btn btn-warning btn-lg btn-120px btn-batal"><b>Batal</b></button>
@@ -34,12 +37,12 @@
     }
 </style>
 <script type="text/javascript">
-    //$(document).ready(function ()
-    //{
-    //    //$("#datepicker").datepicker({
-    //    //    dateFormat: "dd MMMM yyyy"
-    //    //});
-    //});
+    $(document).ready(function ()
+    {
+        //$("#datepicker").datepicker({
+        //    dateFormat: "dd MM yyyy"
+        //});
+    });
 
     function checkExpDate()
     {
@@ -47,6 +50,7 @@
         ExpDate.setHours(0, 0, 0, 0);
         var dateNow = new Date(Date.now());
         dateNow.setHours(0, 0, 0, 0);
+        
         if (ExpDate.getTime() >= dateNow.getTime()) {
             $("#date-val").attr('hidden', 'hidden');
             Kirim();
@@ -54,13 +58,15 @@
         {
             $("#date-val").removeAttr('hidden');
         }
+        console.log(ExpDate.getTime());
+        console.log(dateNow.getTime());
     };
 
     function Kirim()
     {
         var date = $("#datepicker").val();
         $.ajax({
-            url: '@Url.Action("Kirim", "Email")',
+            url: '@Url.Action("Kirim", "Token")',
             type: 'post',
             data: { date: date, bioId: bioId },
             success: function (result) {

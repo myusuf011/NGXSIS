@@ -8,41 +8,41 @@ using ngxsis.ViewModel;
 
 namespace ngxsis.MVC.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController:Controller
     {
         // GET: Account
         public ActionResult SelectAccess()
         {
-            if (Session["userID"] != null)
+            if(Session["userID"]!=null)
             {
                 long sesion = (long)Session["userID"];
-                ViewBag.CompanyList = new SelectList(AccessRepo.SelectCompany(sesion), "CompanyId", "CompanyName");
-                ViewBag.RoleList = new SelectList(AccessRepo.SelectRole(sesion), "RoleId", "RoleName");
+                ViewBag.CompanyList=new SelectList(AccessRepo.SelectCompany(sesion),"CompanyId","CompanyName");
+                ViewBag.RoleList=new SelectList(AccessRepo.SelectRole(sesion),"RoleId","RoleName");
             }
-                        
+
             return View();
         }
 
         [HttpPost]
-        public ActionResult SetSessionAkses(long idRole, long idCompany)
+        public ActionResult SetSessionAkses(long idRole,long idCompany)
         {
-            Session["roleID"] = idRole;
-            Session["companyID"] = idCompany;
+            Session["roleID"]=idRole;
+            Session["companyID"]=idCompany;
 
             ResponseResult result = new ResponseResult();
 
             return Json(new
             {
                 success = result.Success
-            }, JsonRequestBehavior.AllowGet);
+            },JsonRequestBehavior.AllowGet);
         }
-        
+
         public ActionResult RemoveSessionAkses()
         {
             Session.Remove("roleID");
             Session.Remove("companyID");
 
-            return RedirectToAction("SelectAccess", "Account");
+            return RedirectToAction("SelectAccess","Account");
         }
         public ActionResult NavBar()
         {
@@ -57,18 +57,14 @@ namespace ngxsis.MVC.Controllers
 
         public ActionResult ChangeAccess()
         {
-            if(Session["userID"]!=null)
-            {
-                long sesion = (long)Session["userID"];
-                ViewBag.CompanyList=new SelectList(AccessRepo.SelectCompany(sesion),"CompanyId","CompanyName");
-                ViewBag.RoleList=new SelectList(AccessRepo.SelectRole(sesion),"RoleId","RoleName");
-            }
-
+            long session = (long)Session["userID"];
+            ViewBag.CompanyList=new SelectList(AccessRepo.SelectCompany(session),"CompanyId","CompanyName");
+            ViewBag.RoleList=new SelectList(AccessRepo.SelectRole(session),"RoleId","RoleName");
             return PartialView("_ChangeAccess");
         }
-        public ActionResult ConfirmLogin(long idRole, long idCompany)
+        public ActionResult ConfirmLogin(long idRole,long idCompany)
         {
-            Session["newRoleID"] = idRole;
+            Session["newRoleID"]=idRole;
             Session["newCompanyID"]=idCompany;
             return PartialView("_ConfirmLogin");
         }
@@ -76,6 +72,7 @@ namespace ngxsis.MVC.Controllers
         public ActionResult ChangeAccess(LoginViewModel model)
         {
             model.id=(long)Session["userID"];
+            Session["Fail"]=0;
             ResponseResultLogin result = LoginRepo.cekAkunGantiAkses(model);
             if(result.Success)
             {
@@ -83,9 +80,21 @@ namespace ngxsis.MVC.Controllers
                 Session["companyID"]=Session["newCompanyID"];
                 Session.Remove("newRoleID");
                 Session.Remove("newCompanyID");
+            }else if(result.Message=="1")
+            {
+                Session[result.NamaAkun+"Gagal"]= (int)Session[result.NamaAkun+"Gagal"]+1;
+                result.Message="Email/Password salah!\nKesempatan salah sebanyak "+(3 - (int)Session[result.NamaAkun+"Gagal"])+" kali lagi. Lebih dari itu, akun "+result.NamaAkun+" akan terkunci.";
+                if((int)Session[result.NamaAkun+"Gagal"]==3)
+                {
+                    result.Message="Akun anda sudah terkunci!\nHubungi admin untuk mengaktifkan akun";
+                    ResponseResultLogin blokir = LoginRepo.blokirAkun(model.id);
+                    result.Blokir=blokir.Blokir;
+                    Session.RemoveAll();
+                }
             }
             return Json(new
             {
+                blokir = result.Blokir,
                 message = result.Message,
                 success = result.Success
             },JsonRequestBehavior.AllowGet);

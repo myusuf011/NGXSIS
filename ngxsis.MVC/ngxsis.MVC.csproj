@@ -137,7 +137,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CatatanController.cs" />
     <Compile Include="Controllers\DokumenController.cs" />
-    <Compile Include="Controllers\EmailController.cs" />
+    <Compile Include="Controllers\TokenController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KeahlianController.cs" />
     <Compile Include="Controllers\KeluargaController.cs" />
@@ -386,7 +386,6 @@
     <Content Include="Views\Keluarga\_Create.cshtml" />
     <Content Include="Views\Account\SelectAccess.cshtml" />
     <Content Include="Views\Keluarga\_ListByFam.cshtml" />
-    <Content Include="Views\Dokumen\UploadFile.cshtml" />
     <Content Include="Views\Pendidikan\Index.cshtml" />
     <Content Include="Views\SelectAccess\Gagal.cshtml" />
     <Content Include="Views\ProsesPelamar\Index.cshtml" />
@@ -399,9 +398,6 @@
     <Content Include="Views\LainLain\_ListReferensi.cshtml" />
     <Content Include="Views\LainLain\_DeleteReferensi.cshtml" />
     <Content Include="Views\LainLain\_ListTambahan.cshtml" />
-    <Content Include="Views\Dokumen\Index.cshtml" />
-    <Content Include="Views\Dokumen\_DokumenList.cshtml" />
-    <Content Include="Views\Dokumen\_Create.cshtml" />
     <Content Include="Web - Copy.config" />
     <Content Include="Views\LainLain\_ListReferensi.cshtml" />
     <Content Include="Views\LainLain\_ListIndex.cshtml" />
@@ -411,9 +407,7 @@
     <Content Include="Views\Catatan\_Edit.cshtml" />
     <Content Include="Views\Dokumen\Index.cshtml" />
     <Content Include="Views\Dokumen\_Create.cshtml" />
-    <Content Include="Views\Dokumen\_Delete.cshtml" />
     <Content Include="Views\Dokumen\_DokumenList.cshtml" />
-    <Content Include="Views\Dokumen\_Edit.cshtml" />
     <Content Include="Views\Keluarga\Index.cshtml" />
     <Content Include="Views\Keluarga\_Delete.cshtml" />
     <Content Include="Views\Keluarga\_Edit.cshtml" />
@@ -427,7 +421,10 @@
     <Content Include="Views\ProsesPelamar\_JumlahPelamar.cshtml" />
     <Content Include="Views\Account\_ChangeAccess.cshtml" />
     <Content Include="Views\Account\_ConfirmLogin.cshtml" />
-    <Content Include="Views\Email\_KirimToken.cshtml" />
+    <Content Include="Views\Token\_KirimToken.cshtml" />
+    <Content Include="Views\Dokumen\_Edit.cshtml" />
+    <Content Include="Views\Dokumen\_Delete.cshtml" />
+    <Content Include="Views\Dokumen\pp.cshtml" />
     <Content Include="Views\PenjadwalanUndangan\_List.cshtml" />
     <Content Include="Views\Penjadwalan\_Create.cshtml" />
     <Content Include="Views\PenjadwalanUndangan\Index.cshtml" />

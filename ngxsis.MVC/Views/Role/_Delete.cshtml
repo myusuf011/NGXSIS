@@ -37,7 +37,7 @@
                 data: $(this).serialize(),
                 success: function (result) {
                     if (result.success) {
-                        alert("Pengguna berhasil dihapus\nNama Pengguna : " + result.entity.Name);
+                        alert("Role berhasil dihapus\nNama Role : " + result.entity.Name);
                         GetList();
                         $(".modal-delete").modal("hide");
                         

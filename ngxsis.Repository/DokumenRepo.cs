@@ -2,51 +2,55 @@
 using ngxsis.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace ngxsis.Repository
 {
     public class DokumenRepo
     {
-        public static List<DokumenViewModel> All()
+        public static List<DokumenViewModel> All(long biodata_id)
         {
             List<DokumenViewModel> result = new List<DokumenViewModel>();
             using (var db = new ngxsisContext())
             {
-                result = (from v in db.x_biodata_attachment
-                          select new DokumenViewModel
+                result = db.x_biodata_attachment.Where(ba=>ba.biodata_id==biodata_id&&ba.is_delete==false)
+                    .Select(ba=>new DokumenViewModel
                           {
-                              id = v.id,
-                              file_name = v.file_name,
-                              notes = v.notes
-
-                          }).ToList();
-                         
+                              id = ba.id,
+                              file_name = ba.file_name,
+                              notes = ba.notes,
+                              is_photo = ba.is_photo,
+                              file_path = ba.file_path,
+                              biodata_id = ba.biodata_id
+                          }).ToList();       
             }
-            return result;
+            return result != null ? result : new List<DokumenViewModel>();
         }
 
-        public static DokumenViewModel ById(int id)
+        public static DokumenViewModel ById(long id)
         {
             DokumenViewModel result = new DokumenViewModel();
             using (var db = new ngxsisContext())
             {
-                result = (from v in db.x_biodata_attachment
-                          where v.id == id
-                          select new DokumenViewModel
-                          {
-                              id = v.id,
-                              file_name = v.file_name,
-                              notes = v.notes
-
-                          }).FirstOrDefault();
+                result=db.x_biodata_attachment.Where(ba => ba.id==id&&ba.is_delete==false)
+                     .Select(ba => new DokumenViewModel
+                     {
+                         id=ba.id,
+                         file_name=ba.file_name,
+                         notes=ba.notes,
+                         is_photo=ba.is_photo,
+                         file_path=ba.file_path,
+                         biodata_id=ba.biodata_id,
+                     }).FirstOrDefault();
             }
             return result != null ? result : new DokumenViewModel();
         }
 
-        public static ResponseResult Update(DokumenViewModel entity)
+        public static ResponseResult Update(DokumenViewModel entity, long userId)
         {
             ResponseResult result = new ResponseResult();
             try
@@ -58,20 +62,17 @@ namespace ngxsis.Repository
                     {
                         x_biodata_attachment dokumen = new x_biodata_attachment();
 
-                        dokumen.id = entity.id;
                         dokumen.file_name = entity.file_name;
                         dokumen.file_path = entity.file_path;
-                        dokumen.is_photo = false;
-
-                        dokumen.created_by = 335887;
+                        dokumen.is_photo = entity.is_photo;
+                        dokumen.created_by = userId;
                         dokumen.created_on = DateTime.Now;
                         dokumen.is_delete = false;
-                        dokumen.biodata_id = 1;
+                        dokumen.biodata_id=entity.biodata_id;
                         dokumen.notes = entity.notes;
-
                         db.x_biodata_attachment.Add(dokumen);
                         db.SaveChanges();
-                        result.Entity = entity;
+                        result.Entity = dokumen;
                     }
 
                     #endregion 
@@ -83,14 +84,16 @@ namespace ngxsis.Repository
                             .FirstOrDefault();
                         if (dokumen != null) 
                         {
-
-                            //disini ditulis semua nama tabelnya
                             dokumen.id = entity.id;
+                            dokumen.file_path=entity.file_path;
                             dokumen.file_name = entity.file_name;                            
                             dokumen.notes = entity.notes;
-                            
+                            dokumen.is_photo=entity.is_photo;
+
+                            dokumen.modified_by=userId;
+                            dokumen.modified_on=DateTime.Now;
                             db.SaveChanges();
-                            result.Entity = entity;
+                            result.Entity = dokumen;
                         }
                         else
                         {
@@ -112,7 +115,7 @@ namespace ngxsis.Repository
             return result;
         }
 
-        public static ResponseResult Delete(DokumenViewModel entity)
+        public static ResponseResult Delete(DokumenViewModel entity, long userId)
 
         {
             
@@ -126,7 +129,9 @@ namespace ngxsis.Repository
                         .FirstOrDefault();
                     if (dokumen != null)
                     {
-                        db.x_biodata_attachment.Remove(dokumen);
+                        dokumen.deleted_by=userId;
+                        dokumen.deleted_on=DateTime.Now;
+                        dokumen.is_delete=true;
                         db.SaveChanges();
                         result.Entity = entity;
                     }
@@ -148,5 +153,6 @@ namespace ngxsis.Repository
             return result;
 
         }
+        
     }
 }

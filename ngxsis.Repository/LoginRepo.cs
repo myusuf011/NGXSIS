@@ -122,11 +122,23 @@ namespace ngxsis.Repository
                 var userDetails = db.x_biodata
                     .Where(o =>o.addrbook_id==entity.id &&( (o.x_addrbook.email==entity.email&&o.x_addrbook.abpwd==passwordmd5)||
                     (o.x_addrbook.abuid==entity.email&&o.x_addrbook.abpwd==passwordmd5))).FirstOrDefault();
+                var cekEmail = db.x_biodata
+                    .Where(o => o.addrbook_id==entity.id&&((o.x_addrbook.email==entity.email)||
+                    (o.x_addrbook.abuid==entity.email))).FirstOrDefault();
 
+                x_biodata realAccount = db.x_biodata.Where(o => o.addrbook_id==entity.id).FirstOrDefault();
+                result.NamaAkun=realAccount.nick_name;
                 if(userDetails==null)
                 {
-                        result.Message="E-mail atau password salah!";
+                    if(cekEmail==null)
+                    {
+                        result.Message="Email/Password Salah";
                         result.Success=false;
+                    }else
+                    {
+                        result.Message="1";
+                        result.Success=false;
+                    }
                 }
                 else if(userDetails!=null)
                 {

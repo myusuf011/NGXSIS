@@ -1,149 +1,72 @@
-﻿
-input,
-select,
-textarea {
-    max-width: 100%;
-}
-
-
-.modal-content {
-    width: 700px;
-    border-color: #000080;
-    border-width: 3px;
-    border-style: solid;
-}
-
-.modal-dialog {
-    right: auto;
-    left: 10%;
-    width: 700px;
-    padding-top: 30px;
-    padding-bottom: 30px;
+﻿.my-table > thead > tr > th {
+    padding-bottom: 15px;
+    padding-top: 0px;
+    border-bottom-width: 4px;
+    border-bottom-style: solid;
+    border-bottom-color: #000080;
+    border-top-width: 2px;
+    border-top-style: solid;
+    border-top-color: #000080;
     color: #000080;
 }
 
-/*cara buat modal class delete*/
-.modal-delete .modal-content {
-    width: 500px;
-    border-color: #9c1010;
-    border-width: 3px;
-    border-style: solid;
-}
-
-.modal-delete .modal-header {
-    color: #FFFFFF;
-    background-color: #9c1010;
-}
-
-.modal-delete .modal-dialog {
-    right: auto;
-    left: 10%;
-    width: 800px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-}
-
-
-.table thead > tr > th,
-.table tbody > tr > th,
-.table tfoot > tr > th,
-.table thead > tr > td,
-.table tbody > tr > td,
-.table tfoot > tr > td {
-    border-bottom: 2px solid #000080;
-    color: #000080;
-}
-
-.table thead {
-    border-bottom: 5px solid #000080;
-    border-top: 5px solid #000080;
-}
-
-.btn-blue:hover,
-.btn-blue:active,
-.btn-blue::after,
-.btn-blue.active,
-.btn-blue:focus,
-.open .dropdown-toggle .btn-blue,
-.btn-blue {
-    color: #FFFFFF;
-    background-color: #000080;
-}
-
-.caret {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    margin-left: 2px;
+.my-table > tbody > tr > td {
+    border-bottom-width: 2px;
+    border-bottom-style: solid;
+    border-bottom-color: #000080;
     vertical-align: middle;
-    border-top: 4px solid #ffffff;
-    border-right: 4px solid transparent;
-    border-bottom: 0 dotted;
-    border-left: 4px solid transparent;
-    content: "";
-}
-
-.form-control:focus,
-.form-control:hover, /*buat pointer*/
-.form-control:active,
-.form-control {
-    border-color: #000080;
     color: #000080;
 }
 
-.close {
-    position: relative;
-    width: 23px;
-    height: 23px;
-    border: 2px solid #eef5df;
-    color: white;
-    border-radius: 50%;
-    opacity: 1;
+.btn-create-doc,
+.btn-create-doc :hover,
+.btn-create-doc :active,
+.btn-create-doc :focus {
+    outline: none;
+    background-color: transparent;
 }
 
-/*.fileUpload {
-    position: relative;
-    overflow: hidden;
-    margin: 20px;
-}
-    */
-.upload {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    font-size: 5px;
-    cursor: pointer;
-    opacity: 0;
-    filter: alpha(opacity=0);
+.btn-pp {
+    color: #ffffff;
+    background-color: #000080;
+    border-color: #000063;
 }
 
-#btn-upload {
-    width: 400px;
-}
 
-#btn-batal,
-#btn-submit {
-    width: 146px;
-}
 
-#btn-uploadFoto {
-    width: 272px;
-}
-
-#avatar-1 {
-    width: 296px;
-    height: 120px;
-    border: 2px solid #000080;
-    border-radius: 8px;
+.btn-pp:hover,
+.btn-pp:focus,
+.btn-pp:active,
+.btn-pp.active,
+.open .dropdown-toggle .btn-pp,
+.close .dropdown-toggle .btn-pp {
+    color: #ffffff;
+    background-color: #000080;
     border-color: #000080;
-    color: #000080;
-    margin-left: 15px;
+    margin: auto;
 }
 
-.control-label {
-    font-size: 11px;
-    margin-right: 0px;
-    text-align: left
+.btn-pp:hover,
+.btn-pp:focus,
+.btn-pp:active,
+.btn-pp.active {
+    background-color:#24248d;
+ }
+
+.btn-link-a > li > a {
+    color: #000080;
+    text-align: left;
+}
+
+.btn-link-a > li > a:hover,
+.btn-link-a > li > a:focus {
+        color: #000080;
+        text-decoration: none;
+        background-color: #f5f5f5;
+}
+
+.btn-xlg {
+    font-size: 110px;
+    color: #d9534f;
+    text-align: center;
 }

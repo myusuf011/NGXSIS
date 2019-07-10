@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace ngxsis.MVC.Controllers
 {
-    public class EmailController : Controller
+    public class TokenController : Controller
     {
         // GET: Email
         public ActionResult KirimToken()
@@ -22,13 +22,18 @@ namespace ngxsis.MVC.Controllers
         public ActionResult Kirim(DateTime date, long bioId)
         {
             ResponseResult result = new ResponseResult();
-            ;
-            if(ModelState.IsValid)
+            ResponseResult cek= TokenRepo.isComplete(bioId);
+            if(!cek.Success)
+            {
+                result.Message=cek.Message;
+                result.Success=cek.Success;
+            }
+             else if(ModelState.IsValid)
             {
                 string dateStr = date.ToString("dd MMMM yyyy");
-                string token = EmailRepo.generateToken();
+                string token = TokenRepo.generateToken();
                 long userId = (long)Session["UserID"];
-                BiodataViewModel entity=EmailRepo.ById(bioId);
+                BiodataViewModel entity=TokenRepo.ById(bioId);
 
                 var body = "<tr>"+
                                 "<td>Nama</td>"+
@@ -44,21 +49,20 @@ namespace ngxsis.MVC.Controllers
                                 "<td> : </td>"+
                                 "<td>"+dateStr+"</td>"+
                            "</tr>";
-
-
-                var message = new MailMessage();
-                message.To.Add(new MailAddress(entity.email)); //replace with valid value
-                message.Subject="Token XSIS 2.0";
-                message.Body=string.Format(body);
-                message.IsBodyHtml=true;
+                
                 try
                 {
-                using(var smtp = new SmtpClient())
-                {
-                    smtp.Send(message);
-                }
+                    var message = new MailMessage();
+                    message.To.Add(new MailAddress(entity.email));
+                    message.Subject="Token XSIS 2.0";
+                    message.Body=string.Format(body);
+                    message.IsBodyHtml=true;
+                    using(var smtp = new SmtpClient())
+                    {
+                        smtp.Send(message);
+                    }
 
-                result=EmailRepo.saveToken(bioId,token,date,userId);
+                    result=TokenRepo.saveToken(bioId,token,date,userId);
 
                 }catch
                 {

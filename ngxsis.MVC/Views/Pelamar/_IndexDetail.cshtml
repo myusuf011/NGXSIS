@@ -4,11 +4,11 @@
 
 @Html.HiddenFor(model => model.id)
 
-<div class="container" >
+<div class="container">
     <div class="row">
         <div class="col-sm-3">
             <table style="width:230px; border:2px solid #000080; font-size:small;">
-               <tr>
+                <tr>
                     <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-profil" class="btn btn-link" data-id="@Model.id">Profil</button></td>
                 </tr>
                 <tr>
@@ -44,7 +44,7 @@
                     <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-lainlain" class="btn btn-link" data-id="@Model.biodata_id">Lain-lain</button></td>
                 </tr>
                 <tr>
-                    <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.id">Dokumen</button></td>
+                    <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id ="btn-dokumen" class="btn btn-link" data-id="@Model.biodata_id">Dokumen</button></td>
                 </tr>
                 <tr>
                     <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-catatan" class="btn btn-link" data-id="@Model.biodata_id">Catatan</button></td>
@@ -78,13 +78,28 @@
 
 <script type="text/javascript">
     var biodataId
+    $("#btn-dokumen").click(function () {
+        biodataId = $(this).attr("data-id");
+        //console.log("Cek biodata (btn-dokumen) = " + biodataId)
+        GetDokumen();
+    });
+    function GetDokumen() {
+        //console.log("Get Dokumen List")
+        $.ajax(
+            {
+                url: '@Url.Action("DokumenList", "Dokumen")',
+                type: 'get',
+                data: { id: biodataId },
+                success: function (result) {
+                    $("#datadata").html(result);
+                }
+            });
+    }
     $("#btn-biodata").click(function () {
         biodataId = $(this).attr("data-id");
         console.log(biodataId)
         GetListP();
-
     });
-
     function GetListP() {
         $.ajax(
             {
@@ -110,7 +125,6 @@
             }
         });
     });
-
     $("#btn-keahlian").click(function () {
         biodata_id = $(this).data("id");
         //alert("ID Biodata : " + $(this).attr("data-id"));
@@ -123,7 +137,6 @@
             }
         });
     });
-
     $("#btn-organisasi").click(function () {
         biodata_id = $(this).data("id");
         //alert("ID Biodata : " + $(this).attr("data-id"));
@@ -136,7 +149,6 @@
             }
         });
     });
-
     $("#btn-pelatihan").click(function () {
         biodata_id = $(this).data("id");
         //alert("ID Biodata : " + $(this).attr("data-id"));
@@ -149,7 +161,6 @@
             }
         });
     });
-
     $("#btn-pengalaman").click(function () {
         biodata_id = $(this).data("id");
         //alert("ID Biodata : " + $(this).attr("data-id"));
@@ -162,7 +173,6 @@
             }
         });
     });
-
     function GetPengalaman() {
         $.ajax({
             url: '@Url.Action("List", "Pengalaman")',
@@ -174,7 +184,6 @@
             }
         });
     }
-
     function GetKeahlian() {
         $.ajax({
             url: '@Url.Action("List", "Keahlian")',
@@ -186,7 +195,6 @@
             }
         });
     }
-
     function GetOrganisasi() {
         $.ajax({
             url: '@Url.Action("List", "Organisasi")',
@@ -198,7 +206,6 @@
             }
         });
     }
-
     function GetPelatihan() {
         $.ajax({
             url: '@Url.Action("List", "Pelatihan")',
@@ -210,13 +217,9 @@
             }
         });
     }
-
     $(".close").click(function () {
-
         GetList();
     });
-
-
     $("#btn-sertifikasi").click(function () {
         biodata_id = $(this).data("id");
         $.ajax({
@@ -240,9 +243,6 @@
             }
         });
     }
-
-
-
     $("#btn-pendidikan").click(function () {
         biodata_id = $(this).data("id");
         //console.log($(this).data("id"));
@@ -269,8 +269,6 @@
             }
         });
     }
-
-
     $("#btn-keluarga").click(function () {
         biodata_id = $(this).data("id");
         $.ajax({
@@ -295,9 +293,6 @@
             }
         });
     }
-
-
-
     $("#btn-catatan").click(function () {
         biodata_id = $(this).data("id");
         $.ajax({
@@ -310,7 +305,6 @@
             }
         });
     });
-
     function GetCatatan() {
         $.ajax({
             url: '@Url.Action("List", "Catatan")',
@@ -322,7 +316,6 @@
             }
         });
     }
-
     $("#btn-sumlok").click(function () {
         $.ajax(
           {
@@ -335,9 +328,7 @@
                   });
               }
           });
-
     });
-
     $("#btn-profil").click(function () {
         $.ajax(
           {
@@ -348,9 +339,7 @@
                   $("#datadata").html(result);
               }
           });
-
     });
-
 </script>
 <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
 <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
