@@ -1,0 +1,54 @@
+﻿<div class="container" style="margin-top:0px;">
+    <div id="table-pelamar-terjadwal">
+    </div>
+
+    <div class="form-actions pull-right">
+        <div class="btn-group">
+            <button type="button" class="btn btn-undang-semua" data-id="@ViewBag.IdPelamar" id="btn-undang-semua"><b>Undang Semua</b></button>
+            <button type="button" class="btn btn-tutup" data-dismiss="modal"><b>Tutup</b></button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        GetListPelamarTerjadwal();
+    });
+
+    function GetListPelamarTerjadwal() {
+        $.ajax({
+            url: '@Url.Action("TableListPelamarTerjadwal", "Penjadwalan")',
+            type: 'get',
+            data: {id: @ViewBag.IdPelamar},
+            success: function (result) {
+                $("#table-pelamar-terjadwal").html(result);
+            }
+        });
+    }
+
+    $(".btn-undang-semua").click(function () {
+        var itemCount = 0;
+        $("tbody").find("tr").find(".name").each(function () {
+            itemCount = itemCount + 1;
+        });
+
+        var all = "";
+        var order = 0;
+        $("tbody").find("tr").find(".name").each(function () {
+            order = order + 1;
+            all = all + " " + $(this).attr("title") + (itemCount == 2 && order == 1 ? " dan" : (order < itemCount - 1 ? "," : (order == itemCount - 1 ? ", dan" : "")));
+        });
+
+        $.ajax({
+            url: '@Url.Action("DetailKirimUndanganSemua", "Penjadwalan")',
+            type: 'get',
+            data: { id: $(this).attr("data-id") },
+            success: function (result) {
+                $(".modal-kirim-undangan .modal-title").html("Kirim Undangan kepada " + all)
+                $(".modal-kirim-undangan .modal-body").html(result);
+                $(".modal-pelamar-terjadwal").modal("hide");
+                $(".modal-kirim-undangan").modal("show");
+            }
+        });
+    });
+</script>

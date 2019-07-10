@@ -1,0 +1,321 @@
+﻿input,
+select,
+textarea {
+    max-width: 100%;
+}
+
+.modal {
+    text-align: center; /*Supaya modal ada di tengah halaman*/
+}
+
+    .modal:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
+    }
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+/*Modal Pelamar Terjadwal*/
+
+.modal-pelamar-terjadwal .modal-dialog {
+    width: 800px;
+}
+
+.modal-pelamar-terjadwal .modal-content {
+    border-width: 2px;
+    border-style: solid;
+    border-color: #000080;
+    border-radius: 0px;
+    width: 800px;
+}
+
+.modal-pelamar-terjadwal .modal-header {
+    font-size: 24px;
+    padding-right: 100px;
+    padding-left: 54px;
+    font-weight: 700;
+    background-color: #F5F5F5;
+    border-bottom: none;
+    color: #000080;
+    height: 60px;
+    vertical-align: middle;
+}
+
+.modal-pelamar-terjadwal .modal-footer {
+    background-color: #F5F5F5;
+    border-top: none;
+    color: #000080;
+    height: 60px;
+    vertical-align: central;
+}
+
+#table-pelamar-terjadwal {
+    max-width: 100%;
+    width: 100%;
+}
+
+    #table-pelamar-terjadwal > tbody > tr:nth-child(odd) > td,
+    #table-pelamar-terjadwal > tbody > tr:nth-child(odd) > th {
+        background-color: #ddd6ff;
+    }
+
+    #table-pelamar-terjadwal > tbody > tr > td {
+        border-bottom-width: 2px;
+        border-bottom-style: solid;
+        border-bottom-color: #ffffff;
+        border-top-width: 2px;
+        border-top-style: solid;
+        border-top-color: #ffffff;
+        vertical-align: middle;
+        color: #000080;
+    }
+
+.btn-pilihan:hover,
+.btn-pilihan:active,
+.btn-pilihan::after,
+.btn-pilihan.active,
+.btn-pilihan:focus,
+.open .dropdown-toggle .btn-pilihan,
+.btn-pilihan {
+    font-size: small;
+    width: 80px;
+    padding-left: 10px;
+    padding-right: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 0px;
+    background-color: #000080;
+    color: #F5F5F5;
+    font-weight: bold;
+}
+
+.caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-top: 4px solid #F5F5F5;
+    border-right: 4px solid transparent;
+    border-bottom: 0 dotted;
+    border-left: 4px solid transparent;
+    content: "";
+}
+
+.dropdown-menu {
+    background-color: #ddd6ff;
+    color: #000080;
+    font-weight: bold;
+}
+
+#btn-undang {
+    color: #000080;
+    font-weight: bold;
+}
+
+#btn-ubah-jadwal {
+    color: #000080;
+    font-weight: bold;
+}
+
+.btn-undang-semua:hover,
+.btn-undang-semua:active,
+.btn-undang-semua::after,
+.btn-undang-semua.active,
+.btn-undang-semua:focus,
+.btn-undang-semua {
+    width: 150px;
+    height: 30px;
+    background-color: #000080;
+    margin-top: 0;
+    color: #F5F5F5;
+    padding-top: 3px;
+    font-weight: bold;
+}
+
+.btn-tutup:hover,
+.btn-tutup:active,
+.btn-tutup::after,
+.btn-tutup.active,
+.btn-tutup:focus,
+.btn-tutup {
+    width: 150px;
+    height: 30px;
+    background-color: #66cccc;
+    margin-top: 0;
+    color: #F5F5F5;
+    padding-top: 3px;
+    font-weight: bold;
+}
+
+/*Modal Kirim Undangan*/
+
+.modal-kirim-undangan .modal-dialog {
+    width: 800px;
+}
+
+.modal-kirim-undangan .modal-content {
+    border-width: 2px;
+    border-style: solid;
+    border-color: #000080;
+    border-radius: 0px;
+    width: 800px;
+    color: #000080;
+    font-weight: bold;
+}
+
+.modal-kirim-undangan .modal-header {
+    font-size: 24px;
+    padding-right: 54px;
+    padding-left: 54px;
+    font-weight: bold;
+    background-color: #F5F5F5;
+    border-bottom: none;
+    color: #000080;
+    height: 60px;
+    vertical-align: middle;
+}
+
+.modal-kirim-undangan .modal-footer {
+    background-color: #F5F5F5;
+    border-top: none;
+    color: #000080;
+    height: 60px;
+    vertical-align: central;
+}
+
+.box-catatan {
+    width: 100%;
+    height: 90px;
+    margin-top: 5px;
+    background-color: #F5F5F5;
+    border: 2px solid #000080;
+    color: #000080;
+    padding-left: 10px;
+    padding-top: 8px;
+    font-weight: 100;
+}
+
+.btn-kirim:hover,
+.btn-kirim:active,
+.btn-kirim::after,
+.btn-kirim.active,
+.btn-kirim:focus,
+.btn-kirim {
+    width: 150px;
+    height: 30px;
+    background-color: #000080;
+    margin-top: 21px;
+    color: #F5F5F5;
+    padding-top: 3px;
+}
+
+.close {
+    color: #000080;
+    margin-left: 12px;
+}
+
+/*Modal Ubah Rencana Jadwal*/
+
+.modal-ubah-rencana-jadwal .modal-dialog {
+    width: 800px;
+}
+
+.modal-ubah-rencana-jadwal .modal-content {
+    border-width: 2px;
+    border-style: solid;
+    border-color: #000080;
+    border-radius: 0px;
+    width: 800px;
+}
+
+.modal-ubah-rencana-jadwal .modal-header {
+    font-size: 24px;
+    padding-right: 100px;
+    padding-left: 54px;
+    font-weight: 700;
+    background-color: #F5F5F5;
+    border-bottom: none;
+    color: #000080;
+    height: 60px;
+}
+
+.modal-ubah-rencana-jadwal .modal-footer {
+    background-color: #F5F5F5;
+    border-top: none;
+    color: #000080;
+    height: 60px;
+    vertical-align: central;
+}
+
+.form-control:focus,
+.form-control {
+    border-color: #000080;
+    color: #000080;
+    border-width: 2px;
+    height: 30px;
+    background-color: #F5F5F5;
+    font-size: 14px;
+}
+
+    .form-control[readonly],
+    .form-control[disabled] {
+        background-color: #999999;
+    }
+
+.form-notes:focus,
+.form-notes {
+    height: 80px;
+}
+
+.control-label {
+    font-size: 14px;
+}
+
+.btn-batal:hover,
+.btn-batal:active,
+.btn-batal::after,
+.btn-batal.active,
+.btn-batal:focus,
+.btn-batal {
+    width: 150px;
+    height: 30px;
+    background-color: #66cccc;
+    margin-top: 0;
+    color: #F5F5F5;
+    padding-top: 3px;
+    font-weight: bold;
+}
+
+.btn-simpan:hover,
+.btn-simpan:active,
+.btn-simpan::after,
+.btn-simpan.active,
+.btn-simpan:focus,
+.btn-simpan {
+    width: 150px;
+    height: 30px;
+    background-color: #000080;
+    margin-top: 0;
+    color: #F5F5F5;
+    padding-top: 3px;
+    font-weight: bold;
+}
+
+.control-label {
+    font-weight: 100;
+}
+
+.check-box {
+    vertical-align: middle;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}

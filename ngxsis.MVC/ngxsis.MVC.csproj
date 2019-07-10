@@ -145,6 +145,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PelamarController.cs" />
     <Compile Include="Controllers\OrganisasiController.cs" />
+    <Compile Include="Controllers\PenjadwalanController.cs" />
     <Compile Include="Controllers\ProfilController.cs" />
     <Compile Include="Controllers\PelatihanController.cs" />
     <Compile Include="Controllers\PendidikanController.cs" />
@@ -217,8 +218,10 @@
     <Content Include="Content\CreateBio.css" />
     <Content Include="Content\Dokumen.css" />
     <Content Include="Content\Pelamar.css" />
+    <Content Include="Content\PelamarTerjadwal.css" />
     <Content Include="Content\Profil.css" />
     <Content Include="Content\Organisasi.css" />
+    <Content Include="Content\rencana.css" />
     <Content Include="Content\role.css" />
     <Content Include="Content\sertifikasi.css" />
     <Content Include="Content\StyleLogin.css" />
@@ -423,6 +426,17 @@
     <Content Include="Views\Account\_ChangeAccess.cshtml" />
     <Content Include="Views\Account\_ConfirmLogin.cshtml" />
     <Content Include="Views\Email\_KirimToken.cshtml" />
+    <Content Include="Views\Penjadwalan\_Create.cshtml" />
+    <Content Include="Views\Penjadwalan\_Delete.cshtml" />
+    <Content Include="Views\Penjadwalan\_DetailKirimUndangan.cshtml" />
+    <Content Include="Views\Penjadwalan\_DetailKirimUndanganSemua.cshtml" />
+    <Content Include="Views\Penjadwalan\_Edit.cshtml" />
+    <Content Include="Views\Penjadwalan\_EditJadwalPelamarTerjadwal.cshtml" />
+    <Content Include="Views\Penjadwalan\_List.cshtml" />
+    <Content Include="Views\Penjadwalan\_ListPelamar.cshtml" />
+    <Content Include="Views\Penjadwalan\_ListPelamarTerjadwal.cshtml" />
+    <Content Include="Views\Penjadwalan\_TableListPelamarTerjadwal.cshtml" />
+    <Content Include="Views\Penjadwalan\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

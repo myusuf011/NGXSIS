@@ -1,0 +1,308 @@
+﻿@model ngxsis.ViewModel.RencanaJadwalModel
+
+
+@using (Html.BeginForm("Create", "Penjadwalan", FormMethod.Post, new { id = "form-create", name = "form-create" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.user_id, new { Value = Session["userID"] })
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="container" style="font-weight:100; color:#000080;">
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.schedule_date, new { htmlAttributes = new { @class = "form-control", id = "datepicker", placeholder = "Tgl. Rencana Jadwal *" } })
+                            @Html.ValidationMessageFor(model => model.schedule_date, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(model => model.time,
+new List<SelectListItem> {
+   new SelectListItem { Value = "07.00", Text = "07.00" },
+   new SelectListItem { Value = "08.00", Text = "08.00" },
+   new SelectListItem { Value = "09.00", Text = "09.00" },
+   new SelectListItem { Value = "10.00", Text = "10.00" },
+   new SelectListItem { Value = "11.00", Text = "11.00" },
+   new SelectListItem { Value = "13.00", Text = "13.00" },
+   new SelectListItem { Value = "14.00", Text = "14.00" },
+   new SelectListItem { Value = "15.00", Text = "15.00" },
+   new SelectListItem { Value = "16.00", Text = "16.00" },
+   new SelectListItem { Value = "17.00", Text = "17.00" },
+
+},
+"Jam *",
+new { @class = "form-control", id = "time" })
+                            @Html.ValidationMessageFor(model => model.time, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(model => model.ro, (IEnumerable<SelectListItem>)ViewBag.ROList, " RO ",
+              new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ro, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(model => model.tro, (IEnumerable<SelectListItem>)ViewBag.TROList, " TRO ",
+                new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.tro, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+
+                        <div class="col-md-12">
+                            @Html.DropDownListFor(model => model.scedule_type_id, (IEnumerable<SelectListItem>)ViewBag.JenisJadwalList, " Jenis Jadwal *",
+                new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.scedule_type_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.location, new { htmlAttributes = new { @class = "form-control", placeholder = "Lokasi" } })
+                            @Html.ValidationMessageFor(model => model.location, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.other_ro_tro, new { htmlAttributes = new { @class = "form-control", placeholder = "RO/TRO Lain" } })
+                            @Html.ValidationMessageFor(model => model.other_ro_tro, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.notes, new { htmlAttributes = new { @class = "form-control", style = "height:70px;", placeholder = "Catatan" } })
+                            @Html.ValidationMessageFor(model => model.notes, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row" style="padding-bottom:0px;padding-top:0px;margin-bottom:0px;margin-right:1px;">
+                <div class="checkbox" style="vertical-align:middle;padding-bottom:0px;padding-top:0px;margin-bottom:3px;margin-top:3px; margin-left:-5px;">
+                    <label style="font-size:15px;margin-bottom:0px; color:black;">
+                        <input type="checkbox" id="is_automatic_mail" name="is_automatic_mail">
+                        <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                        Kirim Undangan Otomatis
+                    </label>
+                </div>
+            </div>
+
+
+
+
+            <div class="row" style="margin-top:9px">
+                <div class="col-md-12">
+                    <div class="form-group">
+
+                        <div class="col-md-6">
+                            <div class='input-group date'>
+                                @Html.EditorFor(model => model.sent_date, new { htmlAttributes = new { @class = "form-control", id = "datepicker2", placeholder = "Tgl. Dikirim", style = "border-right:none;", disabled = "disabled", required = "required" } })
+                                <span class="input-group-addon" style="border: 2px solid #000080;border-left:none; background:none; border-radius:unset;">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </span>
+
+                            </div>
+                            @Html.ValidationMessageFor(model => model.sent_date, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div id="data-pelamar">
+                Bntar ya
+            </div>
+            <p class="text-danger pelamar-val" hidden="hidden" style="margin-bottom:0px;margin-top:0px;">Silahkan pilih minimal satu pelamar !</p>
+
+
+
+            <div class="row">
+
+                <div class="form-actions col-md-4 pull-right col-md-offset-1">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-warning btn-150px" data-dismiss="modal"><b>Batal</b></button>
+                        <button type="button" style="width:120px" class="btn btn-pp btn-150px " id="simpen" onclick="simpan();"><b>Simpan</b></button>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+}
+
+
+
+@Scripts.Render("~/bundles/jqueryval")
+
+<script type="text/javascript">
+   var submited;
+    $(document).ready(function () {
+
+         $("#simpen").text("Simpan & Kirim")
+
+
+                    $('#is_automatic_mail').on('input change', function () {
+
+                        $("#datepicker2").attr("disabled", false);
+                          $("#datepicker2").attr("required", true);
+                        $("#simpen").text("Simpan");
+                });
+            $('#is_automatic_mail').change(function () {
+            if ($(this).prop("checked") == false) {
+                $("#datepicker2").attr("disabled", true)
+            $("#datepicker2").attr("required", false);
+                $("#simpen").text("Simpan & Kirim");
+            }
+        });
+
+             GetListP();
+        });
+
+        function GetListP() {
+
+            $.ajax({
+                url: '@Url.Action("ListPelamar", "Penjadwalan")',
+                type: 'get',
+                success: function (result) {
+                    $("#data-pelamar").html(result);
+                }
+            });
+    }
+
+
+    var roleCnt;
+    var roleList = [];
+
+
+     function auto() {
+
+
+         if ($("#is_automatic_mail").prop("checked") == true) {
+
+             $("#is_automatic_mail").val(true);
+         } else {
+             $("#is_automatic_mail").val(false);
+
+         }
+
+    }
+
+
+
+    function UpdateData() {
+        roleCnt = 0;
+
+        $("#data-pelamar").find(".PelamarList").find(".row").find('input[type="checkbox"]').each(function (item) {
+
+            if ($(this).prop("checked") == true) {
+                roleCnt = roleCnt + 1;
+                var Role = { id: $(this).val() }
+                roleList.push(Role);
+            }
+        });
+    }
+
+       var submited = true;
+    function simpan() {
+        $("#form-create").valid();
+        setTimeout(validateForm, 100);
+    }
+    function validateForm() {
+
+        $("#form-create").validate();
+        if ($("#form-create").valid()) {
+            console.log("valid" + $("#form-create").valid());
+            submited = false;
+        } else {
+            console.log("invalid")
+            submited = true;
+        }
+
+        auto();
+        UpdateData();
+
+        if (roleCnt > 0) {
+            var data = { pelamar_list: roleList };
+            var user = JSON.parse(JSON.stringify($("#form-create").serializeArray()));
+            $(user).each(function (Index, Obj) {
+                data[Obj.name] = Obj.value;
+            });
+            $(".pelamar-val").attr("hidden", "hidden")
+        }
+
+
+        if (submited || roleCnt == 0) {
+
+        } else {
+
+            $.ajax(
+            {
+                url: '@Url.Action("Create","Penjadwalan")',
+                type: 'post',
+                data: { model: data},
+                success: function (result) {
+                    if (result.success) {
+                        alert("Rencana jadwal " + result.entity.schedule_code + " Berhasil Dibuat");
+                        //addrbookId = result.entity.Id;
+
+                        submited = true;
+                          $(".modal-main").modal("hide");
+
+                    }
+                }
+            });
+        }
+        if (roleCnt == 0) {
+            //alert("Pilih minimal 1 role");
+            $(".pelamar-val").removeAttr("hidden")
+        }
+
+        return false;
+    }
+</script>

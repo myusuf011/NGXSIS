@@ -1,0 +1,190 @@
+﻿@model IEnumerable<ngxsis.ViewModel.RencanaJadwalModel>
+
+
+
+
+
+
+@foreach (var item in Model)
+{
+
+    <div class="row" style="margin-top:15px; margin-bottom:15px; font-weight:600;color:#000080; ">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="left:15px;">
+            @Html.DisplayFor(modelItem => item.schedule_code)
+
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            @Html.DisplayFor(modelItem => item.date_name),  @Html.DisplayFor(modelItem => item.time)
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+
+            <div>RO: @Html.DisplayFor(modelItem => item.ro_name) </div>
+
+            <div>TRO:  @Html.DisplayFor(modelItem => item.tro_name) </div>
+            <div>Lokasi: @Html.DisplayFor(modelItem => item.location) </div>
+            <div>Mode: @Html.DisplayFor(modelItem => item.status) </div>
+            <div> Jenis Jadwal: @Html.DisplayFor(modelItem => item.scedule_type_name) </div>
+
+
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+
+            <div class="btn-group btn-group-sm" style="right:-100px; font-size:large;">
+                <button type="button" class="glyphicon glyphicon-search" style="background-color:transparent; border:none;" data-container="@item.id" title="Edit"></button>
+                <button type="button" class="glyphicon glyphicon-edit" style="background-color:transparent; margin-left:-5px; border:none;" data-container="@item.id" title="Edit"></button>
+                <button type="button" class="glyphicon glyphicon-trash" style="background-color:transparent; margin-left:-5px; border:none;" data-container="@item.id" title="Delete"></button>
+            </div>
+
+
+        </div>
+
+
+
+
+    </div>
+
+
+
+
+
+}
+
+<div style="text-align:right; margin-right:10px;">
+    <a href="#" style="display:normal; font-weight:600; color:#000080;" onclick="min()" id="prev">Previous </a><a href="#" onclick="plus()" style="display:normal; font-weight:600;color:#000080;" id="next">| Next</a>
+
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        itemCount = 0;
+        $("#data").find(".row").each(function (item) {
+            itemCount = itemCount + 1;
+        });
+        console.log(itemCount)
+        console.log(dataPerPage)
+
+
+
+        if (itemCount == 0) {
+            $("#data").attr("style", "margin-top: 40px;text-align: center;margin-right: 10px;margin-bottom:200px;font-size: large; font-weight: 600; color: #000080;");
+            $("#data").text("Data Pencarian Tidak ditemukan !");
+        } else {
+            $("#data").attr("style", false);
+            if (itemCount < dataPerPage) {
+                maxPage = page;
+            } else {
+                maxPage = page + 1;
+            }
+
+            if (page == 0) {
+                $("#prev").hide();
+            } else {
+                $("#prev").show();
+            }
+
+            if (page == maxPage) {
+                $("#next").hide();
+            } else {
+                $("#next").show();
+            }
+        }
+    });
+
+
+
+
+    /*ROW PER PAGE*/
+    $(".btn-list").click(function () {
+        page = 0;
+        dataPerPage = $(this).attr("data-container");
+        GetList();
+    });
+    /*GO TO PREVIOUS PAGE*/
+    function min() {
+        if (page > 0) {
+            page = page - 1;
+        }
+        GetList();
+    };
+    /*GO TO NEXT PAGE*/
+    function plus() {
+        if (page < maxPage) {
+            page = page + 1;
+        }
+        GetList();
+    };
+
+
+    /*SORT ASCENDING*/
+    $(".sort-asc").click(function () {
+        desc = 0;
+        page = 0;
+        GetList();
+    });
+
+    /*SORT DESCENDING*/
+    $(".sort-desc").click(function () {
+        desc = 1;
+        page = 0;
+        GetList();
+    });
+
+
+
+
+
+    $(".glyphicon-edit").click(function () {
+        $.ajax({
+            url: '@Url.Action("Edit", "Penjadwalan")',
+            type: 'get',
+            data: { id: $(this).attr("data-container") },
+            success: function (result) {
+                $(".modal-title").html("Ubah Pengalaman Kerja");
+                $(".modal-body").html(result);
+                $(".modal-main").modal("show");
+                $("#datepicker").datepicker({
+                    dateFormat: "dd-MM-yy"
+                });
+                $("#datepicker2").datepicker({
+                    dateFormat: "dd-MM-yy"
+                });
+            }
+        });
+    });
+
+
+
+    $(".glyphicon-trash").click(function () {
+        $.ajax(
+            {
+                url: '@Url.Action("Delete", "Penjadwalan")',
+                type: 'get',
+                data: { id: $(this).attr("data-container") },
+                success: function (result) {
+                    $(".modal-delete .modal-title").html("Hapus Rencana Jadwal ?");
+                    $(".modal-delete .modal-body").html(result);
+                    $(".modal-delete").modal("show");
+                }
+            });
+
+    });
+
+    //Bagian Pelamar Terjadwal
+    $(".glyphicon-search").click(function () {
+        $.ajax({
+            url: '@Url.Action("ListPelamarTerjadwal", "Penjadwalan")',
+            type: 'get',
+            data: { id: $(this).attr("data-container") },
+            success: function (result) {
+                $(".modal-pelamar-terjadwal .modal-title").html("Pelamar Terjadwal");
+                $(".modal-pelamar-terjadwal .modal-body").html(result);
+                $(".modal-pelamar-terjadwal").modal("show");
+            }
+        });
+    });
+</script>

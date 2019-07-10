@@ -1,0 +1,207 @@
+﻿@model ngxsis.ViewModel.PelamarTerjadwalViewModel
+
+@using (Html.BeginForm("EditJadwalPelamarTerjadwal", "Penjadwalan", FormMethod.Post, new { id = "form-edit", name = "form-edit" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.id)
+    @Html.HiddenFor(model => model.rencana_jadwal_detail_id)
+    @Html.HiddenFor(model => model.user_id, new { Value = Session["userID"] })
+    @Html.HiddenFor(model => model.biodata_id)
+    @Html.HiddenFor(model => model.schedule_code)
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            @Html.EditorFor(model => model.schedule_date, new { htmlAttributes = new { @class = "form-control datepicker", @placeholder = "Tgl. Rencana Jadwal *" } })
+                            @Html.ValidationMessageFor(model => model.schedule_date, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            @Html.DropDownListFor(model => model.time,
+                new List<SelectListItem> {
+                    new SelectListItem { Value = "08:00", Text = "08:00" },
+                    new SelectListItem { Value = "09:00", Text = "09:00" },
+                    new SelectListItem { Value = "10:00", Text = "10:00" },
+                    new SelectListItem { Value = "11:00", Text = "11:00" },
+                    new SelectListItem { Value = "13:00", Text = "13:00" },
+                    new SelectListItem { Value = "14:00", Text = "14:00" },
+                    new SelectListItem { Value = "15:00", Text = "15:00" },
+                    new SelectListItem { Value = "16:00", Text = "16:00" },
+                    new SelectListItem { Value = "17:00", Text = "17:00" },
+                },
+                "Jam *",
+                new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.time, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            @Html.DropDownListFor(model => model.ro,
+                                (IEnumerable<SelectListItem>)ViewBag.ROList,
+                                "RO", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.ro, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            @Html.DropDownListFor(model => model.tro,
+                                (IEnumerable<SelectListItem>)ViewBag.TROList,
+                                "TRO", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.tro, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            @Html.DropDownListFor(model => model.schedule_type_id,
+                            (IEnumerable<SelectListItem>)ViewBag.JenisJadwalList,
+                            "Jenis Jadwal *", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.schedule_type_id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            @Html.EditorFor(model => model.location, new { htmlAttributes = new { @class = "form-control", @placeholder = "Lokasi" } })
+                            @Html.ValidationMessageFor(model => model.location, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            @Html.EditorFor(model => model.other_ro_tro, new { htmlAttributes = new { @class = "form-control form-other-ro-tro", @placeholder = "RO / TRO Lain" } })
+                            @Html.ValidationMessageFor(model => model.other_ro_tro, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            @Html.EditorFor(model => model.notes, new { htmlAttributes = new { @class = "form-control form-notes", @placeholder = "Catatan" } })
+                            @Html.ValidationMessageFor(model => model.notes, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="padding-bottom:0px;padding-top:0px;margin-bottom:8px;margin-right:1px;margin-top:0px">
+                <div class="checkbox" style="vertical-align:middle;padding-bottom:0px;padding-top:0px;margin-bottom:3px;margin-top:3px; margin-left:-5px;">
+                    <label style="font-size:14px;margin-bottom:0px; color:black;">
+                        <input type="checkbox" id="is_automatic_mail" name="is_automatic_mail" onclick="EnableDisableSentDate(this);">
+                        <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
+                        Kirim Undangan Otomatis
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                            @Html.EditorFor(model => model.sent_date, new { htmlAttributes = new { @class = "form-control datepicker", @placeholder = "Tgl. Dikirim" } })
+                            @Html.ValidationMessageFor(model => model.sent_date, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" id="row-batal-simpan">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                            <div class="form-actions pull-right">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-batal" data-dismiss="modal"><b>Batal</b></button>
+                                    <button type="button" class="btn btn-simpan" onclick="simpan();"><b>Simpan</b></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@Scripts.Render("~/bundles/jqueryval")
+
+<script type="text/javascript">
+    function simpan() {
+        $("#form-edit").valid();
+        setTimeout(validateForm, 100);
+    }
+
+    function validateForm() {
+        $("#form-edit").validate();
+        if ($("#form-edit").valid()) {
+            console.log("valid" + $("#form-edit").valid());
+            submited = false;
+        } else {
+            console.log("invalid")
+            submited = true;
+        }
+
+        if (submited) {
+            console.log("submited true");
+        } else {
+            $.ajax({
+                url: '@Url.Action("EditJadwalPelamarTerjadwal","Penjadwalan")',
+                type: 'post',
+                data: $("#form-edit").serialize(),
+                success: function (result) {
+                    if (result.success) {
+                        console.log("submited false, submited true")
+                        alert("Data berhasil disimpan pada " + result.entity.schedule_code);
+                        $(".modal-ubah-rencana-jadwal").modal("hide");
+                        $(".modal-pelamar-terjadwal").modal("show");
+                        GetListPelamarTerjadwal();
+                        GetList();
+                        submited = true;
+                    }
+                }
+            });
+        }
+        return false;
+    }
+
+    $(document).ready(function () {
+        var checkAutomaticMail = document.getElementById("is_automatic_mail");
+        var txtSentDate = document.getElementById("sent_date");
+
+        txtSentDate.disabled = checkAutomaticMail.checked ? false : true;
+    });
+
+    function EnableDisableSentDate(check) {
+        var txtSentDate = document.getElementById("sent_date");
+
+        txtSentDate.disabled = check.checked ? false : true;
+
+        if (txtSentDate.disabled) {
+            txtSentDate.value = "";
+        }
+    };
+
+    $(".btn-batal").click(function () {
+        $(".modal-ubah-rencana-jadwal").modal("hide");
+        $(".modal-pelamar-terjadwal").modal("show");
+    });
+</script>

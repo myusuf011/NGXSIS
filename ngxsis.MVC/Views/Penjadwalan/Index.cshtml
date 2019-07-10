@@ -1,0 +1,265 @@
+﻿@{
+    ViewBag.Title = "Penjadwalan";
+    if (Session["userID"] != null && Session["roleID"] == null)
+    {
+        Response.Redirect("~/Account/SelectAccess"); // <-- Sesuaikan acceess bila sudah login
+    }
+
+    if (Session["userID"] == null && Session["roleID"] == null)
+    {
+        Response.Redirect("~/Login/Index");
+    }
+}
+
+<link rel="stylesheet" href="~/Content/rencana.css">
+<link rel="stylesheet" href="~/Content/PelamarTerjadwal.css" />
+
+<div class="container" style="background-color:#fff">
+    <div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+
+
+            <h3 style="font-weight:600;color:#000080;"> Rencana Jadwal</h3>
+
+        </div>
+
+
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="margin-left:0px;text-align:right;margin-top:5px; color:black;">
+            <div class="btn-group btn-trans" style="margin-left:12px; color:black;" role="group" aria-label="...">
+                <div class="btn-group">
+                    <button type="button" class="btn dropdown-toggle btn-trans  btn-lg " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-sort"></span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-right btn-link-a">
+                        <li class="dropdown-header dh">Order</li>
+                        <li><a href="javascript:void(0)" class="btn-link sort-asc">Ascending</a></li>
+                        <li><a href="javascript:void(0)" class="btn-link sort-desc">Descending</a></li>
+                    </ul>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn dropdown-toggle btn-trans  btn-lg " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="glyphicon glyphicon-align-justify"></span>
+                    </button>
+                    <ul class="dropdown-menu btn-link-a">
+                        <li class="dropdown-header dh">Row Per Page</li>
+                        <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="1">10</a></li>
+                        <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="2">20</a></li>
+                        <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="3">30</a></li>
+                        <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="4">40</a></li>
+                        <li><a href="javascript:void(0)" class="btn-link btn-list" data-container="5">50</a></li>
+                    </ul>
+                </div>
+                <button type="button" class="btn btn-trans btn-lg btn-create-new"><span class="glyphicon glyphicon-plus-sign"></span></button>
+            </div>
+        </div>
+
+    </div>
+    <div>
+
+        <hr style="border:1px solid #000080; width:95%" />
+    </div>
+
+
+    <div class="input-group">
+        <div class='input-group date'>
+
+            <input type="text" id="txt-search" class="form-control" style="height:33px; width:200px; border-right:none;" placeholder="Dari" required>
+            <span class="input-group-addon" style="border: 2px solid #000080;border-left:none; background:none; border-radius:unset; height:25px;">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+
+            <input type="text" id="txt-search2" class="form-control" style="height:33px; width:200px;border-right:none; margin-left:6px" placeholder="Sampai" required>
+            <span class="input-group-addon" style="border: 2px solid #000080;border-left:none; background:none; border-radius:unset; height:25px;">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+            <button class="btn btn-pp btn-search" id="search" style="height:33px; border-radius:unset;" type="button"><span aria-hidden="true"></span><b>Cari</b></button>
+            <button class="btn btn-pp btn-search" id="reset" style="height:33px;border-radius:unset; margin-left:6px;" type="button"><span aria-hidden="true"></span><b>Reset</b></button>
+
+        </div>
+
+
+    </div>
+
+    <div id="data" style=" margin-top 40px;
+         text-align center;
+         margin-right 10px;
+         margin-bottom:200px;
+         font-size large;
+         font-weight 600;
+         color #000080;">
+
+    </div>
+</div>
+
+<div class="modal fade modal-main" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" style="color:#ffffff;font-size:20px;" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div class="modal fade modal-delete" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+@*Bagian Pelamar - Terjadwal*@
+
+<div class="modal fade modal-pelamar-terjadwal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade modal-kirim-undangan" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" style="color:#000080; font-size:20px;" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<div class="modal fade modal-ubah-rencana-jadwal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <p>One fine body&hellip;</p>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+@section Scripts{
+    <script type="text/javascript">
+           var page;
+              var desc;
+        var maxPage;
+        var dataPerPage;
+        var dari ;
+        var sampai;
+            var itemCount = 0;
+
+        $(document).ready(function () {
+             $("#data").text("")
+            page = 0;
+
+            desc = 0;
+            maxPage = 0;
+            dataPerPage = 100;
+                    $("#txt-search").datepicker({
+                        dateFormat: "dd-MM-yy"
+                     });
+                    $("#txt-search2").datepicker({
+                        dateFormat:  "dd-MM-yy"
+                    });
+
+
+
+        });
+
+        $("#reset").click(function () {
+            $("#txt-search").val("");
+            $("#txt-search2").val("");
+            dari = "";
+            sampai = "";
+            $("#data").text("");
+     $("#data").attr("style","margin-top: 40px;text-align: center;margin-right: 10px;margin-bottom:200px;font-size: large; font-weight: 600; color: #000080;");
+
+    });
+
+        $("#search").click(function () {
+            desc = 0;
+            page = 0;
+
+            dari = $("#txt-search").val();
+            sampai = $("#txt-search2").val();
+
+            var darix = new Date($("#txt-search").val());
+            var sampaix = new Date($("#txt-search2").val());
+            console.log(darix.getTime());
+            console.log(sampaix.getTime());
+
+            if (dari=="" || sampai=="" || darix.getTime() > sampaix.getTime()) {
+                $("#data").attr("style", "margin-top: 40px;text-align: center;margin-right: 10px;margin-bottom:200px;font-size: large; font-weight: 600; color: #000080;");
+                $("#data").text("Silahkan isi data pencarian dengan benar !");
+            } else {
+                GetList();
+            }
+
+
+
+        });
+        function GetList() {
+
+            $.ajax({
+                url: '@Url.Action("List", "Penjadwalan")',
+                type: 'get',
+                   data: { dari: dari, sampai:sampai, desc: desc , page: page, dataPerPage: dataPerPage },
+                success: function (result) {
+
+                                 $("#data").html(result);
+
+                }
+            });
+        }
+
+         $(".btn-create-new").click(function () {
+        $.ajax(
+            {
+                url: '@Url.Action("Create", "Penjadwalan")',
+                type: 'get',
+                success: function (result) {
+                    $(".modal-title").html("Buat Rencana Jadwal");
+                    $(".modal-body").html(result);
+                    $(".modal-main").modal("show");
+                     $("#datepicker").datepicker({
+                        dateFormat: "dd-MM-yy"
+                     });
+                    $("#datepicker2").datepicker({
+                        dateFormat:  "dd-MM-yy"
+                    });
+                }
+            });
+
+    });
+
+    </script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+}
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
+

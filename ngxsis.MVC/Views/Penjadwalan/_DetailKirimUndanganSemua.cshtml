@@ -1,0 +1,61 @@
+﻿@model ngxsis.ViewModel.PelamarTerjadwalViewModel
+
+@Html.HiddenFor(model => model.id)
+@*Id yang diambil cuma 1 Id pelamar*@
+
+<div class="container">
+    <div class="row detail-kirim">
+        <div class="col-md-4">
+            Jadwal: @Html.DisplayFor(model => model.schedule_type_name)<br />
+            Tanggal: @Html.DisplayFor(model => model.schedule_date_string)
+        </div>
+        <div class="col-md-4">
+            RO: @Html.DisplayFor(model => model.ro_name)<br />
+            TRO: @Html.DisplayFor(model => model.tro_name)<br />
+            RO / TRO Lain: @Html.DisplayFor(model => model.other_ro_tro)
+        </div>
+        <div class="col-md-4">
+            Lokasi: @Html.DisplayFor(model => model.location)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box-catatan">
+                @Html.DisplayFor(model => model.notes)
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-actions pull-right">
+            <div class="btn-group">
+                <button type="submit" class="btn btn-kirim" onclick="Kirim();"><b>Kirim</b></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function Kirim() {
+        $.ajax({
+            url: '@Url.Action("KirimSemua", "Penjadwalan")',
+            type: 'post',
+            success: function (result) {
+                if (result.success) {
+                    alert("Terkirim");
+                    $(".modal-kirim-undangan").modal("hide");
+                    $(".modal-pelamar-terjadwal").modal("show");
+                } else {
+                    alert(result.message)
+                }
+            },
+            error: function () {
+                alert("Pengiriman Undangan Gagal!");
+            }
+        });
+    }
+
+    $(".close").click(function () {
+        $(".modal-kirim-undangan").modal("hide");
+        $(".modal-pelamar-terjadwal").modal("show");
+    });
+</script>

@@ -1,0 +1,233 @@
+﻿
+
+input,
+select,
+textarea {
+    max-width: 100%;
+}
+
+.modal-content {
+    width: 900px;
+}
+
+.modal-dialog {
+    right: auto;
+    left: 10%;
+    width: 1000px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.modal {
+    overflow-x: hidden;
+    text-align: left;
+    overflow-y: auto;
+}
+
+.modal-title {
+    font-weight: 700;
+}
+
+.close,
+.close:hover {
+    float: right;
+    font-size: 50px;
+    font-weight: 100;
+    color: #ffffff;
+    opacity: 1;
+}
+
+.modal .modal-header {
+    background-color: #f5f5f5;
+    color: #000080;
+    border-color:none;
+  
+}
+
+.btn-pp:hover,
+.btn-pp:focus,
+.btn-pp:active,
+.btn-pp.active,
+.btn-pp {
+    color: #ffffff;
+    background-color: #000080;
+    border-color: #000063;
+}
+
+    .btn-pp:hover,
+    .btn-pp:focus,
+    .btn-pp:active,
+    .btn-pp.active,
+    .open .dropdown-toggle .btn-pp,
+    .close .dropdown-toggle .btn-pp {
+        color: #ffffff;
+        background-color: #000080;
+        border-color: #000080;
+        margin: auto;
+    }
+
+.btn-70px {
+    width: 70px;
+}
+
+.btn-150px {
+    width: 142px;
+    height: 48px;
+}
+
+
+.form-control,
+.form-control:focus {
+    height: 35px;
+    color: #000080;
+    border: 2px solid #000080;
+    font-size: medium;
+    border-radius:unset;
+}
+
+
+
+.btn-warning,
+.btn-warning:hover {
+    color: #ffffff;
+    background-color: #f75c0e;
+    border-color: #f75c0e;
+}
+
+.control-label {
+    font-weight: 100;
+    font-size: small;
+}
+
+.close:focus {
+    outline: none;
+}
+
+.close:focus,
+.glyphicon-edit:focus {
+    outline: none;
+}
+
+
+.close:focus,
+.glyphicon-trash:focus {
+    outline: none;
+}
+
+
+.modal-delete .modal-content {
+    width: 500px;
+    border-color: #9c1010;
+    border-width: 3px;
+    border-style: solid;
+}
+
+.modal-delete .modal-header {
+    color: #FFFFFF;
+    background-color: #9c1010;
+}
+
+.modal-delete .modal-dialog {
+    right: auto;
+    left: 10%;
+    width: 500px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+
+.btn-xlg {
+    font-size: 110px;
+    color: #d9534f;
+    text-align: center;
+}
+    .btn-pp:hover, .btn-pp:focus, .btn-pp:active, .btn-pp.active, .btn-pp {
+    color: #ffffff;
+    background-color: #000080;
+    border-color: #000063;
+}
+
+    .btn-pp:hover,
+    .btn-pp:focus,
+    .btn-pp:active,
+    .btn-pp.active,
+    .open .dropdown-toggle .btn-pp,
+    .close .dropdown-toggle .btn-pp {
+        color: #ffffff;
+        background-color: #000080;
+        border-color: #000080;
+        margin: auto;
+    }
+
+.btn-70px {
+    width: 70px;
+}
+
+.btn-150px {
+    width: 110px;
+    height: 35px;
+}
+
+
+.checkbox label:after {
+    content: '';
+    display: table;
+    clear: both;
+
+}
+
+.checkbox .cr {
+    position: relative;
+    display: inline-block;
+    border: 2px solid #000080;
+    border-radius: unset;
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin-right: 10px;
+}
+
+
+    .checkbox .cr .cr-icon {
+        position: absolute;
+        font-size: 14px;
+        color: #000080;
+        line-height: 0;
+        top: 35%;
+        left: 8%;
+    }
+
+.checkbox label input[type="checkbox"] {
+    display: none;
+}
+
+    .checkbox label input[type="checkbox"] + .cr > .cr-icon {
+        transform: scale(3) rotateZ(-20deg);
+        opacity: 0;
+        transition: all .3s ease-in;
+    }
+
+    .checkbox label input[type="checkbox"]:checked + .cr > .cr-icon {
+        transform: scale(1) rotateZ(0deg);
+        opacity: 1;
+    }
+
+    .checkbox label input[type="checkbox"]:disabled + .cr {
+        opacity: .5;
+    }
+
+.form-control:-moz-placeholder {
+    color: #000080;
+}
+
+.form-control::-moz-placeholder {
+    color: #000080;
+}
+
+.form-control:-ms-input-placeholder {
+    color: #000080;
+}
+
+.form-control::-webkit-input-placeholder {
+    color: #000080;
+}

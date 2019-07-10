@@ -1,0 +1,68 @@
+﻿@model ngxsis.ViewModel.PelamarTerjadwalViewModel
+
+<table class="table" id="table-pelamar-terjadwal">
+    <tbody style="margin-top:20px;">
+        @foreach (var item in Model.pelamar)
+            {
+            <tr>
+                <td title="@item.fullname" class="name">
+                    @Html.HiddenFor(modelItem => item.rjd_id)
+                    @Html.DisplayFor(modelItem => item.fullname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.school_name) / @Html.DisplayFor(modelItem => item.major)
+                </td>
+                <td>
+                    <div class="dropdown">
+                        <button class="btn btn-pilihan dropdown-toggle" type="button" id="DropDownPilihan" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            Pilihan
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-left" aria-labelledby="DropDownPilihan">
+                            <li><a href="#" data-html="@item.biodata_id" data-container="@Model.id" class="btn-undang" id="btn-undang">Undang</a></li>
+                            <li><a href="#" data-html="@item.biodata_id" data-container="@Model.id" class="btn-ubah-jadwal" id="btn-ubah-jadwal">Ubah Jadwal</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script type="text/javascript">
+    $(".btn-undang").click(function () {
+        var name = $(this).closest("tr").find("td").attr("title");
+        $.ajax({
+            url: '@Url.Action("DetailKirimUndangan", "Penjadwalan")',
+            type: 'get',
+            data: { id: $(this).attr("data-container"), bioId: $(this).attr("data-html") },
+            success: function (result) {
+                $(".modal-kirim-undangan .modal-title").html("Kirim Undangan kepada " + name);
+                $(".modal-kirim-undangan .modal-body").html(result);
+                $(".modal-pelamar-terjadwal").modal("hide");
+                $(".modal-kirim-undangan").modal("show");
+            }
+        });
+    });
+
+    $(".btn-ubah-jadwal").click(function () {
+        $.ajax({
+            url: '@Url.Action("EditJadwalPelamarTerjadwal", "Penjadwalan")',
+            type: 'get',
+            data: {
+                id: $(this).attr("data-container"),
+                bioId: $(this).attr("data-html"),
+                rjdId: $(this).closest('tr').find('#item_rjd_id').val()
+            },
+            success: function (result) {
+                $(".modal-ubah-rencana-jadwal .modal-title").html("Ubah Rencana Jadwal");
+                $(".modal-ubah-rencana-jadwal .modal-body").html(result);
+                $(".modal-pelamar-terjadwal").modal("hide");
+                $(".modal-ubah-rencana-jadwal").modal("show");
+                $(".datepicker").datepicker({
+                    dateFormat: "yy-mm-dd"
+                });
+            }
+        });
+    });
+</script>
