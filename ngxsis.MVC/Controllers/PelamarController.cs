@@ -54,16 +54,12 @@ namespace ngxsis.MVC.Controllers
         [HttpPost]
         public ActionResult VerifyEmail(string email, long id=0)
         {
-
-
             return Json(PelamarRepo.ValidationMail(email, id).Success);
         }
 
         [HttpPost]
         public ActionResult VerifyPhone(string phone_number1, long id=0)
         {
-
-
             return Json(PelamarRepo.ValidationPhone(phone_number1, id).Success);
         }
 

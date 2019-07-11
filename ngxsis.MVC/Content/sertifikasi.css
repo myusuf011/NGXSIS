@@ -43,8 +43,6 @@ textarea {
 {
 color:#FFFFFF;   /*text tulisan*/
 background-color : #9c1010;
-
-    
 }
 
 .modal-delete .modal-dialog {
@@ -124,7 +122,6 @@ background-color : #9c1010;
     background-color:#000080;
 
 }
-
 
 .btn-batal:hover,
 .btn-batal:active,

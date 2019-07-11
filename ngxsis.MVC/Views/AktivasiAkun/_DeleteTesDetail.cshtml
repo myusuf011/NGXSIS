@@ -1,4 +1,4 @@
-﻿@model ngxsis.ViewModel.LainLainViewModel
+﻿@model ngxsis.ViewModel.AktivasiAkunViewModel
 
 <div>
     <dl class="dl-horizontal">
@@ -7,15 +7,14 @@
         </dt>
         <dd>
 
-            <font color="red"> <font size="4"> Anda yakin ingin menghapus Referensi <br /><b>@Html.DisplayFor(model => model.name)</b></font></font>
+            <font color="red"> <font size="4"> Anda yakin ingin menghapus Referensi <br /><b>@Html.DisplayFor(model => model.name_type)</b></font></font>
         </dd>
     </dl>
 
-    @using (Html.BeginForm("DeleteReferensi", "LainLain", FormMethod.Post, new { id = "form-delete", name = "form-delete" }))
+    @using (Html.BeginForm("DeleteTesDetail", "AktivasiAkun", FormMethod.Post, new { id = "form-delete", name = "form-delete" }))
     {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.referensiId)
-        @Html.HiddenFor(model => model.name)
+        @Html.HiddenFor(model => model.online_test_detail_id)
 
         <div class="row">
             <div class="form-actions no-color">
@@ -41,7 +40,7 @@
                     if (result.success) {
                         alert("Data Berhasil di hapus");
                         $(".modal-delete").modal("hide");
-                        GetListReferensi();
+                        GetTabelListTesDetail();
                     } else {
                         alert("error" + result.message);
                     }

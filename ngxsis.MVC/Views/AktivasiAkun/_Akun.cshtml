@@ -1,0 +1,19 @@
+﻿@model ngxsis.ViewModel.AktivasiAkunViewModel
+
+@if (Model.abuid != null)
+{
+    <span style="font-weight:bold; color:#000080;">Username : @Model.abuid</span>
+    if (Model.is_delete_akun == true)
+    {
+        <span style="font-weight:bold; color:#000080;"> - Tidak Aktif</span>
+    }
+    <br />
+    <span style="font-weight:bold; color:#000080;">Password : @Model.abpwd</span>
+}
+else
+{
+    <span style="font-weight:bold; color:#000080;">Username : &#45;</span>
+    <br />
+    <span style="font-weight:bold; color:#000080;">Password : &#45;</span>
+}
+

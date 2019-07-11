@@ -1,0 +1,63 @@
+﻿@model ngxsis.ViewModel.AktivasiAkunViewModel
+
+@using (Html.BeginForm("TambahTes", "AktivasiAkun", FormMethod.Post, new { id = "form-tambah", name = "form-tambah" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.online_test_id)
+
+        <div class="form-group">
+            <div class="col-md-12">
+                @Html.LabelFor(model => model.test_type_id, htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-12">
+                @Html.DropDownListFor(model => model.test_type_id
+                       , (IEnumerable<SelectListItem>)ViewBag.JenisTesList, "-Pilih-", new { @class = "form-control", required = "required" })
+                @Html.ValidationMessageFor(model => model.test_type_id, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="btn-group pull-right" role="group" aria-label="...">
+                <input type="button" value="Batal" class="btn btn-batal" />
+                <input type="submit" value="Tambah" class="btn btn-simpan" />
+            </div>
+        </div>
+    </div>
+}
+
+@Scripts.Render("~/bundles/jqueryval")
+
+<script type="text/javascript">
+    $("#form-tambah").submit(function () {
+        $.ajax({
+            url: this.action,
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.success) {
+                    alert("Jenis Tes Berhasil Ditambahkan");
+                    $(".modal-kecil").modal("hide");
+                    GetTabelListTesDetail();
+                }
+                else {
+                    alert("Error! " + result.message);
+                }
+            }
+        });
+        return false;
+    });
+
+    $(".btn-batal").click(function () {
+        $(".modal-kecil").modal("hide");
+    });
+
+
+    $(".close").click(function () {
+        $(".modal-kecil").modal("hide");
+    })
+
+
+</script>

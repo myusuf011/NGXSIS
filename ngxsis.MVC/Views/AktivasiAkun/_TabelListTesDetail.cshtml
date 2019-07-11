@@ -1,0 +1,70 @@
+﻿@model IEnumerable<ngxsis.ViewModel.AktivasiAkunViewModel>
+
+<div class="container">
+    <table class="table table-striped" style="font-size:small;  color:#000080; font-family:Arial;">
+        <thead>
+            <tr>
+                <th>
+                    NO
+                </th>
+                <th>
+                    PERIODE
+                </th>
+                <th>
+                    #
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @*@for (int i = 0; i < Model.Count(); i++)
+                {
+                    <tr>
+                        <td>
+                            @i+1
+                        </td>
+                        <td>
+
+                            @Html.DisplayFor(modelItem => Model[i].name_type)
+                        </td>
+                        <td>
+                            <span class="glyphicon glyphicon-trash btn-delete" data-container="@Model[i]." style="padding-top:20%;" aria-hidden="true"></span>
+                        </td>
+                    </tr>
+                }*@
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.test_order)
+                    </td>
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.name_type)
+                    </td>
+                    <td>
+                        <button type="button" class="btn-delete" data-id="@item.online_test_detail_id" data-name="@item.name_type" style="border:none; background:transparent;" title="Hapus Tes">
+                            <i class="glyphicon glyphicon-trash "></i>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<script type="text/javascript">
+    $(".btn-delete").click(function () {
+        $.ajax({
+            url: '@Url.Action("DeleteTesDetail", "AktivasiAkun")',
+            type: 'get',
+            data: { idTesDetail: $(this).attr('data-id'), namaTes: $(this).attr('data-name') },
+            success: function (result) {
+                $(".modal-delete .modal-title").html("Hapus Tes");
+                $(".modal-delete .modal-body").html(result);
+                $(".modal-delete").modal("show");
+            }
+        });
+    });
+</script>

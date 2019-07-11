@@ -41,6 +41,7 @@ namespace ngxsis.Repository
             }
             return result;
         }
+
         public static List<MenuViewModel> NavBar(long RoleId)
         {
             List<MenuViewModel> result = new List<MenuViewModel>();

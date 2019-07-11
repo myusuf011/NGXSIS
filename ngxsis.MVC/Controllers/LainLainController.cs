@@ -31,9 +31,66 @@ namespace ngxsis.MVC.Controllers
             return PartialView("_ListTambahan", LainLainRepo.SelectByBiodataID(idBiodata));
         }
 
-        public ActionResult DeleteReferensi(long idBiodata)
+        public ActionResult ListTambahanShort(long idBiodata)
         {
-            return PartialView("_DeleteReferensi", LainLainRepo.SelectByBiodataID(idBiodata));
+            return PartialView("_ListTambahanShort", LainLainRepo.SelectByBiodataID(idBiodata));
+        }
+
+        public ActionResult CreateReferensi()
+        {
+            return PartialView("_CreateReferensi", new LainLainViewModel());
+        }
+
+        [HttpPost]
+        public ActionResult CreateReferensi(LainLainViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return PartialView("_CreateReferensi", model);
+            }
+
+            long session = (long)Session["userID"];
+
+            ResponseResult result = LainLainRepo.UpdateReferensi(model, session);
+            return Json(new
+            {
+                success = result.Success,
+                message = result.Message,
+                entity = result.Entity
+            }, JsonRequestBehavior.AllowGet);                       
+        }
+
+
+        public ActionResult EditReferensi(long id)
+        {
+            return PartialView("_EditReferensi", LainLainRepo.SelectReferensiByID(id));
+        }
+
+        [HttpPost]
+        public ActionResult EditReferensi(LainLainViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return PartialView("_EditReferensi", model);
+            }
+            else
+            {
+                long session = (long)Session["userID"];
+
+                ResponseResult result = LainLainRepo.UpdateReferensi(model, session);
+                return Json(new
+                {
+                    success = result.Success,
+                    message = result.Message,
+                    entity = result.Entity
+                }, JsonRequestBehavior.AllowGet);
+            }            
+        }
+
+
+        public ActionResult DeleteReferensi(long id)
+        {
+            return PartialView("_DeleteReferensi", LainLainRepo.SelectReferensiByID(id));
         }
 
         [HttpPost]
@@ -51,7 +108,7 @@ namespace ngxsis.MVC.Controllers
             {
                 result.Success = false;
                 result.Message = "Anda Harus Login Terlebih Dahulu";
-            }                    
+            }
 
             return Json(new
             {
@@ -60,6 +117,34 @@ namespace ngxsis.MVC.Controllers
                 entity = result.Entity
             }, JsonRequestBehavior.AllowGet);
         }
-        
+
+
+        public ActionResult EditTambahan(long idBiodata)
+        {
+            return PartialView("_EditTambahan", LainLainRepo.SelectByBiodataID(idBiodata));
+        }
+
+        [HttpPost]
+        public ActionResult EditTambahan(KeteranganTambahanViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return PartialView("_EditTambahan", model);
+            }
+            else
+            {
+                long session = (long)Session["userID"];
+
+                ResponseResult result = LainLainRepo.UpdateTambahan(model, session);
+                return Json(new
+                {
+                    success = result.Success,
+                    message = result.Message,
+                    entity = result.Entity
+                }, JsonRequestBehavior.AllowGet);
+            }            
+        }
+
+
     }
 }

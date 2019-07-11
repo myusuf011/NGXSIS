@@ -1,0 +1,53 @@
+﻿@model ngxsis.ViewModel.AktivasiAkunViewModel
+
+<div class="container">
+    <div class="row">   
+        <div class="col-md-6 pull-left">
+            <h4 style="font-weight:bolder; color:#000080;  font-family:Arial;">
+                Aktivasi Akun Tes Online
+            </h4>
+        </div>
+        <div class="col-md-6">
+            <button type="button" class="btn btn-pp btn-sm btn-120px pull-right" data-id="@Model.biodata_id"><b>Aktifkan</b></button>
+        </div>           
+    </div>
+    <hr style="border-bottom:3px solid #000080;width:100%; margin-top:0; padding-top:0; margin-bottom:5px; padding-bottom:0;" />
+
+    <div id="akun"></div>
+
+    <div class="row" style="margin-top:10px;">
+        <div id="list-test"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        GetAkun();
+        GetListTest();        
+    });
+
+    function GetAkun() {
+        $.ajax({
+            url: '@Url.Action("Akun", "AktivasiAkun")',
+            type: 'get',
+            data: { idBiodata: @Model.biodata_id },
+            success: function (result) {
+                $("#akun").html(result);
+            }
+        });
+    };
+
+    function GetListTest() {
+        $.ajax({
+            url: '@Url.Action("ListTest", "AktivasiAkun")',
+            type: 'get',
+            data: { idBiodata: @Model.biodata_id },
+            success: function (result) {
+                $("#list-test").html(result);
+            }
+        });
+    };
+
+</script>
+
+

@@ -135,6 +135,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AktivasiAkunController.cs" />
     <Compile Include="Controllers\CatatanController.cs" />
     <Compile Include="Controllers\DokumenController.cs" />
     <Compile Include="Controllers\TokenController.cs" />
@@ -218,6 +219,8 @@
     <Content Include="Content\homepage.css" />
     <Content Include="Content\CreateBio.css" />
     <Content Include="Content\Dokumen.css" />
+    <Content Include="Content\LainLain.css" />
+    <Content Include="Content\Modal.css" />
     <Content Include="Content\Pelamar.css" />
     <Content Include="Content\PelamarTerjadwal.css" />
     <Content Include="Content\Profil.css" />

@@ -1,0 +1,143 @@
+﻿
+.modal-delete .modal-content {
+    width: 500px; /*lebar*/
+    border-color: #9c1010;
+    border-width: 3px; /*tebal pinggiran modal*/
+    border-style: solid;
+}
+
+.modal-delete .modal-header {
+    color: #FFFFFF; /*text tulisan*/
+    background-color: #9c1010;
+}
+
+.modal-delete .modal-dialog {
+    right: auto;
+    left: 10%;
+    width: 500px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+
+.modal-kecil .modal-content {
+    width: 500px; /*lebar*/
+    /*border-color :#9c1010;*/
+    border-width: 3px; /*tebal pinggiran modal*/
+    border-style: solid;
+}
+
+.modal-kecil .modal-dialog {
+    right: auto;
+    left: 10%;
+    width: 500px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+
+.btn-simpan:hover,
+.btn-simpan:active,
+.btn-simpan:after,
+.btn-simpan:active,
+.btn-simpan:focus,
+.open .dropdown-toggle .btn-simpan,
+.btn-simpan {
+    color: #FFFFFF;
+    background-color: #000080;
+    font-weight: bold;
+}
+
+.btn-batal:hover,
+.btn-batal:active,
+.btn-batal:after,
+.btn-batal:active,
+.btn-batal:focus,
+.open .dropdown-toggle .btn-batal,
+.btn-batal {
+    color: #FFFFFF;
+    background-color: #ff6a00;
+    font-weight: bold;
+}
+
+.btn-more:hover,
+.btn-more:focus,
+.btn-more:active,
+.btn-more.active,
+.btn-more {
+    color: #ffffff;
+    background-color: #000080;
+    border-color: #000063;
+}
+
+    .btn-more:hover,
+    .btn-more:focus,
+    .btn-more:active,
+    .btn-more.active {
+        background-color: #24248d;
+    }
+
+.table thead tr th {
+    padding-bottom: 10px;
+    padding-top: 0px;
+    border-bottom: 3px solid #000080;
+    border-top: 10px solid #000080;
+    color: #000080;
+}
+
+.table tbody tr td {
+    border-top: 2px solid #000080;
+    vertical-align: middle;
+    color: #000080;
+}
+
+.text-input:focus,
+.text-input {
+    border-color: #000080;
+    color: #000080;
+    border-width: 2px;
+    height: 45px;
+    font-size: 14px;
+}
+
+.text-area:focus,
+.text-area {
+    border-color: #000080;
+    color: #000080;
+    border-width: 2px;
+    height: 75px;
+    font-size: 14px;
+}
+
+.form-control[readonly],
+.form-control[disabled] {
+    background-color: #CCCCFF;
+}
+
+.form-group .control-label {
+    font-size: 11px;
+}
+
+.btn-70px {
+    width: 70px;
+}
+
+.btn-90px {
+    width: 90px;
+}
+
+.btn-120px {
+    width: 120px;
+    height: 40px;
+}
+
+.custom-checkbox .ceklist {
+    position: relative;
+    display: inline-block;
+    border: 2px solid #000080;
+    border-radius: 5px;
+    width: 20px;
+    height: 20px;
+    float: left;
+    margin-right: 5px;
+}

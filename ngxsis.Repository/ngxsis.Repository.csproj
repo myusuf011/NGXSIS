@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessRepo.cs" />
+    <Compile Include="AktivasiAkunRepo.cs" />
     <Compile Include="CatatanRepo.cs" />
     <Compile Include="DokumenRepo.cs" />
     <Compile Include="TokenRepo.cs" />

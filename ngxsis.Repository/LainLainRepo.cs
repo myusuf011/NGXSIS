@@ -10,18 +10,25 @@ namespace ngxsis.Repository
 {
     public class LainLainRepo
     {
-        public static LainLainViewModel SelectByBiodataID(long id)
+        public static KeteranganTambahanViewModel SelectByBiodataID(long id)
         {
-            LainLainViewModel result = new LainLainViewModel();
+            KeteranganTambahanViewModel result = new KeteranganTambahanViewModel();
             using (var db = new ngxsisContext())
             {
                 result = (from b in db.x_biodata
                           join kt in db.x_keterangan_tambahan
                           on b.id equals kt.biodata_id
                           where b.id == id
-                          select new LainLainViewModel
+                          select new KeteranganTambahanViewModel
                           {
-                              biodata_id = b.id,
+                              biodata_id = kt.biodata_id,
+                              tambahanId = kt.id,
+                              created_by = kt.created_by,
+                              created_on = kt.created_on,
+                              modified_by = kt.modified_by,
+                              modified_on = kt.modified_on,
+                              deleted_by = kt.deleted_by,
+                              deleted_on = kt.deleted_on,
                               emergency_contact_name = kt.emergency_contact_name,
                               emergency_contact_phone = kt.emergency_contact_phone,
                               expected_salary = kt.expected_salary,
@@ -41,7 +48,7 @@ namespace ngxsis.Repository
                               other_notes = kt.other_notes
                           }).FirstOrDefault();
             }
-            return result != null ? result : new LainLainViewModel();
+            return result != null ? result : new KeteranganTambahanViewModel();
         }
 
         public static List<LainLainViewModel> SelectAllReferensi(long idBiodata)
@@ -63,6 +70,26 @@ namespace ngxsis.Repository
             }
 
             return result != null ? result : new List<LainLainViewModel>();
+        }
+
+        public static LainLainViewModel SelectReferensiByID(long id)
+        {
+            LainLainViewModel result = new LainLainViewModel();
+            using (var db = new ngxsisContext())
+            {
+                result = (from r in db.x_pe_referensi
+                          where r.id == id
+                          select new LainLainViewModel
+                          {
+                              biodata_id = r.biodata_id,
+                              referensiId = r.id,
+                              name = r.name,
+                              position = r.position,
+                              address_phone = r.address_phone,
+                              relation = r.relation
+                          }).FirstOrDefault();
+            }
+            return result != null ? result : new LainLainViewModel();
         }
 
         public static ResponseResult UpdateReferensi(LainLainViewModel entity, long session)
@@ -133,12 +160,13 @@ namespace ngxsis.Repository
             return result;
         }
 
-        public static ResponseResult UpdateTambahan(LainLainViewModel entity, long session)
+        public static ResponseResult UpdateTambahan(KeteranganTambahanViewModel entity, long session)
         {
             ResponseResult result = new ResponseResult();
-            try
-            {
-                using (var db = new ngxsisContext())
+
+            using (var db = new ngxsisContext())
+            {   
+                try
                 {
                     x_keterangan_tambahan tambahan = db.x_keterangan_tambahan
                         .Where(r => r.id == entity.tambahanId)
@@ -168,12 +196,13 @@ namespace ngxsis.Repository
                     db.SaveChanges();
                     result.Entity = entity;
                 }
+                catch (Exception ex)
+                {
+                    result.Success = false;
+                    result.Message = ex.Message;
+                }
             }
-            catch (Exception ex)
-            {
-                result.Success = false;
-                result.Message = ex.Message;
-            }            
+
 
             return result;
         }

@@ -1,0 +1,100 @@
+﻿@model ngxsis.ViewModel.KeteranganTambahanViewModel
+
+<table class="table table-striped" style="font-size:small; font-weight:700;">
+    <tbody>
+        <tr>
+            <td>
+                <div class="col-md-8" style="left: -15px;"> Gaji Yang Diharapkan </div>
+                <div class="col-md-1" style="right:5px;">:</div>
+                @if (Model.expected_salary == null)
+            {
+                    <div class="col-md-3" style="left:-30px;"> - </div>
+                }
+                else
+                {
+                    <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.expected_salary) </div>
+                }
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="col-md-8" style="left: -15px;"> Negotiable </div>
+                <div class="col-md-1" style="right:5px;">:</div>
+                @if (Model.is_negotiable == null)
+            {
+                    <div class="col-md-3" style="left:-30px;"> - </div>
+                }
+                else if (Model.is_negotiable == true)
+                {
+                    <div class="col-md-3" style="left:-30px;"> Ya </div>
+                }
+                else if (Model.is_negotiable == false)
+                {
+                    <div class="col-md-3" style="left:-30px;"> Tidak </div>
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="col-md-8" style="left: -15px;"> Kapan Siap Mulai Bekerja </div>
+                <div class="col-md-1" style="right:5px;">:</div>
+                @if (Model.start_working == null)
+            {
+                    <div class="col-md-3" style="left:-30px;"> - </div>
+                }
+                else
+                {
+                    <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.start_working) </div>
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="col-md-8" style="left: -15px;"> Bersedia Ditempatkan Di Luar Kota </div>
+                <div class="col-md-1" style="right:5px;">:</div>
+                @if (Model.is_ready_to_outoftown == null)
+            {
+                    <div class="col-md-3" style="left:-30px;"> - </div>
+                }
+                else if (Model.is_ready_to_outoftown == true)
+                {
+                    <div class="col-md-3" style="left:-30px;"> Ya </div>
+                }
+                else if (Model.is_ready_to_outoftown == false)
+                {
+                    <div class="col-md-3" style="left:-30px;"> Tidak </div>
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="col-md-8" style="left: -15px;"> Kontak Darurat (Keluarga Tidak Serumah) </div>
+                <div class="col-md-1" style="right:5px;">:</div>
+                @if (Model.emergency_contact_name == null)
+            {
+                    <div class="col-md-3" style="left:-30px;"> - </div>
+                }
+                else
+                {
+                    <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.emergency_contact_name) </div>
+                }
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="col-md-8" style="left: -15px;"> Nomor Telp. Darurat </div>
+                <div class="col-md-1" style="right:5px;">:</div>
+                @if (Model.emergency_contact_phone == null)
+            {
+                    <div class="col-md-3" style="left:-30px;"> - </div>
+                }
+                else
+                {
+                    <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.emergency_contact_phone) </div>
+                }
+            </td>
+        </tr>
+    </tbody>
+
+</table>

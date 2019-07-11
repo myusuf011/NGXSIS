@@ -1,0 +1,382 @@
+﻿@model ngxsis.ViewModel.KeteranganTambahanViewModel
+
+<link href="~/Content/LainLain.css" rel="stylesheet" />
+
+@using (Html.BeginForm("EditTambahan", "LainLain", FormMethod.Post, new { id = "form-edit", name = "form-edit" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.biodata_id)
+        @Html.HiddenFor(model => model.tambahanId)
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.emergency_contact_name, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.emergency_contact_name, new { htmlAttributes = new { @class = "form-control text-input" } })
+                            @Html.ValidationMessageFor(model => model.emergency_contact_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.expected_salary, htmlAttributes: new { @class = "control-label " })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.expected_salary, new { htmlAttributes = new { @class = "form-control text-input" } })
+                            @Html.ValidationMessageFor(model => model.expected_salary, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="custom-checkbox" style="vertical-align:middle;margin-top:20px;">
+                            @Html.CheckBox("is_negotiable", htmlAttributes: new { @class = "ceklist" })
+                            @Html.LabelFor(model => model.is_negotiable, htmlAttributes: new { @class = "control-label" })
+                            @Html.ValidationMessageFor(model => model.is_negotiable, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.emergency_contact_phone, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.emergency_contact_phone, new { htmlAttributes = new { @class = "form-control text-input" } })
+                            @Html.ValidationMessageFor(model => model.emergency_contact_phone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.start_working, htmlAttributes: new { @class = "control-label " })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.start_working, new { htmlAttributes = new { @class = "form-control text-input" } })
+                            @Html.ValidationMessageFor(model => model.start_working, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <div class="custom-checkbox" style="vertical-align:middle;margin-top:20px;">
+                            @Html.CheckBox("is_ready_to_outoftown", htmlAttributes: new { @class = "ceklist" })
+                            @Html.LabelFor(model => model.is_ready_to_outoftown, htmlAttributes: new { @class = "control-label" })
+                            @Html.ValidationMessageFor(model => model.is_ready_to_outoftown, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="custom-checkbox" style="vertical-align:middle;">
+                                @Html.CheckBox("is_apply_other_place", htmlAttributes: new { @onclick = "EnableDisableApplyOther(this)", @class = "ceklist" })
+                                @Html.LabelFor(model => model.is_apply_other_place, htmlAttributes: new { @class = "control-label" })
+                                @Html.ValidationMessageFor(model => model.is_apply_other_place, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.apply_place, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.apply_place, new { htmlAttributes = new { @class = "form-control text-input apply_other" } })
+                            @Html.ValidationMessageFor(model => model.apply_place, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.selection_phase, htmlAttributes: new { @class = "control-label " })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.selection_phase, new { htmlAttributes = new { @class = "form-control text-input apply_other" } })
+                            @Html.ValidationMessageFor(model => model.selection_phase, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="custom-checkbox" style="vertical-align:middle;">
+                                @Html.CheckBox("is_ever_badly_sick", htmlAttributes: new { @onclick = "EnableDisableEverSick(this)", @class = "ceklist" })
+                                @Html.LabelFor(model => model.is_ever_badly_sick, htmlAttributes: new { @class = "control-label" })
+                                @Html.ValidationMessageFor(model => model.is_ever_badly_sick, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" style="margin-top:0; padding-top:0;">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.disease_name, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.disease_name, new { htmlAttributes = new { @class = "form-control text-input disease" } })
+                            @Html.ValidationMessageFor(model => model.disease_name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.disease_time, htmlAttributes: new { @class = "control-label " })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.disease_time, new { htmlAttributes = new { @class = "form-control text-input disease" } })
+                            @Html.ValidationMessageFor(model => model.disease_time, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <div class="custom-checkbox" style="vertical-align:middle;">
+                                @Html.CheckBox("is_ever_psychotest", htmlAttributes: new { @onclick = "EnableDisablePsychotest(this)", @class = "ceklist" })
+                                @Html.LabelFor(model => model.is_ever_psychotest, htmlAttributes: new { @class = "control-label" })
+                                @Html.ValidationMessageFor(model => model.is_ever_psychotest, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.psychotest_needs, htmlAttributes: new { @class = "control-label" })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.psychotest_needs, new { htmlAttributes = new { @class = "form-control text-input psychotest" } })
+                            @Html.ValidationMessageFor(model => model.psychotest_needs, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.psychotest_time, htmlAttributes: new { @class = "control-label " })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.psychotest_time, new { htmlAttributes = new { @class = "form-control text-input psychotest" } })
+                            @Html.ValidationMessageFor(model => model.psychotest_time, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.requirementes_required, htmlAttributes: new { @class = "control-label " })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.requirementes_required, new { htmlAttributes = new { @class = "form-control text-area" } })
+                            @Html.ValidationMessageFor(model => model.requirementes_required, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            @Html.LabelFor(model => model.other_notes, htmlAttributes: new { @class = "control-label " })
+                        </div>
+                        <div class="col-md-12">
+                            @Html.EditorFor(model => model.other_notes, new { htmlAttributes = new { @class = "form-control text-area" } })
+                            @Html.ValidationMessageFor(model => model.other_notes, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="form-actions col-lg-12 ">
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-batal btn-120px">Batal</button>
+                        <button type="submit" class="btn btn-simpan btn-120px">Simpan</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
+@Scripts.Render("~/bundles/jqueryval")
+
+<script type="text/javascript">
+    var checkApply = document.getElementById("is_apply_other_place");
+    var checkDisease = document.getElementById("is_ever_badly_sick");
+    var checkPsychotest = document.getElementById("is_ever_psychotest");
+
+    $(document).ready(function () {
+        if (!checkApply.checked) {
+            $(".apply_other").attr("readonly", true);
+            $(".apply_other").attr("required", false);
+            
+        }
+        else if (checkApply.checked) {
+            $(".apply_other").attr("readonly", false);
+            $(".apply_other").attr("required", true);
+        }
+
+        if (!checkDisease.checked) {
+            $(".disease").attr("disabled", true);
+        }
+        else if (checkDisease.checked) {
+            $(".disease").attr("disabled", false);
+        }
+
+        if (!checkPsychotest.checked) {
+            $(".psychotest").attr("disabled", true);
+        }
+        else if (checkPsychotest.checked) {
+            $(".psychotest").attr("disabled", false);
+        }
+    });
+
+    function EnableDisableApplyOther(check) {
+        if (!checkApply.checked) {
+            $(".apply_other").attr("readonly", true);
+            $(".apply_other").val("-");
+        }
+        else if (checkApply.checked) {
+            $(".apply_other").attr("readonly", false);
+            $(".apply_other").val("");
+        }
+    };
+
+    function EnableDisableEverSick(check) {
+        if (!checkDisease.checked) {
+            $(".disease").attr("disabled", true);
+            $(".disease").val("-");
+        }
+        else if (checkDisease.checked) {
+            $(".disease").attr("disabled", false);
+            $(".disease").val("");
+        }
+    }
+
+    function EnableDisablePsychotest(check) {
+        if (!checkPsychotest.checked) {
+            $(".psychotest").attr("disabled", true);
+            $(".disease").val("-");
+        }
+        else if (checkPsychotest.checked) {
+            $(".psychotest").attr("disabled", false);
+            $(".disease").val("");
+        }
+    }
+
+    $("#form-edit").submit(function () {
+        $.ajax({
+            url: this.action,
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                debugger;
+                if (result.success) {
+                    alert("Data Berhasil di ubah");
+                    $(".modal-create").modal("hide");
+                    $(".modal-pelamar").modal("show");
+                    GetListTambahan();
+                }
+                else {
+                    //$("#form-edit").validate();
+                    alert("Error! " + result.message);
+                }
+            }
+        });
+        return false;
+    });
+
+
+    $(".btn-batal").click(function () {
+        $(".modal-create").modal("hide");
+        $(".modal-pelamar").modal("show");
+    });
+
+    $(".close").click(function () {
+        $(".modal-create").modal("hide");
+        $(".modal-pelamar").modal("show");
+    });
+
+</script>
+
+
+@*var checkDisease = document.getElementById("is_ever_badly_sick");
+        var txtDiseaseName = document.getElementById("disease_name");
+        var txtDiseaseTime = document.getElementById("disease_time");
+        var checkPsychotest = document.getElementById("is_ever_psychotest");
+        var txtPsychotestNeeds = document.getElementById("psychotest_needs");
+        var txtPsychotestTime = document.getElementById("psychotest_time");
+
+    function EnableDisableEverSick(check) {
+            txtDiseaseName.disabled = check.checked ? false : true;
+            txtDiseaseTime.disabled = check.checked ? false : true;
+            if (txtDiseaseName.disabled) {
+                txtDiseaseName.value = "";
+            }
+            if (txtDiseaseTime.disabled) {
+                txtDiseaseTime.value = "";
+            }
+        }
+
+        function EnableDisablePsychotest(check) {
+            txtPsychotestNeeds.disabled = check.checked ? false : true;
+            txtPsychotestTime.disabled = check.checked ? false : true;
+            if (txtPsychotestNeeds.disabled) {
+                txtPsychotestNeeds.value = "";
+            }
+            if (txtPsychotestTime.disabled) {
+                txtPsychotestTime.value = "";
+            }
+        }
+
+
+
+    txtDiseaseName.disabled = checkDisease.checked ? false : true;
+            txtDiseaseTime.disabled = checkDisease.checked ? false : true;
+
+            txtPsychotestNeeds.disabled = checkPsychotest.checked ? false : true;
+            txtPsychotestTime.disabled = checkPsychotest.checked ? false : true;
+
+            $("#emergency_contact_phone").removeAttr("required");*@

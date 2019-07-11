@@ -50,7 +50,7 @@
                     <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-catatan" class="btn btn-link" data-id="@Model.biodata_id">Catatan</button></td>
                 </tr>
                 <tr>
-                    <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.id">Aktivasi Akun</button></td>
+                    <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" id="btn-aktifasi-akun" class="btn btn-link" data-id="@Model.biodata_id">Aktivasi Akun</button></td>
                 </tr>
                 <tr>
                     <td style="border:2px solid #000080;"><button style="padding-left:45px; color:#000080;" type="submit" class="btn btn-link" data-id="@Model.id">Lihat Tes</button></td>
@@ -95,9 +95,12 @@
                 }
             });
     }
+
+    $(document).ready(function () {
+        biodataId = @Model.biodata_id;
+    })
+
     $("#btn-biodata").click(function () {
-        biodataId = $(this).attr("data-id");
-        console.log(biodataId)
         GetListP();
     });
     function GetListP() {
@@ -114,8 +117,8 @@
                 }
             });
     }
+
     $("#btn-lainlain").click(function () {
-        //alert("ID Biodata : " + $(this).attr("data-id"));
         $.ajax({
             url: '@Url.Action("ListIndex", "LainLain")',
             type: 'get',
@@ -125,6 +128,19 @@
             }
         });
     });
+
+    $("#btn-aktifasi-akun").click(function () {
+        $.ajax({
+            url: '@Url.Action("ListIndex", "AktivasiAkun")',
+            type: 'get',
+            data: { idBiodata: $(this).attr("data-id") },
+            success: function (result) {
+                $("#datadata").html(result);
+            }
+        });
+    });
+
+
     $("#btn-keahlian").click(function () {
         biodata_id = $(this).data("id");
         //alert("ID Biodata : " + $(this).attr("data-id"));

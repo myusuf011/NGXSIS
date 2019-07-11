@@ -37,7 +37,7 @@ namespace ngxsis.DataModel
 
         public bool? is_negotiable { get; set; }
 
-        [StringLength(10)]
+        [StringLength(100)]
         public string start_working { get; set; }
 
         public bool? is_ready_to_outoftown { get; set; }

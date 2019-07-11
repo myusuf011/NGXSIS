@@ -1,0 +1,100 @@
+﻿@model IEnumerable<ngxsis.ViewModel.AktivasiAkunViewModel>
+
+<div class="container">
+    <table class="table table-striped" style="font-size:small;  color:#000080; font-family:Arial;">
+        <thead>
+            <tr>
+                <th>
+                    KODE PERIODE
+                </th>
+                <th>
+                    PERIODE
+                </th>
+                <th>
+                    TGL. TES
+                </th>
+                <th>
+                    TGL. BERAKHIR TES
+                </th>
+                <th>
+                    AKSES
+                </th>
+                <th>
+                    STATUS
+                </th>
+                <th>
+                    #
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.period_code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.period)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.test_date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.expired_test)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.user_access)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.status)
+                    </td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-more dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                More
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+                                <li><a href="#" data-container="@item.online_test_id" class="btn-tampil-tes">Tampilkan Pilihan Tes</a></li>
+                                <li><a href="#" data-container="@item.online_test_id" class="btn-delete">Hapus</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    $(".btn-tampil-tes").click(function () {
+        $.ajax({
+            url: '@Url.Action("ListTestDetail", "AktivasiAkun")',
+            type: 'get',
+            data: { id: $(this).attr("data-container") },
+            success: function (result) {
+                $(".modal-create .modal-title").html("Pilihan Tes");
+                $(".modal-create .modal-body").html(result);
+                $(".modal-pelamar").modal("hide");
+                $(".modal-create").modal("show");
+            }
+        });
+    });
+
+    @*$(".btn-delete").click(function () {
+        $.ajax({
+            url: '@Url.Action("DeleteReferensi", "LainLain")',
+            type: 'get',
+            data: { id: $(this).attr("data-container") },
+            success: function (result) {
+                $(".modal-delete .modal-title").html("Hapus Referensi");
+                $(".modal-delete .modal-body").html(result);
+                $(".modal-delete").modal("show");
+            }
+        });
+    });*@
+</script>
+
+

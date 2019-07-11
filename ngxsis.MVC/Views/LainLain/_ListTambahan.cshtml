@@ -1,253 +1,281 @@
-﻿@model ngxsis.ViewModel.LainLainViewModel
+﻿@model ngxsis.ViewModel.KeteranganTambahanViewModel
 @Html.AntiForgeryToken()
 @Html.HiddenFor(model => model.tambahanId)
 
-<table class="table table-striped" style="font-size:small; font-weight:700; color:#000080; font-family:Arial;">
-    <tr>
-        <td>
-            <div class="col-md-8" style="left: -15px;"> Gaji Yang Diharapkan </div>
-            <div class="col-md-1" style="right:5px;">:</div>
-            @if (Model.expected_salary == null)
-            {
-                <div class="col-md-3" style="left:-30px;"> - </div>
-            }
-            else
-            {
-                <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.expected_salary) </div>
-            }
-        </td>
-    </tr>
+<link href="~/Content/LainLain.css" rel="stylesheet" />
 
-    <tr>
-        <td>
-            <div class="col-md-8" style="left: -15px;"> Negotiable </div>
-            <div class="col-md-1" style="right:5px;">:</div>
-            @if (Model.is_negotiable == null)
+<div class="container">
+    <div class="row">
+        <table class="table" style="font-size:small; font-weight:700;">
+            <tr>
+                <td>
+                    <div class="col-md-8" style="left: -15px;"> Gaji Yang Diharapkan </div>
+                    <div class="col-md-1" style="right:5px;">:</div>
+                    @if (Model.expected_salary == null)
             {
-                <div class="col-md-3" style="left:-30px;"> - </div>
-            }
-            else if (Model.is_negotiable == true)
+                        <div class="col-md-3" style="left:-30px;"> - </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.expected_salary) </div>
+                    }
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="col-md-8" style="left: -15px;"> Negotiable </div>
+                    <div class="col-md-1" style="right:5px;">:</div>
+                    @if (Model.is_negotiable == null)
             {
-                <div class="col-md-3" style="left:-30px;"> Ya </div>
-            }
-            else if (Model.is_negotiable == false)
+                        <div class="col-md-3" style="left:-30px;"> - </div>
+                    }
+                    else if (Model.is_negotiable == true)
+                    {
+                        <div class="col-md-3" style="left:-30px;"> Ya </div>
+                    }
+                    else if (Model.is_negotiable == false)
+                    {
+                        <div class="col-md-3" style="left:-30px;"> Tidak </div>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="col-md-8" style="left: -15px;"> Kapan Siap Mulai Bekerja </div>
+                    <div class="col-md-1" style="right:5px;">:</div>
+                    @if (Model.start_working == null)
             {
-                <div class="col-md-3" style="left:-30px;"> Tidak </div>
-            }
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="col-md-8" style="left: -15px;"> Kapan Siap Mulai Bekerja </div>
-            <div class="col-md-1" style="right:5px;">:</div>
-            @if (Model.start_working == null)
+                        <div class="col-md-3" style="left:-30px;"> - </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.start_working) </div>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="col-md-8" style="left: -15px;"> Bersedia Ditempatkan Di Luar Kota </div>
+                    <div class="col-md-1" style="right:5px;">:</div>
+                    @if (Model.is_ready_to_outoftown == null)
             {
-                <div class="col-md-3" style="left:-30px;"> - </div>
-            }
-            else
+                        <div class="col-md-3" style="left:-30px;"> - </div>
+                    }
+                    else if (Model.is_ready_to_outoftown == true)
+                    {
+                        <div class="col-md-3" style="left:-30px;"> Ya </div>
+                    }
+                    else if (Model.is_ready_to_outoftown == false)
+                    {
+                        <div class="col-md-3" style="left:-30px;"> Tidak </div>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="col-md-8" style="left: -15px;"> Kontak Darurat (Keluarga Tidak Serumah) </div>
+                    <div class="col-md-1" style="right:5px;">:</div>
+                    @if (Model.emergency_contact_name == null)
             {
-                <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.start_working) </div>
-            }
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="col-md-8" style="left: -15px;"> Bersedia Ditempatkan Di Luar Kota </div>
-            <div class="col-md-1" style="right:5px;">:</div>
-            @if (Model.is_ready_to_outoftown == null)
+                        <div class="col-md-3" style="left:-30px;"> - </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.emergency_contact_name) </div>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="col-md-8" style="left: -15px;"> Nomor Telp. Darurat </div>
+                    <div class="col-md-1" style="right:5px;">:</div>
+                    @if (Model.emergency_contact_phone == null)
             {
-                <div class="col-md-3" style="left:-30px;"> - </div>
-            }
-            else if (Model.is_ready_to_outoftown == true)
+                        <div class="col-md-3" style="left:-30px;"> - </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.emergency_contact_phone) </div>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="col-md-8" style="left: -15px;"> Sedang Melamar Di Tempat Lain </div>
+                    <div class="col-md-1" style="right:5px;">:</div>
+                    @if (Model.is_apply_other_place == null)
             {
-                <div class="col-md-3" style="left:-30px;"> Ya </div>
-            }
-            else if (Model.is_ready_to_outoftown == false)
+                        <div class="col-md-3" style="left:-30px;"> - </div>
+                    }
+                    else if (Model.is_apply_other_place == true)
+                    {
+                        <div class="col-md-3" style="left:-30px;"> Ya </div>
+                    }
+                    else if (Model.is_apply_other_place == false)
+                    {
+                        <div class="col-md-3" style="left:-30px;"> Tidak </div>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="col-md-8" style="left: -15px;"> Dimana (Tempat Melamar) </div>
+                    <div class="col-md-1" style="right:5px;">:</div>
+                    @if (Model.apply_place == null)
             {
-                <div class="col-md-3" style="left:-30px;"> Tidak </div>
-            }
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="col-md-8" style="left: -15px;"> Kontak Darurat (Keluarga Tidak Serumah) </div>
-            <div class="col-md-1" style="right:5px;">:</div>
-            @if (Model.emergency_contact_name == null)
+                        <div class="col-md-3" style="left:-30px;"> - </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.apply_place) </div>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="col-md-8" style="left: -15px;"> Tahapan Seleksi Melamar </div>
+                    <div class="col-md-1" style="right:5px;">:</div>
+                    @if (Model.selection_phase == null)
             {
-                <div class="col-md-3" style="left:-30px;"> - </div>
-            }
-            else
+                        <div class="col-md-3" style="left:-30px;"> - </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.selection_phase) </div>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="col-md-8" style="left: -15px;"> Pernah Sakit Berat / Lama Sembuh </div>
+                    <div class="col-md-1" style="right:5px;">:</div>
+                    @if (Model.is_ever_badly_sick == null)
             {
-                <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.emergency_contact_name) </div>
-            }
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="col-md-8" style="left: -15px;"> Nomor Telp. Darurat </div>
-            <div class="col-md-1" style="right:5px;">:</div>
-            @if (Model.emergency_contact_phone == null)
+                        <div class="col-md-3" style="left:-30px;"> - </div>
+                    }
+                    else if (Model.is_ever_badly_sick == true)
+                    {
+                        <div class="col-md-3" style="left:-30px;"> Ya </div>
+                    }
+                    else if (Model.is_ever_badly_sick == false)
+                    {
+                        <div class="col-md-3" style="left:-30px;"> Tidak </div>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="col-md-8" style="left: -15px;"> Nama Penyakit </div>
+                    <div class="col-md-1" style="right:5px;">:</div>
+                    @if (Model.disease_name == null)
             {
-                <div class="col-md-3" style="left:-30px;"> - </div>
-            }
-            else
+                        <div class="col-md-3" style="left:-30px;"> - </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.disease_name) </div>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="col-md-8" style="left: -15px;"> Kapan (Waktu Sakit) </div>
+                    <div class="col-md-1" style="right:5px;">:</div>
+                    @if (Model.disease_time == null)
             {
-                <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.emergency_contact_phone) </div>
-            }
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="col-md-8" style="left: -15px;"> Sedang Melamar Di Tempat Lain </div>
-            <div class="col-md-1" style="right:5px;">:</div>
-            @if (Model.is_apply_other_place == null)
+                        <div class="col-md-3" style="left:-30px;"> - </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.disease_time) </div>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="col-md-8" style="left: -15px;"> Pernah Mengikuti Psikotes </div>
+                    <div class="col-md-1" style="right:5px;">:</div>
+                    @if (Model.is_ever_psychotest == null)
             {
-                <div class="col-md-3" style="left:-30px;"> - </div>
-            }
-            else if (Model.is_apply_other_place == true)
+                        <div class="col-md-3" style="left:-30px;"> - </div>
+                    }
+                    else if (Model.is_ever_psychotest == true)
+                    {
+                        <div class="col-md-3" style="left:-30px;"> Ya </div>
+                    }
+                    else if (Model.is_ever_psychotest == false)
+                    {
+                        <div class="col-md-3" style="left:-30px;"> Tidak </div>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="col-md-8" style="left: -15px;"> Keperluan Psikotes </div>
+                    <div class="col-md-1" style="right:5px;">:</div>
+                    @if (Model.psychotest_needs == null)
             {
-                <div class="col-md-3" style="left:-30px;"> Ya </div>
-            }
-            else if (Model.is_apply_other_place == false)
+                        <div class="col-md-3" style="left:-30px;"> - </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.psychotest_needs) </div>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="col-md-8" style="left: -15px;"> Kapan (Waktu Psikotes) </div>
+                    <div class="col-md-1" style="right:5px;">:</div>
+                    @if (Model.psychotest_time == null)
             {
-                <div class="col-md-3" style="left:-30px;"> Tidak </div>
-            }
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="col-md-8" style="left: -15px;"> Dimana (Tempat Melamar) </div>
-            <div class="col-md-1" style="right:5px;">:</div>
-            @if (Model.apply_place == null)
+                        <div class="col-md-3" style="left:-30px;"> - </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.psychotest_time) </div>
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="col-md-8" style="left: -15px;"> Keterangan Lain </div>
+                    <div class="col-md-1" style="right:5px;">:</div>
+                    @if (Model.other_notes == null)
             {
-                <div class="col-md-3" style="left:-30px;"> - </div>
-            }
-            else
-            {
-                <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.apply_place) </div>
-            }
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="col-md-8" style="left: -15px;"> Tahapan Seleksi Melamar </div>
-            <div class="col-md-1" style="right:5px;">:</div>
-            @if (Model.selection_phase == null)
-            {
-                <div class="col-md-3" style="left:-30px;"> - </div>
-            }
-            else
-            {
-                <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.selection_phase) </div>
-            }
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="col-md-8" style="left: -15px;"> Pernah Sakit Berat / Lama Sembuh </div>
-            <div class="col-md-1" style="right:5px;">:</div>
-            @if (Model.is_ever_badly_sick == null)
-            {
-                <div class="col-md-3" style="left:-30px;"> - </div>
-            }
-            else if (Model.is_ever_badly_sick == true)
-            {
-                <div class="col-md-3" style="left:-30px;"> Ya </div>
-            }
-            else if (Model.is_ever_badly_sick == false)
-            {
-                <div class="col-md-3" style="left:-30px;"> Tidak </div>
-            }
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="col-md-8" style="left: -15px;"> Nama Penyakit </div>
-            <div class="col-md-1" style="right:5px;">:</div>
-            @if (Model.disease_name == null)
-            {
-                <div class="col-md-3" style="left:-30px;"> - </div>
-            }
-            else
-            {
-                <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.disease_name) </div>
-            }
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="col-md-8" style="left: -15px;"> Kapan (Waktu Sakit) </div>
-            <div class="col-md-1" style="right:5px;">:</div>
-            @if (Model.disease_time == null)
-            {
-                <div class="col-md-3" style="left:-30px;"> - </div>
-            }
-            else
-            {
-                <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.disease_time) </div>
-            }
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="col-md-8" style="left: -15px;"> Pernah Mengikuti Psikotes </div>
-            <div class="col-md-1" style="right:5px;">:</div>
-            @if (Model.is_ever_psychotest == null)
-            {
-                <div class="col-md-3" style="left:-30px;"> - </div>
-            }
-            else if (Model.is_ever_psychotest == true)
-            {
-                <div class="col-md-3" style="left:-30px;"> Ya </div>
-            }
-            else if (Model.is_ever_psychotest == false)
-            {
-                <div class="col-md-3" style="left:-30px;"> Tidak </div>
-            }
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="col-md-8" style="left: -15px;"> Keperluan Psikotes </div>
-            <div class="col-md-1" style="right:5px;">:</div>
-            @if (Model.psychotest_needs == null)
-            {
-                <div class="col-md-3" style="left:-30px;"> - </div>
-            }
-            else
-            {
-                <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.psychotest_needs) </div>
-            }
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="col-md-8" style="left: -15px;"> Kapan (Waktu Psikotes) </div>
-            <div class="col-md-1" style="right:5px;">:</div>
-            @if (Model.psychotest_time == null)
-            {
-                <div class="col-md-3" style="left:-30px;"> - </div>
-            }
-            else
-            {
-                <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.psychotest_time) </div>
-            }
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <div class="col-md-8" style="left: -15px;"> Keterangan Lain </div>
-            <div class="col-md-1" style="right:5px;">:</div>
-            @if (Model.other_notes == null)
-            {
-                <div class="col-md-3" style="left:-30px;"> - </div>
-            }
-            else
-            {
-                <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.other_notes) </div>
-            }
-        </td>
-    </tr>
-</table>
+                        <div class="col-md-3" style="left:-30px;"> - </div>
+                    }
+                    else
+                    {
+                        <div class="col-md-3" style="left:-30px;"> @Html.DisplayFor(model => model.other_notes) </div>
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="row">
+        <div class="col-md-offset-9">
+            <div class="btn-group" role="group" aria-label="...">
+                <input type="button" value="Tutup" class="btn btn-tutup btn-more" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(".btn-tutup").click(function () {
+        $(".modal-detail-tambahan").modal("hide");
+        $(".modal-pelamar").modal("show");
+    });
+
+
+    $(".close").click(function () {
+        $(".modal-detail-tambahan").modal("hide");
+        $(".modal-pelamar").modal("show");
+    })
+</script>
+
+
 
 
